@@ -5,13 +5,12 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -64,8 +63,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
+  hardware = {
+    opengl.enable = true;
+    bluetooth.enable = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -96,28 +97,31 @@
     ];
   };
 
-  # Install Firefox
-  programs.firefox.enable = true;
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   home-manager = {
-    # specialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
+    # useGlobalPkgs = true;
     users = {
       "kgoe" = import ./home.nix;
     };
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Environment variables
+  environment.sessionVariables = {
+    FLAKE = "~/projects/nixos-config";
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     wget
     alacritty
-    vscode
     obsidian
     git
     _1password-gui
+    nh # Yet Another Nix Helper
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
