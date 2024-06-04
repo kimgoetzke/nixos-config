@@ -17,6 +17,7 @@ in
         isDefault = true;
         name = "default";
         settings = {
+          # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org"; # TODO: Test something like this
           "browser.download.panel.shown" = true;
           "browser.download.useDownloadDir" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
@@ -24,9 +25,21 @@ in
           "browser.shell.defaultBrowserCheckCount" = 1;
           "browser.search.region" = "GB";
           "browser.search.isUS" = false;
-          "browser.startup.homepage" = "https://kimgoetzke.github.io/";
+          "browser.startup.homepage" = "about:home";
           "distribution.searchplugins.defaultLocale" = "en-GB";
           "general.useragent.locale" = "en-GB";
+
+          # Activity Stream
+          "browser.newtab.preload" = false;
+          "browser.newtabpage.activity-stream.telemetry" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = false;
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+          "browser.newtabpage.activity-stream.default.sites" = "";
         };
         search.engines = {
           "Nix Packages" = {
