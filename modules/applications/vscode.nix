@@ -1,9 +1,15 @@
-{pkgs, inputs, ...}: 
+{pkgs, inputs, config, lib, ...}:
 
 {
-  programs.vscode = {
+  options.vscode = {
+    enable = lib.mkEnableOption "Enable Visual Studio Code";
+  };
+
+  config = lib.mkIf config.vscode.enable {
+    programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
+      # Miscellanous
       github.copilot
       github.copilot-chat
 
@@ -14,5 +20,6 @@
       arcticicestudio.nord-visual-studio-code
       pkief.material-icon-theme
     ];
+  };
   };
 }

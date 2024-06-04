@@ -3,10 +3,7 @@
 {
   home.username = "kgoe";
   home.homeDirectory = "/home/kgoe";
-  home.stateVersion = "24.05";
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+  home.stateVersion = "24.05"; 
   home.packages = [
     pkgs.curl
     pkgs.jq
@@ -27,15 +24,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Applications
   imports = [
     ./../../modules/applications/firefox.nix
     ./../../modules/applications/vscode.nix
   ];
 
-  # programs.firefox = {
-  #   enable = true;
-  # };
+  # Applications
+  vscode.enable = true;
+  firefox.enable = true;
+  firefox.withProfile = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -72,6 +69,5 @@
     # EDITOR = "emacs";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
