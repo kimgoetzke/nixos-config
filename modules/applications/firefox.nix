@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -120,6 +119,7 @@ in {
               definedAliases = ["d"];
             };
             "Bing".metaData.hidden = true;
+            "Ebay".metaData.hidden = true;
             "Google".metaData.alias = "@g";
             "DuckDuckGo".metaData.alias = "ddg";
           };
