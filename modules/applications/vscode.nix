@@ -15,11 +15,15 @@ in {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
+      mutableExtensionsDir = false;
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = false;
       extensions = lib.mkIf cfg.withExtensions (with pkgs.vscode-extensions; [
         # Miscellanous
         k--kato.intellij-idea-keybindings
         github.copilot
         github.copilot-chat
+        esbenp.prettier-vscode
 
         # Languages
         bbenoist.nix
@@ -61,6 +65,8 @@ in {
       userSettings = {
         # General
         "editor.inlineSuggest.enabled" = true;
+        "editor.mouseWheelZoom" = true;
+        "workbench.colorTheme" = "Nord";
         # "editor.fontFamily" = "'FiraCode Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
 
         # Git
@@ -68,6 +74,7 @@ in {
         "git.confirmSync" = false;
 
         # Formatters
+        # TODO: Fix below and allow writing to settings.json (or active Material Icon Theme extension)
         "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[css]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
@@ -77,7 +84,7 @@ in {
         "[scss]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
-      
+
         # Nix
         "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
         "nix.enableLanguageServer" = true;
