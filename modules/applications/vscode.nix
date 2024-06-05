@@ -17,7 +17,7 @@ in {
       enable = true;
       package = pkgs.vscode.fhs;
       # If extensions don't work, try https://github.com/arvigeus/nixos-config/blob/master/apps/vscode.nix
-      extensions = with pkgs.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [] ++ lib.optional cfg.withExtensions [
         # Miscellanous
         k--kato.intellij-idea-keybindings
         github.copilot
