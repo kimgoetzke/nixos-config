@@ -28,14 +28,12 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    ./../../modules/applications/firefox.nix
-    ./../../modules/applications/vscode.nix
-    ./../../modules/applications/git.nix
-    ./../../modules/applications/alacritty.nix
+    ./../../modules/applications/_all.nix
   ];
 
   # Applications
   vscode.enable = true;
+  vscode.withExtensions = true;
   firefox.enable = true;
   firefox.withProfile = true;
   alacritty.enable = true;
