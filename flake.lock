@@ -23,6 +23,22 @@
         "type": "gitlab"
       }
     },
+    "firefox-nord-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715205175,
+        "narHash": "sha256-6ccxZKVsbR2VQr5M3GpbZt3Nfe5RaroWQdYx/aiWB64=",
+        "owner": "EliverLara",
+        "repo": "firefox-nordic-theme",
+        "rev": "287c6b4a94361a038d63f2fa7b62f9adfc08fe02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EliverLara",
+        "repo": "firefox-nordic-theme",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1629284811,
@@ -77,6 +93,7 @@
     "root": {
       "inputs": {
         "firefox-addons": "firefox-addons",
+        "firefox-nord-theme": "firefox-nord-theme",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       }

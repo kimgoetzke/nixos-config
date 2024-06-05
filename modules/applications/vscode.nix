@@ -32,6 +32,7 @@ in {
         # UI
         arcticicestudio.nord-visual-studio-code
         pkief.material-icon-theme
+        gruntfuggly.todo-tree
       ]);
       keybindings = [
         {

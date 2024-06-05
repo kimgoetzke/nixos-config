@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   lib,
   ...
@@ -12,16 +13,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.file.".mozilla/firefox/nix-user-profile/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
     programs.firefox = {
       enable = true;
       policies = {
-        AppAutoUpdate = true;
-        BackgroundAppUpdate = true;
-        DisableAppUpdate = false;
+        AutoFillCreditCardEnabled = false;
+        AppAutoUpdate = false;
+        BackgroundAppUpdate = false;
+        DisableAppUpdate = true;
         DisableAccounts = false;
         DisableFirefoxAccounts = false;
         DisablePocket = true;
-        DisableTelemetry = false;
         DisableFormHistory = true;
         DisableMasterPasswordCreation = true;
         OfferToSaveLogins = false;
@@ -33,6 +35,13 @@ in {
         isDefault = true;
         name = "default";
         bookmarks = [];
+        # TODO: Verify that theme setting works
+        userChrome = ''
+          @import "firefox-nord-theme/userChrome.css";
+        '';
+        userContent = ''
+          @import "firefox-nord-theme/theme/nordic-theme.css";
+        '';
         settings = {
           # Disable about:config warning
           "browser.aboutConfig.showWarning" = false;
@@ -56,7 +65,8 @@ in {
           "browser.download.useDownloadDir" = false;
 
           # Extensions
-          # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org"; # TODO: Test something like this
+          # TODO: If theme setting above doesn't work, try something like this
+          # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
 
           # Prevent WebRTC leaking IP address
           "media.peerconnection.ice.default_address_only" = true;

@@ -10,6 +10,7 @@
   home.packages = [
     pkgs.curl
     pkgs.jq
+    pkgs.jetbrains-toolbox
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -38,6 +39,7 @@
   firefox.withProfile = true;
   alacritty.enable = true;
   git.enable = true;
+  java.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

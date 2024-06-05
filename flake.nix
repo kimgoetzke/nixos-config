@@ -13,6 +13,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    firefox-nord-theme = { url = "github:EliverLara/firefox-nordic-theme"; flake = false; };
   };
 
   outputs = {
