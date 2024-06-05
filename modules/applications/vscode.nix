@@ -15,6 +15,8 @@ in {
   config = lib.mkIf cfg.enable {
     programs.vscode = {
       enable = true;
+      package = pkgs.vscode.fhs;
+      # If extensions don't work, try https://github.com/arvigeus/nixos-config/blob/master/apps/vscode.nix
       extensions = with pkgs.vscode-extensions; [
         # Miscellanous
         k--kato.intellij-idea-keybindings
@@ -23,6 +25,7 @@ in {
 
         # Languages
         bbenoist.nix
+        jnoortheen.nix-ide
 
         # UI
         arcticicestudio.nord-visual-studio-code
@@ -57,6 +60,34 @@ in {
           "command" = "workbench.panel.chat.view.copilot.focus";
         }
       ];
+      userSettings = {
+        # General
+        "editor.inlineSuggest.enabled" = true;
+        "window.titleBarStyle" = "custom";
+        # "editor.fontFamily" = "'FiraCode Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
+
+        # Git
+        "git.autofetch" = true;
+        "git.confirmSync" = false;
+
+        # Formatters
+        "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[css]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[json]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[jsonc]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[scss]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+      
+        # Nix
+        "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+        "nix.enableLanguageServer" = true;
+        "nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
+        "nix.serverPath" = "${pkgs.nil}/bin/nil";
+        "nix.serverSettings"."nil"."formatting"."command" = ["${pkgs.alejandra}/bin/alejandra"];
+      };
     };
   };
 }

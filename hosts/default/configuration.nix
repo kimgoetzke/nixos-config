@@ -10,20 +10,17 @@
     ./../../modules/desktop/gnome.nix
   ];
 
-  # Bootloader
+  # Boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # Networking
+  networking.networkmanager.enable = true;
+  networking.hostName = "nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone
+  # Time zone, locale, keymap
   time.timeZone = "Europe/London";
-
-  # Select internationalisation properties
   i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
@@ -36,16 +33,15 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
+  console.keyMap = "uk";
 
   # Enable flake support
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Configure console keymap
-  console.keyMap = "uk";
-
   # Enable CUPS to print documents
   services.printing.enable = true;
 
+  # General hardware configuration
   hardware = {
     opengl.enable = true;
     bluetooth.enable = true;
@@ -68,8 +64,21 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
+  # Environment variables
+  environment.sessionVariables = {
+    FLAKE = "~/projects/nixos-config";
+    NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Packages installed in system profile
+  environment.systemPackages = with pkgs; [
+    wget
+    obsidian
+    _1password-gui
+  ];
 
   # Home manager
   home-manager = {
@@ -80,18 +89,15 @@
     };
   };
 
-  # Environment variables
-  environment.sessionVariables = {
-    FLAKE = "~/projects/nixos-config";
+  # Yet Another Nix Helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 3";
   };
 
-  # List packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    wget
-    obsidian
-    _1password-gui
-    nh # Yet Another Nix Helper
-  ];
+  # Storage optimization
+  nix.settings.auto-optimise-store = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
