@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -35,7 +38,7 @@
   };
 
   # Enable flake support
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -62,7 +65,7 @@
   users.users.kgoe = {
     isNormalUser = true;
     description = "Kim";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
   };
 
   # Allow unfree packages
@@ -70,8 +73,8 @@
 
   # Home manager
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "ini.backup";
+    extraSpecialArgs = {inherit inputs;};
+    backupFileExtension = "0001";
     users = {
       kgoe = import ./home.nix;
     };
@@ -85,9 +88,7 @@
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     wget
-    alacritty
     obsidian
-    git
     _1password-gui
     nh # Yet Another Nix Helper
   ];

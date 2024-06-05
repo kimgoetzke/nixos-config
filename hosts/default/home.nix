@@ -1,9 +1,12 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   home.username = "kgoe";
   home.homeDirectory = "/home/kgoe";
-  home.stateVersion = "24.05"; 
+  home.stateVersion = "24.05";
   home.packages = [
     pkgs.curl
     pkgs.jq
@@ -27,12 +30,16 @@
   imports = [
     ./../../modules/applications/firefox.nix
     ./../../modules/applications/vscode.nix
+    ./../../modules/applications/git.nix
+    ./../../modules/applications/alacritty.nix
   ];
 
   # Applications
   vscode.enable = true;
   firefox.enable = true;
   firefox.withProfile = true;
+  alacritty.enable = true;
+  git.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

@@ -1,9 +1,12 @@
-{pkgs, inputs, config, lib, ...}:
-
-let
-  cfg = config.vscode;
-in
 {
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.vscode;
+in {
   options.vscode = {
     enable = lib.mkEnableOption "Enable VS Code";
     withExtensions = lib.mkEnableOption "Enable extensions for VS Code"; # TODO: Implement this
@@ -38,12 +41,20 @@ in
         }
         {
           "key" = "ctrl+oem_5 ctrl+f";
-          "command"=  "workbench.action.findInFiles";
+          "command" = "workbench.action.findInFiles";
         }
         {
           "key" = "ctrl+oem_5 ctrl+r";
           "command" = "editor.action.rename";
           "when" = "editorHasRenameProvider && editorTextFocus && !editorReadonly";
+        }
+        {
+          "key" = "ctrl+oem_5 ctrl+d";
+          "command" = "editor.action.clipboardCutAction";
+        }
+        {
+          "key" = "ctrl+shift+alt+]";
+          "command" = "workbench.panel.chat.view.copilot.focus";
         }
       ];
     };

@@ -15,16 +15,14 @@
     };
   };
 
-
   outputs = {
     self,
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: 
-  let
+  } @ inputs: let
     inherit (self) outputs;
-    systems = [ "x86_64-linux" ];
+    systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
     # Formatter for nix files, available through 'nix fmt'
