@@ -68,6 +68,8 @@ in {
         "editor.inlineSuggest.enabled" = true;
         "editor.mouseWheelZoom" = true;
         "workbench.colorTheme" = "Nord";
+        "window.customTitleBarVisibility" = "auto";
+        "workbench.editor.editorActionsLocation" = "titleBar";
         # "editor.fontFamily" = "'FiraCode Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
 
         # Git
