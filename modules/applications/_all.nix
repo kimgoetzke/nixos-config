@@ -5,5 +5,6 @@
     ./git.nix
     ./alacritty.nix
     ./java.nix
+    ./bash.nix
   ];
 }
