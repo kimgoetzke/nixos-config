@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -48,6 +49,7 @@ in {
             cyan    = "#8FBCBB";
             white   = "#ECEFF4";
           };
+        };
       };
     };
   };

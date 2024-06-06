@@ -29,10 +29,11 @@
     inherit (self) outputs;
     systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
-    nixpkgs.config.allowUnfree = true;
   in {
     # Use formatter with 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    nixpkgs.config.allowUnfree = true;
 
     # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
