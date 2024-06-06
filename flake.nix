@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgss-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -10,6 +11,8 @@
     };
 
     nur.url = "github:nix-community/nur";
+
+    stylix.url = "github:danth/stylix";
 
     firefox-nord-theme = {
       url = "github:EliverLara/firefox-nordic-theme";
@@ -26,13 +29,12 @@
     inherit (self) outputs;
     systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    nixpkgs.config.allowUnfree = true;
   in {
-    # Formatter for nix files, available through 'nix fmt'
+    # Use formatter with 'nix fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    nixpkgs.config.allowUnfree = true;
-
-    # NixOS configuration entrypoint, available through 'nixos-rebuild --flake .#your-hostname'
+    # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs;};
       modules = [
@@ -40,7 +42,7 @@
       ];
     };
 
-    # Standalone home-manager configuration entrypoint, available through 'home-manager --flake .#your-username@your-hostname'
+    # Use standalone home-manager configuration with 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
       pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
       extraSpecialArgs = {inherit inputs outputs;};
