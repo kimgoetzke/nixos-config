@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -24,7 +25,16 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    pkgs.xbindkeys
+    pkgs.xautomation
   ];
+  # TODO: Fix below
+  #  ++ lib.optionals kd-gnome.kd-gnome.enable [
+  #    # To customising keys mappings
+  #    pkgs.xbindkeys
+  #    pkgs.xte
+  #  ];
 
   nixpkgs.config.allowUnfree = true;
 

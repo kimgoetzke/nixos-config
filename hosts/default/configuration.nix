@@ -7,7 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
-    ./../../modules/desktop/gnome.nix
+    ./../../modules/desktop/_all.nix
   ];
 
   # Boot loader
@@ -73,6 +73,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Desktop environment
+  kd-gnome.enable = true;
+
   # Packages installed in system profile
   environment.systemPackages = with pkgs; [
     wget
@@ -82,10 +85,12 @@
 
   # Home manager
   home-manager = {
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     backupFileExtension = "0001";
-    users = {
-      kgoe = import ./home.nix;
+    users.kgoe = {
+      imports = [./home.nix];
     };
   };
 
