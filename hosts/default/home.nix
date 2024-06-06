@@ -36,7 +36,14 @@
   #    pkgs.xte
   #  ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = [
+      inputs.nur.overlay
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   imports = [
     ./../../modules/applications/_all.nix

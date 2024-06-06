@@ -13,7 +13,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.file.".mozilla/firefox/nix-user-profile/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
+    home.file.".mozilla/firefox/default/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
     programs.firefox = {
       enable = true;
       policies = {
@@ -134,9 +134,9 @@ in {
             "DuckDuckGo".metaData.alias = "ddg";
           };
         };
-        # extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-        #   onepassword-password-manager
-        # ];
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          onepassword-password-manager
+        ];
       };
     };
 
