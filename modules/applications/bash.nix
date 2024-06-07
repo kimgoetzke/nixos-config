@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.bash;
-  
+
   # My shell aliases
   myAliases = {
     idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh";

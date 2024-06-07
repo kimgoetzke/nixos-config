@@ -6,5 +6,6 @@
     ./alacritty.nix
     ./java.nix
     ./bash.nix
+    ./zsh.nix
   ];
 }
