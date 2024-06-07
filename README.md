@@ -27,7 +27,7 @@ nh os switch ~/projects/nixos-config -H default
 
 Clean up all, leaving only the most recent generation, with:
 ```shell
- nh clean --keep 3 --keep-since 2D --dry
+nh clean --keep 3 --keep-since 2D --dry
 ```
 
 Note that:

@@ -30,6 +30,7 @@ in {
         "nhs"
         "proper"
         "idea"
+        "anw"
       ];
     };
   };

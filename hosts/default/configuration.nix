@@ -68,6 +68,7 @@
   environment.sessionVariables = {
     FLAKE = "~/projects/nixos-config";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
+    IDEA = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh";
   };
 
   # Allow unfree packages

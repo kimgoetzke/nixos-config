@@ -73,6 +73,13 @@
     nhs = "nh os switch ~/projects/nixos-config -H default";
     proper = "cd ~/projects && ls -1";
     idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh";
+    anw = "alacritty msg create-window";
+    ".2"="cd ../..";
+    ".3"="cd ../../..";
+    ".4"="cd ../../../..";
+    ".."="cd ..";
+    "..."="cd ../..";
+    "...."="cd ../../..";
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

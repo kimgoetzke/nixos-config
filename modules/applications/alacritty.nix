@@ -14,10 +14,11 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
+        font.size = 15;
         window = {
           opacity = lib.mkForce 0.75;
           startup_mode = "Maximized";
-          decorations = "None";
+          decorations = "Transparent";
           dynamic_title = true;
           padding = {
             x = 10;
@@ -26,6 +27,12 @@ in {
         };
         live_config_reload = true;
         selection.save_to_clipboard = true;
+        keyboard.bindings = [
+          {
+            key = "F11";
+            action = "ToggleFullscreen";
+          }
+        ];
         colors = {
           primary = {
             background = "#2E3440";
