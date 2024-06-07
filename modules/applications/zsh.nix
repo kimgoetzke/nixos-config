@@ -13,35 +13,35 @@ in {
     programs.zsh = {
       enable = true;
       initExtra = ''
-        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+        # Enable Powerlevel10k
         # Initialization code that may require console input (password prompts, [y/n]
         # confirmations, etc.) must go above this block; everything else may go below.
         if [[ -r "''${XDG_CACHE_HOME:-'''$HOME/.cache}/p10k-instant-prompt-''${(''\%):-%n}.zsh" ]]; then
           source "''${XDG_CACHE_HOME:-'''$HOME/.cache}/p10k-instant-prompt-''${(''\%):-%n}.zsh"
         fi
 
-        # Set the directory we want to store zinit and plugins
+        # Set the directory to store Zinit and plugins
         ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
 
-        # Download Zinit, if it's not there yet
+        # Download Zinit, if required
         if [ ! -d "$ZINIT_HOME" ]; then
            mkdir -p "$(dirname $ZINIT_HOME)"
            git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
         fi
 
-        # Source/load zinit
+        # Source/load Zinit
         source "''${ZINIT_HOME}/zinit.zsh"
 
-        # Add in Powerlevel10k
+        # Add Powerlevel10k
         zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-        # Add in zsh plugins
+        # Add zsh plugins
         zinit light zsh-users/zsh-syntax-highlighting
         zinit light zsh-users/zsh-completions
         zinit light zsh-users/zsh-autosuggestions
         zinit light Aloxaf/fzf-tab
 
-        # Add in snippets
+        # Add snippets
         zinit snippet OMZP::git
         zinit snippet OMZP::sudo
 
@@ -78,13 +78,9 @@ in {
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-        # Aliases
+        # Aliases from initExtra
         alias ls='ls --color'
         alias c='clear'
-        alias nht='nh os test ~/projects/nixos-config -H default'
-        alias nhs='nh os switch ~/projects/nixos-config -H default'
-        alias proper='cd ~/projects && ls -1'
-        alias idea='~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh'
       '';
     };
   };

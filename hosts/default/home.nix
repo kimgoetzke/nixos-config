@@ -61,8 +61,19 @@
   alacritty.enable = true;
   git.enable = true;
   java.enable = true;
+
+  # Shell
+  # You must also update configuration.nix when changing the shell
   bash.enable = false;
   zsh.enable = true;
+  home.shellAliases = {
+    ls = "ls --color";
+    c = "clear";
+    nht = "nh os test ~/projects/nixos-config -H default";
+    nhs = "nh os switch ~/projects/nixos-config -H default";
+    proper = "cd ~/projects && ls -1";
+    idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh";
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

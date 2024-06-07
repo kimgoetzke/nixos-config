@@ -87,6 +87,10 @@
     _1password
   ];
 
+  # Shell
+  programs.zsh.enable = true;
+  users.users.kgoe.shell = pkgs.zsh;
+
   # Home manager
   home-manager = {
     extraSpecialArgs = {

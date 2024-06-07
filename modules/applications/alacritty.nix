@@ -14,8 +14,6 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-      # TODO: Pass shell as variable here or use if statement
-        shell.program = "${pkgs.zsh}/bin/zsh";
         window = {
           opacity = lib.mkForce 0.75;
           startup_mode = "Maximized";
