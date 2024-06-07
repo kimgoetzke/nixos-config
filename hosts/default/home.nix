@@ -9,9 +9,16 @@
   home.homeDirectory = "/home/kgoe";
   home.stateVersion = "24.05";
   home.packages = [
+    # Development
     pkgs.jetbrains-toolbox
-    pkgs.aseprite
     pkgs.postman
+
+    # Art
+    pkgs.aseprite
+
+    # Keyboard bindings
+    pkgs.xorg.xmodmap
+    pkgs.xorg.xev
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -25,9 +32,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-    pkgs.xbindkeys
-    pkgs.xautomation
   ];
   # TODO: Fix below
   #  ++ lib.optionals kd-gnome.kd-gnome.enable [
@@ -57,6 +61,7 @@
   alacritty.enable = true;
   git.enable = true;
   java.enable = true;
+  bash.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

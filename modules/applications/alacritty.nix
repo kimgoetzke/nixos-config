@@ -25,7 +25,6 @@ in {
           };
         };
         live_config_reload = true;
-        mouse.hide_when_typing = true;
         selection.save_to_clipboard = true;
         colors = {
           primary = {
