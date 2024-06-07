@@ -19,10 +19,13 @@ in {
           startup_mode = "Maximized";
           decorations = "None";
           dynamic_title = true;
+          padding = {
+            x = 10;
+            y = 10;
+          };
         };
         live_config_reload = true;
-        shell.program = "${pkgs.bash}/bin/bash";
-        mouse.hide_while_typing = true;
+        mouse.hide_when_typing = true;
         selection.save_to_clipboard = true;
         colors = {
           primary = {

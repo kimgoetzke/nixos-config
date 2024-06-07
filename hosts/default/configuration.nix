@@ -79,8 +79,12 @@
   # Packages installed in system profile
   environment.systemPackages = with pkgs; [
     wget
+    curl
+    jq
+    neofetch
     obsidian
     _1password-gui
+    _1password
   ];
 
   # Home manager

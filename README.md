@@ -5,7 +5,7 @@ Private for now.
 ## Commands
 #### Build
 
-The first time on a system, use:
+Assuming that the config repo is cloned to `~/projects/nixos-config#default`, the first time on a system use:
 
 ```shell
 nixos-rebuild switch --flake ~/projects/nixos-config#default
@@ -34,3 +34,10 @@ Note that:
 - `--keep 5` - At least keep 5 generations [default: 1]
 - `--keep-since 4D` - At least keep gcroots and generations of the past 4 days [default: 0h]
 - `all` instead of the above will do what it says
+
+#### Update
+
+Update with:
+```shell
+nix-channel --update && nh os switch ~/projects/nixos-config -H default
+```

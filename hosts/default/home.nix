@@ -9,9 +9,9 @@
   home.homeDirectory = "/home/kgoe";
   home.stateVersion = "24.05";
   home.packages = [
-    pkgs.curl
-    pkgs.jq
     pkgs.jetbrains-toolbox
+    pkgs.aseprite
+    pkgs.postman
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
