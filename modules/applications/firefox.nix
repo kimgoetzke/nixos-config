@@ -128,6 +128,10 @@ in {
               urls = [{template = "https://www.dict.cc/?s={searchTerms}";}];
               definedAliases = ["d"];
             };
+            "home-manager options" = {
+              urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";}];
+              definedAliases = ["hmo"];
+            };
             "Bing".metaData.hidden = true;
             "Ebay".metaData.hidden = true;
             "Google".metaData.alias = "@g";

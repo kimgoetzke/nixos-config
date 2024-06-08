@@ -10,6 +10,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.fzf = {
+      enable = true;
+      enableBashIntegration = false;
+    };
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+    };
     programs.bash = {
       enable = true;
       enableCompletion = true;
