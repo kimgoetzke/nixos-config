@@ -14,7 +14,25 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-        font.size = 15;
+        font = {
+          normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Regular";
+          };
+          bold = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Italic";
+          };
+          bold_italic = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Bold Italic";
+          };
+          size = 15;
+        };
         window = {
           opacity = lib.mkForce 0.75;
           startup_mode = "Maximized";

@@ -1,12 +1,13 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
   cfg = config.zsh;
 in {
   options.zsh = {
-    enable = lib.mkEnableOption "Enable Bash and set aliases";
+    enable = lib.mkEnableOption "Enable zsh and all related config";
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,6 +23,9 @@ in {
       enable = true;
       enableZshIntegration = true;
       useTheme = "nordtron";
+      #initExtra = '' # TODO: Switch once I've fetched my custom theme
+      #  eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init bash --config ${../atomic-emodipt.omp.json})"
+      #'';
     };
     programs.zsh = {
       enable = true;
@@ -78,12 +82,8 @@ in {
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
         # Aliases from initExtra
-        alias ls='ls --color'
+        alias ls='ls --color -2'
         alias c='clear'
-
-        # Shell integrations
-        eval "$(fzf --zsh)"
-        eval "$(zoxide init --cmd cd zsh)"
       '';
     };
   };

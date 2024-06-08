@@ -11,6 +11,7 @@
   home.packages = [
     # Development
     pkgs.jetbrains-toolbox
+    pkgs.jetbrains.idea-ultimate
     pkgs.postman
 
     # Art
@@ -21,7 +22,13 @@
     pkgs.xorg.xev
 
     # Miscellaneous
-    pkgs.nerdfonts
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Iosevka"
+        "IosevkaTerm"
+      ];
+    })
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
