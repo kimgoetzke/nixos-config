@@ -39,10 +39,6 @@ Note that:
 
 Update with:
 ```shell
-nix-channel --update && nh os switch ~/projects/nixos-config -H default
-```
-
-Or:
-```shell
-nix flake update ~/projects/nixos-config -H default
+nix flake update ~/projects/nixos-config
+nh os switch ~/projects/nixos-config -H default
 ```

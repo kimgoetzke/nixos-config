@@ -82,7 +82,7 @@
     nht = "nh os test ~/projects/nixos-config -H default";
     nhs = "nh os switch ~/projects/nixos-config -H default";
     proper = "cd ~/projects && ls -1";
-    idea = "~/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh";
+    idea = "${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin/idea.sh";
     anw = "alacritty msg create-window";
     ".2" = "cd ../..";
     ".3" = "cd ../../..";
