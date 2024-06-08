@@ -20,6 +20,9 @@
     pkgs.xorg.xmodmap
     pkgs.xorg.xev
 
+    # Miscellaneous
+    pkgs.nerdfonts
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of

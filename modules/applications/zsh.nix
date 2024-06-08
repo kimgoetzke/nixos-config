@@ -18,6 +18,11 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    programs.oh-my-posh = {
+      enable = true;
+      enableZshIntegration = true;
+      useTheme = "nordtron";
+    };
     programs.zsh = {
       enable = true;
       initExtra = ''
