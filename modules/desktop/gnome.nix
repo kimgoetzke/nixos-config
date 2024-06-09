@@ -5,9 +5,9 @@
   inputs,
   ...
 }: let
-  cfg = config.kd-gnome;
+  cfg = config.de-gnome;
 in {
-  options.kd-gnome = {
+  options.de-gnome = {
     enable = lib.mkEnableOption "Enable X11 with GNOME as desktop environment";
   };
 

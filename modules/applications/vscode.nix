@@ -67,10 +67,11 @@ in {
         # General
         "editor.inlineSuggest.enabled" = true;
         "editor.mouseWheelZoom" = true;
-        "workbench.colorTheme" = "Nord";
         "window.customTitleBarVisibility" = "auto";
-        "workbench.editor.editorActionsLocation" = "titleBar";
-        # "editor.fontFamily" = "'FiraCode Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
+        "workbench.editor.editorActionsLocation" = "hidden";
+        "workbench.colorTheme" = lib.mkDefault "Nord";
+        "editor.fontSize" = lib.mkDefault 15;
+        "editor.fontFamily" = lib.mkDefault "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
 
         # Git
         "git.autofetch" = true;

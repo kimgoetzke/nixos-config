@@ -24,6 +24,7 @@
     self,
     nixpkgs,
     home-manager,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -40,6 +41,7 @@
       specialArgs = {inherit inputs outputs;};
       modules = [
         ./hosts/default/configuration.nix
+        stylix.nixosModules.stylix
       ];
     };
 

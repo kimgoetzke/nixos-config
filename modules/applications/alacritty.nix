@@ -14,7 +14,7 @@ in {
     programs.alacritty = {
       enable = true;
       settings = {
-        font = {
+        font = lib.mkForce {
           normal = {
             family = "JetBrainsMono Nerd Font";
             style = "Regular";
@@ -34,7 +34,7 @@ in {
           size = 15;
         };
         window = {
-          opacity = lib.mkForce 0.75;
+          opacity = lib.mkDefault 0.75;
           startup_mode = "Maximized";
           decorations = "Transparent";
           dynamic_title = true;
@@ -51,7 +51,7 @@ in {
             action = "ToggleFullscreen";
           }
         ];
-        colors = {
+        colors = lib.mkDefault {
           primary = {
             background = "#2E3440";
             foreground = "#D8DEE9";

@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -8,6 +9,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
     ./../../modules/desktop/_all.nix
+    ./../../controls/userSettings.nix
   ];
 
   # Boot loader
@@ -74,7 +76,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Desktop environment
-  kd-gnome.enable = true;
+  de-gnome.enable = true;
 
   # System profile packages
   environment.systemPackages = with pkgs; [
@@ -85,16 +87,19 @@
     obsidian
     _1password-gui
     _1password
+    jetbrains-mono
   ];
 
   # Shell
   programs.zsh.enable = true;
-  users.users.kgoe.shell = pkgs.zsh;
+  users.users.kgoe.shell = pkgs.${config.userSettings.defaultShell};
 
   # Home manager
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
+      deGnomeIsEnabled = config.de-gnome.enable;
+      userSettings = config.userSettings;
     };
     backupFileExtension = "0001";
     users.kgoe = {
@@ -107,6 +112,40 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 7d --keep 3";
+  };
+
+  # Stylix
+  stylix = {
+    image = ./../../assets/images/wallpaper_abstract_nord4x.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    fonts.sizes.terminal = 15;
+    opacity.terminal = 0.75;
+    targets.gnome.enable = lib.mkIf config.de-gnome.enable true;
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+    fonts = {
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+
+      monospace = {
+        package = pkgs.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
 
   # Storage optimization
