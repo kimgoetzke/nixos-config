@@ -20,8 +20,8 @@
       pkgs.aseprite
 
       # Keyboard bindings
-      #    pkgs.xorg.xmodmap
-      #    pkgs.xorg.xev
+      # pkgs.xorg.xmodmap
+      # pkgs.xorg.xev
 
       # Miscellaneous
       (pkgs.nerdfonts.override {
@@ -48,6 +48,7 @@
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       pkgs.xbindkeys
       pkgs.xorg.xmodmap
+      pkgs.xorg.xev
     ];
 
   nixpkgs = {

@@ -15,6 +15,7 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
+    stylix.targets.fzf.enable = true;
     programs.zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -22,10 +23,9 @@ in {
     programs.oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      useTheme = "nordtron";
-      #initExtra = '' # TODO: Switch once I've fetched my custom theme
-      #  eval "$(${pkgs.oh-my-posh}/bin/oh-my-posh init bash --config ${../atomic-emodipt.omp.json})"
-      #'';
+      useTheme = "nordtron"; # Will be ignored if 'settings' is used
+      settings =
+        builtins.fromJSON (builtins.readFile (builtins.toFile "kim-nord.omp.json" (builtins.readFile ./../../assets/configs/oh-my-posh/kim-nord.omp.json)));
     };
     programs.zsh = {
       enable = true;

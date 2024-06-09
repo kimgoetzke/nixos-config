@@ -118,7 +118,7 @@
     image = ./../../assets/images/wallpaper_abstract_nord4x.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts.sizes.terminal = 16;
-    opacity.terminal = 0.75;
+    opacity.terminal = 1.0;
     targets.gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
     cursor = {
       package = pkgs.bibata-cursors;
