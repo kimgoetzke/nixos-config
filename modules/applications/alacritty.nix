@@ -31,7 +31,7 @@ in {
             family = "JetBrainsMono Nerd Font";
             style = "Bold Italic";
           };
-          size = 15;
+          size = 16;
         };
         window = {
           opacity = lib.mkDefault 0.75;

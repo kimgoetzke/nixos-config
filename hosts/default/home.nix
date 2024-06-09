@@ -3,7 +3,6 @@
   pkgs,
   lib,
   inputs,
-  deGnomeIsEnabled,
   userSettings,
   ...
 }: {
@@ -14,7 +13,7 @@
     [
       # Development
       pkgs.jetbrains-toolbox
-      pkgs.jetbrains.idea-ultimate
+      # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
       pkgs.postman
 
       # Art
@@ -46,7 +45,7 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
     ]
-    ++ lib.optionals deGnomeIsEnabled [
+    ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       pkgs.xbindkeys
       pkgs.xorg.xmodmap
     ];
@@ -74,9 +73,8 @@
   java.enable = true;
 
   # Shell
-  # You must also update configuration.nix when changing the shell
-  bash.enable = false;
-  zsh.enable = true;
+  bash.enable = userSettings.shells.isBashEnabled;
+  zsh.enable = userSettings.shells.isZshEnabled;
   home.shellAliases = {
     ls = "ls --color";
     c = "clear";
@@ -93,8 +91,6 @@
     "...." = "cd ../../..";
   };
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a

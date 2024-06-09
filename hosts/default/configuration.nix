@@ -91,14 +91,13 @@
   ];
 
   # Shell
-  programs.zsh.enable = true;
   users.users.kgoe.shell = pkgs.${config.userSettings.defaultShell};
+  programs.zsh.enable = config.userSettings.shells.isZshEnabled;
 
   # Home manager
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
-      deGnomeIsEnabled = config.de-gnome.enable;
       userSettings = config.userSettings;
     };
     backupFileExtension = "0001";
@@ -118,9 +117,9 @@
   stylix = {
     image = ./../../assets/images/wallpaper_abstract_nord4x.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-    fonts.sizes.terminal = 15;
+    fonts.sizes.terminal = 16;
     opacity.terminal = 0.75;
-    targets.gnome.enable = lib.mkIf config.de-gnome.enable true;
+    targets.gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
