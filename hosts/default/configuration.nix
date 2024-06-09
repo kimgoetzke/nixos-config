@@ -89,10 +89,12 @@
       _1password-gui
       _1password
       jetbrains-mono
+      dconf2nix
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
       xorg.xev
+      gnomeExtensions.clipboard-history
     ];
 
   # Shell

@@ -60,3 +60,15 @@ Update with:
 nix flake update ~/projects/nixos-config
 nh os switch ~/projects/nixos-config -H default
 ```
+
+## Reminders
+
+#### Using Gnome and made some config changes in the UI?
+
+```shell
+dconf dump / > ./assets/configs/gnome/dconf.settings
+dconf2nix -i ./assets/configs/gnome/dconf.settings -o ./assets/configs/gnome/dconf.nix
+
+# Or... (but often fails)
+dconf dump / | dconf2nix > ./assets/configs/gnome/dconf.nix
+```

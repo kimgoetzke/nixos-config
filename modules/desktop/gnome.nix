@@ -24,5 +24,32 @@ in {
       layout = "gb";
       variant = "";
     };
+
+    # Exclude packages that no one needs
+    environment.gnome.excludePackages =
+      (with pkgs; [
+        gnome-photos
+        gnome-tour
+        gnome-text-editor
+        gedit # text editor
+      ])
+      ++ (with pkgs.gnome; [
+        cheese # webcam tool
+        gnome-music
+        gnome-terminal
+        gnome-weather
+        gnome-music
+        gnome-contacts
+        gnome-characters
+        gnome-calendar
+        gnome-maps
+        simple-scan
+        epiphany # web browser
+        geary # email client
+        tali # poker game
+        iagno # go game
+        hitori # sudoku game
+        atomix # puzzle game
+      ]);
   };
 }
