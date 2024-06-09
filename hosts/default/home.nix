@@ -9,47 +9,35 @@
   home.username = "kgoe";
   home.homeDirectory = "/home/kgoe";
   home.stateVersion = "24.05";
-  home.packages =
-    [
-      # Development
-      pkgs.jetbrains-toolbox
-      # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
-      pkgs.postman
+  home.packages = [
+    # Development
+    pkgs.jetbrains-toolbox
+    # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
+    pkgs.postman
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Iosevka"
+        "IosevkaTerm"
+      ];
+    })
 
-      # Art
-      pkgs.aseprite
+    # Art
+    pkgs.aseprite
 
-      # Keyboard bindings
-      # pkgs.xorg.xmodmap
-      # pkgs.xorg.xev
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-      # Miscellaneous
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "Iosevka"
-          "IosevkaTerm"
-        ];
-      })
-
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ]
-    ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
-      pkgs.xbindkeys
-      pkgs.xorg.xmodmap
-      pkgs.xorg.xev
-    ];
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  ];
 
   nixpkgs = {
     overlays = [

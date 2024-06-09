@@ -79,16 +79,21 @@
   de-gnome.enable = true;
 
   # System profile packages
-  environment.systemPackages = with pkgs; [
-    wget
-    curl
-    jq
-    neofetch
-    obsidian
-    _1password-gui
-    _1password
-    jetbrains-mono
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      wget
+      curl
+      jq
+      neofetch
+      obsidian
+      _1password-gui
+      _1password
+      jetbrains-mono
+    ]
+    ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
+      xorg.xmodmap
+      xorg.xev
+    ];
 
   # Shell
   users.users.kgoe.shell = pkgs.${config.userSettings.defaultShell};
