@@ -75,17 +75,16 @@ you've never configured Gnome UI changes in NixOS before, follow these steps:
    dconf dump / > ./assets/configs/gnome/dconf.settings
    
    # Or... (but it's quite buggy and breaks for me)
-   dconf dump / | dconf2nix > ./assets/configs/gnome/dconf.nix
+   dconf dump / | dconf2nix > ./assets/configs/gnome/dconf-raw.nix
    ```
 2. Convert the settings to a Nix file:
    ```shell
-   dconf2nix -i ./assets/configs/gnome/dconf.settings -o ./assets/configs/gnome/dconf.nix
+   dconf2nix -i ./assets/configs/gnome/dconf.settings -o ./assets/configs/gnome/dconf-raw.nix
    ```
    If things break, which they usually do, follow the error messages and fix/remove the offending line(s).
-3. Replace `mkTuple` with `lib.hm.gvariant.mkTuple` and `mkUint32` with `lib.hm.gvariant.mkUint32` in the
-   generated `dconf.nix`.
-4. Remove everything you don't need from the generated `dconf.nix`.
-5. Copy the result into `home.nix`.
+3. Copy everything you need into a new file in the same directory named `dconf.nix` and make sure it's imported by
+   `home.nix`. In case of errors, consider replacing `mkTuple` with `lib.hm.gvariant.mkTuple` and `mkUint32`
+   with `lib.hm.gvariant.mkUint32` in `dconf.nix` or adding `with.lib.hm.gvariant` at the top of the file.
 
 Check `systemctl status home-manager-$USER` and ensure the service started successfully, if not, dig in with
 `journalctl -u home-manager-$USER` and make sure to carefully read the error.
