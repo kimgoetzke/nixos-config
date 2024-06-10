@@ -74,7 +74,9 @@ in {
         setopt hist_ignore_dups
         setopt hist_find_no_dups
 
-        # Completion styling
+        # Autocompletion options
+        setopt auto_list # Automatically list choices on ambiguous completion
+        setopt auto_menu # Automatically use menu completion
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Auto-completion is now case-insensitive
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}" # Use LS_COLORS for completion coloring
         zstyle ':completion:*' menu no # Disable completion menu
