@@ -1,60 +1,14 @@
-[org/gnome/Console]
-last-window-maximised=false
-last-window-size=(1280, 688)
-
-[org/gnome/Extensions]
-window-height=790
-
-[org/gnome/Music]
-window-maximized=true
-
-[org/gnome/Snapshot]
-is-maximized=false
-window-height=640
-window-width=800
-
-[org/gnome/calculator]
-accuracy=9
-angle-units='degrees'
-base=10
-button-mode='basic'
-number-format='automatic'
-show-thousands=false
-show-zeroes=false
-source-currency=''
-source-units='degree'
-target-currency=''
-target-units='radian'
-window-maximized=false
-window-size=(360, 504)
-word-size=64
-
-[org/gnome/clocks/state/window]
-maximized=false
-panel-id='world'
-size=(870, 688)
-
 [org/gnome/control-center]
-last-panel='system'
-window-state=(860, 559, false)
+last-panel='multitasking'
+window-state=(980, 640, false)
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'YaST', 'Pardus']
 
-[org/gnome/desktop/app-folders/folders/Pardus]
-categories=['X-Pardus-Apps']
-name='X-Pardus-Apps.directory'
-translate=true
-
 [org/gnome/desktop/app-folders/folders/Utilities]
-apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop', 'cups.desktop', 'yelp.desktop', 'xterm.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Totem.desktop']
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.SystemMonitor.desktop', 'xterm.desktop', 'yelp.desktop', 'org.gnome.clocks.desktop', 'cups.desktop']
 categories=['X-GNOME-Utilities']
 name='X-GNOME-Utilities.directory'
-translate=true
-
-[org/gnome/desktop/app-folders/folders/YaST]
-categories=['X-SuSE-YaST']
-name='suse-yast.directory'
 translate=true
 
 [org/gnome/desktop/background]
@@ -62,8 +16,6 @@ color-shading-type='solid'
 picture-options='zoom'
 picture-uri='file:///nix/store/fry2di1hxvnd00lg45gk5vjx1jnfjzr2-wallpaper_abstract_nord4x.png'
 picture-uri-dark='file:///nix/store/fry2di1hxvnd00lg45gk5vjx1jnfjzr2-wallpaper_abstract_nord4x.png'
-primary-color='#241f31'
-secondary-color='#000000'
 
 [org/gnome/desktop/input-sources]
 sources=[('xkb', 'gb')]
@@ -79,100 +31,27 @@ font-name='DejaVu Sans 12'
 gtk-theme='adw-gtk3'
 monospace-font-name='JetBrainsMono Nerd Font 12'
 
-[org/gnome/desktop/notifications]
-application-children=['code', 'gnome-power-panel', 'firefox', 'org-gnome-epiphany', 'obsidian', 'code-url-handler', 'jetbrains-idea-06f0882b-a01f-4a40-90c1-6bdbfc57e8cd', 'jetbrains-toolbox', 'idea-ultimate', 'jetbrains-idea-9e75e60b-d89e-4dd0-bf58-09565a540fda']
-
-[org/gnome/desktop/notifications/application/code-url-handler]
-application-id='code-url-handler.desktop'
-
-[org/gnome/desktop/notifications/application/code]
-application-id='code.desktop'
-
-[org/gnome/desktop/notifications/application/firefox]
-application-id='firefox.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-power-panel]
-application-id='gnome-power-panel.desktop'
-
-[org/gnome/desktop/notifications/application/idea-ultimate]
-application-id='idea-ultimate.desktop'
-
-[org/gnome/desktop/notifications/application/jetbrains-idea-06f0882b-a01f-4a40-90c1-6bdbfc57e8cd]
-application-id='jetbrains-idea-06f0882b-a01f-4a40-90c1-6bdbfc57e8cd.desktop'
-
-[org/gnome/desktop/notifications/application/jetbrains-idea-9e75e60b-d89e-4dd0-bf58-09565a540fda]
-application-id='jetbrains-idea-9e75e60b-d89e-4dd0-bf58-09565a540fda.desktop'
-
-[org/gnome/desktop/notifications/application/jetbrains-toolbox]
-application-id='jetbrains-toolbox.desktop'
-
-[org/gnome/desktop/notifications/application/obsidian]
-application-id='obsidian.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-epiphany]
-application-id='org.gnome.Epiphany.desktop'
-
-[org/gnome/desktop/peripherals/touchpad]
-two-finger-scrolling-enabled=true
-
 [org/gnome/desktop/privacy]
 old-files-age=uint32 30
 recent-files-max-age=-1
 
-[org/gnome/desktop/screensaver]
-color-shading-type='solid'
-picture-options='zoom'
-picture-uri='file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg'
-primary-color='#241f31'
-secondary-color='#000000'
-
-[org/gnome/desktop/session]
-idle-delay=uint32 300
-
 [org/gnome/desktop/wm/preferences]
 num-workspaces=3
-
-[org/gnome/epiphany]
-ask-for-default=false
-
-[org/gnome/evince/default]
-continuous=true
-dual-page=false
-dual-page-odd-left=true
-enable-spellchecking=true
-fullscreen=false
-inverted-colors=false
-show-sidebar=true
-sidebar-page='thumbnails'
-sidebar-size=132
-sizing-mode='automatic'
-window-ratio=(1.7874091806308006, 1.0405172178280035)
-
-[org/gnome/evolution-data-server]
-migrated=true
-
-[org/gnome/mutter]
-dynamic-workspaces=false
-workspaces-only-on-primary=true
-
-[org/gnome/nautilus/icon-view]
-default-zoom-level='small-plus'
 
 [org/gnome/nautilus/preferences]
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 search-filter-time-type='last_modified'
 
-[org/gnome/nautilus/window-state]
-initial-size=(890, 550)
-
 [org/gnome/shell]
-app-picker-layout=[{'1password.desktop': <{'position': <0>}>, 'aseprite.desktop': <{'position': <1>}>, 'org.gnome.Calculator.desktop': <{'position': <2>}>, 'org.gnome.Snapshot.desktop': <{'position': <3>}>, 'org.gnome.Extensions.desktop': <{'position': <4>}>, 'org.gnome.Settings.desktop': <{'position': <5>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <6>}>, 'jetbrains-idea-9e75e60b-d89e-4dd0-bf58-09565a540fda.desktop': <{'position': <7>}>, 'jetbrains-toolbox.desktop': <{'position': <8>}>, 'Utilities': <{'position': <9>}>, 'nixos-manual.desktop': <{'position': <10>}>, 'postman.desktop': <{'position': <11>}>, 'code.desktop': <{'position': <12>}>}]
-disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
-enabled-extensions=['clipboard-history@alexsaveau.dev', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['clipboard-history@alexsaveau.dev', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'space-bar@luchrioh']
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'obsidian.desktop', 'Alacritty.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='46.2'
+
+[org/gnome/shell/extensions/auto-move-windows]
+application-list=@as []
 
 [org/gnome/shell/extensions/clipboard-history]
 cache-size=100
@@ -187,8 +66,29 @@ toggle-menu=['<Shift><Control>v']
 toggle-private-mode=['<Shift><Control>p']
 window-width-percentage=40
 
-[org/gnome/shell/extensions/system-monitor]
-show-swap=false
+[org/gnome/shell/extensions/space-bar/appearance]
+active-workspace-border-color='rgba(235,203,139,0.523333)'
+active-workspace-border-radius=3
+active-workspace-border-width=2
+active-workspace-padding-h=8
+active-workspace-padding-v=1
+empty-workspace-border-radius=3
+empty-workspace-border-width=2
+empty-workspace-padding-h=8
+empty-workspace-padding-v=1
+inactive-workspace-border-radius=3
+inactive-workspace-border-width=2
+inactive-workspace-padding-h=8
+inactive-workspace-padding-v=1
+workspaces-bar-padding=1
+
+[org/gnome/shell/extensions/space-bar/behavior]
+always-show-numbers=false
+show-empty-workspaces=true
+toggle-overview=true
+
+[org/gnome/shell/extensions/space-bar/state]
+version=27
 
 [org/gnome/shell/extensions/user-theme]
 name='Stylix'
@@ -201,19 +101,6 @@ show-screenshot-ui=['<Super>bracketleft']
 [org/gnome/shell/world-clocks]
 locations=@av []
 
-[org/gtk/gtk4/settings/file-chooser]
-show-hidden=true
-
-[org/gtk/settings/file-chooser]
-date-format='regular'
-location-mode='path-bar'
-show-hidden=false
-show-size-column=true
-show-type-column=true
-sidebar-width=189
-sort-column='name'
-sort-directories-first=false
-sort-order='ascending'
-type-format='category'
-window-position=(35, 32)
-window-size=(1203, 641)
+[org/gtk/gtk4/settings/color-chooser]
+custom-colors=[(0.92156863212585449, 0.79607844352722168, 0.54509806632995605, 0.52333331108093262), (1.0, 1.0, 1.0, 0.5), (0.92156863212585449, 0.79607844352722168, 0.54509806632995605, 1.0), (0.0, 0.0, 0.0, 0.0)]
+selected-color=(true, 0.92156863212585449, 0.79607844352722168, 0.54509806632995605, 0.52333331108093262)

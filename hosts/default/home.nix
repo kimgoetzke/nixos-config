@@ -9,35 +9,42 @@
   home.username = "kgoe";
   home.homeDirectory = "/home/kgoe";
   home.stateVersion = "24.05";
-  home.packages = [
-    # Development
-    pkgs.jetbrains-toolbox
-    # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
-    pkgs.postman
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "Iosevka"
-        "IosevkaTerm"
-      ];
-    })
+  home.packages =
+    [
+      # Development
+      pkgs.jetbrains-toolbox
+      # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
+      pkgs.postman
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "Iosevka"
+          "IosevkaTerm"
+        ];
+      })
 
-    # Art
-    pkgs.aseprite
+      # Art
+      pkgs.aseprite
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # Misc
+      pkgs.dconf2nix
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ]
+    ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
+      pkgs.gnome.gnome-tweaks
+    ];
 
   nixpkgs = {
     overlays = [
@@ -119,18 +126,19 @@
     };
 
     "org/gnome/desktop/app-folders/folders/Utilities" = {
-      apps = ["gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" "cups.desktop" "yelp.desktop" "xterm.desktop" "org.gnome.clocks.desktop" "org.gnome.Totem.desktop"];
+      apps = ["gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" "org.gnome.Snapshot.desktop" "org.gnome.SystemMonitor.desktop" "xterm.desktop" "yelp.desktop" "org.gnome.clocks.desktop" "cups.desktop"];
       categories = ["X-GNOME-Utilities"];
       name = "X-GNOME-Utilities.directory";
       translate = true;
     };
 
     "org/gnome/desktop/input-sources" = {
+      sources = [(lib.hm.gvariant.mkTuple ["xkb" "gb"])];
       xkb-options = ["terminate:ctrl_alt_bksp" "lv3:ralt_switch"];
     };
 
     "org/gnome/desktop/privacy" = {
-      old-files-age = 30;
+      old-files-age = lib.hm.gvariant.mkUint32 30;
       recent-files-max-age = -1;
     };
 
@@ -144,8 +152,12 @@
       search-filter-time-type = "last_modified";
     };
 
+    "org/gnome/desktop/interface" = {
+      enable-hot-corners = false;
+    };
+
     "org/gnome/shell" = {
-      disabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com" "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com"];
+      disabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com" "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
       enabled-extensions = ["clipboard-history@alexsaveau.dev" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
       favorite-apps = ["firefox.desktop" "org.gnome.Nautilus.desktop" "obsidian.desktop" "Alacritty.desktop"];
       last-selected-power-profile = "power-saver";
@@ -166,9 +178,32 @@
       window-width-percentage = 40;
     };
 
+    "org/gnome/shell/extensions/space-bar/appearance" = {
+      active-workspace-border-color = "rgba(235,203,139,0.523333)";
+      active-workspace-border-radius = 3;
+      active-workspace-border-width = 2;
+      active-workspace-padding-h = 8;
+      active-workspace-padding-v = 1;
+      empty-workspace-border-radius = 3;
+      empty-workspace-border-width = 2;
+      empty-workspace-padding-h = 8;
+      empty-workspace-padding-v = 1;
+      inactive-workspace-border-radius = 3;
+      inactive-workspace-border-width = 2;
+      inactive-workspace-padding-h = 8;
+      inactive-workspace-padding-v = 1;
+      workspaces-bar-padding = 1;
+    };
+
+    "org/gnome/shell/extensions/space-bar/behavior" = {
+      always-show-numbers = false;
+      show-empty-workspaces = true;
+      toggle-overview = true;
+    };
+
     "org/gnome/shell/keybindings" = {
       screenshot = ["<Shift><Control><Alt>s"];
-      screenshot-window = ["<Shift><Control>s"];
+      screenshot-window = ["<Shift><Control><Super>s"];
       show-screenshot-ui = ["<Super>bracketleft"];
     };
   };

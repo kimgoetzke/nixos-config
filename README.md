@@ -23,6 +23,8 @@ After first run or once `nh` installed otherwise, use:
     nh os switch ~/projects/nixos-config -H default
     ```
 
+If you see errors, run `journalctl -u home-manager-$USER.service`.
+
 #### Clean up
 
 Clean up user generations, leaving only the most recent generation, with:
@@ -65,10 +67,25 @@ nh os switch ~/projects/nixos-config -H default
 
 #### Using Gnome and made some config changes in the UI?
 
-```shell
-dconf dump / > ./assets/configs/gnome/dconf.settings
-dconf2nix -i ./assets/configs/gnome/dconf.settings -o ./assets/configs/gnome/dconf.nix
+Once you've done this once, it's probably best to simply run `dconf watch /` and update the relevant .nix file. If
+you've never configured Gnome UI changes in NixOS before, follow these steps:
 
-# Or... (but often fails)
-dconf dump / | dconf2nix > ./assets/configs/gnome/dconf.nix
-```
+1. Get the latest settings and convert them to a Nix file:
+   ```shell
+   dconf dump / > ./assets/configs/gnome/dconf.settings
+   
+   # Or... (but it's quite buggy and breaks for me)
+   dconf dump / | dconf2nix > ./assets/configs/gnome/dconf.nix
+   ```
+2. Convert the settings to a Nix file:
+   ```shell
+   dconf2nix -i ./assets/configs/gnome/dconf.settings -o ./assets/configs/gnome/dconf.nix
+   ```
+   If things break, which they usually do, follow the error messages and fix/remove the offending line(s).
+3. Replace `mkTuple` with `lib.hm.gvariant.mkTuple` and `mkUint32` with `lib.hm.gvariant.mkUint32` in the
+   generated `dconf.nix`.
+4. Remove everything you don't need from the generated `dconf.nix`.
+5. Copy the result into `home.nix`.
+
+Check `systemctl status home-manager-$USER` and ensure the service started successfully, if not, dig in with
+`journalctl -u home-manager-$USER` and make sure to carefully read the error.

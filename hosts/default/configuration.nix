@@ -89,12 +89,12 @@
       _1password-gui
       _1password
       jetbrains-mono
-      dconf2nix
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
       xorg.xev
       gnomeExtensions.clipboard-history
+      gnomeExtensions.space-bar
     ];
 
   # Shell
@@ -130,6 +130,7 @@
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
+      size = 26;
     };
     fonts = {
       serif = {
