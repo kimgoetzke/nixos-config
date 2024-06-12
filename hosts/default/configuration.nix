@@ -63,7 +63,7 @@
   users.users.kgoe = {
     isNormalUser = true;
     description = "Kim";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   # Environment variables
@@ -100,6 +100,11 @@
   # Shell
   users.users.kgoe.shell = pkgs.${config.userSettings.defaultShell};
   programs.zsh.enable = config.userSettings.shells.isZshEnabled;
+
+  # Docker
+  virtualisation.docker = {
+    enable = config.userSettings.isDockerEnabled;
+  };
 
   # Home manager
   home-manager = {

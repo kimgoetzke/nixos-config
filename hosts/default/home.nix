@@ -22,7 +22,7 @@
           "IosevkaTerm"
         ];
       })
-      pkgs.xclip
+      pkgs.xclip # Dependency of zsh.nix
 
       # Art
       pkgs.aseprite

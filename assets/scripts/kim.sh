@@ -33,7 +33,7 @@ function nmc {
     if [ -z "$currentContainer" ]; then
         echo "No MySQL container found. Spinning up new container..."
     else
-        echo "MySQL container found. Stopping and removing container..."
+        echo "MySQL container found. Removing container and then spinning up a new one..."
         docker stop "$currentContainer" && docker container prune -f
         sleep 2
     fi
@@ -45,7 +45,7 @@ function nmc {
     echo "$testEnvVars" | xclip -selection clipboard
     echo "Copied to clipboard: $testEnvVars."
     echo "Open the run configuration for any test and paste as environment vars."
-    echo "In case of errors above, clean up with: 'docker stop $(docker ps -f "name=local_mysql") && docker container prune -f'."
+    echo "In case of errors above, clean up with: 'docker stop \$(docker ps -f \"name=local_mysql\") && docker container prune -f'."
 }
 
 function mp {
@@ -54,7 +54,7 @@ function mp {
     if [ -z "$sqlDockerContainer" ]; then
         echo "Port number not found. Check if MySQL container is running."
     else
-        portNumber=$(echo "$sqlDockerContainer" | sed -r 's/.*:(\d+).*/\1/')
+        portNumber=$(echo "$sqlDockerContainer" | grep -oPm1 '\d+(?=-)' | head -n 1)
         echo "$portNumber" | xclip -selection clipboard
         echo "MySQL port number ($portNumber) copied to clipboard."
     fi
@@ -68,20 +68,39 @@ function mid {
     else
         containerId=$(echo "$sqlDockerContainer" | awk '{print $1}')
         echo "$containerId" | xclip -selection clipboard
-        export CN=$containerId
-        echo "MySQL container id ($containerId) copied to clipboard and set as \$CN."
+        echo "MySQL container id ($containerId) copied to clipboard."
     fi
 }
 
 function mc {
     echo "Action: $FUNCNAME - executes a MySQL command in a Docker container e.g. container_name::SHOW DATABASES."
-    IFS="::" read -r containerName command <<< "$arg"
-    if [ -z "$containerName" ] || [ -z "$command" ]; then
-        echo "Warning: You've not provided enough query parts (separated by '::'). Trying to fetch container name for you..."
-        mid
+    IFS="::" read -ra parts <<< "$arg"
+    if [ ${#parts[@]} -eq 1 ]; then
+        command="${parts[0]}"
+    elif [ ${#parts[@]} -eq 3 ]; then
+        containerName="${parts[0]}"
+        command="$(echo -e "${parts[2]}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+        echo "Command is: $command"
     fi
-    echo "Looking for container with name $containerName to execute command: $command."
+    if [ -z "$containerName" ] || [ -z "$command" ]; then
+        echo "Warning: It seems you have not provided a container name. Trying to fetch it for you..."
+        sqlDockerContainer=$(docker ps | grep "mysql:")
+        containerName=$(echo "$sqlDockerContainer" | awk '{print $NF}')
+    fi
+    echo "Looking for container with name '$containerName' to execute command: $command."
     docker exec -it "$(docker ps -f "name=$containerName" --format "{{.ID}}")" bash -c "mysql -u $mysqlUsername -p$mysqlPassword -e \"$command;\""
+}
+
+function cn {
+    echo "Action: $FUNCNAME - extracts the Docker container name based on a (partial) image name."
+    dockerContainer=$(docker ps | grep "$arg")
+    if [ -z "$dockerContainer" ]; then
+        echo "Container not found. Check if a container with an image name containing '$arg' is running."
+    else
+        containerName=$(echo "$dockerContainer" | awk '{print $NF}')
+        echo "$containerName" | xclip -selection clipboard
+        echo "Container name '$containerName' has been copied to the clipboard."
+    fi
 }
 
 function gp {
@@ -124,7 +143,7 @@ function pi {
 function uuid {
     echo "Action: $FUNCNAME - generates UUID."
     uuid=$(uuidgen)
-#    echo "$uuid" | xclip -selection clipboard
+    echo "$uuid" | xclip -selection clipboard
     echo "UUID ($uuid) copied to clipboard."
 }
 
@@ -146,9 +165,10 @@ function display_menu {
     echo "7 - Get MySQL Docker container id"
     echo "8 - Execute command in MySQL container (use container_name::command syntax)"
     echo "9 - Get port information (default: all listening TCP connections)"
-    echo "10 - Get process information"
-    echo "11 - Generate UUID"
-    echo "12 - Generate ULID"
+    echo "10 - Extract the Docker container name based on a (partial) image name"
+    echo "11 - Get process information"
+    echo "12 - Generate UUID"
+    echo "13 - Generate ULID"
 
     read -r -p "Select an option [1-12]: " choice
     case $choice in
@@ -160,10 +180,11 @@ function display_menu {
         6) mp ;;
         7) mid ;;
         8) mc ;;
-        9) gp ;;
-        10) pi ;;
-        11) uuid ;;
-        12) ulid ;;
+        9) cn ;;
+        10) gp ;;
+        11) pi ;;
+        12) uuid ;;
+        13) ulid ;;
         *) echo "Invalid choice." ;;
     esac
 }

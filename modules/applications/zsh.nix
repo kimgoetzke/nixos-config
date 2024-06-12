@@ -56,7 +56,6 @@ in {
         autoload -Uz compinit && compinit
         zinit cdreplay -q
 
-
         # Keybindings
         # (Thanks to https://stackoverflow.com/questions/5407916/zsh-zle-shift-selection)
 
@@ -129,6 +128,7 @@ in {
         }
 
         bindkey '^f' autosuggest-accept
+        bindkey '^ ' autosuggest-execute
         bindkey -M isearch '^?' backward-delete-char # Restore backward-delete-char for Backspace in the
                                                      # incremental search keymap so it keeps working there
 

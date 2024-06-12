@@ -28,5 +28,9 @@
         default = config.userSettings.desktopEnvironment == "gnome";
       };
     };
+    isDockerEnabled = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
   };
 }
