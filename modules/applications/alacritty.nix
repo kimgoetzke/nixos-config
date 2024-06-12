@@ -50,6 +50,11 @@ in {
             key = "F11";
             action = "ToggleFullscreen";
           }
+          {
+            mods = "Control";
+            key = "V";
+            action = "Paste";
+          }
         ];
         colors = lib.mkDefault {
           primary = {
