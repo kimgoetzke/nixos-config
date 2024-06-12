@@ -68,8 +68,8 @@
           "foreground": "#D08770",
           "properties": {
             "mapped_shell_names": {
-              "pwsh": "Shell",
-              "powershell": "Shell",
+              "pwsh": "Pwsh",
+              "powershell": "Pwsh",
               "cmd": "Cmd",
               "bash": "Bash",
               "zsh": "Zsh"
