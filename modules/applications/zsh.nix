@@ -155,6 +155,7 @@ in {
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
         # Aliases from initExtra
+        alias cd="z"
         alias ls='ls --color -2'
         alias c='clear'
       '';
