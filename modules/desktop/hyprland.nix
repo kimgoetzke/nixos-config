@@ -5,13 +5,16 @@
   inputs,
   ...
 }: let
-  cfg = config.de-hyperland;
+  cfg = config.de-hyprland;
 in {
-  options.de-hyperland = {
+  options.de-hyprland = {
     enable = lib.mkEnableOption "Enable Wayland with Hyprland as desktop environment";
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: Add configuration here
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    };
   };
 }

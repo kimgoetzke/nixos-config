@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
+    inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
     ./../../modules/desktop/_all.nix
     ./../../controls/userSettings.nix
   ];
@@ -18,7 +18,7 @@
 
   # Networking
   networking.networkmanager.enable = true;
-  networking.hostName = "nixos";
+  networking.hostName = "blade";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Time zone, locale, keymap
@@ -76,7 +76,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # Desktop environment
-  de-gnome.enable = true;
+  de-gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
+  de-hyprland.enable = config.userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # System profile packages
   environment.systemPackages = with pkgs;
@@ -95,6 +96,18 @@
       xorg.xev
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
+    ]
+    ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
+      waybar
+      (
+        waybar.overrideAttrs (oldAttrs: {
+          mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+        })
+      )
+      swww
+      dunst
+      libnotify
+      rofi-wayland
     ];
 
   # Shell

@@ -7,5 +7,6 @@
     ./java.nix
     ./bash.nix
     ./zsh.nix
+    ./wayland.nix
   ];
 }

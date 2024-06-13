@@ -27,10 +27,20 @@
         type = lib.types.bool;
         default = config.userSettings.desktopEnvironment == "gnome";
       };
+      isHyprlandEnabled = lib.mkOption {
+        type = lib.types.bool;
+        default = config.userSettings.desktopEnvironment == "hyprland";
+      };
     };
     isDockerEnabled = lib.mkOption {
       type = lib.types.bool;
       default = true;
     };
+  };
+
+  config = {
+    userSettings.defaultShell = "zsh";
+    userSettings.desktopEnvironment = "gnome";
+    userSettings.isDockerEnabled = true;
   };
 }
