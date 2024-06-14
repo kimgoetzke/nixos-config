@@ -3,7 +3,31 @@
   lib,
   ...
 }: {
+  config = {
+    userSettings.userName = "kgoe";
+    userSettings.hostName = "blade";
+    userSettings.defaultShell = "zsh";
+    userSettings.shells = {
+      isZshEnabled = true;
+      isBashEnabled = false;
+    };
+    userSettings.desktopEnvironment = "hyprland";
+    userSettings.desktopEnvironments = {
+      isGnomeEnabled = false;
+      isHyprlandEnabled = true;
+    };
+    userSettings.isDockerEnabled = true;
+  };
+
   options.userSettings = {
+    userName = lib.mkOption {
+      type = lib.types.string;
+      default = "kgoe";
+    };
+    hostName = lib.mkOption {
+      type = lib.types.string;
+      default = "nixos";
+    };
     defaultShell = lib.mkOption {
       type = lib.types.string;
       default = "zsh";
@@ -36,11 +60,5 @@
       type = lib.types.bool;
       default = true;
     };
-  };
-
-  config = {
-    userSettings.defaultShell = "zsh";
-    userSettings.desktopEnvironment = "gnome";
-    userSettings.isDockerEnabled = true;
   };
 }

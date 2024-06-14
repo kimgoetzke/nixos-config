@@ -6,8 +6,8 @@
   userSettings,
   ...
 }: {
-  home.username = "kgoe";
-  home.homeDirectory = "/home/kgoe";
+  home.username = userSettings.userName;
+  home.homeDirectory = "/home/${userSettings.userName}";
   home.stateVersion = "24.05";
   home.packages =
     [
