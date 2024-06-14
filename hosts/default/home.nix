@@ -59,7 +59,9 @@
   alacritty.enable = true;
   git.enable = true;
   java.enable = true;
-  wayland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
+
+  # Desktop environments
+  de-hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
@@ -68,6 +70,7 @@
     ls = "ls --color";
     c = "clear";
     nht = "nh os test ~/projects/nixos-config -H default";
+    nhb = "nh os boot ~/projects/nixos-config -H default";
     nhs = "nh os switch ~/projects/nixos-config -H default";
     proper = "cd ~/projects && ls -1";
     idea = "${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin/idea.sh";

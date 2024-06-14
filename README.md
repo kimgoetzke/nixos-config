@@ -22,6 +22,10 @@ After first run or once `nh` installed otherwise, use:
     ```shell
     nh os switch ~/projects/nixos-config -H default
     ```
+3. Or apply after reboot:
+    ```shell
+    nh os boot ~/projects/nixos-config -H default
+    ```
 
 If you see errors, run `journalctl -u home-manager-$USER.service`.
 

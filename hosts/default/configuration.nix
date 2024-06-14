@@ -8,8 +8,8 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
-    ./../../modules/desktop/_all.nix
     ./../../controls/userSettings.nix
+    ./../../modules/desktop/_all.nix
   ];
 
   # Boot loader
@@ -77,7 +77,6 @@
 
   # Desktop environment
   de-gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
-  de-hyprland.enable = config.userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # System profile packages
   environment.systemPackages = with pkgs;
@@ -90,24 +89,13 @@
       _1password-gui
       _1password
       jetbrains-mono
+      material-design-icons
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
       xorg.xev
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
-    ]
-    ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
-      waybar
-      (
-        waybar.overrideAttrs (oldAttrs: {
-          mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-        })
-      )
-      swww
-      dunst
-      libnotify
-      rofi-wayland
     ];
 
   # Shell
@@ -126,7 +114,7 @@
       userSettings = config.userSettings;
     };
     backupFileExtension = "0001";
-    users.kgoe = {
+    users.${config.userSettings.userName} = {
       imports = [./home.nix];
     };
   };
