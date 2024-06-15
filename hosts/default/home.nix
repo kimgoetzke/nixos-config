@@ -59,9 +59,7 @@
   alacritty.enable = true;
   git.enable = true;
   java.enable = true;
-
-  # Desktop environments
-  de-hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
+  hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;

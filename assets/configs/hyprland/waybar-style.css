@@ -1,13 +1,16 @@
 * {
-    font-family: Material Design Icons, JetBrains Mono Regular, sans-serif;
-    font-size: 14px;
+    /*font-family: Material Design Icons, JetBrainsMono Nerd Font, JetBrains Mono Regular, sans-serif;*/
+    /*font-size: 12px;*/
     color: @base05;
+    background: transparent;
 }
 
 window#waybar {
     border-radius: 10px;
     background: @base01;
     border: 3px solid @base02;
+    background: transparent;
+    /*font-family: Material Design Icons, JetBrainsMono Nerd Font, JetBrains Mono Regular, sans-serif;*/
 }
 
 #battery {

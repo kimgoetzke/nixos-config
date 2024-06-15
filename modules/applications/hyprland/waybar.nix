@@ -23,7 +23,7 @@
       settings = {
         bar = {
           layer = "top";
-          height = 45;
+          height = 40;
           spacing = 8;
           margin-top = 20;
           margin-left = 20;
@@ -32,39 +32,27 @@
           modules-left = ["hyprland/workspaces"];
           modules-center = ["clock"];
           modules-right = ["network" "memory" "backlight" "pulseaudio" "hyprland/language" "tray" "battery"];
-          "hyprland/workspaces" = {
-            format = "{icon}";
-            "format-icons" = {
-              "1" = "α";
-              "2" = "β";
-              "3" = "γ";
-              "4" = "δ";
-              "5" = "ε";
-              urgent = "λ";
-              focused = "σ";
-              default = "ω";
-            };
-          };
           "hyprland/language" = {
-            format = "{} <span font-family='Material Design Icons' rise='-1000' size='medium'>󰌌</span>";
-            format-en = "en";
+            format = "{} <span font-family='Material Design Icons,JetBrainsMono Nerd Font' rise='-1000' size='medium'>󰌌</span>";
+            format-en = "EN";
           };
           "tray" = {
             spacing = 10;
           };
           "clock" = {
-            format = "{:%H:%M  󰅐}";
+            format = "{:%H:%M  <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰅐</span>}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%d %h %Y  󰃮}";
+            format-alt = "{:%d %h %Y  <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰃮</span>}";
             on-click = "killall calcure || alacritty -t calcure -e calcure;sudo ydotool click 0xc1";
           };
           "memory" = {
-            format = "{}%  Memory";
+            format = "{}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'></span>";
             on-click = "killall btop || alacritty -t btop -e btop;sudo ydotool click 0xc1";
           };
           "backlight" = {
-            format = "{percent}% {icon} Backlight";
+            format = "{percent}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>{icon}</span>";
             format-icons = ["󰃞" "󰃟" "󰃠"];
+            tooltip-format = "Backlight at {percent}%";
           };
           "battery" = {
             "states" = {
@@ -72,33 +60,33 @@
               warning = 30;
               critical = 15;
             };
-            format = "{capacity}% {icon} Battery";
-            format-charging = "{capacity}% 󰂄";
-            format-plugged = "{capacity}% ";
-            format-alt = "{icon}";
+            format = "{capacity}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>{icon}</span>";
+            format-charging = "{capacity}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰂄</span>";
+            format-plugged = "{capacity}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'></span>";
+            format-alt = "<span font-family='Material Design Icons,JetBrainsMono Nerd Font'>{icon}</span>";
             format-icons = ["󱃍" "󰁼" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           };
           "network" = {
             interface = "wlp2*";
-            format-wifi = "{essid} ({signalStrength}%) 󰤨 Network";
-            format-ethernet = "{ipaddr}/{cidr} 󰈀";
-            tooltip-format = "{ifname} via {gwaddr} 󰩟";
-            format-linked = "{ifname} (No IP) 󰩟";
-            format-disconnected = "󰤫";
+            format-wifi = "{essid} ({signalStrength}%) <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰤨</span>";
+            format-ethernet = "{ipaddr}/{cidr} <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰈀</span>";
+            tooltip-format = "{ifname} via {gwaddr} <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰩟</span>";
+            format-linked = "{ifname} (No IP) <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰩟</span>";
+            format-disconnected = "<span font-family='Material Design Icons,JetBrainsMono Nerd Font'>󰤫</span>";
             on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
           };
           "pulseaudio" = {
-            format = "{volume}% {icon} {format_source} Volume";
-            format-bluetooth = "{volume}% <span font-family='Material Design Icons' rise='-2000' font-size='x-large'>󰥰</span> {format_source}";
-            format-bluetooth-muted = "󰟎 {format_source}";
-            format-muted = "󰝟 {format_source}";
-            format-source = "{volume}% 󰍬";
-            format-source-muted = "󰍭";
+            format = "{volume}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font'>{icon}</span> {format_source}";
+            format-bluetooth = "{volume}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font' rise='-2000' font-size='x-large'>󰥰</span> {format_source}";
+            format-bluetooth-muted = "<span font-family='Material Design Icons' rise='-2000' font-size='x-large'>󰟎 </span>{format_source}";
+            format-muted = "<span font-family='Material Design Icons,JetBrainsMono Nerd Font' rise='-2000' font-size='x-large'>󰝟</span> {format_source}";
+            format-source = "{volume}% <span font-family='Material Design Icons,JetBrainsMono Nerd Font' rise='-2000' font-size='x-large'>󰍬</span>";
+            format-source-muted = "<span font-family='Material Design Icons,JetBrainsMono Nerd Font' rise='-2000' font-size='x-large'>󰍭</span>";
             on-click = "killall bluetuith || alacritty -t blue -e bluetuith; sudo ydotool click 0xc1";
             "format-icons" = {
               headphone = "󰋋";
-              hands-free = "";
-              headset = "";
+              hands-free = "󰋋";
+              headset = "󰋋";
               phone = "";
               portable = "";
               car = "";

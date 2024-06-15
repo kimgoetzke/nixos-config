@@ -77,6 +77,7 @@
 
   # Desktop environment
   de-gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
+  de-hyprland.enable = config.userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # System profile packages
   environment.systemPackages = with pkgs;
@@ -88,14 +89,15 @@
       obsidian
       _1password-gui
       _1password
-      jetbrains-mono
-      material-design-icons
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
       xorg.xev
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
+    ]
+    ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
+      gvfs
     ];
 
   # Shell
@@ -126,6 +128,13 @@
     clean.extraArgs = "all --keep-since 7d --keep 3";
   };
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    dejavu_fonts
+    noto-fonts-emoji
+    jetbrains-mono
+  ];
+
   # Stylix
   stylix = {
     image = ./../../assets/images/wallpaper_abstract_nord4x.png;
@@ -143,17 +152,14 @@
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
-
       sansSerif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Sans";
       };
-
       monospace = {
         package = pkgs.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
-
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";

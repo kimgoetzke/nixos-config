@@ -7,9 +7,9 @@
   userSettings,
   ...
 }: let
-  cfg = config.de-hyprland;
+  cfg = config.hyprland;
 in {
-  options.de-hyprland = {
+  options.hyprland = {
     enable = lib.mkEnableOption "Enable Wayland with Hyprland as desktop environment";
   };
 
@@ -32,6 +32,7 @@ in {
       polkit_gnome
       xwaylandvideobridge
       wl-clipboard
+      xfce.thunar
     ];
 
     xdg.portal = {
@@ -55,13 +56,24 @@ in {
         exec-once = [
           "swww-daemon"
           "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png"
+          #"wl-paste --type text --watch cliphist store"
+          #"wl-paste --type image --watch cliphist store"
         ];
 
-        monitor = ",preferred,auto,1.333333,mirror,eDP-1";
-        #        monitor = [ ",preferred,auto,1.25,mirror,eDP-1"  "eDP-1,1920x1080@60.00H,auto,1.25,mirror,eDP-1" ];
+        monitor = [
+          "DP-2,preferred,0x0,1,transform,3"
+          "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
+          "eDP-1,preferred,4000x1000,2"
+          ",preferred,0x0,1"
+        ];
+
+        #        xwayland = {
+        #          force_zero_scaling = true;
+        #        };
 
         input = {
           kb_layout = "gb";
+          kb_options = "altgr:end"; # TODO: Try to make this work
           touchpad = {
             natural_scroll = "yes";
             disable_while_typing = "no";
@@ -106,9 +118,11 @@ in {
 
         master.new_is_master = true;
         gestures.workspace_swipe = "on";
-        misc.force_default_wallpaper = 1;
+        misc = {
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+        };
 
-        # TODO: Window rule for Jetbrains Toolbox to swpan in the center
         windowrulev2 = [
           "float, title:^(Firefox — Sharing Indicator)$"
           "noborder, title:^(Firefox — Sharing Indicator)$"
@@ -117,53 +131,53 @@ in {
           "pin, title:^(firefox)$, title:^(Picture-in-Picture)$"
           "float, title:^(Save File)$"
           "pin, title:^(Save File)$"
-          "float, title:^(Torrent Options)$"
-          "pin, title:^(Torrent Options)$"
           "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
           "noanim,class:^(xwaylandvideobridge)$"
           "noinitialfocus,class:^(xwaylandvideobridge)$"
           "maxsize 1 1,class:^(xwaylandvideobridge)$"
           "noblur,class:^(xwaylandvideobridge)$"
-          "windowdance,class:^(kompas.exe)$,title:^(RoamingWindow)$"
-          "stayfocused,class:^(kompas.exe)$,title:^(RoamingWindow)$"
         ];
 
+        # TODO: Try to make the toolbox window rule work
         windowrule = [
-          "windowdance,title:^(Rhythm Doctor)$"
-          "forceinput,title:^(Rhythm Doctor)$"
+          "center,title:^(JetBrains Toolbox)$"
+          "center,title:^(.*)(JetBrains)(.*)$"
+          "center,^(jetbrains-toolbox)$"
         ];
 
         layerrule = "blur, waybar";
 
         bind =
           [
-            "$mainMod, V, togglefloating, "
-            "$mainMod, P, pseudo,"
-            "$mainMod, I, togglesplit,"
-            "$mainMod SHIFT, F, fullscreen, 0"
-            #"$mainMod SHIF, M, fullscreen, 1"
+            # General
+            "$mainMod, Q, togglefloating, "
+            "$mainMod, W, togglesplit,"
+            "$mainMod CONTROL SHIFT, 0, fullscreen, 0"
+            "$mainMod CONTROL SHIFT, 1, fullscreen, 1"
+            "$mainMod CONTROL SHIFT, 2, fullscreen, 2"
+            "$mainMod CONTROL SHIFT, 3, fakefullscreen"
+            "$mainMod CONTROL SHIFT, P, pin"
             "$mainMod SHIFT, Q, killactive, "
             "$mainMod SHIFT, E, exit,"
 
             # Apps
-            "$mainMod, D, exec, killall rofi || rofi -show-icons -show drun"
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
-            # "$mainMod, Q, exec, "
+            "$mainMod, M, exec, thunar"
             "$mainMod, F, exec, firefox"
             "$mainMod, T, exec, $terminal"
             "$mainMod, J, exec, jetbrains-toolbox"
             "$mainMod, O, exec, obsidian"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod SHIFT, Esc, exec, swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png"
+            "CONTROL_SHIFT, V, exec, cliphist" # TODO: Make clipboard manager work
 
             # Screenshooting
             ", Print, exec, grimblast save screen"
             "ALT, P, exec, grimblast save active"
-            "SHIFT, P, exec, grimblast save area"
+            "CONTROL_SHIFT, P, exec, grimblast save area"
             "CONTROL, P, exec, grimblast copy screen"
             "ALT_CONTROL, P, exec, grimblast copy active"
-            "CONTROL_SHIFT, P, exec, grimblast copy area"
+            #"CONTROL_SHIFT, P, exec, grimblast copy area"
 
             # Volume
             ",0x1008FF11,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
@@ -184,7 +198,7 @@ in {
             "$mainMod SHIFT, up, movewindow,u"
             "$mainMod SHIFT, left, movewindow,l"
             "$mainMod SHIFT, right, movewindow,r"
-            #"$mainMod, S, togglespecialworkspace, magic"
+            "$mainMod CONTROL, S, togglespecialworkspace, magic"
             "$mainMod SHIFT, S, movetoworkspace, special:magic"
             "$mainMod, mouse_down, workspace, e+1"
             "$mainMod, mouse_up, workspace, e-1"
