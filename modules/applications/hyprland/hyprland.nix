@@ -55,7 +55,7 @@ in {
 
         exec-once = [
           "swww-daemon"
-          "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png"
+          "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png" # TODO: Copy file or somehow use relative path
           #"wl-paste --type text --watch cliphist store"
           #"wl-paste --type image --watch cliphist store"
         ];
@@ -63,8 +63,22 @@ in {
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
-          "eDP-1,preferred,4000x1000,2"
+          "eDP-1,1920x1080,4000x1000,1"
           ",preferred,0x0,1"
+        ];
+
+        workspace = [
+          "1,monitor:DP-2"
+          "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "3,monitor:eDP-1"
+          "4,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "5,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "6,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "7,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "10,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
         ];
 
         #        xwayland = {
@@ -136,13 +150,8 @@ in {
           "noinitialfocus,class:^(xwaylandvideobridge)$"
           "maxsize 1 1,class:^(xwaylandvideobridge)$"
           "noblur,class:^(xwaylandvideobridge)$"
-        ];
-
-        # TODO: Try to make the toolbox window rule work
-        windowrule = [
+          "float,title:^(JetBrains Toolbox)$"
           "center,title:^(JetBrains Toolbox)$"
-          "center,title:^(.*)(JetBrains)(.*)$"
-          "center,^(jetbrains-toolbox)$"
         ];
 
         layerrule = "blur, waybar";
