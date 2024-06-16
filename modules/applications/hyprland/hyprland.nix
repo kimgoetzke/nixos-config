@@ -55,19 +55,20 @@ in {
       enable = true;
       package = pkgs.hyprland;
       settings = {
-        "$scripts" = "${./../../../assets/configs/hyprland/scripts}";
+        #"$scripts" = "${./../../../assets/configs/hyprland/scripts}";
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
         exec-once = [
           "hyprlock"
           "swww-daemon"
-          "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png" # TODO: Copy file or somehow use relative path
+          "swww img ${userSettings.targetDirectory}/wallpaper.png"
           "hypridle"
           "mako"
-          "sleep 1"
-          "[workspace 2] jetbrains-toolbox"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
+          "[workspace 2] jetbrains-toolbox"
+          "sleep 4"
+          "hyprctl dispatch closewindow jetbrains-toolbox" # Workaround for bug: Closing without killing so that next time window rules apply
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -153,14 +154,13 @@ in {
           "forceinput,title:^(JetBrains Toolbox)$"
           "nofocus,title:^(JetBrains Toolbox)$"
           "float,title:^(JetBrains Toolbox)$"
-          #"move onscreen 50% 50%,title:^(JetBrains Toolbox)$"
           "center,jetbrains-toolbox"
         ];
         layerrule = "blur, waybar";
         bind =
           [
             # General
-            "$mainMod SHIFT, E, exit,"
+            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/shutdown-gracefully.sh"
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
@@ -171,7 +171,7 @@ in {
             "$mainMod, O, exec, obsidian"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons" # TODO: Fix file path
+            "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
             "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
             "$mainMod SHIFT, L, exec, cliphist wipe"
             "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
@@ -183,9 +183,9 @@ in {
             "$mainMod SHIFT, bracketright, exec, grimblast save area" # Manually select
 
             # Volume
-            ",0x1008FF11,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
-            ",0x1008FF13,exec,wpctl set-volume @DEFAULT_SINK@ 5%+"
-            ",0x1008FF12,exec,wpctl set-mute @DEFAULT_SINK@ toggle"
+            ",0x1008FF11, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
+            ",0x1008FF13, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
+            ",0x1008FF12, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
             ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
 
             # Brightness
@@ -193,8 +193,8 @@ in {
             ",XF86MonBrightnessDown,exec,brightnessctl s 5%-"
 
             # Lock screen
-            ",switch:on:Lid Switch, exec, hyprlock"
-            "$mainMod, L, exec, hyprlock"
+            ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
+            "$mainMod, L, exec, pidof hyprlock || hyprlock"
 
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "
@@ -248,6 +248,7 @@ in {
       general = {
         ignore_dbus_inhibit = false;
         lock_cmd = "pidof hyprlock || hyprlock";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
       listener = [
         {
@@ -256,12 +257,21 @@ in {
           on-resume = "brightnessctl -r";
         }
         {
-          timeout = 300;
+          timeout = 300; # 5min
           on-timeout = "hyprlock";
+        }
+        {
+          timeout = 330;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 1800; # 30min
+          on-timeout = "systemctl suspend";
         }
       ];
     };
-    # TODO: Use relative path for wallpaper below or copy it to the right place beforehand
+    # TODO: Disable all other screens (also on lid close)
     home.file.".config/hypr/hyprlock.conf".text = ''
       background {
         monitor =
@@ -289,15 +299,34 @@ in {
 
       image {
         monitor = eDP-1
-        path = /home/kgoe/projects/nixos-config/assets/images/randy.png
+        path = ${userSettings.targetDirectory}/profile.png
         size = 250 # lesser side if not 1:1 ratio
         rounding = -1 # negative values mean circle
         border_size = 0
+        border_color = rgb(${config.lib.stylix.colors.base0D-rgb-r},${config.lib.stylix.colors.base0D-rgb-g},${config.lib.stylix.colors.base0D-rgb-b})
         rotate = 0 # degrees, counter-clockwise
         position = 0, 200
+        shadow_passes = 1
+        shadow_size = 7
+        shadow_boost = 0.5
         halign = center
         valign = center
       }
+
+      # Alpha channel doesn't seem to respond, so it doesn't make sense to use it...
+      # shape {
+      #     monitor = eDP-1
+      #     size = 1000, 600
+      #     color = rgba(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b},0.5)
+      #     rounding = 20
+      #     border_size = 8
+      #     border_color = rgba(${config.lib.stylix.colors.base02-rgb-r},${config.lib.stylix.colors.base02-rgb-g},${config.lib.stylix.colors.base02-rgb-b},1.0)
+      #     rotate = 0
+      #     xray = false # if true, make a "hole" in the background (rectangle of specified size, no rotation)
+      #     position = 0, 120
+      #     halign = center
+      #     valign = center
+      # }
 
       input-field {
         monitor = eDP-1
@@ -327,6 +356,9 @@ in {
         position = 0, -40
         halign = center
         valign = center
+        shadow_passes = 1
+        shadow_size = 5
+        shadow_boost = 0.6
       }
 
       label {
@@ -342,6 +374,23 @@ in {
       }
     '';
 
+    # TODO: Check that it works as intended
+    # Graceful shutdown script -----------------------------------------------------------------------------------------
+    home.file."${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        # Thanks to https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/
+
+        # Close all client windows (required for graceful exit since many apps aren't good SIGNAL citizens)
+        HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
+        hyprctl --batch "$HYPRCMDS" >> /tmp/hypr/hyprexitwithgrace.log 2>&1
+
+        # Let's go!
+        sudo shutdown now >> /tmp/hypr/hyprexitwithgrace.log 2>&1
+      '';
+      executable = true;
+    };
+
     # Cliphist ---------------------------------------------------------------------------------------------------------
     services.cliphist.enable = true;
     services.cliphist.extraOptions = [
@@ -350,7 +399,8 @@ in {
       "-max-items"
       "100"
     ];
-    home.file.".config/cliphist/cliphist-rofi-img" = { # Required to work with rofi and images
+    home.file.".config/cliphist/cliphist-rofi-img" = {
+      # Required to work with rofi and images
       text = ''
         #!/usr/bin/env bash
 

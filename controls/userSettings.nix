@@ -6,6 +6,8 @@
   config = {
     userSettings.userName = "kgoe";
     userSettings.hostName = "blade";
+    userSettings.baseDirectory = "/home/${config.userSettings.userName}/projects/nixos-config";
+    userSettings.relativeTargetDirectory = "/Documents/NixOS";
     userSettings.defaultShell = "zsh";
     userSettings.shells = {
       isZshEnabled = true;
@@ -27,6 +29,18 @@
     hostName = lib.mkOption {
       type = lib.types.string;
       default = "nixos";
+    };
+    baseDirectory = lib.mkOption {
+      type = lib.types.string;
+      default = "/home/${config.userSettings.userName}/projects/nixos-config";
+    };
+    relativeTargetDirectory = lib.mkOption {
+      type = lib.types.string;
+      default = "/Documents/NixOS";
+    };
+    targetDirectory = lib.mkOption {
+      type = lib.types.string;
+      default = "/home/${config.userSettings.userName}${config.userSettings.relativeTargetDirectory}";
     };
     defaultShell = lib.mkOption {
       type = lib.types.string;

@@ -78,7 +78,6 @@ in {
         "git.confirmSync" = false;
 
         # Formatters
-        # TODO: Fix below and allow writing to settings.json (or active Material Icon Theme extension)
         "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[css]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[markdown]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
