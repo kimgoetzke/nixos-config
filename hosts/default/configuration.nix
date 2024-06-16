@@ -89,10 +89,10 @@
       obsidian
       _1password-gui
       _1password
+      xorg.xev
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
-      xorg.xev
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
     ]
@@ -125,7 +125,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "all --keep-since 7d --keep 3";
+    clean.extraArgs = "all --keep 4";
   };
 
   # Fonts

@@ -52,24 +52,21 @@ in {
         "$scripts" = "${./../../../assets/configs/hyprland/scripts}";
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
-
         exec-once = [
           "swww-daemon"
           "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png" # TODO: Copy file or somehow use relative path
           #"wl-paste --type text --watch cliphist store"
           #"wl-paste --type image --watch cliphist store"
         ];
-
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
-          "eDP-1,1920x1080,4000x1000,1"
+          "eDP-1,1920x1080,4000x600,1"
           ",preferred,0x0,1"
         ];
-
         workspace = [
           "1,monitor:DP-2"
-          "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true"
           "3,monitor:eDP-1"
           "4,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "5,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
@@ -80,21 +77,15 @@ in {
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "10,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
         ];
-
-        #        xwayland = {
-        #          force_zero_scaling = true;
-        #        };
-
         input = {
           kb_layout = "gb";
-          kb_options = "altgr:end"; # TODO: Try to make this work
+          kb_options = "altr:end"; # TODO: Try to make this work
           touchpad = {
             natural_scroll = "yes";
             disable_while_typing = "no";
           };
           sensitivity = 0.1;
         };
-
         general = {
           gaps_in = 5;
           gaps_out = 20;
@@ -102,7 +93,6 @@ in {
           layout = "dwindle";
           allow_tearing = false;
         };
-
         decoration = {
           rounding = 7;
           drop_shadow = "yes";
@@ -114,7 +104,6 @@ in {
             passes = 1;
           };
         };
-
         animations = {
           enabled = 1;
           bezier = "overshot,0.13,0.99,0.29,1.1,";
@@ -124,19 +113,16 @@ in {
             "windows,1,4,overshot,popin 95%"
           ];
         };
-
         dwindle = {
           pseudotile = "yes";
           preserve_split = "yes";
         };
-
         master.new_is_master = true;
         gestures.workspace_swipe = "on";
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
         };
-
         windowrulev2 = [
           "float, title:^(Firefox — Sharing Indicator)$"
           "noborder, title:^(Firefox — Sharing Indicator)$"
@@ -150,23 +136,17 @@ in {
           "noinitialfocus,class:^(xwaylandvideobridge)$"
           "maxsize 1 1,class:^(xwaylandvideobridge)$"
           "noblur,class:^(xwaylandvideobridge)$"
-          "float,title:^(JetBrains Toolbox)$"
-          "center,title:^(JetBrains Toolbox)$"
+          "tile,class:^(Asperite.*)$,class:^(Aseprite.*)$"
         ];
-
+        windowrule = [
+          "float,title:^(JetBrains Toolbox)$"
+          "center (1),title:^(JetBrains Toolbox)$"
+          "move onscreen 50% 50%,title:^(JetBrains Toolbox)$"
+        ];
         layerrule = "blur, waybar";
-
         bind =
           [
             # General
-            "$mainMod, Q, togglefloating, "
-            "$mainMod, W, togglesplit,"
-            "$mainMod CONTROL SHIFT, 0, fullscreen, 0"
-            "$mainMod CONTROL SHIFT, 1, fullscreen, 1"
-            "$mainMod CONTROL SHIFT, 2, fullscreen, 2"
-            "$mainMod CONTROL SHIFT, 3, fakefullscreen"
-            "$mainMod CONTROL SHIFT, P, pin"
-            "$mainMod SHIFT, Q, killactive, "
             "$mainMod SHIFT, E, exit,"
 
             # Apps
@@ -179,14 +159,13 @@ in {
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "CONTROL_SHIFT, V, exec, cliphist" # TODO: Make clipboard manager work
+            "$mainMod, V, exec, cliphist" # TODO: Make clipboard manager work
 
-            # Screenshooting
-            ", Print, exec, grimblast save screen"
-            "ALT, P, exec, grimblast save active"
-            "CONTROL_SHIFT, P, exec, grimblast save area"
-            "CONTROL, P, exec, grimblast copy screen"
-            "ALT_CONTROL, P, exec, grimblast copy active"
-            #"CONTROL_SHIFT, P, exec, grimblast copy area"
+            # Screenshots
+            "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
+            "CONTROL SHIFT, bracketleft, exec, grimblast save active" # Active window
+            "CONTROL SHIFT, bracketright, exec, grimblast save area" # Manually select
+            "$mainMod SHIFT, bracketright, exec, grimblast save area" # Manually select
 
             # Volume
             ",0x1008FF11,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
@@ -198,7 +177,12 @@ in {
             ",XF86MonBrightnessUp,exec,brightnessctl s +5%"
             ",XF86MonBrightnessDown,exec,brightnessctl s 5%-"
 
-            # Windows
+            # Windows & workspaces
+            "$mainMod, Q, togglefloating, "
+            "$mainMod, W, togglesplit,"
+            "$mainMod, F12, fullscreen, 0"
+            "$mainMod CONTROL SHIFT, P, pin"
+            "$mainMod SHIFT, Q, killactive, "
             "$mainMod, down, movefocus, d"
             "$mainMod, up, movefocus, u"
             "$mainMod, left, movefocus, l"
@@ -213,8 +197,7 @@ in {
             "$mainMod, mouse_up, workspace, e-1"
           ]
           ++ (
-            # workspaces
-            # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+            # Select and move workspaces 1 to 10
             builtins.concatLists (builtins.genList (
                 x: let
                   ws = let
@@ -228,7 +211,6 @@ in {
               )
               10)
           );
-
         bindm = [
           "$mainMod, mouse:272, movewindow"
           "$mainMod, mouse:273, resizewindow"

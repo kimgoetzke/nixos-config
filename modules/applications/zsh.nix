@@ -105,8 +105,8 @@ in {
             send2   x       $'\E[4;2~' select    end-of-line
             shome   kHOM    $'\E[1;2H' select    beginning-of-line
             shome2  x       $'\E[1;2~' select    beginning-of-line
-            left    kcub1   $'\EOD'    deselect  backward-char
-            right   kcuf1   $'\EOC'    deselect  forward-char
+        #   left    kcub1   $'\EOD'    deselect  backward-char  # Deselect during selection but interferes with autosuggest-accept
+        #   right   kcuf1   $'\EOC'    deselect  forward-char   # Deselect during selection but interferes with autosuggest-accept
             end     kend    $'\EOF'    deselect  end-of-line
             end2    x       $'\E4~'    deselect  end-of-line
             home    khome   $'\EOH'    deselect  beginning-of-line
@@ -128,7 +128,11 @@ in {
         }
 
         bindkey '^f' autosuggest-accept
-        bindkey '^ ' autosuggest-execute
+        bindkey '^[[C' autosuggest-accept            # Right arrow to accept autosuggestion
+        bindkey '^[[OC' autosuggest-accept           # Right arrow to accept autosuggestion
+        bindkey '^ ' autosuggest-execute             # Ctrl + Space to accept and then execute autosuggestion
+        bindkey '^[[Z' fzf-tab-complete              # Shift-Tab to launch fzf-tab
+        bindkey "^I" expand-or-complete              # Tab to expand or complete regular zsh completions
         bindkey -M isearch '^?' backward-delete-char # Restore backward-delete-char for Backspace in the
                                                      # incremental search keymap so it keeps working there
 
@@ -158,6 +162,8 @@ in {
         alias cd="z"
         alias ls='ls --color -2'
         alias c='clear'
+
+        echo "Welcome, $USER!"
       '';
     };
   };
