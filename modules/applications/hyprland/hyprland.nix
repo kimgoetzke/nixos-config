@@ -45,6 +45,7 @@ in {
       ];
     };
 
+    # Hyprland ---------------------------------------------------------------------------------------------------------
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
@@ -55,6 +56,7 @@ in {
         exec-once = [
           "swww-daemon"
           "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png" # TODO: Copy file or somehow use relative path
+          "[workspace 2] jetbrains-toolbox"
           #"wl-paste --type text --watch cliphist store"
           #"wl-paste --type image --watch cliphist store"
         ];
@@ -177,6 +179,10 @@ in {
             ",XF86MonBrightnessUp,exec,brightnessctl s +5%"
             ",XF86MonBrightnessDown,exec,brightnessctl s 5%-"
 
+            # Lock screen
+            ",switch:on:Lid Switch, exec, hyprlock"
+            "$mainMod, L, exec, hyprlock"
+
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "
             "$mainMod, W, togglesplit,"
@@ -217,5 +223,107 @@ in {
         ];
       };
     };
+
+    # Lock screen ------------------------------------------------------------------------------------------------------
+    programs.hyprlock.enable = true;
+    services.hypridle.enable = true;
+    services.hypridle.settings = {
+      general = {
+        ignore_dbus_inhibit = false;
+        before_sleep_cmd = "alacritty";
+        lock_cmd = "pidof hyprlock || hyprlock";
+      };
+      listener = [
+        {
+          timeout = 10;
+          on-timeout = "brightnessctl -s set 20";
+          on-resume = "brightnessctl -r";
+        }
+        {
+          timeout = 300;
+          on-timeout = "hyprlock";
+        }
+      ];
+    };
+    home.file.".config/hypr/hyprlock.conf".text =
+      ''
+        background {
+          monitor =
+          path = screenshot
+          blur_passes = 4
+          blur_size = 5
+          noise = 0.0117
+          contrast = 0.8916
+          brightness = 0.8172
+          vibrancy = 0.1696
+          vibrancy_darkness = 0.0
+        }
+
+        label {
+          monitor =
+          text = cmd[update:1000] echo "$(date)"
+          color = rgb(${config.lib.stylix.colors.base06-rgb-r},${config.lib.stylix.colors.base06-rgb-g},${config.lib.stylix.colors.base06-rgb-b})
+          font_size = 8
+          font_family = DejaVu Sans
+          rotate = 0
+          position = 0, -20
+          halign = center
+          valign = top
+        }
+
+        image {
+          monitor = eDP-1
+          path = /home/kgoe/projects/nixos-config/assets/images/randy.png
+          size = 250 # lesser side if not 1:1 ratio
+          rounding = -1 # negative values mean circle
+          border_size = 0
+          rotate = 0 # degrees, counter-clockwise
+          position = 0, 200
+          halign = center
+          valign = center
+        }
+
+        input-field {
+          monitor = eDP-1
+          size = 500, 50
+          outline_thickness = 3
+          dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true
+          dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
+          outer_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
+          inner_color = rgb(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b})
+          font_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
+          fade_on_empty = true
+          fade_timeout = 3000 # Milliseconds before fade_on_empty is triggered.
+          placeholder_text = Enter your password...
+          hide_input = false
+          rounding = -1 # -1 means complete rounding (circle/oval)
+          check_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
+          fail_color = rgb(${config.lib.stylix.colors.base08-rgb-r},${config.lib.stylix.colors.base08-rgb-g},${config.lib.stylix.colors.base08-rgb-b})
+          fail_text = $FAIL (attempt $ATTEMPTS)
+          fail_transition = 1000 # transition time in ms between normal outer_color and fail_color
+          capslock_color = rgb(${config.lib.stylix.colors.base08-rgb-r},${config.lib.stylix.colors.base08-rgb-g},${config.lib.stylix.colors.base08-rgb-b})
+          numlock_color = -1
+          bothlock_color = -1 # when both locks are active. -1 means don't change outer color (same for above)
+          invert_numlock = false # change color if numlock is off
+          swap_font_color = false # see below
+          position = 0, -40
+          halign = center
+          valign = center
+        }
+
+        label {
+          monitor = eDP-1
+          text = Hi $DESC!
+          color = rgb(${config.lib.stylix.colors.base04-rgb-r},${config.lib.stylix.colors.base04-rgb-g},${config.lib.stylix.colors.base04-rgb-b})
+          font_size = 20
+          font_family = DejaVu Sans
+          rotate = 0
+          position = 0, 40
+          halign = center
+          valign = center
+        }
+      '';
   };
 }
