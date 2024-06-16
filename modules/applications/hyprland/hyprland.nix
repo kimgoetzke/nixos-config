@@ -66,8 +66,8 @@ in {
           "mako"
           "sleep 1"
           "[workspace 2] jetbrains-toolbox"
-          #"wl-paste --type text --watch cliphist store"
-          #"wl-paste --type image --watch cliphist store"
+          "wl-paste --type text --watch cliphist store"
+          "wl-paste --type image --watch cliphist store"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -171,8 +171,9 @@ in {
             "$mainMod, O, exec, obsidian"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "CONTROL_SHIFT, V, exec, cliphist" # TODO: Make clipboard manager work
-            "$mainMod, V, exec, cliphist" # TODO: Make clipboard manager work
+            "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons" # TODO: Fix file path
+            "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+            "$mainMod SHIFT, L, exec, cliphist wipe"
             "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
 
             # Screenshots
@@ -247,7 +248,7 @@ in {
       listener = [
         {
           timeout = 30;
-          on-timeout = "brightnessctl -s set 20";
+          on-timeout = "brightnessctl -s set 10";
           on-resume = "brightnessctl -r";
         }
         {
@@ -336,5 +337,42 @@ in {
         valign = center
       }
     '';
+
+    # Cliphist ---------------------------------------------------------------------------------------------------------
+    services.cliphist.enable = true;
+    services.cliphist.extraOptions = [
+      "-max-dedupe-search"
+      "10"
+      "-max-items"
+      "100"
+    ];
+    home.file.".config/cliphist/cliphist-rofi-img" = { # Required to work with rofi and images
+      text = ''
+        #!/usr/bin/env bash
+
+        tmp_dir="/tmp/cliphist"
+        rm -rf "$tmp_dir"
+
+        if [[ -n "$1" ]]; then
+            cliphist decode <<<"$1" | wl-copy
+            exit
+        fi
+
+        mkdir -p "
+        }$tmp_dir"
+
+        read -r -d '''' prog <<EOF
+        /^[0-9]+\s<meta http-equiv=/ { next }
+        match(\$0, /^([0-9]+)\s(\[\[\s)?binary.*(jpg|jpeg|png|bmp)/, grp) {
+            system("echo " grp[1] "\\\\\t | cliphist decode >$tmp_dir/"grp[1]"."grp[3])
+            print \$0"\0icon\x1f$tmp_dir/"grp[1]"."grp[3]
+            next
+        }
+        1
+        EOF
+        cliphist list | gawk "$prog"
+      '';
+      executable = true;
+    };
   };
 }
