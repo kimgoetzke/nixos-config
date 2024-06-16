@@ -97,7 +97,6 @@
       gnomeExtensions.space-bar
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
-      gvfs
     ];
 
   # Shell

@@ -163,7 +163,13 @@ in {
         alias ls='ls --color -2'
         alias c='clear'
 
-        echo "Welcome, $USER!"
+        # Auto-start Hyprland on first startup
+        IS_FIRST_LAUNCH="/run/user/$(id -u)/zshrc_current_session"
+        if [ ! -f "$IS_FIRST_LAUNCH" ]; then
+            touch "$IS_FIRST_LAUNCH"
+            echo "Launching Hyprland..."
+            dbus-run-session Hyprland
+        fi
       '';
     };
   };
