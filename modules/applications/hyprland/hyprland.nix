@@ -59,11 +59,11 @@ in {
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
         exec-once = [
-          "mako"
           "hyprlock"
           "swww-daemon"
           "swww img /home/kgoe/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png" # TODO: Copy file or somehow use relative path
           "hypridle"
+          "mako"
           "sleep 1"
           "[workspace 2] jetbrains-toolbox"
           #"wl-paste --type text --watch cliphist store"
@@ -150,9 +150,11 @@ in {
           "tile,class:^(Asperite.*)$,class:^(Aseprite.*)$"
         ];
         windowrule = [
+          "forceinput,title:^(JetBrains Toolbox)$"
+          "nofocus,title:^(JetBrains Toolbox)$"
           "float,title:^(JetBrains Toolbox)$"
-          "center (1),title:^(JetBrains Toolbox)$"
-          "move onscreen 50% 50%,title:^(JetBrains Toolbox)$"
+          #"move onscreen 50% 50%,title:^(JetBrains Toolbox)$"
+          "center,jetbrains-toolbox"
         ];
         layerrule = "blur, waybar";
         bind =
@@ -171,7 +173,7 @@ in {
             "$mainMod, A, exec, aseprite"
             "CONTROL_SHIFT, V, exec, cliphist" # TODO: Make clipboard manager work
             "$mainMod, V, exec, cliphist" # TODO: Make clipboard manager work
-            "$mainMod SHIFT, C, exec, hyprpicker -f hex -a" # TODO: Make clipboard manager work
+            "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
 
             # Screenshots
             "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
