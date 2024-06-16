@@ -70,6 +70,7 @@
   environment.sessionVariables = {
     FLAKE = "~/projects/nixos-config";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
+    WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
   };
 
   # Allow unfree packages
