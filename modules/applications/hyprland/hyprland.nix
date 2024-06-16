@@ -66,9 +66,13 @@ in {
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
+          # TODO: Try to make JetBrains Toolbox swap centered
           "[workspace 2] jetbrains-toolbox"
-          "sleep 4"
-          "hyprctl dispatch closewindow jetbrains-toolbox" # Workaround for bug: Closing without killing so that next time window rules apply
+          "hyprctl dispatch closewindow jetbrains-toolbox"
+          "sleep 1"
+          "hyprctl dispatch closewindow jetbrains-toolbox"
+          "sleep 1"
+          "hyprctl dispatch closewindow jetbrains-toolbox"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -91,7 +95,6 @@ in {
         ];
         input = {
           kb_layout = "gb";
-          kb_options = "altr:end"; # TODO: Try to make this work
           touchpad = {
             natural_scroll = "yes";
             disable_while_typing = "no";
@@ -214,10 +217,10 @@ in {
             "$mainMod SHIFT, S, movetoworkspace, special:magic"
             "$mainMod, mouse_down, workspace, e+1"
             "$mainMod, mouse_up, workspace, e-1"
-            "$mainMod ALT, right, resizeactive, 30 0"
-            "$mainMod ALT, left, resizeactive, -30 0"
-            "$mainMod ALT, up, resizeactive, 0 -30"
-            "$mainMod ALT, down, resizeactive, 0 30"
+            "$mainMod ALT, right, resizeactive, 50 0"
+            "$mainMod ALT, left, resizeactive, -50 0"
+            "$mainMod ALT, up, resizeactive, 0 -50"
+            "$mainMod ALT, down, resizeactive, 0 50"
           ]
           ++ (
             # Select and move workspaces 1 to 10
@@ -380,13 +383,18 @@ in {
       text = ''
         #!/usr/bin/env bash
         # Thanks to https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/
+        if [[ ! -e /tmp/hypr/hyprexitwithgrace.log ]]; then
+            mkdir -p /tmp/hypr
+            touch /tmp/hypr/hyprexitwithgrace.log
+        fi
 
         # Close all client windows (required for graceful exit since many apps aren't good SIGNAL citizens)
         HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
         hyprctl --batch "$HYPRCMDS" >> /tmp/hypr/hyprexitwithgrace.log 2>&1
 
         # Let's go!
-        sudo shutdown now >> /tmp/hypr/hyprexitwithgrace.log 2>&1
+        sleep 1
+        shutdown now >> /tmp/hypr/hyprexitwithgrace.log 2>&1
       '';
       executable = true;
     };
