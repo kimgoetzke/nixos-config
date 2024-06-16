@@ -214,6 +214,10 @@ in {
             "$mainMod SHIFT, S, movetoworkspace, special:magic"
             "$mainMod, mouse_down, workspace, e+1"
             "$mainMod, mouse_up, workspace, e-1"
+            "$mainMod ALT, right, resizeactive, 30 0"
+            "$mainMod ALT, left, resizeactive, -30 0"
+            "$mainMod ALT, up, resizeactive, 0 -30"
+            "$mainMod ALT, down, resizeactive, 0 30"
           ]
           ++ (
             # Select and move workspaces 1 to 10
