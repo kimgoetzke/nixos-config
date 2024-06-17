@@ -38,6 +38,7 @@ in {
       libnotify
       gvfs
       hyprpicker
+      nerdfonts
     ];
 
     xdg.portal = {
@@ -59,6 +60,10 @@ in {
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
         exec-once = [
+          # TODO: Try to make JetBrains Toolbox swap centered
+          "[workspace 2] jetbrains-toolbox"
+          "sleep 1"
+          "hyprctl dispatch closewindow jetbrains-toolbox"
           "hyprlock"
           "swww-daemon"
           "swww img ${userSettings.targetDirectory}/wallpaper.png"
@@ -66,13 +71,6 @@ in {
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          # TODO: Try to make JetBrains Toolbox swap centered
-          "[workspace 2] jetbrains-toolbox"
-          "hyprctl dispatch closewindow jetbrains-toolbox"
-          "sleep 1"
-          "hyprctl dispatch closewindow jetbrains-toolbox"
-          "sleep 1"
-          "hyprctl dispatch closewindow jetbrains-toolbox"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -109,6 +107,7 @@ in {
           allow_tearing = false;
         };
         decoration = {
+          inactive_opacity = 0.8;
           rounding = 7;
           drop_shadow = "yes";
           shadow_range = 4;
@@ -164,6 +163,7 @@ in {
           [
             # General
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/shutdown-gracefully.sh"
+            "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
@@ -205,14 +205,15 @@ in {
             "$mainMod, F12, fullscreen, 0"
             "$mainMod CONTROL SHIFT, P, pin"
             "$mainMod SHIFT, Q, killactive, "
+            "ALT, F4, killactive, "
             "$mainMod, down, movefocus, d"
             "$mainMod, up, movefocus, u"
             "$mainMod, left, movefocus, l"
             "$mainMod, right, movefocus, r"
-            "$mainMod SHIFT, down, movewindow,d"
-            "$mainMod SHIFT, up, movewindow,u"
-            "$mainMod SHIFT, left, movewindow,l"
-            "$mainMod SHIFT, right, movewindow,r"
+            "$mainMod SHIFT, down, movewindow, d"
+            "$mainMod SHIFT, up, movewindow, u"
+            "$mainMod SHIFT, left, movewindow, l"
+            "$mainMod SHIFT, right, movewindow, r"
             "$mainMod CONTROL, S, togglespecialworkspace, magic"
             "$mainMod SHIFT, S, movetoworkspace, special:magic"
             "$mainMod, mouse_down, workspace, e+1"
@@ -433,6 +434,22 @@ in {
         1
         EOF
         cliphist list | gawk "$prog"
+      '';
+      executable = true;
+    };
+
+    # Waybar -----------------------------------------------------------------------------------------------------------
+    home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        pkill waybar
+        hyprctl reload
+
+        if [[ $USER == "${userSettings.userName}" ]]; then
+            waybar -c /home/${userSettings.userName}/.config/waybar/config & -s /home/${userSettings.userName}/.config/waybar/style.css
+        else
+          waybar &
+        fi
       '';
       executable = true;
     };

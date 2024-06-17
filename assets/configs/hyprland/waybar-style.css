@@ -1,24 +1,38 @@
 * {
-    /*font-family: Material Design Icons, JetBrainsMono Nerd Font, JetBrains Mono Regular, sans-serif;*/
-    /*font-size: 12px;*/
+    font-family: JetBrainsMono Nerd Font, sans-serif;
+    font-size: 13px;
     color: @base05;
     background: transparent;
 }
 
 window#waybar {
     border-radius: 10px;
-    background: @base01;
+    /*background: @base01;*/
     border: 3px solid @base02;
     background: transparent;
-    /*font-family: Material Design Icons, JetBrainsMono Nerd Font, JetBrains Mono Regular, sans-serif;*/
+    font-weight: bold;
+    color: @base0A;
+    transition-property: background-color;
+    transition-duration: .5s;
+    font-family: JetBrainsMono Nerd Font, sans-serif;
 }
 
 #battery {
-    margin-right: 6px;
+    margin-right: 20px;
+}
+
+#workspaces {
+    margin-left: 10px;
+}
+
+#workspaces button {
+    border: 0;
+    margin: 5px;
+    transition: all 100ms ease-in-out;
 }
 
 #workspaces button label {
-    font-size: 18px;
+    font-size: 14px;
     color: @base05;
     transition: all 100ms ease-out;
 }
