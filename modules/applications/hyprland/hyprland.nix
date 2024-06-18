@@ -158,7 +158,6 @@ in {
           "float,title:^(JetBrains Toolbox)$"
           "center,jetbrains-toolbox"
         ];
-        layerrule = "blur, waybar";
         bind =
           [
             # General
@@ -439,6 +438,7 @@ in {
     };
 
     # Waybar -----------------------------------------------------------------------------------------------------------
+    stylix.targets.waybar.enable = false;
     home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
       text = ''
         #!/usr/bin/env bash

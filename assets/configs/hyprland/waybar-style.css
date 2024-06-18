@@ -1,48 +1,110 @@
 * {
     font-family: JetBrainsMono Nerd Font, sans-serif;
-    font-size: 13px;
+    font-size: 15px;
     color: @base05;
     background: transparent;
 }
 
+window#waybar.hidden {
+    background: @base0A;
+}
+
 window#waybar {
-    border-radius: 10px;
-    /*background: @base01;*/
-    border: 3px solid @base02;
     background: transparent;
     font-weight: bold;
     color: @base0A;
+    margin-left: 20px;
+    margin-right: 20px;
     transition-property: background-color;
     transition-duration: .5s;
     font-family: JetBrainsMono Nerd Font, sans-serif;
 }
 
-#battery {
-    margin-right: 20px;
-}
-
-#workspaces {
-    margin-left: 10px;
-}
-
 #workspaces button {
-    border: 0;
-    margin: 5px;
+    margin: 3px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 3px solid transparent;
+    color: @base05;
     transition: all 100ms ease-in-out;
 }
 
-#workspaces button label {
-    font-size: 14px;
-    color: @base05;
-    transition: all 100ms ease-out;
-}
-
-#workspaces button.active label {
+#workspaces button.active {
     font-weight: bolder;
     color: @base0A;
+    background: @base03;
     transition: all 100ms ease-out;
 }
 
-#battery {
+#workspaces button:hover label {
+    color: @base00;
+}
+
+#workspaces button:hover {
+    color: @base00;
+    font-weight: bolder;
+    background: @base0A;
+}
+
+tooltip {
+    background: @base00;
+    border: 3px solid @base0A;
+    border-radius: 10px;
+    font-family: "DejaVu Sans", sans-serif;
+}
+
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#memory:hover,
+#battery:hover,
+#cpu:hover,
+#clock:hover {
     color: @base0A;
+    /*border: 3px solid @base0A;*/
+    /*border-radius: 10px;*/
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#battery,
+#cpu,
+#clock,
+#backlight,
+#network,
+#pulseaudio,
+#memory {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid transparent;
+}
+
+@keyframes blink {
+    to {
+        background-color: @base05;
+        color: @base00;
+    }
+}
+
+#battery.charging, #battery.plugged {
+    border-radius: 10px;
+    color: #a3be8c;
+}
+
+#battery.warning:not(.charging) {
+    background-color: @base09;
+    border-radius: 10px;
+    color: @base00;
+}
+
+#battery.critical:not(.charging) {
+    border-radius: 10px;
+    background-color: #bf616a;
+    color: @base05;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

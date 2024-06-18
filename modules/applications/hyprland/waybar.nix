@@ -24,14 +24,14 @@
         bar = {
           layer = "top";
           height = 40;
-          spacing = 20;
+          spacing = 10;
           margin-top = 20;
           margin-left = 20;
           margin-right = 20;
-          margin-down = 5;
-          modules-left = ["hyprland/workspaces" "wlr/taskbar"];
-          modules-center = ["clock"];
-          modules-right = ["network" "cpu" "memory" "backlight" "pulseaudio" "hyprland/language" "tray" "battery"];
+          margin-down = 0;
+          modules-left = ["group/hardware"];
+          modules-center = ["hyprland/workspaces"];
+          modules-right = ["tray" "wlr/taskbar" "clock" "battery"];
           "wlr/taskbar" = {
             format = "{icon}";
             icon-size = 14;
@@ -47,15 +47,25 @@
           "tray" = {
             spacing = 10;
           };
+          "clock" = {
+            format = "{:%H:%M}";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            format-alt = "{:%d %h %Y  󰃮}";
+          };
+          "group/hardware" = {
+            orientation = "horizontal";
+            modules = [
+              "cpu"
+              "memory"
+              "network"
+              "backlight"
+              "pulseaudio"
+            ];
+          };
           "cpu" = {
             interval = 10;
             format = "{}% ";
             max-length = 10;
-          };
-          "clock" = {
-            format = "{:%H:%M  󰥔}";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%d %h %Y  󰃮}";
           };
           "memory" = {
             format = "{used:0.1f}G/{total:0.1f}G ";
@@ -74,8 +84,7 @@
             format = "{capacity}% {icon}";
             format-charging = "{capacity}% 󰂄";
             format-plugged = "{capacity}% ";
-            format-alt = "{icon}";
-            format-icons = ["󱃍" "󰁼" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            format-icons = ["" "" "" "" ""];
           };
           "network" = {
             interface = "wlp2*";
