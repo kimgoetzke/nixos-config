@@ -14,7 +14,7 @@ in {
   };
 
   imports = [
-    ./waybar.nix
+    (import ./waybar.nix {inherit config pkgs lib userSettings;})
     ./rofi.nix
     ./mako.nix
   ];
@@ -60,10 +60,6 @@ in {
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
         exec-once = [
-          # TODO: Try to make JetBrains Toolbox swap centered
-          "[workspace 2] jetbrains-toolbox"
-          "sleep 1"
-          "hyprctl dispatch closewindow jetbrains-toolbox"
           "hyprlock"
           "swww-daemon"
           "swww img ${userSettings.targetDirectory}/wallpaper.png"
@@ -101,7 +97,7 @@ in {
         };
         general = {
           gaps_in = 5;
-          gaps_out = 20;
+          gaps_out = 15;
           border_size = 3;
           layout = "dwindle";
           allow_tearing = false;
@@ -278,7 +274,7 @@ in {
     home.file.".config/hypr/hyprlock.conf".text = ''
       background {
         monitor =
-        path = screenshot
+        path = ${userSettings.targetDirectory}/wallpaper.png
         blur_passes = 4
         blur_size = 5
         noise = 0.0117
@@ -333,21 +329,21 @@ in {
 
       input-field {
         monitor = eDP-1
-        size = 500, 50
-        outline_thickness = 3
-        dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
+        size = 350, 50
+        outline_thickness = 0
+        dots_size = 0.3 # Scale of input-field height, 0.2 - 0.8
         dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
         dots_center = true
         dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
         outer_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
         inner_color = rgb(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b})
-        font_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
+        font_color = rgb(${config.lib.stylix.colors.base06-rgb-r},${config.lib.stylix.colors.base06-rgb-g},${config.lib.stylix.colors.base06-rgb-b})
         fade_on_empty = true
         fade_timeout = 3000 # Milliseconds before fade_on_empty is triggered.
         placeholder_text = Enter your password...
         hide_input = false
         rounding = -1 # -1 means complete rounding (circle/oval)
-        check_color = rgb(${config.lib.stylix.colors.base0A-rgb-r},${config.lib.stylix.colors.base0A-rgb-g},${config.lib.stylix.colors.base0A-rgb-b})
+        check_color = rgb(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b})
         fail_color = rgb(${config.lib.stylix.colors.base08-rgb-r},${config.lib.stylix.colors.base08-rgb-g},${config.lib.stylix.colors.base08-rgb-b})
         fail_text = $FAIL (attempt $ATTEMPTS)
         fail_transition = 1000 # transition time in ms between normal outer_color and fail_color
@@ -360,8 +356,8 @@ in {
         halign = center
         valign = center
         shadow_passes = 1
-        shadow_size = 5
-        shadow_boost = 0.6
+        shadow_size = 4
+        shadow_boost = 0.5
       }
 
       label {
@@ -407,6 +403,21 @@ in {
       "-max-items"
       "100"
     ];
+    # TODO: Add a way to remove single entries and fix opening menu
+    home.file."${userSettings.relativeTargetDirectory}/cliphist-helper.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        if [[ "$1" == "open" ]]; then
+          cliphist list | rofi -dmenu | cliphist decode | wl-copy
+        fi
+
+        if [[ "$1" == "wipe" ]]; then
+          cliphist wipe
+          notify-send "   Wiped clipboard history"
+        fi
+      '';
+      executable = true;
+    };
     home.file.".config/cliphist/cliphist-rofi-img" = {
       # Required to work with rofi and images
       text = ''
@@ -449,6 +460,87 @@ in {
             waybar -c /home/${userSettings.userName}/.config/waybar/config & -s /home/${userSettings.userName}/.config/waybar/style.css
         else
           waybar &
+        fi
+      '';
+      executable = true;
+    };
+
+    # Jetbrains Toolbox script -----------------------------------------------------------------------------------------
+    home.file."${userSettings.relativeTargetDirectory}/jetbrains-toolbox.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        # This script serves as a workaround for a bug with Jetbrains Toolbox whereby the
+        # window ignores any Hyprland window rules when it's first opened and spawns at the
+        # top right corner, behind Waybar. After closing (but not killing) and re-opening
+        # it respects window rules.
+
+        jetbrains-toolbox &
+
+        notify-send "󰔟  Attempting to open Jetbrains Toolbox. Please wait..."
+
+        while ! hyprctl clients | grep -q "jetbrains-toolbox"
+        do
+          sleep 0.3
+        done
+
+        hyprctl dispatch window jetbrains-toolbox
+        killactive
+
+        sleep 1
+
+        hyprctl clients
+
+        while hyprctl clients | grep -q "jetbrains-toolbox"
+        do
+          sleep 0.5
+        done
+
+        sleep 1
+
+        jetbrains-toolbox &
+      '';
+      executable = true;
+    };
+
+    # Mako -------------------------------------------------------------------------------------------------------------
+    home.file."${userSettings.relativeTargetDirectory}/shutdown-helper.sh" = {
+      text = ''
+        #!/usr/bin/env bash
+        # Thanks to https://gitlab.com/stephan-raabe!
+        if [[ "$1" == "exit" ]]; then
+            echo ":: Exit"
+            sleep 0.5
+            killall -9 Hyprland sleep 2
+        fi
+
+        if [[ "$1" == "lock" ]]; then
+            echo ":: Lock"
+            sleep 0.5
+            hyprlock
+        fi
+
+        if [[ "$1" == "reboot" ]]; then
+            echo ":: Reboot"
+            sleep 0.5
+            systemctl reboot
+        fi
+
+        if [[ "$1" == "shutdown" ]]; then
+            echo ":: Shutdown"
+            sleep 0.5
+            systemctl poweroff
+        fi
+
+        if [[ "$1" == "suspend" ]]; then
+            echo ":: Suspend"
+            sleep 0.5
+            systemctl suspend
+        fi
+
+        if [[ "$1" == "hibernate" ]]; then
+            echo ":: Hibernate"
+            sleep 1;
+            systemctl hibernate
         fi
       '';
       executable = true;

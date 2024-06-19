@@ -70,6 +70,7 @@
     nht = "nh os test ~/projects/nixos-config -H default";
     nhb = "nh os boot ~/projects/nixos-config -H default";
     nhs = "nh os switch ~/projects/nixos-config -H default";
+    nhc = "nh clean all --keep 3";
     proper = "cd ~/projects && ls -1";
     idea = "${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin/idea.sh";
     anw = "alacritty msg create-window";

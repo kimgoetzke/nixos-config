@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  userSettings,
   ...
 }: {
   options = {
@@ -23,44 +24,33 @@
       settings = {
         bar = {
           layer = "top";
-          height = 40;
-          spacing = 10;
-          margin-top = 20;
-          margin-left = 20;
+          height = 25;
+          spacing = 5;
+          margin-top = 15;
+          margin-left = 0;
           margin-right = 20;
           margin-down = 0;
           modules-left = ["group/hardware"];
           modules-center = ["hyprland/workspaces"];
-          modules-right = ["tray" "wlr/taskbar" "clock" "battery"];
-          "wlr/taskbar" = {
-            format = "{icon}";
-            icon-size = 14;
-            icon-theme = "Numix-Circle";
-            tooltip-format = "{name}";
-            on-click = "activate";
-            on-click-middle = "close";
-          };
-          "hyprland/language" = {
-            format = "{} 󰌌";
-            format-en = "EN";
-          };
-          "tray" = {
-            spacing = 10;
-          };
-          "clock" = {
-            format = "{:%H:%M}";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%d %h %Y  󰃮}";
-          };
+          modules-right = ["tray" "wlr/taskbar" "custom/cliphist" "battery" "clock" "custom/exit"];
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
+              "network"
               "cpu"
               "memory"
-              "network"
               "backlight"
               "pulseaudio"
             ];
+          };
+          "network" = {
+            interface = "wlp2*";
+            format-wifi = "{essid} ({signalStrength}%) 󰤨";
+            format-ethernet = "{ipaddr}/{cidr} 󰈀";
+            tooltip-format = "{ifname} via {gwaddr} 󰩟";
+            format-linked = "{ifname} (No IP) 󰩟";
+            format-disconnected = "󰤫";
+            on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
           };
           "cpu" = {
             interval = 10;
@@ -74,26 +64,6 @@
             format = "{percent}% {icon}";
             format-icons = ["󰃞" "󰃟" "󰃠"];
             tooltip-format = "Backlight at {percent}%";
-          };
-          "battery" = {
-            "states" = {
-              good = 95;
-              warning = 30;
-              critical = 15;
-            };
-            format = "{capacity}% {icon}";
-            format-charging = "{capacity}% 󰂄";
-            format-plugged = "{capacity}% ";
-            format-icons = ["" "" "" "" ""];
-          };
-          "network" = {
-            interface = "wlp2*";
-            format-wifi = "{essid} ({signalStrength}%) 󰤨";
-            format-ethernet = "{ipaddr}/{cidr} 󰈀";
-            tooltip-format = "{ifname} via {gwaddr} 󰩟";
-            format-linked = "{ifname} (No IP) 󰩟";
-            format-disconnected = "󰤫";
-            on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
           };
           "pulseaudio" = {
             format = "{volume}% {icon} {format_source}";
@@ -113,6 +83,64 @@
               muted-icon = "󰝟";
               default = ["󰕿" "󰖀" "󰕾"];
             };
+          };
+          "tray" = {
+            spacing = 10;
+          };
+          "wlr/taskbar" = {
+            format = "{icon}";
+            icon-size = 14;
+            icon-theme = "Numix-Circle";
+            tooltip-format = "{name}";
+            on-click = "activate";
+            on-click-middle = "close";
+          };
+          "custom/cliphist" = {
+            format = "";
+            on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
+            on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
+            tooltip-format = "Clipboard Manager";
+          };
+          "battery" = {
+            "states" = {
+              good = 95;
+              warning = 30;
+              critical = 15;
+            };
+            format = "{capacity}% {icon}";
+            format-charging = "{capacity}% 󰂄";
+            format-plugged = "{capacity}% ";
+            format-icons = ["" "" "" "" ""];
+          };
+          "clock" = {
+            format = "{:%H:%M}";
+            format-alt = "󰃮 {:%d %h %Y}";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            calendar = {
+              mode = "year";
+              mode-mon-col = 3;
+              weeks-pos = "right";
+              on-scroll = 1;
+              "format" = {
+                months = "<span color='${config.lib.stylix.colors.withHashtag.base0D}'><b>{}</b></span>";
+                days = "<span color='${config.lib.stylix.colors.withHashtag.base06}'><b>{}</b></span>";
+                weeks = "<span color='${config.lib.stylix.colors.withHashtag.base07}'><b>W{}</b></span>";
+                weekdays = "<span color='${config.lib.stylix.colors.withHashtag.base0F}'><b>{}</b></span>";
+                today = "<span color='${config.lib.stylix.colors.withHashtag.base08}'><b><u>{}</u></b></span>";
+              };
+            };
+            actions = {
+              on-click-right = "mode";
+              on-click-forward = "tz_up";
+              on-click-backward = "tz_down";
+              on-scroll-up = "shift_up";
+              on-scroll-down = "shift_down";
+            };
+          };
+          "custom/exit" = {
+            format = "";
+            on-click = "notify-send \"󱠡  Ciao, ciao and goodbye\" ; sleep 1 ; ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh}";
+            tooltip-format = "Shutdown of the system";
           };
         };
       };

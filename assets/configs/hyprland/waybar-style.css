@@ -1,6 +1,6 @@
 * {
     font-family: JetBrainsMono Nerd Font, sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     color: @base05;
     background: transparent;
 }
@@ -22,19 +22,21 @@ window#waybar {
 
 #workspaces button {
     margin: 3px;
-    border-radius: 10px;
+    border-radius: 100px;
     padding-left: 10px;
     padding-right: 10px;
     border: 3px solid transparent;
     color: @base05;
-    transition: all 100ms ease-in-out;
+    transition: all 400ms ease-in-out;
 }
 
 #workspaces button.active {
     font-weight: bolder;
     color: @base0A;
     background: @base03;
-    transition: all 100ms ease-out;
+    padding-left: 30px;
+    padding-right: 30px;
+    transition: all 400ms ease-in-out;
 }
 
 #workspaces button:hover label {
@@ -52,6 +54,7 @@ tooltip {
     border: 3px solid @base0A;
     border-radius: 10px;
     font-family: "DejaVu Sans", sans-serif;
+    opacity:0.8;
 }
 
 #backlight:hover,
@@ -62,10 +65,6 @@ tooltip {
 #cpu:hover,
 #clock:hover {
     color: @base0A;
-    /*border: 3px solid @base0A;*/
-    /*border-radius: 10px;*/
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 #battery,
@@ -75,9 +74,26 @@ tooltip {
 #network,
 #pulseaudio,
 #memory {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 17px;
+    padding-right: 22px;
     border: 3px solid transparent;
+}
+
+#custom-cliphist,
+#custom-exit {
+    padding-left: 13px;
+    padding-right: 17px;
+    border: 3px solid @base04;
+    border-radius: 100px;
+    color: @base06;
+    background: @base0D;
+}
+
+#custom-cliphist:hover,
+#custom-exit:hover {
+    background: @base0A;
+    color: @base00;
+    border: 3px solid @base0A;
 }
 
 @keyframes blink {
@@ -93,13 +109,15 @@ tooltip {
 }
 
 #battery.warning:not(.charging) {
+    margin-left: 15px;
     background-color: @base09;
-    border-radius: 10px;
+    border-radius: 100px;
     color: @base00;
 }
 
 #battery.critical:not(.charging) {
-    border-radius: 10px;
+    margin-left: 15px;
+    border-radius: 100px;
     background-color: #bf616a;
     color: @base05;
     animation-name: blink;
