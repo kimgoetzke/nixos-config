@@ -10,6 +10,7 @@
   };
 
   config = lib.mkIf config.waybar.enable {
+    # TODO: Show time/date and battery/percentage in two rows each
     programs.waybar = {
       enable = true;
       systemd.enable = true;
@@ -23,11 +24,12 @@
         + builtins.readFile ./../../../assets/configs/hyprland/waybar-style.css;
       settings = {
         bar = {
+          output = ["eDP-1" "DP-1"];
           layer = "top";
           height = 25;
           spacing = 5;
           margin-top = 15;
-          margin-left = 0;
+          margin-left = 20;
           margin-right = 20;
           margin-down = 0;
           modules-left = ["group/hardware"];
@@ -36,7 +38,6 @@
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
-              "network"
               "cpu"
               "memory"
               "backlight"
@@ -44,8 +45,9 @@
             ];
           };
           "network" = {
+            # Currently not show
             interface = "wlp2*";
-            format-wifi = "{essid} ({signalStrength}%) 󰤨";
+            format-wifi = "󰤨  {essid} ({signalStrength}%)";
             format-ethernet = "{ipaddr}/{cidr} 󰈀";
             tooltip-format = "{ifname} via {gwaddr} 󰩟";
             format-linked = "{ifname} (No IP) 󰩟";
@@ -54,23 +56,23 @@
           };
           "cpu" = {
             interval = 10;
-            format = "{}% ";
+            format = "   {}%";
             max-length = 10;
           };
           "memory" = {
-            format = "{used:0.1f}G/{total:0.1f}G ";
+            format = "   {percentage}%";
           };
           "backlight" = {
-            format = "{percent}% {icon}";
-            format-icons = ["󰃞" "󰃟" "󰃠"];
+            format = "{icon}  {percent}%";
+            format-icons = ["󰖨"];
             tooltip-format = "Backlight at {percent}%";
           };
           "pulseaudio" = {
-            format = "{volume}% {icon} {format_source}";
+            format = "{icon} {volume}% {format_source}";
             format-bluetooth = "{volume}% 󰥰 {format_source}";
             format-bluetooth-muted = "󰟎 {format_source}";
             format-muted = "󰝟 {format_source}";
-            format-source = "{volume}% 󰍬";
+            format-source = "󰍬 {volume}%";
             format-source-muted = "󰍭";
             on-click = "killall bluetuith || alacritty -t blue -e bluetuith; sudo ydotool click 0xc1";
             "format-icons" = {
@@ -90,7 +92,6 @@
           "wlr/taskbar" = {
             format = "{icon}";
             icon-size = 14;
-            icon-theme = "Numix-Circle";
             tooltip-format = "{name}";
             on-click = "activate";
             on-click-middle = "close";
@@ -107,14 +108,14 @@
               warning = 30;
               critical = 15;
             };
-            format = "{capacity}% {icon}";
-            format-charging = "{capacity}% 󰂄";
-            format-plugged = "{capacity}% ";
+            format = "{icon}  {capacity}%";
+            format-charging = "󰂄  {capacity}%";
+            format-plugged = "  {capacity}%";
             format-icons = ["" "" "" "" ""];
           };
           "clock" = {
             format = "{:%H:%M}";
-            format-alt = "󰃮 {:%d %h %Y}";
+            format-alt = "󰃮  {:%d %h %Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";
@@ -139,7 +140,7 @@
           };
           "custom/exit" = {
             format = "";
-            on-click = "notify-send \"󱠡  Ciao, ciao and goodbye\" ; sleep 1 ; ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh}";
+            on-click = "notify-send \"󱠡  Ciao, ciao and goodbye\" ; sleep 1 ; ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh";
             tooltip-format = "Shutdown of the system";
           };
         };
