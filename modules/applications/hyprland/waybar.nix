@@ -26,15 +26,15 @@
         bar = {
           output = ["eDP-1" "DP-1"];
           layer = "top";
-          height = 25;
+          height = 30;
           spacing = 5;
           margin-top = 15;
           margin-left = 20;
           margin-right = 20;
           margin-down = 0;
           modules-left = ["group/hardware"];
-          modules-center = ["hyprland/workspaces"];
-          modules-right = ["tray" "wlr/taskbar" "custom/cliphist" "battery" "clock" "custom/exit"];
+          modules-center = ["hyprland/workspaces" ];
+          modules-right = ["tray" "wlr/taskbar" "group/right"];
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
@@ -86,6 +86,13 @@
               default = ["󰕿" "󰖀" "󰕾"];
             };
           };
+          "hyprland/workspaces" = {
+            persistent-workspaces = {
+              "1" = [];
+              "2" = [];
+              "3" = [];
+            };
+          };
           "tray" = {
             spacing = 10;
           };
@@ -95,6 +102,15 @@
             tooltip-format = "{name}";
             on-click = "activate";
             on-click-middle = "close";
+          };
+          "group/right" = {
+            orientation = "horizontal";
+            modules = [
+              "custom/cliphist"
+              "battery"
+              "clock"
+              "custom/exit"
+            ];
           };
           "custom/cliphist" = {
             format = "";
@@ -108,7 +124,7 @@
               warning = 30;
               critical = 15;
             };
-            format = "{icon}  {capacity}%";
+            format = "{icon}   {capacity}%";
             format-charging = "󰂄  {capacity}%";
             format-plugged = "  {capacity}%";
             format-icons = ["" "" "" "" ""];

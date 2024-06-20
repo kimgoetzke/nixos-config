@@ -19,24 +19,24 @@ window#waybar {
     font-family: JetBrainsMono Nerd Font, sans-serif;
 }
 
-#workspaces {
-    font-weight: bold;
-}
-
 #workspaces button {
     margin: 3px;
+    font-weight: bold;
     border-radius: 100px;
     padding-left: 10px;
     padding-right: 10px;
-    border: 3px solid transparent;
-    color: @base05;
+    background: @base03;
+    border: 1px solid transparent;
     transition: all 400ms ease-in-out;
 }
 
+#workspaces button label {
+    color: @base03;
+}
+
 #workspaces button.active {
-    font-weight: bolder;
-    color: @base0A;
-    background: @base03;
+    color: @base00;
+    background: @base04;
     padding-left: 30px;
     padding-right: 30px;
     transition: all 400ms ease-in-out;
@@ -48,7 +48,6 @@ window#waybar {
 
 #workspaces button:hover {
     color: @base00;
-    font-weight: bolder;
     background: @base0A;
 }
 
@@ -58,13 +57,16 @@ tooltip {
     border-radius: 10px;
     font-family: "DejaVu Sans", sans-serif;
     opacity: 0.8;
+    box-shadow: 0 0 3px @base0A;
+    margin: 5px;
 }
 
-#hardware {
+#hardware,
+#right {
+    opacity: 0.9;
     background: @base05;
     border: 3px solid @base05;
     border-radius: 100px;
-    margin-right: 15px;
 }
 
 #cpu,
@@ -86,13 +88,14 @@ tooltip {
     color: @base00;
     background: @base0A;
     border-radius: 100px;
+    transition: all 200ms ease-in-out;
 }
 
 #custom-cliphist,
 #custom-exit {
     padding-left: 13px;
     padding-right: 17px;
-    border: 3px solid @base05;
+    border: 0 solid @base05;
     border-radius: 100px;
     color: @base05;
     background: @base0D;
@@ -102,7 +105,8 @@ tooltip {
 #custom-exit:hover {
     background: @base0A;
     color: @base00;
-    border: 3px solid @base0A;
+    border: 0 solid @base0A;
+    transition: all 200ms ease-in-out;
 }
 
 @keyframes blink {
@@ -112,17 +116,28 @@ tooltip {
     }
 }
 
-#battery,
-#clock {
+#battery {
     padding-left: 17px;
-    padding-right: 22px;
-    color: @base05;
+    padding-right: 17px;
+    margin-left: 5px;
+    color: @base00;
+}
+
+#clock {
+    padding-top: 2px;
+    padding-left: 17px;
+    padding-right: 15px;
+    margin-right: 5px;
+    color: @base0F;
     font-weight: bold;
+    font-size: 24px;
 }
 
 #battery:hover,
 #clock:hover {
-    color: @base0A;
+    background: @base0A;
+    color: @base00;
+    border-radius: 100px;
 }
 
 #battery.charging, #battery.plugged {
