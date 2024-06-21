@@ -14,12 +14,13 @@
       anchor = "top-center";
       defaultTimeout = 5000;
       borderSize = 3;
-      borderRadius = 7;
-      padding = "10";
+      borderRadius = 10;
+      padding = "20";
       margin = "5";
       sort = "-time";
-      format = "%s\\n%b\\n%a";
+      format = "<b>%s</b>\\n<span color=\"${config.lib.stylix.colors.withHashtag.base03}\">(%a)</span>\\n%b";
       extraConfig = ''
+        background-color=${config.lib.stylix.colors.withHashtag.base00}D9
         outer-margin=30
         [urgency=low]
         border-color=${config.lib.stylix.colors.withHashtag.base0D}
@@ -29,6 +30,9 @@
         border-color=${config.lib.stylix.colors.withHashtag.base0B}
         default-timeout=20000
       '';
+      # Note: You can create app specific rules like this:
+      # [app-name=notify-send]
+      # format=<b>%s</b>\n%b
     };
   };
 }

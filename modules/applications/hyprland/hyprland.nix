@@ -110,7 +110,7 @@ in {
           shadow_render_power = 3;
           blur = {
             enabled = true;
-            size = 3;
+            size = 5;
             passes = 1;
           };
         };
@@ -153,6 +153,10 @@ in {
           "nofocus,title:^(JetBrains Toolbox)$"
           "float,title:^(JetBrains Toolbox)$"
           "center,jetbrains-toolbox"
+        ];
+        layerrule = [
+          "blur, notifications"
+          "dimaround, notifications"
         ];
         bind =
           [
