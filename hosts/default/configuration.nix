@@ -146,7 +146,7 @@
     fonts.sizes.terminal = 16;
     opacity.terminal =
       if config.userSettings.desktopEnvironments.isHyprlandEnabled
-      then 0.9
+      then 0.6
       else 1.0;
     targets.gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
     cursor = {

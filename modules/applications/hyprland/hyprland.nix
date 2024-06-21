@@ -116,11 +116,12 @@ in {
         };
         animations = {
           enabled = 1;
-          bezier = "overshot,0.13,0.99,0.29,1.1,";
+          bezier = "easeOutQuart, 0.25, 1, 0.25, 1";
           animation = [
-            "fade,1,4,default"
-            "workspaces,1,4,default,fade"
-            "windows,1,4,overshot,popin 95%"
+            "windows, 1, 5, easeOutQuart"
+            "windowsOut, 1, 5, default, popin 60%"
+            "fade, 1, 5, easeOutQuart"
+            "workspaces, 1, 5, easeOutQuart"
           ];
         };
         dwindle = {
@@ -163,6 +164,7 @@ in {
             # General
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/shutdown-gracefully.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
+            #"code:108, code:22, sendshortcut, end" # TODO: Try again after updating
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
