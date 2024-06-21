@@ -26,14 +26,14 @@
         bar = {
           output = ["eDP-1" "DP-1"];
           layer = "top";
-          height = 30;
+          height = 45;
           spacing = 5;
           margin-top = 15;
           margin-left = 20;
           margin-right = 20;
           margin-down = 0;
           modules-left = ["group/hardware"];
-          modules-center = ["hyprland/workspaces" ];
+          modules-center = ["hyprland/workspaces"];
           modules-right = ["tray" "wlr/taskbar" "group/right"];
           "group/hardware" = {
             orientation = "horizontal";
@@ -56,7 +56,7 @@
           };
           "cpu" = {
             interval = 10;
-            format = "   {}%";
+            format = "   {usage:d}%";
             max-length = 10;
           };
           "memory" = {
@@ -64,7 +64,7 @@
           };
           "backlight" = {
             format = "{icon}  {percent}%";
-            format-icons = ["󰖨"];
+            format-icons = ["󰃞" "󰃟" "󰖨"];
             tooltip-format = "Backlight at {percent}%";
           };
           "pulseaudio" = {
@@ -124,14 +124,15 @@
               warning = 30;
               critical = 15;
             };
+            bat = "BAT0";
             format = "{icon}   {capacity}%";
-            format-charging = "󰂄  {capacity}%";
+            format-charging = "  {capacity}%";
             format-plugged = "  {capacity}%";
             format-icons = ["" "" "" "" ""];
           };
           "clock" = {
-            format = "{:%H:%M}";
-            format-alt = "󰃮  {:%d %h %Y}";
+            format = "<big>       {:%H:%M</big>\n<small>󰃮  %d %h %Y</small>}";
+            # format-alt = "󰃮  {:%d %h %Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";

@@ -1,6 +1,6 @@
 * {
     font-family: DejaVu Sans, JetBrainsMono Nerd Font, sans-serif;
-    font-size: 17px;
+    font-size: 15px;
     color: @base05;
     background: transparent;
 }
@@ -120,6 +120,7 @@ tooltip {
     padding-left: 17px;
     padding-right: 17px;
     margin-left: 5px;
+    margin-right: 5px;
     color: @base00;
 }
 
@@ -129,8 +130,8 @@ tooltip {
     padding-right: 15px;
     margin-right: 5px;
     color: @base0F;
-    font-weight: bold;
-    font-size: 24px;
+    /*font-weight: bold;*/
+    font-size: 13px;
 }
 
 #battery:hover,
@@ -141,19 +142,20 @@ tooltip {
 }
 
 #battery.charging, #battery.plugged {
-    border-radius: 10px;
-    color: #a3be8c;
+    border-radius: 100px;
+    color: @base00;
+    background-color: @base0B;
 }
 
 #battery.warning:not(.charging) {
-    margin-left: 15px;
+    margin-left: 5px;
     background-color: @base09;
     border-radius: 100px;
     color: @base00;
 }
 
 #battery.critical:not(.charging) {
-    margin-left: 15px;
+    margin-left: 5px;
     border-radius: 100px;
     background-color: #bf616a;
     color: @base05;
