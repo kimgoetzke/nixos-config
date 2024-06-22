@@ -136,7 +136,6 @@
           };
           "clock" = {
             format = "<big>      <b>{:%H:%M</b></big>\n<small>󰃮  %d %h %Y</small>}";
-            # format-alt = "󰃮  {:%d %h %Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";
@@ -161,8 +160,8 @@
           };
           "custom/exit" = {
             format = "";
-            on-click = "notify-send \"󱠡  Ciao, ciao and goodbye\" ; sleep 1 ; ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh";
-            tooltip-format = "Shutdown of the system";
+            on-click = "sleep 0.1 && ${userSettings.targetDirectory}/shutdown-gracefully.sh";
+            tooltip-format = "Shut down the system gracefully\n<small>Click to shut down.</small>";
           };
         }
         {
