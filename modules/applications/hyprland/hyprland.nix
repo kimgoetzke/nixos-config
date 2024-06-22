@@ -94,6 +94,8 @@ in {
             disable_while_typing = "no";
           };
           sensitivity = 0.1;
+          scroll_method = "on_button_down";
+          scroll_button = "274";
         };
         general = {
           gaps_in = 5;
