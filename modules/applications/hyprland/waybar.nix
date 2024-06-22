@@ -6,10 +6,11 @@
   ...
 }: {
   options = {
-    waybar.enable = lib.mkEnableOption "Enable Waybar";
+    waybar.enable = lib.mkEnableOption "Enable waybar";
   };
 
   config = lib.mkIf config.waybar.enable {
+    stylix.targets.waybar.enable = false;
     # TODO: Show time/date and battery/percentage in two rows each
     programs.waybar = {
       enable = true;
@@ -42,6 +43,7 @@
               "memory"
               "backlight"
               "pulseaudio"
+              "bluetooth"
             ];
           };
           "network" = {
@@ -88,6 +90,15 @@
               muted-icon = "󰝟";
               default = ["󰕿" "󰖀" "󰕾"];
             };
+          };
+          # TODO: Allow turning bluetooth off here, add  tooltip and better formatting
+          "bluetooth" = {
+            format = " {status}";
+            format-disabled = "";
+            format-off = "";
+            interval = 30;
+            on-click = "blueman-manager";
+            format-no-controller = "";
           };
           "hyprland/workspaces" = {
             persistent-workspaces = {

@@ -94,7 +94,6 @@
 
   # Session variables
   home.sessionVariables = {
-    # EDITOR = "emacs";
   };
 
   dconf.settings =

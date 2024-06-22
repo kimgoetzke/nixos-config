@@ -33,8 +33,10 @@
           ${builtins.readFile ./../../../assets/configs/hyprland/rofi-theme.rasi}'');
       cycle = true;
       plugins = with pkgs; [
+        # TODO: Try again after next upstream release, see bug https://github.com/NixOS/nixpkgs/issues/298539
         rofi-emoji
         rofi-calc
+        rofi-power-menu
       ];
       extraConfig = {
         kb-row-up = "Up";

@@ -73,18 +73,20 @@ tooltip {
 #backlight,
 #network,
 #pulseaudio,
-#memory {
+#memory,
+#bluetooth {
     padding-left: 13px;
     padding-right: 13px;
     border: 3px solid transparent;
     color: @base00;
 }
 
+#cpu:hover,
 #backlight:hover,
 #network:hover,
 #pulseaudio:hover,
 #memory:hover,
-#cpu:hover {
+#bluetooth:hover{
     color: @base00;
     background: @base0A;
     border-radius: 100px;
