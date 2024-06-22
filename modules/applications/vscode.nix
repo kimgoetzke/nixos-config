@@ -68,7 +68,7 @@ in {
         "editor.inlineSuggest.enabled" = true;
         "editor.mouseWheelZoom" = true;
         "window.customTitleBarVisibility" = "auto";
-        "workbench.editor.editorActionsLocation" = "hidden";
+        "workbench.editor.editorActionsLocation" = "titleBar";
         "workbench.colorTheme" = lib.mkDefault "Nord";
         "editor.fontSize" = lib.mkDefault 15;
         "editor.fontFamily" = lib.mkDefault "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";

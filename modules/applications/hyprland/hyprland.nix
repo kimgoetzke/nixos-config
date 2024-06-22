@@ -77,7 +77,7 @@ in {
         workspace = [
           "1,monitor:DP-2"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true"
-          "3,monitor:eDP-1"
+          "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "4,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "5,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "6,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
@@ -85,7 +85,7 @@ in {
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
-          "10,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+          "10,monitor:eDP-1"
         ];
         input = {
           kb_layout = "gb";
@@ -110,8 +110,8 @@ in {
           shadow_render_power = 3;
           blur = {
             enabled = true;
-            size = 5;
-            passes = 1;
+            size = 12;
+            passes = 2;
           };
         };
         animations = {
@@ -164,7 +164,8 @@ in {
             # General
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/shutdown-gracefully.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
-            #"code:108, code:22, sendshortcut, end" # TODO: Try again after updating
+            # "code:108, code:22, sendshortcut, end" # TODO: Try again after updating
+            # "Mod5, code:22, sendshortcut, end" # TODO: Try again after updating
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
@@ -223,6 +224,8 @@ in {
             "$mainMod ALT, left, resizeactive, -50 0"
             "$mainMod ALT, up, resizeactive, 0 -50"
             "$mainMod ALT, down, resizeactive, 0 50"
+            "$mainMod, code:49, workspace, 10" # $mainMod + ` = got to workspace 10
+            "$mainMod SHIFT, code:49, movetoworkspacesilent, 10" # $mainMod + SHIFT + ` = move active silently to workspace 10
           ]
           ++ (
             # Select and move workspaces 1 to 10
@@ -257,7 +260,7 @@ in {
       };
       listener = [
         {
-          timeout = 30;
+          timeout = 180;
           on-timeout = "brightnessctl -s set 10";
           on-resume = "brightnessctl -r";
         }
@@ -385,18 +388,14 @@ in {
       text = ''
         #!/usr/bin/env bash
         # Thanks to https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/
-        if [[ ! -e /tmp/hypr/hyprexitwithgrace.log ]]; then
-            mkdir -p /tmp/hypr
-            touch /tmp/hypr/hyprexitwithgrace.log
-        fi
 
         # Close all client windows (required for graceful exit since many apps aren't good SIGNAL citizens)
         HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
-        hyprctl --batch "$HYPRCMDS" >> /tmp/hypr/hyprexitwithgrace.log 2>&1
+        hyprctl --batch "$HYPRCMDS"
 
         # Let's go!
         sleep 1
-        shutdown now >> /tmp/hypr/hyprexitwithgrace.log 2>&1
+        shutdown now
       '';
       executable = true;
     };

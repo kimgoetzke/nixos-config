@@ -22,8 +22,8 @@
           @define-color base0C ${base0C}; @define-color base0D ${base0D}; @define-color base0E ${base0E}; @define-color base0F ${base0F};
         ''
         + builtins.readFile ./../../../assets/configs/hyprland/waybar-style.css;
-      settings = {
-        bar = {
+      settings = [
+        {
           output = ["eDP-1" "DP-1"];
           layer = "top";
           height = 45;
@@ -34,7 +34,7 @@
           margin-down = 0;
           modules-left = ["group/hardware"];
           modules-center = ["hyprland/workspaces"];
-          modules-right = ["tray" "wlr/taskbar" "group/right"];
+          modules-right = ["tray" "group/right"];
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
@@ -52,7 +52,7 @@
             tooltip-format = "{ifname} via {gwaddr} 󰩟";
             format-linked = "{ifname} (No IP) 󰩟";
             format-disconnected = "󰤫";
-            on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
+            # on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
           };
           "cpu" = {
             interval = 10;
@@ -68,13 +68,16 @@
             tooltip-format = "Backlight at {percent}%";
           };
           "pulseaudio" = {
-            format = "{icon} {volume}% {format_source}";
+            format = "{icon} {volume}%";
+            format-alt = "{format_source}";
+            # format = "{icon} {volume}% {format_source}";
             format-bluetooth = "{volume}% 󰥰 {format_source}";
             format-bluetooth-muted = "󰟎 {format_source}";
             format-muted = "󰝟 {format_source}";
             format-source = "󰍬 {volume}%";
             format-source-muted = "󰍭";
-            on-click = "killall bluetuith || alacritty -t blue -e bluetuith; sudo ydotool click 0xc1";
+            tooltip-format = "{desc}\n\nClick to toggle between output/input, scroll to change volume.";
+            # on-click = "killall bluetuith || alacritty -t blue -e bluetuith; sudo ydotool click 0xc1";
             "format-icons" = {
               headphone = "󰋋";
               hands-free = "󰋋";
@@ -88,14 +91,15 @@
           };
           "hyprland/workspaces" = {
             persistent-workspaces = {
-              "1" = [];
-              "2" = [];
-              "3" = [];
+              "DP-2" = [1];
+              "eDP-1" = [10];
+              "DP-1" = [2 3 4 5 6 7 8 9];
             };
           };
           "tray" = {
             spacing = 10;
           };
+          # TODO: Try again after updates - displaying icons on startup and activate feature are currently broken
           "wlr/taskbar" = {
             format = "{icon}";
             icon-size = 14;
@@ -116,7 +120,7 @@
             format = "";
             on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
             on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
-            tooltip-format = "Clipboard Manager";
+            tooltip-format = "Clipboard Manager\n<small>Click to open, middle click to wipe.</small>";
           };
           "battery" = {
             "states" = {
@@ -131,7 +135,7 @@
             format-icons = ["" "" "" "" ""];
           };
           "clock" = {
-            format = "<big>       {:%H:%M</big>\n<small>󰃮  %d %h %Y</small>}";
+            format = "<big>      <b>{:%H:%M</b></big>\n<small>󰃮  %d %h %Y</small>}";
             # format-alt = "󰃮  {:%d %h %Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             calendar = {
@@ -160,8 +164,24 @@
             on-click = "notify-send \"󱠡  Ciao, ciao and goodbye\" ; sleep 1 ; ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh";
             tooltip-format = "Shutdown of the system";
           };
-        };
-      };
+        }
+        {
+          output = ["DP-2"];
+          layer = "top";
+          height = 45;
+          spacing = 5;
+          margin-top = 15;
+          margin-left = 20;
+          margin-right = 20;
+          margin-down = 0;
+          modules-center = ["hyprland/workspaces"];
+          "hyprland/workspaces" = {
+            persistent-workspaces = {
+              "DP-2" = [1];
+            };
+          };
+        }
+      ];
     };
   };
 }
