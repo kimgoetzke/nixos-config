@@ -49,6 +49,13 @@
     bluetooth.enable = true;
   };
 
+  # General hardware configuration
+  razer-blade.enable = false;
+  hardware = {
+    opengl.enable = true;
+    bluetooth.enable = true;
+  };
+
   # Enable sound with pipewire
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
