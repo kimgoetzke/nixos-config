@@ -3,7 +3,7 @@
 My NixOS configuration files, managed with flakes and home-manager. I don't recommend using this as a base for your
 own configuration, but feel free to take inspiration from it.
 
-![Screenshots 1](./assets/demo/screenshots-1.png)
+![Screenshots 1](./assets/demo/screenshot-1.png)
 
 ## Commands
 
