@@ -138,7 +138,7 @@
             on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
             on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
             on-click-right = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh remove";
-            tooltip-format = "Cliphist\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
+            tooltip-format = "Cliphist\n\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
           };
           "battery" = {
             "states" = {
@@ -179,7 +179,7 @@
           "custom/exit" = {
             format = "";
             on-click = "sleep 0.2 && ${userSettings.targetDirectory}/power-menu.sh";
-            tooltip-format = "Shut down the system gracefully\n<small>Click to shut down.</small>";
+            tooltip-format = "Power menu\n\n<small>Click to open menu.</small>";
           };
         }
         {

@@ -17,7 +17,7 @@
       	"  Lock") (pidof hyprlock || hyprlock) ;;
       	"  Suspend") systemctl suspend-then-hibernate ;;
       	"  Reboot") reboot ;;
-      	"󰈆  Shutdown") ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh ;;
+      	"󰈆  Shutdown") ${userSettings.targetDirectory}/shutdown-gracefully.sh ;;
       	*) exit 1 ;;
       esac
     '';
