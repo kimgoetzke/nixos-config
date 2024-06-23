@@ -1,8 +1,8 @@
 {
   pkgs,
-  inputs,
   config,
   lib,
+  userSettings,
   ...
 }: let
   cfg = config.git;
@@ -14,12 +14,12 @@ in {
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
-      userName = "Kim Goetzke";
-      userEmail = "kbgoetzke@gmail.com";
+      userName = userSettings.userFullName;
+      userEmail = userSettings.userEmail;
       extraConfig = {
         init.defaultBranch = "main";
         safe.directory = [
-          "/home/kgoe/projects"
+          "/home/${userSettings.user}/projects"
         ];
       };
     };

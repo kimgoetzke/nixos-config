@@ -157,6 +157,7 @@ in {
           "tile,class:^(Asperite.*)$,title:^(Aseprite.*)$"
           "float,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "center,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
+          "float,title:^(Welcome to JetBrains Rider)$"
         ];
         windowrule = [
           "forceinput,title:^(JetBrains Toolbox)$"

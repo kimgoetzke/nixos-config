@@ -4,11 +4,15 @@
   ...
 }: {
   config = {
-    userSettings.userName = "kgoe";
+    userSettings.user = "kgoe";
+    userSettings.userName = "Kim";
+    userSettings.userFullName = "Kim Goetzke";
+    userSettings.userEmail = "kbgoetzke@gmail.com";
     userSettings.hostName = "blade";
-    userSettings.baseDirectory = "/home/${config.userSettings.userName}/projects/nixos-config";
+    userSettings.baseDirectory = "/home/${config.userSettings.user}/projects/nixos-config";
     userSettings.relativeTargetDirectory = "/Documents/NixOS";
     userSettings.defaultShell = "zsh";
+    userSettings.wallpaper = "${config.userSettings.baseDirectory}/assets/images/wallpaper_abstract_nord4x.png";
     userSettings.shells = {
       isZshEnabled = true;
       isBashEnabled = false;
@@ -22,9 +26,17 @@
   };
 
   options.userSettings = {
+    user = lib.mkOption {
+      type = lib.types.string;
+    };
     userName = lib.mkOption {
       type = lib.types.string;
-      default = "kgoe";
+    };
+    userFullName = lib.mkOption {
+      type = lib.types.string;
+    };
+    userEmail = lib.mkOption {
+      type = lib.types.string;
     };
     hostName = lib.mkOption {
       type = lib.types.string;
@@ -32,7 +44,7 @@
     };
     baseDirectory = lib.mkOption {
       type = lib.types.string;
-      default = "/home/${config.userSettings.userName}/projects/nixos-config";
+      default = "/home/${config.userSettings.user}/projects/nixos-config";
     };
     relativeTargetDirectory = lib.mkOption {
       type = lib.types.string;
@@ -40,7 +52,10 @@
     };
     targetDirectory = lib.mkOption {
       type = lib.types.string;
-      default = "/home/${config.userSettings.userName}${config.userSettings.relativeTargetDirectory}";
+      default = "/home/${config.userSettings.user}${config.userSettings.relativeTargetDirectory}";
+    };
+    wallpaper = lib.mkOption {
+      type = lib.types.string;
     };
     defaultShell = lib.mkOption {
       type = lib.types.string;

@@ -1,2 +1,4 @@
 .idea/
 .vscode/
+/assets/gnome/dconf-raw.nix
+/assets/gnome/dconf.settings

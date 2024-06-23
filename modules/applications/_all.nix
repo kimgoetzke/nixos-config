@@ -1,8 +1,15 @@
-{...}: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  userSettings,
+  ...
+}: {
   imports = [
     ./firefox.nix
     ./vscode.nix
-    ./git.nix
+    (import ./git.nix {inherit config pkgs lib userSettings;})
     ./alacritty.nix
     ./java.nix
     ./bash.nix

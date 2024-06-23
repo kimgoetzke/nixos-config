@@ -49,8 +49,8 @@
       pkill waybar
       hyprctl reload
 
-      if [[ $USER == "${userSettings.userName}" ]]; then
-          waybar -c /home/${userSettings.userName}/.config/waybar/config & -s /home/${userSettings.userName}/.config/waybar/style.css
+      if [[ $USER == "${userSettings.user}" ]]; then
+          waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
       else
         waybar &
       fi
@@ -79,8 +79,6 @@
       # Execute it if first word is 'exec'
       if [[ $CMD == exec* ]]; then
           eval "$CMD $ARGUMENT"
-      else
-          notify-send "  Cannot execute '$CMD $ARGUMENT'. Only 'exec' is supported."
       fi
     '';
     executable = true;

@@ -6,8 +6,8 @@
   userSettings,
   ...
 }: {
-  home.username = userSettings.userName;
-  home.homeDirectory = "/home/${userSettings.userName}";
+  home.username = userSettings.user;
+  home.homeDirectory = "/home/${userSettings.user}";
   home.stateVersion = "24.05";
   home.packages =
     [
@@ -48,7 +48,7 @@
   };
 
   imports = [
-    ./../../modules/applications/_all.nix
+    (import ./../../modules/applications/_all.nix {inherit config pkgs lib inputs userSettings;})
   ];
 
   # Applications

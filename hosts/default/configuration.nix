@@ -9,7 +9,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
     ./blade.nix
-    ./../../controls/userSettings.nix
+    ./../../controls/user-settings.nix
     ./../../modules/desktop/_all.nix
   ];
 
@@ -70,15 +70,16 @@
   };
 
   # Main user account
-  users.users.kgoe = {
+  users.users.${config.userSettings.user} = {
     isNormalUser = true;
-    description = "Kim";
+    description = config.userSettings.userName;
     extraGroups = ["networkmanager" "wheel" "docker"];
+    shell = pkgs.${config.userSettings.defaultShell};
   };
 
   # Environment variables
   environment.sessionVariables = {
-    FLAKE = "~/projects/nixos-config";
+    FLAKE = "${config.userSettings.baseDirectory}";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
     WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
   };
@@ -116,7 +117,6 @@
     ];
 
   # Shell
-  users.users.kgoe.shell = pkgs.${config.userSettings.defaultShell};
   programs.zsh.enable = config.userSettings.shells.isZshEnabled;
 
   # Docker
@@ -131,7 +131,7 @@
       userSettings = config.userSettings;
     };
     backupFileExtension = "0001";
-    users.${config.userSettings.userName} = {
+    users.${config.userSettings.user} = {
       imports = [./home.nix];
     };
   };
@@ -152,6 +152,7 @@
 
   # Stylix
   stylix = {
+    # TODO: Find out why 'image = config.userSettings.wallpaper' doesn't work and then fix the below
     image = ./../../assets/images/wallpaper_abstract_nord4x.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts.sizes.terminal = 16;
