@@ -99,7 +99,7 @@
             interval = 30;
             on-click = "blueman-manager";
             format-no-controller = "";
-            tooltip-format = "Currently, {num_connections} devices are connected to '{controller_alias}'";
+            tooltip-format = "Currently, {num_connections} devices are connected to '{controller_alias}'.";
             tooltip-format-connected = "Controller '{controller_alias}' has the following {num_connections} devices connected:\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias} ({device_address})";
             tooltip-format-enumerate-connected-battery = "{device_alias} ({device_address}) {device_battery_percentage}% battery";
@@ -138,7 +138,7 @@
             on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
             on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
             on-click-right = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh remove";
-            tooltip-format = "Clipboard Manager\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
+            tooltip-format = "Cliphist\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
           };
           "battery" = {
             "states" = {

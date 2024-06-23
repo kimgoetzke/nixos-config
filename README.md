@@ -5,8 +5,8 @@ own configuration, but feel free to take inspiration from it.
 
 ## Screenshots
 
-![Screenshots 1](./assets/demo/screenshot-1.png)
 ![Screenshots 2](./assets/demo/screenshot-2.png)
+![Screenshots 1](./assets/demo/screenshot-1.png)
 
 ## Commands
 

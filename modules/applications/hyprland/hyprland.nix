@@ -10,7 +10,7 @@
   cfg = config.hyprland;
 in {
   options.hyprland = {
-    enable = lib.mkEnableOption "Enable Wayland with Hyprland as desktop environment";
+    enable = lib.mkEnableOption "Enable Wayland with Hyprland";
   };
 
   imports = [
