@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
+    ./blade.nix
     ./../../controls/userSettings.nix
     ./../../modules/desktop/_all.nix
   ];
@@ -40,13 +41,15 @@
   # Enable flake support
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Enable CUPS to print documents
-  services.printing.enable = true;
-
-  # General hardware configuration
-  hardware = {
-    opengl.enable = true;
-    bluetooth.enable = true;
+  # Enable printing with auto-discovery (see https://nixos.wiki/wiki/Printing)
+  services.printing = {
+    enable = true;
+    drivers = [pkgs.hplip]; # For HP printers only (magically works)
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 
   # General hardware configuration
@@ -98,6 +101,7 @@
       _1password-gui
       _1password
       xorg.xev
+      lshw
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
