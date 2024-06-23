@@ -61,17 +61,17 @@ in {
       enable = true;
       package = pkgs.hyprland;
       settings = {
-        #"$scripts" = "${./../../../assets/configs/hyprland/scripts}";
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
         exec-once = [
+          "hypridle"
           "hyprlock"
           "swww-daemon"
           "swww img ${userSettings.targetDirectory}/wallpaper.png"
-          "hypridle"
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
+          "sleep 10 && ${userSettings.targetDirectory}/reload-ui.sh"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -154,7 +154,9 @@ in {
           "noinitialfocus,class:^(xwaylandvideobridge)$"
           "maxsize 1 1,class:^(xwaylandvideobridge)$"
           "noblur,class:^(xwaylandvideobridge)$"
-          "tile,class:^(Asperite.*)$,class:^(Aseprite.*)$"
+          "tile,class:^(Asperite.*)$,title:^(Aseprite.*)$"
+          "float,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
+          "center,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
         ];
         windowrule = [
           "forceinput,title:^(JetBrains Toolbox)$"

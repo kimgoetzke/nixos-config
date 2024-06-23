@@ -34,6 +34,10 @@ window#waybar {
     color: @base03;
 }
 
+#workspaces button.empty {
+    opacity: 0.3;
+}
+
 #workspaces button.active {
     color: @base00;
     background: @base04;
@@ -69,6 +73,10 @@ tooltip {
     border-radius: 100px;
 }
 
+#tray {
+    margin-right: 15px;
+}
+
 #cpu,
 #backlight,
 #network,
@@ -79,6 +87,12 @@ tooltip {
     padding-right: 13px;
     border: 3px solid transparent;
     color: @base00;
+}
+
+#bluetooth.connected {
+    background: @base0B;
+    border-radius: 100px;
+    margin-left: 5px;
 }
 
 #cpu:hover,
@@ -159,7 +173,7 @@ tooltip {
 #battery.critical:not(.charging) {
     margin-left: 5px;
     border-radius: 100px;
-    background-color: #bf616a;
+    background-color: @base08;
     color: @base05;
     animation-name: blink;
     animation-duration: 0.5s;

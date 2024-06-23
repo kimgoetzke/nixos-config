@@ -100,8 +100,8 @@
       obsidian
       _1password-gui
       _1password
-      xorg.xev
-      lshw
+      xorg.xev # Input event listener for X
+      lshw # Tool to list hardware
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap

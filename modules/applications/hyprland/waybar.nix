@@ -93,12 +93,17 @@
           };
           # TODO: Allow turning bluetooth off here, add  tooltip and better formatting
           "bluetooth" = {
-            format = " {status}";
-            format-disabled = "";
-            format-off = "";
+            format = "";
+            format-connected = " {num_connections} connected";
+            format-disabled = " DISABLED";
+            format-off = " OFF";
             interval = 30;
             on-click = "blueman-manager";
             format-no-controller = "";
+            tooltip-format = "Currently, {num_connections} devices are connected to '{controller_alias}'";
+            tooltip-format-connected = "Controller '{controller_alias}' has the following {num_connections} devices connected:\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias} ({device_address})";
+            tooltip-format-enumerate-connected-battery = "{device_alias} ({device_address}) {device_battery_percentage}% battery";
           };
           "hyprland/workspaces" = {
             persistent-workspaces = {
