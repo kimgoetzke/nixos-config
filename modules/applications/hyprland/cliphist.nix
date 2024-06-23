@@ -16,7 +16,6 @@
       "-max-items"
       "100"
     ];
-    # TODO: Add a way to remove single entries
     home.file."${userSettings.relativeTargetDirectory}/cliphist-helper.sh" = {
       text = ''
         #!/usr/bin/env bash

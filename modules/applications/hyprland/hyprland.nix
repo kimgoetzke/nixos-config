@@ -175,6 +175,7 @@ in {
             # General
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
+            "$mainMod, K, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
             # TODO: Try again after updating because 'sendshortcut' doesn't exist yet
             #"code:108, code:22, sendshortcut, end"
             #"Mod5, code:22, sendshortcut, end"

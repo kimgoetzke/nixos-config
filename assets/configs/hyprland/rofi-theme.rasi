@@ -7,8 +7,7 @@ configuration {
     display-run:        "󰲋  ";
     display-ssh:        "󰣀  ";
     display-window:     "󰶭  ";
-    display-menu:       "Select";
-    display-dmenu:      "Select";
+    display-keys:       "󰌌  ";
     hover-select:       true;
     me-select-entry:    "";
     me-accept-entry:    "MousePrimary";
