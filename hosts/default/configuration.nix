@@ -110,10 +110,6 @@
       gnomeExtensions.space-bar
     ]
     ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
-      # TODO: Find Hyprland alternative for these to map Alt Gr + Backspace to End
-      xbindkeys
-      xautomation
-      xdotool
     ];
 
   # Shell

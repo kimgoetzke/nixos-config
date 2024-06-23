@@ -48,8 +48,7 @@
             exit
         fi
 
-        mkdir -p "
-        }$tmp_dir"
+        mkdir -p "$tmp_dir"
 
         read -r -d '''' prog <<EOF
         /^[0-9]+\s<meta http-equiv=/ { next }
