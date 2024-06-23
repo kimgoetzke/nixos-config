@@ -1,17 +1,24 @@
 # My NixOS configuration files
 
-My NixOS configuration files, managed with flakes and home-manager. I don't recommend using this as a base for your
-own configuration, but feel free to take inspiration from it.
+My minimalist NixOS configuration files, managed with flakes and home-manager. I do _not_ recommend using this as a base 
+for your own configuration as it has been exclusively configured for my own needs, but feel free to take inspiration
+from it.
+
+> [!NOTE]
+> Only Gnome and Wayland with Hyprland (see screenshots below) are configured and can be toggled between.
 
 ## Screenshots
 
 ![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 1](./assets/demo/screenshot-1.png)
 
-## Commands
+## How to use
 
-> [!NOTE]
+> [!IMPORTANT]
 > Open the file `./modules/controls/user-template.nix` and follow the instructions before continuing.
+
+Once you've created your own `user.nix` file, and assuming you've already got a `hardware-configuration.nix` file, you 
+can now build the system.
 
 #### Build
 
