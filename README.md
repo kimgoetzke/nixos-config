@@ -10,6 +10,9 @@ own configuration, but feel free to take inspiration from it.
 
 ## Commands
 
+> [!NOTE]
+> Open the file `./modules/controls/user-template.nix` and follow the instructions before continuing.
+
 #### Build
 
 Assuming that the config repo is cloned to `~/projects/nixos-config#default`, the first time on a system use:

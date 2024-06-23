@@ -9,7 +9,11 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
     ./blade.nix
-    ./../../controls/user-settings.nix
+    (import ./user.nix {
+      inherit config;
+      userSettings = config.userSettings;
+    })
+    ./../../modules/controls/user-settings.nix
     ./../../modules/desktop/_all.nix
   ];
 

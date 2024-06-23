@@ -47,7 +47,7 @@
         sync.enable = true;
         amdgpuBusId = "PCI:0:1:0";
         nvidiaBusId = "PCI:0:4:0";
-        # TODO: Find out the real values from output below
+        # TODO: Find out the real values from output below, complete them, and enable NIVIDA setup for laptop
         #  *-display
         #       description: amdgpudrmfb
         #       product: nouveaudrmfb

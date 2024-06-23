@@ -85,7 +85,7 @@
     "...." = "cd ../../..";
   };
 
-  # Move files to home directory for future use
+  # Move all relevant assets to home directory for use anywhere
   home.file = {
     "${userSettings.relativeTargetDirectory}/wallpaper.png" = {
       source = ./../../assets/images/wallpaper_abstract_nord4x.png;
@@ -97,8 +97,11 @@
 
   # Session variables
   home.sessionVariables = {
+    "NIX_FOLDER" = "${userSettings.targetDirectory}";
+    "NIX_PROJECT_FOLDER" = "${userSettings.baseDirectory}";
   };
 
+  # Gnome dconf settings
   dconf.settings =
     if userSettings.desktopEnvironments.isGnomeEnabled
     then (import ./../../assets/configs/gnome/dconf.nix {inherit lib;})
