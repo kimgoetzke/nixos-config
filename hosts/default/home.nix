@@ -69,7 +69,8 @@
     c = "clear";
     nht = "nh os test ~/projects/nixos-config -H default";
     nhb = "nh os boot ~/projects/nixos-config -H default";
-    nhs = "nh os switch ~/projects/nixos-config -H default";
+    nhs = "export NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nh os switch ~/projects/nixos-config -H default";
+    nhsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ~/projects/nixos-config#default";
     nhc = "nh clean all --keep 3";
     proper = "cd ~/projects && ls -1";
     idea = "${pkgs.jetbrains.idea-ultimate}/idea-ultimate/bin/idea.sh";

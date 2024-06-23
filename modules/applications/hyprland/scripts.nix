@@ -5,7 +5,27 @@
   userSettings,
   ...
 }: {
-  # Graceful shutdown script -----------------------------------------------------------------------------------------
+  # Power menu ---------------------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/power-menu.sh" = {
+    text = ''
+      #!/bin/sh
+      # Inspired by https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
+
+      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown\n󰗽  Log Out" | rofi -dmenu -i -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -10; } inputbar { children: [textbox-prompt-colon, entry]; }")
+
+      case "$CHOSEN" in
+      	"  Lock") (pidof hyprlock || hyprlock) ;;
+      	"  Suspend") systemctl suspend-then-hibernate ;;
+      	"  Reboot") reboot ;;
+      	"󰈆  Shutdown") ${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh ;;
+      	"󰗽  Log Out") hyprctl dispatch exit ;;
+      	*) exit 1 ;;
+      esac
+    '';
+    executable = true;
+  };
+
+  # Shutdown gracefully ------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh" = {
     text = ''
       #!/usr/bin/env bash
@@ -23,7 +43,7 @@
     executable = true;
   };
 
-  # Reload UI helper -------------------------------------------------------------------------------------------------
+  # Reload UI ----------------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
     text = ''
       #!/usr/bin/env bash
@@ -34,50 +54,6 @@
           waybar -c /home/${userSettings.userName}/.config/waybar/config & -s /home/${userSettings.userName}/.config/waybar/style.css
       else
         waybar &
-      fi
-    '';
-    executable = true;
-  };
-
-  # Shutdown helper --------------------------------------------------------------------------------------------------
-  home.file."${userSettings.relativeTargetDirectory}/shutdown-helper.sh" = {
-    text = ''
-      #!/usr/bin/env bash
-      # Thanks to https://gitlab.com/stephan-raabe!
-      if [[ "$1" == "exit" ]]; then
-          echo ":: Exit"
-          sleep 0.5
-          killall -9 Hyprland sleep 2
-      fi
-
-      if [[ "$1" == "lock" ]]; then
-          echo ":: Lock"
-          sleep 0.5
-          (pidof hyprlock || hyprlock)
-      fi
-
-      if [[ "$1" == "reboot" ]]; then
-          echo ":: Reboot"
-          sleep 0.5
-          systemctl reboot
-      fi
-
-      if [[ "$1" == "shutdown" ]]; then
-          echo ":: Shutdown"
-          sleep 0.5
-          systemctl poweroff
-      fi
-
-      if [[ "$1" == "suspend" ]]; then
-          echo ":: Suspend"
-          sleep 0.5
-          systemctl suspend
-      fi
-
-      if [[ "$1" == "hibernate" ]]; then
-          echo ":: Hibernate"
-          sleep 1;
-          systemctl hibernate
       fi
     '';
     executable = true;

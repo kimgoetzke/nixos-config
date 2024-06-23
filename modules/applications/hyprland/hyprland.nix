@@ -15,7 +15,7 @@ in {
 
   imports = [
     (import ./waybar.nix {inherit config pkgs lib userSettings;})
-    ./rofi.nix
+    (import ./rofi.nix {inherit config pkgs lib userSettings;})
     ./mako.nix
     (import ./cliphist.nix {inherit config pkgs lib userSettings;})
     (import ./hyprlock.nix {inherit config pkgs lib userSettings;})
@@ -117,8 +117,8 @@ in {
           shadow_render_power = 3;
           blur = {
             enabled = true;
-            size = 12;
-            passes = 2;
+            size = 5;
+            passes = 1;
           };
         };
         animations = {
@@ -167,11 +167,13 @@ in {
         layerrule = [
           "blur, notifications"
           "dimaround, notifications"
+          "blur, rofi"
+          "dimaround, rofi"
         ];
         bind =
           [
             # General
-            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/shutdown-gracefully.sh"
+            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
             # TODO: Try again after updating because 'sendshortcut' doesn't exist yet
             #"code:108, code:22, sendshortcut, end"
@@ -187,7 +189,7 @@ in {
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
-            "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+            "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str \"window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -100; } inputbar { children: [textbox-prompt-colon, entry]; }\" | cliphist decode | wl-copy"
             "$mainMod SHIFT, L, exec, cliphist wipe"
             "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
 

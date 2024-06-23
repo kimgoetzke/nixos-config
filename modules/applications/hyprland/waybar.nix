@@ -79,7 +79,6 @@
             format-source = "󰍬 {volume}%";
             format-source-muted = "󰍭";
             tooltip-format = "{desc}\n\nClick to toggle between output/input, scroll to change volume.";
-            # on-click = "killall bluetuith || alacritty -t blue -e bluetuith; sudo ydotool click 0xc1";
             "format-icons" = {
               headphone = "󰋋";
               hands-free = "󰋋";
@@ -114,6 +113,8 @@
           };
           "tray" = {
             spacing = 10;
+            icon-size = 24;
+            show-passive-items = true;
           };
           # TODO: Try again after updates - displaying icons on startup and activate feature are currently broken
           "wlr/taskbar" = {
@@ -136,7 +137,8 @@
             format = "";
             on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
             on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
-            tooltip-format = "Clipboard Manager\n<small>Click to open, middle click to wipe.</small>";
+            on-click-right = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh remove";
+            tooltip-format = "Clipboard Manager\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
           };
           "battery" = {
             "states" = {
@@ -176,7 +178,7 @@
           };
           "custom/exit" = {
             format = "";
-            on-click = "sleep 0.1 && ${userSettings.targetDirectory}/shutdown-gracefully.sh";
+            on-click = "sleep 0.2 && ${userSettings.targetDirectory}/power-menu.sh";
             tooltip-format = "Shut down the system gracefully\n<small>Click to shut down.</small>";
           };
         }

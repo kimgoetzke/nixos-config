@@ -2,6 +2,19 @@
  *  Based on LR-Tech's https://github.com/lr-tech/rofi-themes-collection   *
  ***************************************************************************/
 
+configuration {
+    display-drun:       "󰣆  ";
+    display-run:        "󰲋  ";
+    display-ssh:        "󰣀  ";
+    display-window:     "󰶭  ";
+    display-menu:       "Select";
+    display-dmenu:      "Select";
+    hover-select:       true;
+    me-select-entry:    "";
+    me-accept-entry:    "MousePrimary";
+    window-format:      "{c} {t}";
+}
+
 window {
     location:           center;
     width:              480;
@@ -10,10 +23,11 @@ window {
     border:             3px;
     border-color:       @fg1;
     background-color:   @bg0;
+    opacity:            0.8;
 }
 
 mainbox {
-    padding:            4px;
+    padding:            16px;
 }
 
 inputbar {
@@ -22,8 +36,19 @@ inputbar {
     border:             0px;
     border-radius:      7px;
     border-color:       @fg2;
-    padding:            8px 16px;
+    margin:             0 0 5px 0;
+    padding:            10px 16px 10px 16px;
     children:           [ prompt, entry ];
+}
+
+/* ---- Unused by default but can be toggled on ---- */
+textbox-prompt-colon {
+    enabled:                      true;
+    expand:                       false;
+    padding:                      0px 5px 0px 0px;
+    str:                          "";
+    background-color:             transparent;
+    text-color:                   inherit;
 }
 
 prompt, entry, element-icon, element-text {
@@ -35,7 +60,7 @@ prompt {
 }
 
 entry {
-    text-color:         @fg1;
+    text-color:         @regular-color;
 }
 
 textbox {
@@ -56,8 +81,13 @@ element {
 }
 
 element normal normal {
-    text-color:         @fg0;
+    text-color:         @regular-color;
 }
+
+element alternate.normal {
+    text-color:        @regular-color;
+}
+
 
 element normal urgent {
     text-color:         @urgent-color;
@@ -68,11 +98,12 @@ element normal active {
 }
 
 element selected {
-    text-color:         @bg0;
+    text-color:         @dark-color;
 }
 
 element selected normal, element selected active {
-    background-color:   @accent-color;
+    background-color:   @select-color;
+    border-radius:      7px;
 }
 
 element selected urgent {

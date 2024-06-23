@@ -12,21 +12,26 @@
     services.cliphist.enable = true;
     services.cliphist.extraOptions = [
       "-max-dedupe-search"
-      "10"
+      "100"
       "-max-items"
       "100"
     ];
-    # TODO: Add a way to remove single entries and fix opening menu
+    # TODO: Add a way to remove single entries
     home.file."${userSettings.relativeTargetDirectory}/cliphist-helper.sh" = {
       text = ''
         #!/usr/bin/env bash
         if [[ "$1" == "open" ]]; then
-          cliphist list | rofi -dmenu | cliphist decode | wl-copy
+          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -100; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist decode | wl-copy
         fi
 
         if [[ "$1" == "wipe" ]]; then
           cliphist wipe
           notify-send "   Wiped clipboard history"
+        fi
+
+        if [[ "$1" == "remove" ]]; then
+          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -100; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist delete
+          notify-send "   Removed selected item from clipboard history"
         fi
       '';
       executable = true;

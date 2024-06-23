@@ -55,9 +55,9 @@
 
       label {
         monitor =
-        text = cmd[update:1000] echo "$(date +%H:%M)"
+        text = cmd[update:1000] echo "$(date +%A) $(date +%e) $(date +%B) $(date +%Y)"
         color = rgb(${config.lib.stylix.colors.base06-rgb-r},${config.lib.stylix.colors.base06-rgb-g},${config.lib.stylix.colors.base06-rgb-b})
-        font_size = 28
+        font_size = 16
         font_family = DejaVu Sans
         rotate = 0
         position = 0, -20
@@ -67,12 +67,12 @@
 
       label {
         monitor =
-        text = cmd[update:1000] echo "$(date +%A) $(date +%e) $(date +%B) $(date +%Y)"
+        text = cmd[update:1000] echo "$(date +%H:%M)"
         color = rgb(${config.lib.stylix.colors.base06-rgb-r},${config.lib.stylix.colors.base06-rgb-g},${config.lib.stylix.colors.base06-rgb-b})
-        font_size = 14
+        font_size = 32
         font_family = DejaVu Sans
         rotate = 0
-        position = 0, -80
+        position = 0, -60
         halign = center
         valign = top
       }

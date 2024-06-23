@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  userSettings,
   ...
 }: {
   options = {
@@ -17,14 +18,19 @@
         builtins.toFile "theme.rasi" ''
           * {
               font:               "DejaVu Sans Regular 15";
-              bg0:                ${base00};
-              bg1:                ${base02};
+              bg0:                ${base00}99;
+              bg1:                ${base02}99;
               fg0:                ${base03};
               fg1:                ${base0D};
               fg2:                ${base0A};
-              accent-color:       ${base05};
+              fg3:                ${base02};
+              regular-color:      ${base06};
+              dark-color:         ${base00};
+              accent-color:       ${base0F};
               urgent-color:       #ffffff;
+              select-color:       ${base0A};
               background-color:   transparent;
+              background:         transparent;
               text-color:         @fg0;
               margin:             0;
               padding:            0;
