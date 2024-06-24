@@ -76,6 +76,7 @@
     nhca = "nh clean all --keep 1";
     nfu = "nix flake update";
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
+    nixuser = "cd ${userSettings.baseDirectory}/hosts/${userSettings.hostName} && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
     # TODO: Figure out a way to set a better label for a generation (none of the below work)
     #nhs = "export NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" && nh os switch ~/projects/nixos-config -H default";
     #nhsl = "NIXOS_LABEL=\"$(date +%Y-%m-%d) $(date +%R)\" nh os switch ~/projects/nixos-config -H default";

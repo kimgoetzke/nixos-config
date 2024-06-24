@@ -24,7 +24,9 @@ from it.
 5. Complete the `user.nix` file with your own configurations.
 6. Run the following commands from `/host/{your host}/`:
    ```shell
-   git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix   
+   git rm --cached user.nix # If you've already added it
+   git add --intent-to-add user.nix
+   git update-index --assume-unchanged user.nix   
    ```
    This will prevent you from accidentally committing your user configurations while stopping the
    nasty `No such file or directory` error.
