@@ -30,12 +30,13 @@ from it.
    ```
    This will prevent you from accidentally committing your user configurations while stopping the
    nasty `No such file or directory` error.
-7. Open `flake.nix` and replace `hostName` with the value you've already entered in `user.nix`.
+7. Open `flake.nix` and create new `nixosConfigurations` and `homeConfigurations` entries for your host or
+   replace `hostName` with your host name from `user.nix`.
 8. Build the system.
 
 #### Build
 
-The below assumes that this repo is cloned to `~/projects/nixos-config` and your host name is `default`.
+The below assumes that this repo is cloned to `~/projects/nixos-config` and have replaced the `hostName` in `flake.nix`.
 
 ```shell
 nixos-rebuild switch --flake ~/projects/nixos-config#default

@@ -37,8 +37,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    # TODO: Find a way to source 'hostName' from user.nix or at least just define it in one place
-    hostName = "blade"; # Must be the same 'userSettings.hostName' in 'user.nix'
+    hostName = "blade"; # Must be the same 'userSettings.hostName' in 'user.nix' if you want to use default
     systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
@@ -48,21 +47,51 @@
     nixpkgs.config.allowUnfree = true;
 
     # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
-      modules = [
-        ./hosts/${hostName}/configuration.nix
-        stylix.nixosModules.stylix
-      ];
+    nixosConfigurations = {
+      default = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/${hostName}/configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
+
+      blade = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/blade/configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
+
+      nzxt = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/nzxt/configuration.nix
+          stylix.nixosModules.stylix
+        ];
+      };
     };
 
     # Use standalone home-manager configuration with 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
-      pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
-      extraSpecialArgs = {inherit inputs outputs;};
-      modules = [
-        ./hosts/${hostName}/home.nix
-      ];
+    homeConfigurations = {
+      default = home-manager.lib.homeManagerConfiguration {
+        pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./hosts/${hostName}/home.nix];
+      };
+
+      blade = home-manager.lib.homeManagerConfiguration {
+        pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./hosts/blade/home.nix];
+      };
+
+      nzxt = home-manager.lib.homeManagerConfiguration {
+        pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./hosts/nzxt/home.nix];
+      };
     };
   };
 }
