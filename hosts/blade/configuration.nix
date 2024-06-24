@@ -8,11 +8,8 @@
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
-    ./blade.nix
-    (import ./user.nix {
-      inherit config;
-      userSettings = config.userSettings;
-    })
+    ./../../modules/hardware/blade.nix
+    (import ./user.nix { userSettings = config.userSettings; })
     ./../../modules/controls/user-settings.nix
     ./../../modules/desktop/_all.nix
   ];

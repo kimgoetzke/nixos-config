@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    #nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -38,6 +37,8 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    # TODO: Find a way to source 'hostName' from user.nix or at least just define it in one place
+    hostName = "blade"; # Must be the same 'userSettings.hostName' in 'user.nix'
     systems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
@@ -50,7 +51,7 @@
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs outputs;};
       modules = [
-        ./hosts/default/configuration.nix
+        ./hosts/${hostName}/configuration.nix
         stylix.nixosModules.stylix
       ];
     };
@@ -60,7 +61,7 @@
       pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
       extraSpecialArgs = {inherit inputs outputs;};
       modules = [
-        ./hosts/default/home.nix
+        ./hosts/${hostName}/home.nix
       ];
     };
   };

@@ -1,6 +1,6 @@
 # My NixOS configuration files
 
-My minimalist NixOS configuration files, managed with flakes and home-manager. I do _not_ recommend using this as a base 
+My minimalist NixOS configuration files, managed with flakes and home-manager. I do _not_ recommend using this as a base
 for your own configuration as it has been exclusively configured for my own needs, but feel free to take inspiration
 from it.
 
@@ -17,30 +17,33 @@ from it.
 ### Preparation
 
 1. Follow official guides to prepare your HDD and boot NixOS e.g. from a USB.
-2. Clone this repository and move the `hardware-configuration.nix` file to `/hosts/{your host}/`.
-3. Create a copy of the file `/modules/controls/user-template.nix` in the folder `/host/{your host}/` and name
+2. Clone this repository and move your existing `hardware-configuration.nix` file to `/hosts/{your host}/`.
+3. Copy `home.nix` and `configuration.nix` from an existing host to begin with.
+4. Create a copy of the file `/modules/controls/user-template.nix` in the folder `/host/{your host}/` and name
    it `user.nix`.
-4. Complete the `user.nix` file with your own configurations.
-5. Run the following commands from `/host/{your host}/`:
+5. Complete the `user.nix` file with your own configurations.
+6. Run the following commands from `/host/{your host}/`:
    ```shell
-   git add --intent-to-add user.nix
-   git update-index --assume-unchanged user.nix   
+   git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix   
    ```
    This will prevent you from accidentally committing your user configurations while stopping the
    nasty `No such file or directory` error.
-
-Once you've created your own `user.nix` file, and assuming you've already got a `hardware-configuration.nix` file, you
-can build the system.
+7. Open `flake.nix` and replace `hostName` with the value you've already entered in `user.nix`.
+8. Build the system.
 
 #### Build
 
-Assuming that the config repo is cloned to `~/projects/nixos-config#default`, the first time on a system use:
+The below assumes that this repo is cloned to `~/projects/nixos-config` and your host name is `default`.
 
 ```shell
 nixos-rebuild switch --flake ~/projects/nixos-config#default
 ```
 
-After first run or once `nh` installed otherwise, use:
+> [!NOTE]
+> After the first build you can use a number of aliases that use the host name and project directory you provided.
+> Examples: `nht` to test and `nhs` to switch. See `home.shellAliases` in `home.nix` for more information.
+
+After first run or once `nh` installed otherwise, you can also use:
 
 1. For testing:
     ```shell
@@ -77,6 +80,13 @@ Update with:
 
 ```shell
 nix flake update ~/projects/nixos-config
+nh os switch ~/projects/nixos-config -H default
+```
+
+Or update a specific input only:
+
+```shell
+nix flake update home-manager
 nh os switch ~/projects/nixos-config -H default
 ```
 

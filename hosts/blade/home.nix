@@ -33,6 +33,7 @@
       # Scripts
       (pkgs.writeShellScriptBin "kim" (builtins.readFile ./../../assets/scripts/kim.sh))
       (pkgs.writeShellScriptBin "file" (builtins.readFile ./../../assets/scripts/file.sh))
+      (pkgs.writeShellScriptBin "fo" (builtins.readFile ./../../assets/scripts/fo.sh))
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       pkgs.gnome.gnome-tweaks
@@ -60,6 +61,7 @@
   git.enable = true;
   java.enable = true;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
+  programs.home-manager.enable = true;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
@@ -67,19 +69,19 @@
   home.shellAliases = {
     ls = "ls --color";
     c = "clear";
-    nht = "nh os test ~/projects/nixos-config -H default";
-    nhb = "nh os boot ~/projects/nixos-config -H default";
-    nhs = "nh os switch ~/projects/nixos-config -H default";
+    nht = "nh os test ${userSettings.baseDirectory} -H default";
+    nhb = "nh os boot ${userSettings.baseDirectory} -H default";
+    nhs = "nh os switch ${userSettings.baseDirectory} -H default";
+    nhc = "nh clean all --keep 3";
+    nhca = "nh clean all --keep 1";
+    nfu = "nix flake update";
+    nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     # TODO: Figure out a way to set a better label for a generation (none of the below work)
     #nhs = "export NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" && nh os switch ~/projects/nixos-config -H default";
     #nhsl = "NIXOS_LABEL=\"$(date +%Y-%m-%d) $(date +%R)\" nh os switch ~/projects/nixos-config -H default";
-    #nhsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ~/projects/nixos-config#default";
-    nhc = "nh clean all --keep 3";
+    nixsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     proper = "cd ~/projects && ls -1";
     anw = "alacritty msg create-window";
-    ".2" = "cd ../..";
-    ".3" = "cd ../../..";
-    ".4" = "cd ../../../..";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
@@ -107,6 +109,4 @@
     if userSettings.desktopEnvironments.isGnomeEnabled
     then (import ./../../assets/configs/gnome/dconf.nix {inherit lib;})
     else {};
-
-  programs.home-manager.enable = true;
 }
