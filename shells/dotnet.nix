@@ -7,4 +7,10 @@ with import <nixpkgs> {};
       dotnet-sdk_8
       powershell
     ];
+    shellHook = ''
+      export DOTNET_NOLOGO=1
+      export DOTNET_ROOT=${dotnet-sdk_8}
+      export PATH=${dotnet-sdk_8}/bin:$PATH
+      echo "Welcome to your .NET development environment!"
+    '';
   }

@@ -1,12 +1,15 @@
-# My NixOS configuration files
+# My NixOS configuration
 
-My minimalist NixOS configuration files, managed with Flakes and home-manager. I do _not_ recommend using this as a base
-for your own configuration as it has been exclusively configured for my own needs, but feel free to take inspiration
-from it.
+My minimalist NixOS configuration files, managed with Flakes and Home Manager. I do _not_ recommend using this as a base
+for your own configuration as it has been exclusively configured for my own needs, but if you're a noob like me, you may
+take inspiration from it.
 
 > [!NOTE]
 > This is a single user, multi system configuration. Only Wayland with Hyprland (see screenshots below) and Gnome have
 > been configured and can be toggled between.
+
+...but what is NixOS? It's a Linux distribution that allows for declarative and reproducible system configuration.
+See [https://nixos.org/](https://nixos.org) for more information.
 
 ## Screenshots
 
@@ -15,9 +18,9 @@ from it.
 
 ## How to use
 
-### Preparation
+#### Preparation
 
-1. Follow official guides to prepare your HDD and boot NixOS e.g. from a USB.
+1. Follow official guides to prepare your HDD and install NixOS e.g. from a USB.
 2. Clone this repository and move your existing `hardware-configuration.nix` file to `/hosts/{your host}/`.
 3. Copy `home.nix` and `configuration.nix` from an existing host to begin with, unless you have your own already.
 4. Create a copy of the file `/users/user-template.nix` in the same folder and name it `user.nix`.
