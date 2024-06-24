@@ -14,11 +14,23 @@ from it.
 
 ## How to use
 
-> [!IMPORTANT]
-> Open the file `./modules/controls/user-template.nix` and follow the instructions before continuing.
+### Preparation
 
-Once you've created your own `user.nix` file, and assuming you've already got a `hardware-configuration.nix` file, you 
-can now build the system.
+1. Follow official guides to prepare your HDD and boot NixOS e.g. from a USB.
+2. Clone this repository and move the `hardware-configuration.nix` file to `/hosts/{your host}/`.
+3. Create a copy of the file `/modules/controls/user-template.nix` in the folder `/host/{your host}/` and name
+   it `user.nix`.
+4. Complete the `user.nix` file with your own configurations.
+5. Run the following commands from `/host/{your host}/`:
+   ```shell
+   git add --intent-to-add user.nix
+   git update-index --assume-unchanged user.nix   
+   ```
+   This will prevent you from accidentally committing your user configurations while stopping the
+   nasty `No such file or directory` error.
+
+Once you've created your own `user.nix` file, and assuming you've already got a `hardware-configuration.nix` file, you
+can build the system.
 
 #### Build
 
