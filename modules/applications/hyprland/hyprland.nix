@@ -158,6 +158,8 @@ in {
           "float,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "center,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "float,title:^(Welcome to JetBrains Rider)$"
+          "float,title:^(Welcome to WebStorm)$"
+          "float,title:^(Welcome to IntelliJ.*)$"
         ];
         windowrule = [
           "forceinput,title:^(JetBrains Toolbox)$"

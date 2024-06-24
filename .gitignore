@@ -2,6 +2,4 @@
 .vscode/
 assets/configs/gnome/dconf-raw.nix
 assets/configs/gnome/dconf.settings
-controls/user-settings.nix
-hosts/default/user.nix
-hosts/*/user.nix
+hosts/**/user.nix

@@ -99,6 +99,7 @@
   home.sessionVariables = {
     "NIX_FOLDER" = "${userSettings.targetDirectory}";
     "NIX_PROJECT_FOLDER" = "${userSettings.baseDirectory}";
+    "NIX_USER" = "${userSettings.user}";
   };
 
   # Gnome dconf settings
