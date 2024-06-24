@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  userSettings,
   ...
 }: let
   cfg = config.de-hyprland;
@@ -16,6 +17,6 @@ in {
     programs.xfconf.enable = true; # Xfce configuration to allow storing preferences
     services.tumbler.enable = true; # Thumbnail support for images
     services.gvfs.enable = true; # Mount, trash, and other functionalities
-    services.getty.autologinUser = config.userSettings.user; # Auto-login user
+    services.getty.autologinUser = userSettings.user; # Auto-login user
   };
 }

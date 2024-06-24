@@ -1,11 +1,12 @@
 # My NixOS configuration files
 
-My minimalist NixOS configuration files, managed with flakes and home-manager. I do _not_ recommend using this as a base
+My minimalist NixOS configuration files, managed with Flakes and home-manager. I do _not_ recommend using this as a base
 for your own configuration as it has been exclusively configured for my own needs, but feel free to take inspiration
 from it.
 
 > [!NOTE]
-> Only Gnome and Wayland with Hyprland (see screenshots below) are configured and can be toggled between.
+> This is a single user, multi system configuration. Only Wayland with Hyprland (see screenshots below) and Gnome have
+> been configured and can be toggled between.
 
 ## Screenshots
 
@@ -18,25 +19,24 @@ from it.
 
 1. Follow official guides to prepare your HDD and boot NixOS e.g. from a USB.
 2. Clone this repository and move your existing `hardware-configuration.nix` file to `/hosts/{your host}/`.
-3. Copy `home.nix` and `configuration.nix` from an existing host to begin with.
-4. Create a copy of the file `/modules/controls/user-template.nix` in the folder `/host/{your host}/` and name
-   it `user.nix`.
-5. Complete the `user.nix` file with your own configurations.
-6. Run the following commands from `/host/{your host}/`:
+3. Copy `home.nix` and `configuration.nix` from an existing host to begin with, unless you have your own already.
+4. Create a copy of the file `/users/user-template.nix` in the same folder and name it `user.nix`.
+5. Complete the `user.nix` file with your own details.
+6. Run the following commands:
    ```shell
+   cd users
    git rm --cached user.nix # If you've already added it
    git add --intent-to-add user.nix
    git update-index --assume-unchanged user.nix   
    ```
    This will prevent you from accidentally committing your user configurations while stopping the
    nasty `No such file or directory` error.
-7. Open `flake.nix` and create new `nixosConfigurations` and `homeConfigurations` entries for your host or
-   replace `hostName` with your host name from `user.nix`.
-8. Build the system.
+7. Build the system.
 
 #### Build
 
-The below assumes that this repo is cloned to `~/projects/nixos-config` and have replaced the `hostName` in `flake.nix`.
+The below assumes that this repo is cloned to `~/projects/nixos-config`. If that's not the case, replace the path
+accordingly.
 
 ```shell
 nixos-rebuild switch --flake ~/projects/nixos-config#default

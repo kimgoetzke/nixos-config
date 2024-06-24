@@ -3,15 +3,13 @@
   pkgs,
   lib,
   inputs,
+  userSettings,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default # TODO: Replace with a conditional import
     ./../../modules/hardware/blade.nix
-    (import ./user.nix {userSettings = config.userSettings;})
-    ./../../modules/controls/user-settings.nix
-    ./../../modules/desktop/_all.nix
+    (import ./../../modules/desktop/_all.nix { inherit config pkgs lib inputs userSettings; })
   ];
 
   # Boot loader
@@ -20,7 +18,7 @@
 
   # Networking
   networking.networkmanager.enable = true;
-  networking.hostName = config.userSettings.hostName;
+  networking.hostName = userSettings.hostName;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Time zone, locale, keymap
@@ -71,16 +69,16 @@
   };
 
   # Main user account
-  users.users.${config.userSettings.user} = {
+  users.users.${userSettings.user} = {
     isNormalUser = true;
-    description = config.userSettings.userName;
+    description = userSettings.userName;
     extraGroups = ["networkmanager" "wheel" "docker"];
-    shell = pkgs.${config.userSettings.defaultShell};
+    shell = pkgs.${userSettings.defaultShell};
   };
 
   # Environment variables
   environment.sessionVariables = {
-    FLAKE = "${config.userSettings.baseDirectory}";
+    FLAKE = "${userSettings.baseDirectory}";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
     WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
   };
@@ -89,8 +87,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # Desktop environment
-  de-gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
-  de-hyprland.enable = config.userSettings.desktopEnvironments.isHyprlandEnabled;
+  de-gnome.enable = userSettings.desktopEnvironments.isGnomeEnabled;
+  de-hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
 
   # System profile packages
   environment.systemPackages = with pkgs;
@@ -105,30 +103,30 @@
       xorg.xev # Input event listener for X
       lshw # Tool to list hardware
     ]
-    ++ lib.optionals config.userSettings.desktopEnvironments.isGnomeEnabled [
+    ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
     ]
-    ++ lib.optionals config.userSettings.desktopEnvironments.isHyprlandEnabled [
+    ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
     ];
 
   # Shell
-  programs.zsh.enable = config.userSettings.shells.isZshEnabled;
+  programs.zsh.enable = userSettings.shells.isZshEnabled;
 
   # Docker
   virtualisation.docker = {
-    enable = config.userSettings.isDockerEnabled;
+    enable = userSettings.isDockerEnabled;
   };
 
   # Home manager
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
-      userSettings = config.userSettings;
+      userSettings = userSettings;
     };
     backupFileExtension = "0001";
-    users.${config.userSettings.user} = {
+    users.${userSettings.user} = {
       imports = [./home.nix];
     };
   };
@@ -149,15 +147,15 @@
 
   # Stylix
   stylix = {
-    # TODO: Find out why 'image = config.userSettings.wallpaper' doesn't work and then fix the below
+    # TODO: Find out why 'image = userSettings.wallpaper' doesn't work and then fix the below
     image = ./../../assets/images/wallpaper_abstract_nord4x.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts.sizes.terminal = 16;
     opacity.terminal =
-      if config.userSettings.desktopEnvironments.isHyprlandEnabled
+      if userSettings.desktopEnvironments.isHyprlandEnabled
       then 0.6
       else 1.0;
-    targets.gnome.enable = config.userSettings.desktopEnvironments.isGnomeEnabled;
+    targets.gnome.enable = userSettings.desktopEnvironments.isGnomeEnabled;
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
