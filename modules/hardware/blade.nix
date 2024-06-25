@@ -45,33 +45,10 @@
 
       prime = {
         sync.enable = true;
-        amdgpuBusId = "PCI:0:1:0";
-        nvidiaBusId = "PCI:0:4:0";
-        # TODO: Find out the real values from output below, complete them, and enable NIVIDA setup for laptop
-        #  *-display
-        #       description: amdgpudrmfb
-        #       product: nouveaudrmfb
-        #       physical id: 0
-        #       bus info: pci@0000:01:00.0
-        #       logical name: /dev/fb1
-        #       logical name: /dev/fb0
-        #       version: a1
-        #       width: 64 bits
-        #       clock: 33MHz
-        #       capabilities: pm msi pciexpress bus_master cap_list rom fb
-        #       configuration: depth=32 driver=nouveau latency=0 mode=2560x1440 resolution=2560,1440 visual=truecolor xres=2560 yres=1440
-        #       resources: iomemory:f80-f7f iomemory:fc0-fbf irq:92 memory:fb000000-fbffffff memory:f800000000-fbffffffff memory:fc00000000-fc01ffffff ioport:f000(size=128) memory:fc000000-fc07ffff
-        #  *-display
-        #       product: amdgpudrmfb
-        #       physical id: 0
-        #       bus info: pci@0000:04:00.0
-        #       logical name: /dev/fb0
-        #       version: c4
-        #       width: 64 bits
-        #       clock: 33MHz
-        #       capabilities: pm pciexpress msi msix bus_master cap_list fb
-        #       configuration: depth=32 driver=amdgpu latency=0 resolution=2560,1440
-        #       resources: iomemory:fc0-fbf iomemory:fc0-fbf irq:41 memory:fc10000000-fc1fffffff memory:fc20000000-fc201fffff ioport:e000(size=256) memory:fc500000-fc57ffff
+
+        # Get your bus IDs by running this: nix shell nixpkgs#pciutils -c lspci | grep ' VGA '"
+        amdgpuBusId = "PCI:4:0:0";
+        nvidiaBusId = "PCI:1:0:0";
       };
     };
   };

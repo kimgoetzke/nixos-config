@@ -8,7 +8,9 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    (import ./../../modules/desktop/_all.nix { inherit config pkgs lib inputs userSettings; })
+    ./../../modules/hardware/_all.nix
+    ./../../modules/modes/_all.nix
+    (import ./../../modules/desktop/_all.nix {inherit config pkgs lib inputs userSettings;})
   ];
 
   # Boot loader
@@ -56,6 +58,9 @@
     opengl.enable = true;
     bluetooth.enable = true;
   };
+
+  # Modes
+  gaming.enable = userSettings.modes.isGamingEnabled;
 
   # Enable sound with pipewire
   hardware.pulseaudio.enable = false;

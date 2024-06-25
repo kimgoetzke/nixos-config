@@ -18,4 +18,5 @@
   desktopEnvironments.isGnomeEnabled = false;
   desktopEnvironments.isHyprlandEnabled = true;
   isDockerEnabled = true;
+  modes.isGamingEnabled = false;
 }
