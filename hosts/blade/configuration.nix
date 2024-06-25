@@ -16,6 +16,7 @@
   # Boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  system.nixos.label = ""; # Removes label so there's enough space to see "built on" in boot loader
 
   # Networking
   networking.networkmanager.enable = true;

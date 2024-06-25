@@ -65,7 +65,7 @@ in {
           "browser.download.useDownloadDir" = false;
 
           # Extensions
-          # TODO: If theme setting above doesn't work, try something like this
+          # TODO: ..and if theme setting above doesn't work, try something like this
           # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
 
           # Prevent WebRTC leaking IP address

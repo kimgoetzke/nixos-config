@@ -11,7 +11,6 @@
 
   config = lib.mkIf config.waybar.enable {
     stylix.targets.waybar.enable = false;
-    # TODO: Show time/date and battery/percentage in two rows each
     programs.waybar = {
       enable = true;
       systemd.enable = true;
@@ -90,7 +89,7 @@
               default = ["󰕿" "󰖀" "󰕾"];
             };
           };
-          # TODO: Allow turning bluetooth off here, add  tooltip and better formatting
+          # TODO: Allow turning bluetooth off here with middle mouse click
           "bluetooth" = {
             format = "";
             format-connected = " {num_connections} connected";
