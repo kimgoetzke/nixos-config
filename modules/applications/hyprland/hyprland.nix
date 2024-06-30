@@ -20,6 +20,7 @@ in {
     (import ./cliphist.nix {inherit config pkgs lib userSettings;})
     (import ./hyprlock.nix {inherit config pkgs lib userSettings;})
     ./scripts.nix
+    ./kanshi.nix
   ];
 
   config = lib.mkIf cfg.enable {
@@ -28,6 +29,7 @@ in {
     mako.enable = true;
     cliphist.enable = true;
     hyprlock.enable = true;
+    kanshi.enable = false;
 
     home.packages = with pkgs; [
       swww
@@ -71,13 +73,13 @@ in {
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          "sleep 10 && ${userSettings.targetDirectory}/reload-ui.sh"
+          "sleep 10 && ${userSettings.targetDirectory}/toggle-ui.sh"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,preferred,3700x-840,1"
-          "eDP-1,1920x1080,4000x600,1"
+          "eDP-1,preferred,4000x600,1"
           ",preferred,0x0,1"
         ];
         workspace = [
@@ -185,8 +187,9 @@ in {
           [
             # General
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
-            "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
+            "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/toggle-ui.sh"
             "$mainMod, K, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
+            "$mainMod, page_down, exec, ${userSettings.targetDirectory}/main-monitor-detector.sh"
             # TODO: Try again after updating because 'sendshortcut' doesn't exist yet
             #"code:108, code:22, sendshortcut, end"
             #"Mod5, code:22, sendshortcut, end"

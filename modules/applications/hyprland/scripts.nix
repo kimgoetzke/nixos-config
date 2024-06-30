@@ -43,16 +43,15 @@
   };
 
   # Reload UI ----------------------------------------------------------------------------------------------------------
-  home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
+  home.file."${userSettings.relativeTargetDirectory}/toggle-ui.sh" = {
     text = ''
       #!/usr/bin/env bash
-      pkill waybar
-      hyprctl reload
-
-      if [[ $USER == "${userSettings.user}" ]]; then
-          waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
+      if pgrep waybar > /dev/null; then
+        pkill waybar
+        hyprctl reload
       else
-        waybar &
+        hyprctl reload
+        waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
       fi
     '';
     executable = true;
@@ -80,6 +79,29 @@
       if [[ $CMD == exec* ]]; then
           eval "$CMD $ARGUMENT"
       fi
+    '';
+    executable = true;
+  };
+
+  # Main monitor detector ----------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/main-monitor-detector.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+      INPUT_INFO=$(hyprctl monitors all)
+      MONITOR_1="GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
+      MONITOR_2="GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
+      CONNECTED_MONITOR_INFO=$(echo "$INPUT_INFO" | grep -e "$MONITOR_1" -e "$MONITOR_2" -m 1)
+
+      if [ -z "$CONNECTED_MONITOR_INFO" ]; then
+          CONNECTED_MONITOR="eDP-1"
+          CONNECTED_PORT="eDP-1"
+      else
+          CONNECTED_MONITOR=$(echo "$CONNECTED_MONITOR_INFO" | grep -oP '(?<=description: ).*')
+          #CONNECTED_PORT=$(echo "$INPUT_INFO" | grep -oP '(?<=Monitor ).*(?= \()')
+      fi
+
+      notify-send "Connected main monitor: $CONNECTED_MONITOR"
+      #notify-send "Connected port: $CONNECTED_PORT"
     '';
     executable = true;
   };
