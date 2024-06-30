@@ -20,7 +20,7 @@
       text = ''
         #!/usr/bin/env bash
         if [[ "$1" == "open" ]]; then
-          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -100; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist decode | wl-copy
+          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist decode | wl-copy
         fi
 
         if [[ "$1" == "wipe" ]]; then
@@ -29,7 +29,7 @@
         fi
 
         if [[ "$1" == "remove" ]]; then
-          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -100; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist delete
+          cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist delete
           notify-send "   Removed selected item from clipboard history"
         fi
       '';

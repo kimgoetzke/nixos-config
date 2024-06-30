@@ -34,7 +34,7 @@
           margin-down = 0;
           modules-left = ["group/hardware"];
           modules-center = ["hyprland/workspaces"];
-          modules-right = ["tray" "group/right"];
+          modules-right = ["tray" "custom/cliphist" "group/right"];
           "group/hardware" = {
             orientation = "horizontal";
             modules = [
@@ -42,18 +42,18 @@
               "memory"
               "backlight"
               "pulseaudio"
+              "network"
               "bluetooth"
             ];
           };
           "network" = {
-            # Currently not show
             interface = "wlp2*";
-            format-wifi = "󰤨  {essid} ({signalStrength}%)";
+            format-wifi = "󰤨  {signalStrength}%";
             format-ethernet = "{ipaddr}/{cidr} 󰈀";
-            tooltip-format = "{ifname} via {gwaddr} 󰩟";
-            format-linked = "{ifname} (No IP) 󰩟";
-            format-disconnected = "󰤫";
-            # on-click = "killall connman-gtk || connman-gtk;sudo ydotool click 0xc1";
+            tooltip-format = "{essid}: {ifname} via {gwaddr} 󰩟\n\nClick to open nmtui.";
+            format-linked = "{essid} {ifname} (No IP) 󰩟";
+            format-disconnected = "󰤭 ";
+            on-click = "alacritty -e nmtui";
           };
           "cpu" = {
             interval = 10;
@@ -66,7 +66,7 @@
           "backlight" = {
             format = "{icon}  {percent}%";
             format-icons = ["󰃞" "󰃟" "󰖨"];
-            tooltip-format = "Backlight at {percent}%";
+            tooltip-format = "Backlight at {percent}%\n\nScroll to change brightness.";
           };
           "pulseaudio" = {
             format = "{icon} {volume}%";
@@ -98,7 +98,7 @@
             interval = 30;
             on-click = "blueman-manager";
             format-no-controller = "";
-            tooltip-format = "Currently, {num_connections} devices are connected to '{controller_alias}'.";
+            tooltip-format = "{num_connections} devices are currently connected to '{controller_alias}'.\n\nClick to open blueman-manager.";
             tooltip-format-connected = "Controller '{controller_alias}' has the following {num_connections} devices connected:\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias} ({device_address})";
             tooltip-format-enumerate-connected-battery = "{device_alias} ({device_address}) {device_battery_percentage}% battery";
@@ -126,7 +126,6 @@
           "group/right" = {
             orientation = "horizontal";
             modules = [
-              "custom/cliphist"
               "battery"
               "clock"
               "custom/exit"
@@ -137,7 +136,7 @@
             on-click = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh open";
             on-click-middle = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh wipe";
             on-click-right = "sleep 0.1 && ${userSettings.targetDirectory}/cliphist-helper.sh remove";
-            tooltip-format = "Cliphist\n\n<small>Click to open and select to copy to clipboard, middle click to wipe entire history, and right click to open menu in order to remove a single item.</small>";
+            tooltip-format = "Cliphist\n\n<small>Click to open and select to copy to clipboard, middle click to\nwipe entire history, and right click to open menu in order to\nremove a single item.</small>";
           };
           "battery" = {
             "states" = {
@@ -152,7 +151,9 @@
             format-icons = ["" "" "" "" ""];
           };
           "clock" = {
-            format = "<big>      <b>{:%H:%M</b></big>\n<small>󰃮  %d %h %Y</small>}";
+            #format = "<big>      <b>{:%H:%M</b></big>\n<small>󰃮  %d %h %Y</small>}"; # Time in row one, date in row two; suggested height = 45
+            format = "<big><b>{:%H:%M}</b></big>";
+            format-alt = "<big><b>󰃮  {:%d %h %Y}</b></big>";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";

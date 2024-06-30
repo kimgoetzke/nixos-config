@@ -1,5 +1,5 @@
 * {
-    font-family: DejaVu Sans, JetBrainsMono Nerd Font, sans-serif;
+    font-family: JetBrainsMono Nerd Font, sans-serif;
     font-size: 15px;
     color: @base05;
     background: transparent;
@@ -107,7 +107,23 @@ tooltip {
     transition: all 200ms ease-in-out;
 }
 
-#custom-cliphist,
+#custom-cliphist {
+    padding-left: 13px;
+    padding-right: 17px;
+    margin-right: 5px;
+    border: 3 solid @base05;
+    border-radius: 100px;
+    color: @base05;
+    background: @base0D;
+}
+
+#custom-cliphist:hover {
+    background: @base0A;
+    color: @base00;
+    border: 3 solid @base05;
+    transition: all 200ms ease-in-out;
+}
+
 #custom-exit {
     padding-left: 13px;
     padding-right: 17px;
@@ -117,7 +133,6 @@ tooltip {
     background: @base0D;
 }
 
-#custom-cliphist:hover,
 #custom-exit:hover {
     background: @base0A;
     color: @base00;
@@ -135,7 +150,6 @@ tooltip {
 #battery {
     padding-left: 17px;
     padding-right: 17px;
-    margin-left: 5px;
     margin-right: 5px;
     color: @base00;
 }

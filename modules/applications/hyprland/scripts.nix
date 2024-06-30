@@ -9,7 +9,7 @@
   home.file."${userSettings.relativeTargetDirectory}/power-menu.sh" = {
     text = ''
       #!/bin/sh
-      # Inspired by https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu!
+      # Thank you, Eric Murphy! See: https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
       CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -10; } inputbar { children: [textbox-prompt-colon, entry]; }")
 
@@ -28,8 +28,8 @@
   home.file."${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh" = {
     text = ''
       #!/usr/bin/env bash
-      # Thanks to https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/!
-      notify-send "󱠡  Ciao, ciao and goodbye"
+      # Thank you, u/timblaktu! See: https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/
+      notify-send "Ciao, ciao 󱠡 "
 
       # Close all client windows (required for graceful exit since many apps aren't good SIGNAL citizens)
       HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
@@ -62,7 +62,7 @@
   home.file."${userSettings.relativeTargetDirectory}/hyprland-keybindings.sh" = {
     text = ''
       #!/usr/bin/env bash
-      # Thanks to https://github.com/jason9075/rofi-hyprland-keybinds-cheatsheet!
+      # Thank you, Jason Kuan! See: https://github.com/jason9075/rofi-hyprland-keybinds-cheatsheet
       HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
 
       # Extract the keybinding from hyprland.conf
