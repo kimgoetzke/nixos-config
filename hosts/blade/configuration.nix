@@ -116,6 +116,7 @@
       gnomeExtensions.space-bar
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
+      wdisplays
     ];
 
   # Shell
