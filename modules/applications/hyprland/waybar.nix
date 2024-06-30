@@ -24,7 +24,7 @@
         + builtins.readFile ./../../../assets/configs/hyprland/waybar-style.css;
       settings = [
         {
-          output = ["eDP-1" "DP-1"];
+          output = ["eDP-1" "DP-1" "HDMI-A-1"];
           layer = "top";
           height = 45;
           spacing = 5;
