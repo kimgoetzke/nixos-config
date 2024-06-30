@@ -59,9 +59,12 @@
             interval = 10;
             format = "   {usage:d}%";
             max-length = 10;
+            on-click = "alacritty -e btop";
           };
           "memory" = {
             format = "   {percentage}%";
+            tooltip-format = "{used:0.1f}GiB used\n\nClick to open btop.";
+            on-click = "alacritty -e btop";
           };
           "backlight" = {
             format = "{icon}  {percent}%";

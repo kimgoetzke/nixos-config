@@ -62,6 +62,12 @@
   java.enable = true;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   programs.home-manager.enable = true;
+  programs.btop = {
+    enable = true;
+    settings = {
+      theme_background = false;
+    };
+  };
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
