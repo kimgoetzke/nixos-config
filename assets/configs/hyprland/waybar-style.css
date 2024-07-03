@@ -188,14 +188,12 @@ tooltip label {
 }
 
 #battery.warning:not(.charging) {
-    margin-left: 5px;
     background-color: @base09;
     border-radius: 100px;
     color: @base00;
 }
 
 #battery.critical:not(.charging) {
-    margin-left: 5px;
     border-radius: 100px;
     background-color: @base08;
     color: @base05;
