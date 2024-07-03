@@ -73,7 +73,7 @@ in {
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          "sleep 10 && ${userSettings.targetDirectory}/toggle-ui.sh"
+          "sleep 10 && ${userSettings.targetDirectory}/toggle-ui.sh && sleep 0.5 && ${userSettings.targetDirectory}/toggle-ui.sh"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"

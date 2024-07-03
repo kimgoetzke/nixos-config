@@ -13,8 +13,9 @@ See [https://nixos.org/](https://nixos.org) for more information.
 
 ## Screenshots
 
-![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 1](./assets/demo/screenshot-1.png)
+![Screenshots 2](./assets/demo/screenshot-2.png)
+![Screenshots 3](./assets/demo/screenshot-3.png)
 
 ## How to use
 

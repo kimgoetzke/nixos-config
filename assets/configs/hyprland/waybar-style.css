@@ -1,7 +1,7 @@
 * {
     font-family: JetBrainsMono Nerd Font, sans-serif;
     font-size: 15px;
-    color: @base05;
+    color: @base00;
     background: transparent;
 }
 
@@ -51,7 +51,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    color: @base00;
+    color: @base06;
     background: @base0A;
 }
 
@@ -65,11 +65,21 @@ tooltip {
     margin: 5px;
 }
 
-#hardware,
+tooltip label {
+    color: @base06;
+}
+
+#hardware {
+    opacity: 0.9;
+    background: transparent;
+    border: 3px solid transparent;
+    border-radius: 100px;
+}
+
 #right {
     opacity: 0.9;
-    background: @base05;
-    border: 3px solid @base05;
+    background: @base00;
+    border: 3px solid @base00;
     border-radius: 100px;
 }
 
@@ -86,7 +96,7 @@ tooltip {
     padding-left: 13px;
     padding-right: 13px;
     border: 3px solid transparent;
-    color: @base00;
+    color: @base06;
 }
 
 #bluetooth.connected {
@@ -127,9 +137,9 @@ tooltip {
 #custom-exit {
     padding-left: 13px;
     padding-right: 17px;
-    border: 0 solid @base05;
+    border: 0 solid @base00;
     border-radius: 100px;
-    color: @base05;
+    color: @base00;
     background: @base0D;
 }
 
@@ -142,8 +152,8 @@ tooltip {
 
 @keyframes blink {
     to {
-        background-color: @base05;
-        color: @base00;
+        background-color: @base00;
+        color: @base06;
     }
 }
 
@@ -151,7 +161,7 @@ tooltip {
     padding-left: 17px;
     padding-right: 17px;
     margin-right: 5px;
-    color: @base00;
+    color: @base06;
 }
 
 #clock {
@@ -160,8 +170,8 @@ tooltip {
     padding-right: 15px;
     margin-right: 5px;
     color: @base0F;
-    /*font-weight: bold;*/
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 #battery:hover,
