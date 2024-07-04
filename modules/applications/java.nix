@@ -10,6 +10,7 @@ in {
     enable = lib.mkEnableOption "Enable packages for Java development";
   };
 
+  # TODO: Create dev shell + alias for Java development
   config = lib.mkIf cfg.enable {
     programs.java = {
       enable = true;

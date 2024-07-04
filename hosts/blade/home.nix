@@ -59,7 +59,7 @@
   firefox.withProfile = true;
   alacritty.enable = true;
   git.enable = true;
-  java.enable = true;
+  java.enable = false;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   programs.home-manager.enable = true;
   programs.btop = {
