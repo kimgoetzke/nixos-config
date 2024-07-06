@@ -92,6 +92,8 @@
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
+    "rustshell" = "nix-shell ${userSettings.baseDirectory}/shells/rust.nix";
+    "dotnetshell" = "nix-shell ${userSettings.baseDirectory}/shells/dotnet.nix";
   };
 
   # Move all relevant assets to home directory for use anywhere
