@@ -73,7 +73,7 @@ in {
           "mako"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
-          "sleep 10 && ${userSettings.targetDirectory}/toggle-ui.sh && sleep 0.5 && ${userSettings.targetDirectory}/toggle-ui.sh"
+          "sleep 10 && ${userSettings.targetDirectory}/reload-ui.sh"
         ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -186,11 +186,12 @@ in {
         bind =
           [
             # General
+            "$mainMod SHIFT, F1, exec, ${userSettings.targetDirectory}/main-monitor-detector.sh"
+            "$mainMod SHIFT, F2, exec, wdisplays"
             "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
-            "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/toggle-ui.sh"
+            "$mainMod SHIFT, F4, exec, ${userSettings.targetDirectory}/toggle-performance-mode.sh"
+            "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
             "$mainMod, K, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
-            "$mainMod, page_down, exec, ${userSettings.targetDirectory}/main-monitor-detector.sh"
-            "$mainMod, page_up, exec, wdisplays"
             # TODO: Try again after updating because 'sendshortcut' doesn't exist yet
             #"code:108, code:22, sendshortcut, end"
             #"Mod5, code:22, sendshortcut, end"

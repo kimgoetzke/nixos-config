@@ -86,7 +86,7 @@
     # TODO: Figure out a way to set a better label for a generation (none of the below work)
     #nhs = "export NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" && nh os switch ~/projects/nixos-config -H default";
     #nhsl = "NIXOS_LABEL=\"$(date +%Y-%m-%d) $(date +%R)\" nh os switch ~/projects/nixos-config -H default";
-    nixsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
+    #nixsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     proper = "cd ~/projects && ls -1";
     anw = "alacritty msg create-window";
     ".." = "cd ..";

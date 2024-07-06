@@ -108,13 +108,13 @@
             tooltip-format-enumerate-connected-battery = "{device_alias} ({device_address}) {device_battery_percentage}% battery";
           };
           "gamemode" = {
-              format = "󰓅  {count}";
-              hide-not-running = true;
-              use-icon = false;
-              icon-spacing = 0;
-              icon-size = 0;
-              tooltip = true;
-              tooltip-format = "Applications running which are using this mode: {count}.";
+            format = "󰓅  {count}";
+            hide-not-running = true;
+            use-icon = false;
+            icon-spacing = 0;
+            icon-size = 0;
+            tooltip = true;
+            tooltip-format = "Applications running which are using this mode: {count}.";
           };
           "hyprland/workspaces" = {
             persistent-workspaces = {
