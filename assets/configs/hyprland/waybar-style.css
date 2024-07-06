@@ -92,11 +92,17 @@ tooltip label {
 #network,
 #pulseaudio,
 #memory,
-#bluetooth {
+#bluetooth,
+#gamemode {
     padding-left: 13px;
     padding-right: 13px;
     border: 3px solid transparent;
     color: @base06;
+}
+
+#gamemode label {
+    color: @base06;
+
 }
 
 #bluetooth.connected {
@@ -110,11 +116,17 @@ tooltip label {
 #network:hover,
 #pulseaudio:hover,
 #memory:hover,
-#bluetooth:hover{
+#bluetooth:hover,
+#gamemode:hover {
     color: @base00;
     background: @base0A;
     border-radius: 100px;
     transition: all 200ms ease-in-out;
+}
+
+#gamemode:hover label {
+    color: @base00;
+
 }
 
 #custom-cliphist {
