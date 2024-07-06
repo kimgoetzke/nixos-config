@@ -8,7 +8,7 @@ fo() {
   fi
 
   case "$1" in
-  "pro")
+  "pro" | "proper")
     cd "/home/$NIX_USER/projects/"
     ;;
   "home" | "kim")
@@ -21,7 +21,7 @@ fo() {
     cd "/home/$NIX_USER/Documents/NixOS/"
     ;;
   *)
-    echo "Error: Folder not recognised. Recognised files are: pro, home, nix/nixr, nixl."
+    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl."
     ;;
   esac
 }

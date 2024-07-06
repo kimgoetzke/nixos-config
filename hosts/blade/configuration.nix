@@ -79,7 +79,7 @@
   users.users.${userSettings.user} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "gamemode"];
     shell = pkgs.${userSettings.defaultShell};
   };
 
