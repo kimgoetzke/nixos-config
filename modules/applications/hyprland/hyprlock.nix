@@ -14,8 +14,8 @@
     services.hypridle.enable = true;
     services.hypridle.settings = {
       general = {
-        #ignore_dbus_inhibit = false;
-        #ignore_systemd_inhibit = false;
+        ignore_dbus_inhibit = false;
+        ignore_systemd_inhibit = false;
         lock_cmd = "pidof hyprlock || hyprlock";
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
