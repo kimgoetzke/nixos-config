@@ -101,6 +101,10 @@
     "rustshell" = "nix-shell ${userSettings.baseDirectory}/shells/rust.nix";
     "dotnetshell" = "nix-shell ${userSettings.baseDirectory}/shells/dotnet.nix";
     "jb" = "nohup jetbrains-toolbox &";
+    "rustrover" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover.sh . &";
+    "idea" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh . &";
+    "rider" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rider/bin/rider.sh . &";
+    "webstorm" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/webstorm/bin/webstorm.sh . &";
   };
 
   # Move all relevant assets to home directory for use anywhere
