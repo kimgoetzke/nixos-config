@@ -34,10 +34,11 @@
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
-        {
-          timeout = 1800; # 30min
-          on-timeout = "systemctl suspend";
-        }
+        # Temoorary disable suspend on timeout because external monitors won't wake up on-resume
+        #{
+        #  timeout = 1800; # 30min
+        #  on-timeout = "systemctl suspend";
+        #}
       ];
     };
     # TODO: Disable all other screens (also on lid close)
