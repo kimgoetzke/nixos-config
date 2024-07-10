@@ -90,7 +90,7 @@
     WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
   };
 
-  # Allow running unpatched binaries i.e. IDEs downloaded via JetBrains Toolbox instead of Nix
+  # Allow running unpatched dynamic binaries i.e. IDEs downloaded via JetBrains Toolbox instead of Nix
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
