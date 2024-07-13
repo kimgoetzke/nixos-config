@@ -10,10 +10,10 @@
   };
 
   config = lib.mkIf config.razer-blade.enable {
-    # See https://nixos.wiki/wiki/Hardware/Razer for some more information.
+    # See https://wiki.nixos.org/wiki/Hardware/Razer for some more information.
 
     # Enabled NVIDIA drivers
-    # See https://nixos.wiki/wiki/Nvidia for more information.
+    # See https://wiki.nixos.org/wiki/Nvidia for more information.
     hardware.opengl.enable = true;
     services.xserver.videoDrivers = ["nvidia"];
     hardware.nvidia = {
