@@ -42,7 +42,7 @@
   # Enable flake support
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Enable printing with auto-discovery (see https://nixos.wiki/wiki/Printing)
+  # Enable printing with auto-discovery (see https://wiki.nixos.org/wiki/Printing)
   services.printing = {
     enable = true;
     drivers = [pkgs.hplip]; # For HP printers only (magically works)
