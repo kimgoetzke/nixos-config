@@ -116,7 +116,7 @@
       _1password
       xorg.xev # Input event listener for X
       lshw # Tool to list hardware
-      bat
+      bat # Cat with syntax highlighting
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap

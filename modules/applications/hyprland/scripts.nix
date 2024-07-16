@@ -124,4 +124,9 @@
     '';
     executable = true;
   };
+
+  # Screenshot handler -------------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/screenshot-helper.sh" = {
+    source = ./../../../assets/scripts/screenshot-helper.sh;
+  };
 }
