@@ -125,6 +125,9 @@
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
       wdisplays
+      slurp # Tool to select regions on screen
+      grim # Tool to grap images from screen
+      satty # Screenshot annotation tool
     ];
 
   # Shell

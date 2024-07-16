@@ -154,7 +154,7 @@
           "battery" = {
             "states" = {
               good = 95;
-              warning = 30;
+              warning = 50;
               critical = 15;
             };
             bat = "BAT0";

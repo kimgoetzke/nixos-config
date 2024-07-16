@@ -170,6 +170,8 @@ in {
           "float,title:^(Welcome to JetBrains Rider)$"
           "float,title:^(Welcome to WebStorm)$"
           "float,title:^(Welcome to IntelliJ.*)$"
+          "float,title:^(Rusteroids)$"
+          "center,title:^(Rusteroids)$"
         ];
         windowrule = [
           "forceinput,title:^(JetBrains Toolbox)$"
@@ -215,7 +217,9 @@ in {
             "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
             "CONTROL SHIFT, bracketleft, exec, grimblast save active" # Active window
             "CONTROL SHIFT, bracketright, exec, grimblast save area" # Manually select
-            "$mainMod SHIFT, bracketright, exec, grimblast save area" # Manually select
+            "$mainMod SHIFT, P, exec, grim -g \"$(slurp -o -r -c '#b48ead00')\" - | satty --filename - --init-tool crop --output-filename ~/Pictures/$(date '+%Y%m%d-%H:%M:%S').png --early-exit" # Full screen and pipe into annotation tool
+            "$mainMod, bracketleft, exec, grim -g \"$(hyprctl clients -j | jq -r \".[] | select(.workspace.id == \"$(hyprctl activewindow -j | jq -r '.workspace.id')\\\)\"\"| jq -r \".at,.size\" | jq -s \"add\" | jq '_nwise(4)' | jq -r '\"\(.[0]),\(.[1]) \(.[2])x\(.[3])\"'| slurp -r -c '#b48eadff')\" - | satty --filename - --init-tool crop --output-filename ~/Pictures/$(date '+%Y%m%d-%H:%M:%S').png --early-exit" # Selected window and pipe into annotation tool
+            "$mainMod, bracketright, exec, grim -g \"$(slurp -d -c '#b48eadff')\" - | satty --filename - --init-tool crop --output-filename ~/Pictures/$(date '+%Y%m%d-%H:%M:%S').png --early-exit" # Manually select and pipe into annotation tool
 
             # Volume
             ",0x1008FF11, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
