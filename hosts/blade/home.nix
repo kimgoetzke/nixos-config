@@ -81,6 +81,7 @@
   home.shellAliases = {
     ls = "ls --color";
     c = "clear";
+    fi = "file";
     nht = "nh os test ${userSettings.baseDirectory} -H default";
     nhb = "nh os boot ${userSettings.baseDirectory} -H default";
     nhs = "nh os switch ${userSettings.baseDirectory} -H default";

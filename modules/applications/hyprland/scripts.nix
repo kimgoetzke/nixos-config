@@ -29,13 +29,13 @@
     text = ''
       #!/usr/bin/env bash
       # Thank you, u/timblaktu! See: https://www.reddit.com/r/hyprland/comments/12dhbuk/comment/jmjadmw/
-      notify-send "Ciao, ciao 󱠡 "
 
       # Close all client windows (required for graceful exit since many apps aren't good SIGNAL citizens)
       HYPRCMDS=$(hyprctl -j clients | jq -j '.[] | "dispatch closewindow address:\(.address); "')
       hyprctl --batch "$HYPRCMDS"
 
       # Let's go!
+      notify-send "󱠡  Ciao, ciao..."
       sleep 1
       shutdown now
     '';
@@ -52,6 +52,7 @@
     '';
     executable = true;
   };
+  home.shellAliases.reloadui = "./${userSettings.relativeTargetDirectory}/reload-ui.sh";
 
   # Toggle performance mmode -------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh" = {
@@ -75,6 +76,7 @@
     '';
     executable = true;
   };
+  home.shellAliases.toggleperformancemode = "./${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh";
 
   # Hyprland keybindings --------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/hyprland-keybindings.sh" = {
@@ -101,6 +103,7 @@
     '';
     executable = true;
   };
+  home.shellAliases.hyprlandkeybindings = "./${userSettings.relativeTargetDirectory}/hyprland-keybindings-ui.sh";
 
   # Main monitor detector ----------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/main-monitor-detector.sh" = {
@@ -124,9 +127,11 @@
     '';
     executable = true;
   };
+  home.shellAliases.mainmonitordetector = "./${userSettings.relativeTargetDirectory}/main-monitor-detector-ui.sh";
 
-  # Screenshot handler -------------------------------------------------------------------------------------------------
+  # Screenshot helper --------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/screenshot-helper.sh" = {
     source = ./../../../assets/scripts/screenshot-helper.sh;
   };
+  home.shellAliases.screenshothelper = "./${userSettings.relativeTargetDirectory}/screenshot-helper.sh";
 }
