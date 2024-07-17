@@ -33,7 +33,7 @@
       # Scripts
       (pkgs.writeShellScriptBin "kim" (builtins.readFile ./../../assets/scripts/kim.sh))
       (pkgs.writeShellScriptBin "file" (builtins.readFile ./../../assets/scripts/file.sh))
-      (pkgs.writeShellScriptBin "fo" (builtins.readFile ./../../assets/scripts/fo.sh))
+      (pkgs.writeShellScriptBin "folder" (builtins.readFile ./../../assets/scripts/folder.sh))
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       pkgs.gnome.gnome-tweaks

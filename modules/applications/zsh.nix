@@ -169,6 +169,11 @@ in {
             echo "Launching Hyprland..."
             dbus-run-session Hyprland
         fi
+
+        # Allow folder navigation with 'fo' using the 'folder' script
+        fo() {
+          cd "$(folder "$1")"
+        }
       '';
     };
   };
