@@ -23,6 +23,7 @@
     '';
     executable = true;
   };
+  home.shellAliases.powermenu = "${userSettings.targetDirectory}/power-menu.sh";
 
   # Shutdown gracefully ------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/shutdown-gracefully.sh" = {
@@ -41,6 +42,7 @@
     '';
     executable = true;
   };
+  home.shellAliases.shutdowngracefully = "${userSettings.targetDirectory}/shutdown-gracefully.sh";
 
   # Reload UI ----------------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
@@ -52,7 +54,7 @@
     '';
     executable = true;
   };
-  home.shellAliases.reloadui = "./${userSettings.relativeTargetDirectory}/reload-ui.sh";
+  home.shellAliases.reloadui = "${userSettings.targetDirectory}/reload-ui.sh";
 
   # Toggle performance mmode -------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh" = {
@@ -76,7 +78,7 @@
     '';
     executable = true;
   };
-  home.shellAliases.toggleperformancemode = "./${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh";
+  home.shellAliases.toggleperformancemode = "${userSettings.targetDirectory}/toggle-performance-mode.sh";
 
   # Hyprland keybindings --------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/hyprland-keybindings.sh" = {
@@ -103,7 +105,7 @@
     '';
     executable = true;
   };
-  home.shellAliases.hyprlandkeybindings = "./${userSettings.relativeTargetDirectory}/hyprland-keybindings-ui.sh";
+  home.shellAliases.hyprlandkeybindings = "${userSettings.targetDirectory}/hyprland-keybindings.sh";
 
   # Main monitor detector ----------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/main-monitor-detector.sh" = {
@@ -127,11 +129,11 @@
     '';
     executable = true;
   };
-  home.shellAliases.mainmonitordetector = "./${userSettings.relativeTargetDirectory}/main-monitor-detector-ui.sh";
+  home.shellAliases.mainmonitordetector = "${userSettings.targetDirectory}/main-monitor-detector.sh";
 
-  # Screenshot helper --------------------------------------------------------------------------------------------------
-  home.file."${userSettings.relativeTargetDirectory}/screenshot-helper.sh" = {
-    source = ./../../../assets/scripts/screenshot-helper.sh;
+  # Screeny ------------------------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/screeny.sh" = {
+    source = ./../../../assets/scripts/screeny.sh;
   };
-  home.shellAliases.screenshothelper = "./${userSettings.relativeTargetDirectory}/screenshot-helper.sh";
+  home.shellAliases.screeny = "${userSettings.targetDirectory}/screeny.sh";
 }

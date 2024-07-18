@@ -217,9 +217,9 @@ in {
             "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
             "CONTROL SHIFT, bracketleft, exec, grimblast save active" # Active window
             "CONTROL SHIFT, bracketright, exec, grimblast save area" # Manually select
-            "$mainMod, P, exec, ${userSettings.targetDirectory}/screenshot-helper.sh fullscreen" # Full screen and pipe into annotation tool
-            "$mainMod, bracketleft, exec, ${userSettings.targetDirectory}/screenshot-helper.sh window" # Selected window and pipe into annotation tool
-            "$mainMod, bracketright, exec, ${userSettings.targetDirectory}/screenshot-helper.sh area" # Manually select and pipe into annotation tool
+            "$mainMod, P, exec, ${userSettings.targetDirectory}/screeny.sh fullscreen" # Full screen and pipe into annotation tool
+            "$mainMod, bracketleft, exec, ${userSettings.targetDirectory}/screeny.sh window" # Selected window and pipe into annotation tool
+            "$mainMod, bracketright, exec, ${userSettings.targetDirectory}/screeny.sh area" # Manually select and pipe into annotation tool
 
             # Volume
             ",0x1008FF11, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"

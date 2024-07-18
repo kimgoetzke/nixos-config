@@ -128,6 +128,8 @@
       slurp # Tool to select regions on screen
       grim # Tool to grap images from screen
       satty # Screenshot annotation tool
+      wf-recorder # Screen recorder
+      ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
     ];
 
   # Shell
