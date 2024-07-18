@@ -53,6 +53,7 @@
   ];
 
   # Applications
+  # TODO: Move apps requiring config to their own file
   vscode.enable = true;
   vscode.withExtensions = true;
   firefox.enable = true;
@@ -73,6 +74,9 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
+  };
+  programs.mpv = {
+    enable = true;
   };
 
   # Shell

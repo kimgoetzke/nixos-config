@@ -207,6 +207,7 @@ in {
             "$mainMod, O, exec, obsidian"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
+            "$mainMod, K, exec, kooha" # Screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
             "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str \"window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }\" | cliphist decode | wl-copy"
@@ -217,9 +218,9 @@ in {
             "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
             "CONTROL SHIFT, bracketleft, exec, grimblast save active" # Active window
             "CONTROL SHIFT, bracketright, exec, grimblast save area" # Manually select
-            "$mainMod, P, exec, ${userSettings.targetDirectory}/screeny.sh fullscreen" # Full screen and pipe into annotation tool
-            "$mainMod, bracketleft, exec, ${userSettings.targetDirectory}/screeny.sh window" # Selected window and pipe into annotation tool
-            "$mainMod, bracketright, exec, ${userSettings.targetDirectory}/screeny.sh area" # Manually select and pipe into annotation tool
+            "$mainMod SHIFT, P, exec, ${userSettings.targetDirectory}/screeny.sh fullscreen" # Full screen and pipe into annotation tool
+            "$mainMod SHIFT, bracketleft, exec, ${userSettings.targetDirectory}/screeny.sh window" # Selected window and pipe into annotation tool
+            "$mainMod SHIFT, bracketright, exec, ${userSettings.targetDirectory}/screeny.sh area" # Manually select and pipe into annotation tool
 
             # Volume
             ",0x1008FF11, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"

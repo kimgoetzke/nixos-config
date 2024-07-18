@@ -117,6 +117,7 @@
       xorg.xev # Input event listener for X
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
+      kooha # GIF screen recorder
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xmodmap
