@@ -15,5 +15,7 @@
     ./bash.nix
     ./zsh.nix
     ./hyprland/hyprland.nix
+    ./direnv.nix
+    ./btop.nix
   ];
 }

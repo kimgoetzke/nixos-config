@@ -53,7 +53,6 @@
   ];
 
   # Applications
-  # TODO: Move apps requiring config to their own file
   vscode.enable = true;
   vscode.withExtensions = true;
   firefox.enable = true;
@@ -62,22 +61,10 @@
   git.enable = true;
   java.enable = false;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
+  btop.enable = true;
+  direnv.enable = true;
   programs.home-manager.enable = true;
-  programs.btop = {
-    enable = true;
-    settings = {
-      theme_background = false;
-    };
-  };
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
-  };
-  programs.mpv = {
-    enable = true;
-  };
+  programs.mpv.enable = true;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
