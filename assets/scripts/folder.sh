@@ -25,8 +25,8 @@ folder() {
     cd "/home/$NIX_USER/Documents/NixOS/"
     ;;
   "rustlings")
-    echo "/home/$NIX_USER/projects/rustlings/rustlings"
-    cd "/home/$NIX_USER/projects/rustlings/rustlings"
+    echo "/home/$NIX_USER/projects/rustlings/"
+    cd "/home/$NIX_USER/projects/rustlings/"
     ;;
   "rusteroids")
     echo "/home/$NIX_USER/projects/rusteroids"
