@@ -140,6 +140,7 @@ in {
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
+          tridactyl
         ];
       };
     };
