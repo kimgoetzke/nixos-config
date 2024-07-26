@@ -36,7 +36,7 @@ in {
       brightnessctl
       grimblast
       cliphist
-      polkit_gnome
+      polkit_gnome # A dbus session bus service used to bring up authentication dialogs
       xwaylandvideobridge
       wl-clipboard
       xfce.thunar

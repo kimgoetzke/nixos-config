@@ -11,6 +11,26 @@ take inspiration from it.
 ...but what is NixOS? It's a Linux distribution that allows for declarative and reproducible system configuration.
 See [https://nixos.org/](https://nixos.org) for more information.
 
+## Features
+
+- **Nix OS** with **Flakes** for system configurations
+- **Home Manager** for user configurations
+- **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
+- **Waybar** status bar with **mako** notifications
+- **Rofi** application launcher
+- **Hyprlock** and **Hypridle** for screen locking and idle management
+- **Alacritty** terminal emulator
+- **Firefox** web browser
+- **Zsh** shell
+- **VS Code** and **JetBrains Toolbox** for IDEs
+- **Docker** and **Postman** as web development tools
+- **Btop** system monitoring
+- **Cliphist** clipboard manager
+- **Mpv** media player
+- **Blueman** bluetooth manager
+- **Kooha** GIF screen recorder & **wf-recorder** MP4 screen recorder
+- **Satty** with **Slurp** and **Grim** for screenshots
+
 ## Screenshots
 
 ![Screenshots 1](./assets/demo/screenshot-1.png)

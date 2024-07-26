@@ -74,14 +74,15 @@
           };
           "pulseaudio" = {
             format = "{icon} {volume}%";
-            format-alt = "{format_source}";
+            # format-alt = "{format_source}";
             # format = "{icon} {volume}% {format_source}";
             format-bluetooth = "{volume}% 󰥰 {format_source}";
             format-bluetooth-muted = "󰟎 {format_source}";
             format-muted = "󰝟 {format_source}";
             format-source = "󰍬 {volume}%";
             format-source-muted = "󰍭";
-            tooltip-format = "{desc}\n\nClick to toggle between output/input, scroll to change volume.";
+            on-click = "alacritty -e pulsemixer";
+            tooltip-format = "{desc}\n\nClick to open pulsemixer, scroll to change volume.";
             "format-icons" = {
               headphone = "󰋋";
               hands-free = "󰋋";

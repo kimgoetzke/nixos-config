@@ -107,25 +107,26 @@
   # System profile packages
   environment.systemPackages = with pkgs;
     [
-      wget
+      unzip
       curl
       jq
       neofetch
       obsidian
       _1password-gui
       _1password
-      xorg.xev # Input event listener for X
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
       kooha # GIF screen recorder
+      pulsemixer # PulseAudio mixer and audio controller
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
+      xorg.xev # Input event listener for X
       xorg.xmodmap
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
-      wdisplays
+      wdisplays # GUI for on-the-fly display configuration
       slurp # Tool to select regions on screen
       grim # Tool to grap images from screen
       satty # Screenshot annotation tool
