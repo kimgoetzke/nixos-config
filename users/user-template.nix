@@ -10,7 +10,8 @@
   hostName = "nixos";
   baseDirectory = "/home/your_user/projects/nixos-config"; # Location of this repo, used by env vars and more
   relativeTargetDirectory = "/Documents/NixOS"; # Relative path from home/your_user where some assets are stored e.g. wallpaper
-  wallpaper = "/home/your_user/projects/nixos-config/assets/images/wallpaper_abstract_nord4x.png"; # Source file for your wallpaper
+  wallpaperPath = "/home/your_user/projects/nixos-config/assets/images"; # Source path for your wallpaper
+  wallpaperFile = "wallpaper_abstract_nord4x.png"; # Source file name
   defaultShell = "zsh";
   shells.isZshEnabled = true;
   shells.isBashEnabled = false;

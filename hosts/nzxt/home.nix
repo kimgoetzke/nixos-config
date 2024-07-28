@@ -92,7 +92,7 @@
   # Move all relevant assets to home directory for use anywhere
   home.file = {
     "${userSettings.relativeTargetDirectory}/wallpaper.png" = {
-      source = ./../../assets/images/wallpaper_abstract_nord4x.png;
+      source = ./../../assets/images/${userSettings.wallpaperFile};
     };
     "${userSettings.relativeTargetDirectory}/profile.png" = {
       source = ./../../assets/images/randy.png;

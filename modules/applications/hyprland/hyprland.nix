@@ -32,21 +32,21 @@ in {
     kanshi.enable = false;
 
     home.packages = with pkgs; [
-      swww
-      brightnessctl
-      grimblast
-      cliphist
+      swww # Wallpaper daemon
+      brightnessctl # Tool to control brightness
+      grimblast # Screenshot tool TODO: Remove once happy with grim + satty + screeny
       polkit_gnome # A dbus session bus service used to bring up authentication dialogs
       xwaylandvideobridge
-      wl-clipboard
-      xfce.thunar
-      mako
-      hypridle
-      libnotify
-      gvfs
-      hyprpicker
+      cliphist # Clipboard manager
+      wl-clipboard # Wayland clipboard manager, dependency of cliphist
+      # xfce.thunar # File manager
+      gvfs # Mount, trash, and other functionalities (for Thunar)
+      mako # Notification daemon
+      hypridle # Idle manager
+      libnotify # Notification daemon
+      hyprpicker # Colour picker
       nerdfonts
-      blueman
+      blueman # Bluetooth manager
     ];
 
     xdg.portal = {
@@ -159,25 +159,21 @@ in {
           "pin, title:^(firefox)$, title:^(Picture-in-Picture)$"
           "float, title:^(Save File)$"
           "pin, title:^(Save File)$"
-          "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-          "noanim,class:^(xwaylandvideobridge)$"
-          "noinitialfocus,class:^(xwaylandvideobridge)$"
-          "maxsize 1 1,class:^(xwaylandvideobridge)$"
-          "noblur,class:^(xwaylandvideobridge)$"
-          "tile,class:^(Asperite.*)$,title:^(Aseprite.*)$"
-          "float,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
-          "center,class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
-          "float,title:^(Welcome to JetBrains Rider)$"
-          "float,title:^(Welcome to WebStorm)$"
-          "float,title:^(Welcome to IntelliJ.*)$"
-          "float,title:^(Rusteroids)$"
-          "center,title:^(Rusteroids)$"
-        ];
-        windowrule = [
-          "forceinput,title:^(JetBrains Toolbox)$"
-          "nofocus,title:^(JetBrains Toolbox)$"
-          "float,title:^(JetBrains Toolbox)$"
-          "center,jetbrains-toolbox"
+          "opacity 0.0 override 0.0 override, class:^(xwaylandvideobridge)$"
+          "noanim, class:^(xwaylandvideobridge)$"
+          "noinitialfocus, class:^(xwaylandvideobridge)$"
+          "maxsize 1 1, class:^(xwaylandvideobridge)$"
+          "noblur, class:^(xwaylandvideobridge)$"
+          "tile, class:^(Asperite.*)$,title:^(Aseprite.*)$"
+          "float, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
+          "center, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
+          "float, title:^(Welcome to JetBrains Rider)$"
+          "float, title:^(Welcome to WebStorm)$"
+          "float, title:^(Welcome to IntelliJ.*)$"
+          "float, title:^(Rusteroids)$"
+          "center, title:^(Rusteroids)$"
+          "float, title:^(JetBrains Toolbox)$"
+          "center, title:^(JetBrains Toolbox)$"
         ];
         layerrule = [
           "blur, notifications"
@@ -194,9 +190,6 @@ in {
             "$mainMod SHIFT, F4, exec, ${userSettings.targetDirectory}/toggle-performance-mode.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
             "$mainMod SHIFT, K, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
-            # TODO: Try again after updating because 'sendshortcut' doesn't exist yet
-            #"code:108, code:22, sendshortcut, end"
-            #"Mod5, code:22, sendshortcut, end"
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
@@ -207,7 +200,7 @@ in {
             "$mainMod, O, exec, obsidian"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod, K, exec, kooha" # Screen recorder
+            "$mainMod, K, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
             "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str \"window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }\" | cliphist decode | wl-copy"
@@ -233,7 +226,7 @@ in {
 
             # Lock screen
             ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
-            "$mainMod, L, exec, pidof hyprlock || hyprlock"
+            "$mainMod, L, exec, hyprlock"
 
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "

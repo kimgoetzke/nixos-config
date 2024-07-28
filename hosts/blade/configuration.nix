@@ -116,7 +116,7 @@
       _1password
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
-      kooha # GIF screen recorder
+      # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault
       pulsemixer # PulseAudio mixer and audio controller
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
@@ -172,7 +172,7 @@
   stylix = {
     enable = true;
     # TODO: Find out why 'image = userSettings.wallpaper' doesn't work and then fix the below
-    image = ./../../assets/images/wallpaper_abstract_nord4x.png;
+    image = ./../../assets/images/${userSettings.wallpaperFile};
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts.sizes.terminal = 16;
     opacity.terminal =
