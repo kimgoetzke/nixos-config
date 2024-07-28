@@ -8,28 +8,27 @@ take inspiration from it.
 > This is a single user, multi system configuration. Only Wayland with Hyprland (see screenshots below) and Gnome have
 > been configured and can be toggled between.
 
-...but what is NixOS? It's a Linux distribution that allows for declarative and reproducible system configuration.
+...but what is NixOS? It's a Linux distribution that allows for declarative and reproducible system configurations.
 See [https://nixos.org/](https://nixos.org) for more information.
 
 ## Features
 
-- **Nix OS** with **Flakes** for system configurations
-- **Home Manager** for user configurations
+- **NixOS** with **Flakes** and **Home Manager**
 - **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
-- **Waybar** status bar with **mako** notifications
+- **Waybar** status bar with **Mako** notifications
 - **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
 - **Alacritty** terminal emulator
 - **Firefox** web browser
 - **Zsh** shell
-- **VS Code** and **JetBrains Toolbox** for IDEs
-- **Docker** and **Postman** as web development tools
+- **VS Code** text editor and **JetBrains Toolbox** for IDEs
+- **Docker** and **Postman** as additional web development tools
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
 - **Mpv** media player
-- **Blueman** bluetooth manager
 - **Kooha** GIF screen recorder & **wf-recorder** MP4 screen recorder
 - **Satty** with **Slurp** and **Grim** for screenshots
+- **Blueman** bluetooth manager
 
 ## Screenshots
 
