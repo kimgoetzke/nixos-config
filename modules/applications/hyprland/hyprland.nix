@@ -164,7 +164,7 @@ in {
           "noinitialfocus, class:^(xwaylandvideobridge)$"
           "maxsize 1 1, class:^(xwaylandvideobridge)$"
           "noblur, class:^(xwaylandvideobridge)$"
-          "tile, class:^(Asperite.*)$,title:^(Aseprite.*)$"
+          "tile, class:^(Aseprite)$,title:^(Aseprite)$"
           "float, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "center, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "float, title:^(Welcome to JetBrains Rider)$"
