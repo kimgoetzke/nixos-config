@@ -231,7 +231,7 @@ in {
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "
             "$mainMod, W, togglesplit,"
-            "$mainMod, F12, fullscreen, 0"
+            "$mainMod, F11, fullscreen, 0"
             "$mainMod CONTROL SHIFT, P, pin"
             "$mainMod SHIFT, Q, killactive, "
             "ALT, F4, killactive, "
