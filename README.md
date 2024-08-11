@@ -41,12 +41,14 @@ See [https://nixos.org/](https://nixos.org) for more information.
 #### Preparation
 
 1. Follow official guides to prepare your HDD and install NixOS e.g. from a USB.
-2. Clone this repository and move your existing `hardware-configuration.nix` file to `/hosts/{your host}/`.
+2. Clone this repository and move your existing `hardware-configuration.nix` (by default in `/etc/nixos/`) file to
+   `/hosts/{your host}/`.
 3. Copy `home.nix` and `configuration.nix` from an existing host to begin with, unless you have your own already.
 4. Create a copy of the file `/users/user-template.nix` in the same folder and name it `user.nix`.
 5. Complete the `user.nix` file with your own details.
 6. Run the following commands:
    ```shell
+   git add hosts/{your host}/hardware-configuration.nix
    cd users
    git rm --cached user.nix # If you've already added it
    git add --intent-to-add user.nix
