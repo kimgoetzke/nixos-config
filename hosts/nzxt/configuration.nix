@@ -16,6 +16,7 @@
   # Boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  system.nixos.label = "X"; # Reduces lengths of label so there's enough space to see "built on" in boot loader
 
   # Networking
   networking.networkmanager.enable = true;
@@ -56,6 +57,8 @@
   razer-blade.enable = false;
   hardware = {
     opengl.enable = true;
+    opengl.driSupport = true;
+    opengl.driSupport32Bit = true;
     bluetooth.enable = true;
   };
 
@@ -76,7 +79,7 @@
   users.users.${userSettings.user} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "gamemode"];
     shell = pkgs.${userSettings.defaultShell};
   };
 
@@ -85,6 +88,13 @@
     FLAKE = "${userSettings.baseDirectory}";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
     WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
+  };
+
+  # Allow running unpatched dynamic binaries i.e. IDEs downloaded via JetBrains Toolbox instead of Nix
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+    ];
   };
 
   # Allow unfree packages
@@ -97,22 +107,31 @@
   # System profile packages
   environment.systemPackages = with pkgs;
     [
-      wget
+      unzip
       curl
       jq
       neofetch
       obsidian
       _1password-gui
       _1password
-      xorg.xev # Input event listener for X
       lshw # Tool to list hardware
+      bat # Cat with syntax highlighting
+      # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault
+      pulsemixer # PulseAudio mixer and audio controller
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
+      xorg.xev # Input event listener for X
       xorg.xmodmap
       gnomeExtensions.clipboard-history
       gnomeExtensions.space-bar
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
+      wdisplays # GUI for on-the-fly display configuration
+      slurp # Tool to select regions on screen
+      grim # Tool to grap images from screen
+      satty # Screenshot annotation tool
+      wf-recorder # Screen recorder
+      ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
     ];
 
   # Shell
@@ -151,6 +170,7 @@
 
   # Stylix
   stylix = {
+    enable = true;
     # TODO: Find out why 'image = userSettings.wallpaper' doesn't work and then fix the below
     image = ./../../assets/images/${userSettings.wallpaperFile};
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";

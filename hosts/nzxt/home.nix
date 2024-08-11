@@ -59,7 +59,7 @@
   firefox.withProfile = true;
   alacritty.enable = true;
   git.enable = true;
-  java.enable = true;
+  java.enable = false;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   btop.enable = true;
   direnv.enable = true;
@@ -87,6 +87,11 @@
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
+    "jb" = "nohup jetbrains-toolbox &";
+    "rustrover" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover.sh . &";
+    "idea" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh . &";
+    "rider" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rider/bin/rider.sh . &";
+    "webstorm" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/webstorm/bin/webstorm.sh . &";
   };
 
   # Move all relevant assets to home directory for use anywhere

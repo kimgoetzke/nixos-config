@@ -39,7 +39,6 @@ in {
       xwaylandvideobridge
       cliphist # Clipboard manager
       wl-clipboard # Wayland clipboard manager, dependency of cliphist
-      # xfce.thunar # File manager
       gvfs # Mount, trash, and other functionalities (for Thunar)
       mako # Notification daemon
       hypridle # Idle manager
