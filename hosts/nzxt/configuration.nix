@@ -108,6 +108,7 @@
   environment.systemPackages = with pkgs;
     [
       unzip
+      zip
       curl
       jq
       neofetch
