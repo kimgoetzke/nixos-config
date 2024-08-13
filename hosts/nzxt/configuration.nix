@@ -54,7 +54,7 @@
   };
 
   # General hardware configuration
-  razer-blade.enable = false;
+  nzxt.enable = true;
   hardware = {
     opengl.enable = true;
     opengl.driSupport = true;
