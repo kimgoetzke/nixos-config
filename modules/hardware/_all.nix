@@ -8,5 +8,6 @@
 }: {
   imports = [
     ./blade.nix
+    ./nzxt.nix
   ];
 }
