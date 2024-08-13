@@ -124,7 +124,8 @@
       xorg.xev # Input event listener for X
       xorg.xmodmap
       gnomeExtensions.clipboard-history
-      gnomeExtensions.space-bar
+      gnomeExtensions.space-bar # Workspaces indicator
+      gnomeExtensions.pop-shell # Basic window tiling
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isHyprlandEnabled [
       wdisplays # GUI for on-the-fly display configuration
