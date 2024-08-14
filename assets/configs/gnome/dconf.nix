@@ -24,6 +24,21 @@
     num-workspaces = 3;
   };
 
+  "org/gnome/desktop/wm/keybindings" = {
+    close = ["<Shift><Super>q"];
+    switch-to-workspace-1 = ["<Super>1"];
+    switch-to-workspace-2 = ["<Super>2"];
+    switch-to-workspace-3 = ["<Super>3"];
+    switch-to-workspace-last = [];
+    toggle-fullscreen = ["<Super>F11"];
+    maximize = [];
+    unmaximize = [];
+  };
+
+  "org/gnome/nautilus/icon-view" = {
+    default-zoom-level = "small";
+  };
+
   "org/gnome/nautilus/preferences" = {
     default-folder-viewer = "icon-view";
     migrated-gtk-settings = true;
@@ -34,13 +49,49 @@
     enable-hot-corners = false;
   };
 
+  "org/gnome/mutter" = {
+    edge-tiling = false;
+  };
+
+  "org/gnome/mutter/keybindings" = {
+    toggle-tiled-left = [];
+    toggle-tiled-right = [];
+  };
+
   "org/gnome/settings-daemon/plugins/media-keys" = {
+    custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/" "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"];
     help = [];
+    home = ["<Super>m"];
+    www = ["<Super>f"];
+  };
+
+  "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+    binding = "<Super>t";
+    command = "alacritty";
+    name = "Alacritty";
+  };
+
+  "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+    binding = "<Super>j";
+    command = "jetbrains-toolbox";
+    name = "Jetbrains Toolbox";
+  };
+
+  "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+    binding = "<Super>o";
+    command = "obsidian";
+    name = "Obsidian";
+  };
+
+  "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+    binding = "<Super>a";
+    command = "aseprite";
+    name = "Aseprite";
   };
 
   "org/gnome/shell" = {
-    disabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com" "screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
-    enabled-extensions = ["clipboard-history@alexsaveau.dev" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "space-bar@luchrioh"];
+    disabled-extensions = ["screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "places-menu@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
+    enabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com" "clipboard-history@alexsaveau.dev" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "space-bar@luchrioh" "pop-shell@system76.com"];
     favorite-apps = ["Alacritty.desktop" "firefox.desktop" "obsidian.desktop" "org.gnome.Nautilus.desktop"];
     last-selected-power-profile = "power-saver";
     welcome-dialog-last-shown-version = "46.2";
@@ -83,9 +134,22 @@
     toggle-overview = true;
   };
 
+  "org/gnome/shell/extensions/pop-shell" = {
+    active-hint = true;
+    active-hint-border-radius = lib.hm.gvariant.mkUint32 4;
+    gap-inner = lib.hm.gvariant.mkUint32 7;
+    gap-outer = lib.hm.gvariant.mkUint32 7;
+    mouse-cursor-focus-location = lib.hm.gvariant.mkUint32 4;
+    mouse-cursor-follows-active-window = true;
+    show-title = true;
+    smart-gaps = false;
+    snap-to-grid = false;
+    tile-by-default = true;
+  };
+
   "org/gnome/shell/keybindings" = {
-    screenshot = ["<Shift><Control><Alt>s"];
-    screenshot-window = ["<Shift><Control><Super>s"];
-    show-screenshot-ui = ["<Super>bracketleft"];
+    screenshot = ["<Super><Control><Alt>s"];
+    screenshot-window = ["<Super><Control><Super>s"];
+    show-screenshot-ui = ["<c>bracketleft"];
   };
 }
