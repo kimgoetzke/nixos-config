@@ -173,7 +173,6 @@
   # Stylix
   stylix = {
     enable = true;
-    # TODO: Find out why 'image = userSettings.wallpaper' doesn't work and then fix the below
     image = ./../../assets/images/${userSettings.wallpaperFile};
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     fonts.sizes.terminal = 16;
