@@ -21,4 +21,6 @@
   desktopEnvironments.isHyprlandEnabled = true;
   isDockerEnabled = true;
   modes.isGamingEnabled = false;
+  hyprland.primaryMonitor = "eDP-1"; # Your primary monitor when using Hyprland, use port names e.g. DP-1, HDMI-1
+  hyprland.leftMonitor = "DP-1"; # Optional, monitor to the left of the default monitor, use port names
 }

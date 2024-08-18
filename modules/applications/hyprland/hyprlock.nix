@@ -80,7 +80,7 @@
       }
 
       image {
-        monitor = eDP-1
+        monitor = ${userSettings.hyprland.primaryMonitor}
         path = ${userSettings.targetDirectory}/profile.png
         size = 250 # lesser side if not 1:1 ratio
         rounding = -1 # negative values mean circle
@@ -97,7 +97,7 @@
 
       # Alpha channel doesn't seem to respond, so it doesn't make sense to use it...
       # shape {
-      #     monitor = eDP-1
+      #     monitor = ${userSettings.hyprland.primaryMonitor}
       #     size = 1000, 600
       #     color = rgba(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b},0.5)
       #     rounding = 20
@@ -111,7 +111,7 @@
       # }
 
       label {
-        monitor = eDP-1
+        monitor = ${userSettings.hyprland.primaryMonitor}
         text = Hi $DESC
         color = rgb(${config.lib.stylix.colors.base04-rgb-r},${config.lib.stylix.colors.base04-rgb-g},${config.lib.stylix.colors.base04-rgb-b})
         font_size = 20
@@ -123,7 +123,7 @@
       }
 
       input-field {
-        monitor = eDP-1
+        monitor = ${userSettings.hyprland.primaryMonitor}
         size = 350, 50
         outline_thickness = 0
         dots_size = 0.3 # Scale of input-field height, 0.2 - 0.8

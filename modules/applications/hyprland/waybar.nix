@@ -24,7 +24,7 @@
         + builtins.readFile ./../../../assets/configs/hyprland/waybar-style.css;
       settings = [
         {
-          output = ["eDP-1" "DP-1" "HDMI-A-1"];
+          output = ["eDP-1" "DP-1" "HDMI-A-1" "${userSettings.hyprland.primaryMonitor}"];
           layer = "top";
           height = 45;
           spacing = 5;
@@ -119,9 +119,9 @@
           };
           "hyprland/workspaces" = {
             persistent-workspaces = {
-              "DP-2" = [1];
+              "${userSettings.hyprland.leftMonitor}" = [1];
               "eDP-1" = [10];
-              "DP-1" = [2 3 4 5 6 7 8 9];
+              "${userSettings.hyprland.primaryMonitor}" = [2 3 4 5 6 7 8 9];
             };
           };
           "tray" = {
@@ -197,7 +197,7 @@
           };
         }
         {
-          output = ["DP-2"];
+          output = ["${userSettings.hyprland.leftMonitor}"];
           layer = "top";
           height = 45;
           spacing = 5;
@@ -208,7 +208,7 @@
           modules-center = ["hyprland/workspaces"];
           "hyprland/workspaces" = {
             persistent-workspaces = {
-              "DP-2" = [1];
+              "${userSettings.hyprland.leftMonitor}" = [1];
             };
           };
         }
