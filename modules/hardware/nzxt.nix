@@ -24,30 +24,18 @@
       # of just the bare essentials.
       powerManagement.enable = false;
 
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+      # Fine-grained power management -turns off GPU when not in use
       powerManagement.finegrained = false;
 
       # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of
-      # supported GPUs is at:
+      # independent third-party "nouveau" open source driver)
       # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-      # Currently alpha-quality/buggy, so false is currently the recommended setting.
       open = false;
 
-      # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
+      # Enable the Nvidia settings menu, accessible via `nvidia-settings`
       nvidiaSettings = true;
 
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        version = "555.58";
-        sha256_64bit = "sha256-bXvcXkg2kQZuCNKRZM5QoTaTjF4l2TtrsKUvyicj5ew=";
-        sha256_aarch64 = lib.fakeSha256;
-        openSha256 = lib.fakeSha256;
-        settingsSha256 = "sha256-vWnrXlBCb3K5uVkDFmJDVq51wrCoqgPF03lSjZOuU8M=";
-        persistencedSha256 = lib.fakeSha256;
-      };
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
   };
 }
