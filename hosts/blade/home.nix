@@ -78,20 +78,14 @@
     nhs = "nh os switch ${userSettings.baseDirectory} -H default";
     nhc = "nh clean all --keep 3";
     nhca = "nh clean all --keep 1";
-    nfu = "nix flake update";
+    nfu = "nix flake update ${userSettings.baseDirectory}";
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     nixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
-    # TODO: Figure out a way to set a better label for a generation (none of the below work)
-    #nhs = "export NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" && nh os switch ~/projects/nixos-config -H default";
-    #nhsl = "NIXOS_LABEL=\"$(date +%Y-%m-%d) $(date +%R)\" nh os switch ~/projects/nixos-config -H default";
-    #nixsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     proper = "cd ~/projects && ls -1";
     anw = "alacritty msg create-window";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
-    "rustshell" = "nix-shell ${userSettings.baseDirectory}/shells/rust.nix";
-    "dotnetshell" = "nix-shell ${userSettings.baseDirectory}/shells/dotnet.nix";
     "jb" = "nohup jetbrains-toolbox &";
     "rustrover" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rustrover/bin/rustrover.sh . &";
     "idea" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh . &";

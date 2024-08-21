@@ -78,10 +78,9 @@
     nhs = "nh os switch ${userSettings.baseDirectory} -H default";
     nhc = "nh clean all --keep 3";
     nhca = "nh clean all --keep 1";
-    nfu = "nix flake update";
+    nfu = "nix flake update ${userSettings.baseDirectory}";
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     nixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
-    nixsl = "NIXOS_LABEL=\"NixOS - $(date +%Y-%m-%d) $(date +%R)\" nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     proper = "cd ~/projects && ls -1";
     anw = "alacritty msg create-window";
     ".." = "cd ..";
