@@ -118,11 +118,25 @@
             tooltip-format = "Applications running which are using this mode: {count}.";
           };
           "hyprland/workspaces" = {
-            persistent-workspaces = {
-              "${userSettings.hyprland.leftMonitor}" = [1];
-              "eDP-1" = [10];
-              "${userSettings.hyprland.primaryMonitor}" = [2 3 4 5 6 7 8 9];
-            };
+            persistent-workspaces = lib.mkMerge [
+              (
+                if userSettings.hyprland.hasLeftMonitor
+                then {
+                  "${userSettings.hyprland.leftMonitor}" = [1];
+                }
+                else {}
+              )
+              (
+                if userSettings.hyprland.hasExternalMonitor
+                then {
+                  "${userSettings.hyprland.externalMonitor}" = [2 3 4 5 6 7 8 9];
+                  "${userSettings.hyprland.primaryMonitor}" = [10];
+                }
+                else {
+                  "${userSettings.hyprland.primaryMonitor}" = [2 3 4 5 6 7 8 9 10];
+                }
+              )
+            ];
           };
           "tray" = {
             spacing = 10;

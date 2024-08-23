@@ -83,29 +83,25 @@ in {
           ",preferred,0x0,1"
         ];
         workspace = [
-          "1,monitor:${userSettings.hyprland.leftMonitor}"
-          "2,monitor:${userSettings.hyprland.primaryMonitor},default:true"
+          "1,monitor:${
+            if userSettings.hyprland.hasLeftMonitor
+            then userSettings.hyprland.leftMonitor
+            else userSettings.hyprland.externalMonitor
+          },default:true"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,default:true"
-          "3,monitor:${userSettings.hyprland.primaryMonitor}"
           "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "4,monitor:${userSettings.hyprland.primaryMonitor}"
           "4,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "4,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "5,monitor:${userSettings.hyprland.primaryMonitor}"
           "5,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "5,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "6,monitor:${userSettings.hyprland.primaryMonitor}"
           "6,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "6,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "7,monitor:${userSettings.hyprland.primaryMonitor}"
           "7,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "7,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "8,monitor:${userSettings.hyprland.primaryMonitor}"
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "9,monitor:${userSettings.hyprland.primaryMonitor}"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
           "10,monitor:eDP-1"
