@@ -12,6 +12,9 @@
 
     nur.url = "github:nix-community/nur";
 
+    # A Nix flake that can be used to automate the generation and integration of AMD microcode updates
+    ucodenix.url = "github:e-tho/ucodenix/a32504d15405dbf2d80c55e1a6307ef0f9d6d2bf";
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +37,7 @@
     nixpkgs,
     home-manager,
     stylix,
+    ucodenix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -55,6 +59,7 @@
         modules = [
           ./hosts/${userSettings.hostName}/configuration.nix
           stylix.nixosModules.stylix
+          ucodenix.nixosModules.ucodenix
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = specialArgs;
