@@ -29,6 +29,7 @@ in {
         OfferToSaveLogins = false;
         OfferToSaveLoginsDefault = false;
         PasswordManagerEnabled = false;
+        DefaultDownloadDirectory = "\${home}/Downloads";
       };
       profiles.default = lib.mkIf cfg.withProfile {
         id = 0;
@@ -106,11 +107,15 @@ in {
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["np"];
             };
+            "NixOS Options" = {
+              urls = [{template = "https://search.nixos.org/options?from=0&size=50&sort=relevance&query={searchTerms}";}];
+              definedAliases = ["no"];
+            };
             "NixOS Wiki" = {
               urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
               iconUpdateURL = "https://wiki.nixos.org/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = ["@nw"];
+              definedAliases = ["nw"];
             };
             "YouTube" = {
               urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
@@ -133,7 +138,8 @@ in {
               definedAliases = ["hmo"];
             };
             "Bing".metaData.hidden = true;
-            "Ebay".metaData.hidden = true;
+            "eBay".metaData.hidden = true;
+            "Wikipedia (en)".metaData.hidden = true;
             "Google".metaData.alias = "@g";
             "DuckDuckGo".metaData.alias = "ddg";
           };

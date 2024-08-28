@@ -133,7 +133,7 @@ tooltip label {
     padding-left: 13px;
     padding-right: 17px;
     margin-right: 5px;
-    border: 3 solid @base05;
+    border: 3px solid @base05;
     border-radius: 100px;
     color: @base05;
     background: @base0D;
@@ -142,7 +142,7 @@ tooltip label {
 #custom-cliphist:hover {
     background: @base0A;
     color: @base00;
-    border: 3 solid @base05;
+    border: 3px solid @base05;
     transition: all 200ms ease-in-out;
 }
 
