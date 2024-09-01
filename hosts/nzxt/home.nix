@@ -99,7 +99,7 @@
       source = ./../../assets/images/${userSettings.wallpaperFile};
     };
     "${userSettings.relativeTargetDirectory}/profile.png" = {
-      source = ./../../assets/images/randy.png;
+      source = ./../../assets/images/${userSettings.profileFile};
     };
   };
 
