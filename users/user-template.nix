@@ -12,7 +12,7 @@
   targetDirectory = "/home/your_user/Documents/NixOS"; # Location of some assets, used by scripts, must be in line with the below
   relativeTargetDirectory = "/Documents/NixOS"; # Relative path from home/your_user where some assets are stored e.g. wallpaper
   wallpaperFile = "wallpaper_abstract_nord4x_shadow.png"; # Source file name
-  profileFile = "suit.png"; # Source file name
+  profileFile = "randy.png"; # Source file name
   defaultShell = "zsh";
   shells.isZshEnabled = true;
   shells.isBashEnabled = false;
