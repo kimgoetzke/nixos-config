@@ -80,7 +80,7 @@ in {
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,preferred,3700x-840,1"
           "eDP-1,1920x1080,4000x600,1"
-          ",preferred,0x0,1"
+          #",preferred,0x0,1" # Currently disabled as it overlaps in some setups with existing monitors, even if not present
         ];
         workspace = [
           "1,monitor:${
