@@ -36,8 +36,12 @@ folder() {
     echo "/home/$NIX_USER/projects/kimgoetzke.github.io"
     cd "/home/$NIX_USER/projects/kimgoetzke.github.io"
     ;;
+  "progen2" | "pg2")
+    echo "/home/$NIX_USER/projects/procedural-generation-2"
+    cd "/home/$NIX_USER/projects/procedural-generation-2"
+    ;;
   *)
-    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io."
+    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io, progen2/pg2."
     ;;
   esac
 }
