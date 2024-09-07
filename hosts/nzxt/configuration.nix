@@ -61,6 +61,7 @@
     opengl.driSupport32Bit = true;
     bluetooth.enable = true;
   };
+  hardware.opentabletdriver.enable = true;
 
   # Update AMD microcode to fix hardware vulnerabilities
   hardware.enableRedistributableFirmware = true;

@@ -61,6 +61,7 @@
     opengl.driSupport32Bit = true;
     bluetooth.enable = true;
   };
+  hardware.opentabletdriver.enable = true;
 
   # Modes
   gaming.enable = userSettings.modes.isGamingEnabled;
