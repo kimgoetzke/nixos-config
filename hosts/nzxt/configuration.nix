@@ -144,6 +144,7 @@
       satty # Screenshot annotation tool
       wf-recorder # Screen recorder
       ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
+      kalker # Calculator
     ];
 
   # Shell
