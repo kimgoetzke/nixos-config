@@ -63,15 +63,6 @@
   };
   hardware.opentabletdriver.enable = true;
 
-  # Update AMD microcode to fix hardware vulnerabilities
-  hardware.enableRedistributableFirmware = true;
-  hardware.enableAllFirmware = true;
-  hardware.cpu.amd.updateMicrocode = true;
-  services.ucodenix = {
-    enable = true;
-    cpuSerialNumber = "00A2-0F10-0000-0000-0000-0000";
-  };
-
   # Modes
   gaming.enable = userSettings.modes.isGamingEnabled;
 

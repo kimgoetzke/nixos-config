@@ -10,6 +10,16 @@
   };
 
   config = lib.mkIf config.nzxt.enable {
+
+    # Update AMD microcode to fix hardware vulnerabilities
+    hardware.enableRedistributableFirmware = true;
+    hardware.enableAllFirmware = true;
+    hardware.cpu.amd.updateMicrocode = true;
+    services.ucodenix = {
+      enable = true;
+      cpuSerialNumber = "00A2-0F10-0000-0000-0000-0000";
+    };
+
     # Enabled NVIDIA drivers
     # See https://wiki.nixos.org/wiki/Nvidia for more information.
     hardware.opengl.enable = true;
