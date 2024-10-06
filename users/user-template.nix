@@ -11,8 +11,8 @@
   baseDirectory = "/home/your_user/projects/nixos-config"; # Location of this repo, used by env vars and more
   targetDirectory = "/home/your_user/Documents/NixOS"; # Location of some assets, used by scripts, must be in line with the below
   relativeTargetDirectory = "/Documents/NixOS"; # Relative path from home/your_user where some assets are stored e.g. wallpaper
-  wallpaperFile = "wallpaper_abstract_nord4x_shadow.png"; # Source file name
-  profileFile = "randy.png"; # Source file name
+  wallpaperFile = "wallpaper_abstract_nord4x_shadow.png"; # Source file name in assets/images
+  profileFile = "randy.png"; # Source file name in assets/images
   defaultShell = "zsh";
   shells.isZshEnabled = true;
   shells.isBashEnabled = false;
