@@ -10,6 +10,14 @@
   };
 
   config = lib.mkIf config.razer-blade.enable {
+    # Update AMD microcode to fix hardware vulnerabilities
+      hardware.enableRedistributableFirmware = true;
+      hardware.cpu.amd.updateMicrocode = true;
+      services.ucodenix = {
+        enable = true;
+        cpuSerialNumber = "00A5-0F00-0000-0000-0000-0000";
+      };
+
     # See https://wiki.nixos.org/wiki/Hardware/Razer for some more information.
 
     # Enabled NVIDIA drivers
@@ -41,14 +49,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        version = "555.58";
-        sha256_64bit = "sha256-bXvcXkg2kQZuCNKRZM5QoTaTjF4l2TtrsKUvyicj5ew=";
-        sha256_aarch64 = lib.fakeSha256;
-        openSha256 = lib.fakeSha256;
-        settingsSha256 = "sha256-vWnrXlBCb3K5uVkDFmJDVq51wrCoqgPF03lSjZOuU8M=";
-        persistencedSha256 = lib.fakeSha256;
-      };
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = {
         sync.enable = true;
