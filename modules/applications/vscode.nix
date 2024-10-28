@@ -12,6 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    stylix.targets.vscode.enable = false;
     programs.vscode = {
       enable = true;
       package = pkgs.vscode;
@@ -24,6 +25,7 @@ in {
         github.copilot
         github.copilot-chat
         esbenp.prettier-vscode
+        eamodio.gitlens
 
         # Languages
         bbenoist.nix
