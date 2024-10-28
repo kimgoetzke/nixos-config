@@ -10,7 +10,6 @@
   };
 
   config = lib.mkIf config.nzxt.enable {
-
     # Update AMD microcode to fix hardware vulnerabilities
     hardware.enableRedistributableFirmware = true;
     hardware.enableAllFirmware = true;

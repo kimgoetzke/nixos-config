@@ -11,12 +11,12 @@
 
   config = lib.mkIf config.razer-blade.enable {
     # Update AMD microcode to fix hardware vulnerabilities
-      hardware.enableRedistributableFirmware = true;
-      hardware.cpu.amd.updateMicrocode = true;
-      services.ucodenix = {
-        enable = true;
-        cpuSerialNumber = "00A5-0F00-0000-0000-0000-0000";
-      };
+    hardware.enableRedistributableFirmware = true;
+    hardware.cpu.amd.updateMicrocode = true;
+    services.ucodenix = {
+      enable = true;
+      cpuSerialNumber = "00A5-0F00-0000-0000-0000-0000";
+    };
 
     # See https://wiki.nixos.org/wiki/Hardware/Razer for some more information.
 
