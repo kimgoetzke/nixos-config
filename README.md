@@ -18,10 +18,11 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Waybar** status bar with **Mako** notifications
 - **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
-- **Alacritty** terminal emulator
 - **Firefox** web browser
+- **Alacritty** terminal emulator
 - **Zsh** shell
 - **VS Code** text editor and **JetBrains Toolbox** for IDEs
+- **Thunar** file manager
 - **Docker** and **Postman** as additional web development tools
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
