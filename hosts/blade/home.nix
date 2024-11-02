@@ -65,6 +65,7 @@
   direnv.enable = true;
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
+  programs.obs-studio.enable = true;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;

@@ -44,7 +44,7 @@ screeny() {
       exit 1
     fi
     ffmpeg -i "$2" \
-      -vf "fps=10,scale=$3:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+      -vf "fps=$4,scale=$3:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
       -loop 0 "$2.gif"
     wl-copy "$2.gif"
     echo "Created '$2.gif' (unless an error occurred) and copied file name to clipboard."
@@ -53,15 +53,15 @@ screeny() {
     echo "Usage: screeny [command] ([file name]) ([width])"
     echo ""
     echo "Commands:"
-    echo "  fullscreen, fs:                       Take a screenshot of the entire screen."
-    echo "  window, w:                            Take a screenshot of the active window."
-    echo "  area, manual, a, m:                   Take a screenshot of a selected area."
-    echo "  record-fullscreen, rfs:               Record the entire screen."
-    echo "  record-window, rw:                    Record the active window."
-    echo "  record-area, record-manual, ra, rm:   Record a selected area."
-    echo "  convert-gif, cg [file name] [width]:  Convert a video to a GIF with a specified width."
-    echo "                                        Requires file name and resolution width (e.g. 640 or 1280)."
-    echo "  help, h:                              Display this help message."
+    echo "  fullscreen, fs                            : Take a screenshot of the entire screen."
+    echo "  window, w                                 : Take a screenshot of the active window."
+    echo "  area, manual, a, m                        : Take a screenshot of a selected area."
+    echo "  record-fullscreen, rfs                    : Record the entire screen."
+    echo "  record-window, rw                         : Record the active window."
+    echo "  record-area, record-manual, ra, rm        : Record a selected area."
+    echo "  convert-gif, cg [file name] [width] [fps] : Convert a video to a GIF with a specified width. File name is"
+    echo "                                              the file to convert. Will store GIF in same directory."
+    echo "  help, h                                   : Display this help message."
     echo ""
     ;;
   # Error

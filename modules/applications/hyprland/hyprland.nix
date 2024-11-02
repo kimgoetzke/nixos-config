@@ -202,6 +202,7 @@ in {
             "$mainMod, T, exec, $terminal"
             "$mainMod, J, exec, jetbrains-toolbox"
             "$mainMod, O, exec, obsidian"
+            "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "$mainMod, X, exec, alacritty -e kalker"
@@ -218,6 +219,9 @@ in {
             "$mainMod SHIFT, P, exec, ${userSettings.targetDirectory}/screeny.sh fullscreen" # Full screen and pipe into annotation tool
             "$mainMod SHIFT, bracketleft, exec, ${userSettings.targetDirectory}/screeny.sh window" # Selected window and pipe into annotation tool
             "$mainMod SHIFT, bracketright, exec, ${userSettings.targetDirectory}/screeny.sh area" # Manually select and pipe into annotation tool
+
+            # Screen recording
+            "$mainMod SHIFT, R, exec, ${userSettings.targetDirectory}/screeny.sh record-area" # Manually select area and record
 
             # Volume
             ",0x1008FF11, exec, wpctl set-volume @DEFAULT_SINK@ 5%-"
