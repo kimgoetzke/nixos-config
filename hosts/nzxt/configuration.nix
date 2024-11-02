@@ -39,8 +39,14 @@
   };
   console.keyMap = "uk";
 
-  # Enable flake support
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  # Nix configuration
+  nix = {
+    settings.auto-optimise-store = true;
+    settings.experimental-features = ["nix-command" "flakes"];
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+    ];
+  };
 
   # Enable printing with auto-discovery (see https://wiki.nixos.org/wiki/Printing)
   services.printing = {
@@ -120,6 +126,7 @@
       bat # Cat with syntax highlighting
       # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault https://github.com/SeaDve/Kooha/issues/316
       pulsemixer # PulseAudio mixer and audio controller
+      nixd # Nix language server
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X
@@ -207,9 +214,6 @@
       };
     };
   };
-
-  # Storage optimization
-  nix.settings.auto-optimise-store = true;
 
   # System configuration
   system.stateVersion = "24.05";
