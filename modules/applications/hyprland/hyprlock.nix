@@ -41,6 +41,7 @@
         #}
       ];
     };
+    stylix.targets.hyprlock.enable = false; # Without this, the below file will already exist
     # TODO: Disable all other screens (also on lid close)
     home.file.".config/hypr/hyprlock.conf".text = ''
       background {

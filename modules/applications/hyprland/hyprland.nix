@@ -44,7 +44,6 @@ in {
       hypridle # Idle manager
       libnotify # Notification daemon
       hyprpicker # Colour picker
-      nerdfonts
       blueman # Bluetooth manager
     ];
 
@@ -126,13 +125,15 @@ in {
         decoration = {
           inactive_opacity = 0.85;
           rounding = 7;
-          drop_shadow = "yes";
-          shadow_range = 4;
-          shadow_render_power = 3;
           blur = {
             enabled = true;
             size = 5;
             passes = 1;
+          };
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
           };
         };
         animations = {

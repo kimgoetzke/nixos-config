@@ -108,7 +108,7 @@ Note that:
 Update with:
 
 ```shell
-nix flake update ~/projects/nixos-config
+nix flake update --flake ~/projects/nixos-config
 nh os switch ~/projects/nixos-config -H default
 ```
 
@@ -120,6 +120,21 @@ nh os switch ~/projects/nixos-config -H default
 ```
 
 ## Reminders
+
+#### When the OS doesn't build and errors make even less sense than usual?
+
+In the repo's root, run:
+
+```shell
+nixos-rebuild switch --flake .#default --show-trace
+```
+
+Then consider this:
+
+- Sometimes running `nix-store --verify --check-contents --repair` (or the alias `nsr`) can fix issues that make no
+  sense at all.
+- Is the error font-related, and you've recently made changes to your fonts? Try running `fc-cache -f` because, for some
+  reason, NixOS won't do it for you and happily point at the wrong font path.
 
 #### Using Gnome and made some config changes in the UI?
 

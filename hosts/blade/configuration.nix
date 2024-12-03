@@ -61,12 +61,8 @@
 
   # General hardware configuration
   razer-blade.enable = true;
-  hardware = {
-    opengl.enable = true;
-    opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
-    bluetooth.enable = true;
-  };
+  razer-blade-gpu.enable = false;
+  hardware.bluetooth.enable = true;
   hardware.opentabletdriver.enable = true;
 
   # Modes
@@ -121,7 +117,7 @@
       neofetch
       obsidian
       _1password-gui
-      _1password
+      _1password-cli
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
       # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault
@@ -175,8 +171,11 @@
   # Fonts
   fonts.packages = with pkgs; [
     dejavu_fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     jetbrains-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.jetbrains-mono
   ];
 
   # Stylix
@@ -205,11 +204,11 @@
         name = "DejaVu Sans";
       };
       monospace = {
-        package = pkgs.jetbrains-mono;
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };

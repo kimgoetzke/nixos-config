@@ -62,12 +62,11 @@
   # General hardware configuration
   nzxt.enable = true;
   hardware = {
-    opengl.enable = true;
-    opengl.driSupport = true;
-    opengl.driSupport32Bit = true;
+    graphics.enable = true;
+    graphics.enable32Bit = true;
     bluetooth.enable = true;
+    opentabletdriver.enable = true;
   };
-  hardware.opentabletdriver.enable = true;
 
   # Modes
   gaming.enable = userSettings.modes.isGamingEnabled;
@@ -121,7 +120,7 @@
       neofetch
       obsidian
       _1password-gui
-      _1password
+      _1password-cli
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
       # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault https://github.com/SeaDve/Kooha/issues/316
@@ -175,8 +174,11 @@
   # Fonts
   fonts.packages = with pkgs; [
     dejavu_fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     jetbrains-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.jetbrains-mono
   ];
 
   # Stylix
@@ -205,11 +207,11 @@
         name = "DejaVu Sans";
       };
       monospace = {
-        package = pkgs.jetbrains-mono;
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
     };

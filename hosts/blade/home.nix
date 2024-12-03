@@ -15,13 +15,6 @@
       pkgs.jetbrains-toolbox
       # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
       pkgs.postman
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "Iosevka"
-          "IosevkaTerm"
-        ];
-      })
       pkgs.xclip # Dependency of zsh.nix
 
       # Art
@@ -79,7 +72,8 @@
     nhs = "nh os switch ${userSettings.baseDirectory} -H default";
     nhc = "nh clean all --keep 3";
     nhca = "nh clean all --keep 1";
-    nfu = "nix flake update ${userSettings.baseDirectory}";
+    nfu = "nix flake update --flake ${userSettings.baseDirectory}";
+    nsr = "sudo nix-store --verify --check-contents --repair";
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     nixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
     proper = "cd ~/projects && ls -1";
