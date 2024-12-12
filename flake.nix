@@ -29,6 +29,8 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = {
@@ -54,7 +56,7 @@
     # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
+        inherit specialArgs; #
         modules = [
           ./hosts/${userSettings.hostName}/configuration.nix
           stylix.nixosModules.stylix
@@ -62,6 +64,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = specialArgs;
+            nixpkgs.overlays = [inputs.hyprpanel.overlay];
           }
         ];
       };

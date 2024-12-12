@@ -15,6 +15,7 @@ in {
 
   imports = [
     (import ./waybar.nix {inherit config pkgs lib userSettings;})
+    (import ./hyprpanel.nix {inherit config pkgs lib userSettings;})
     (import ./rofi.nix {inherit config pkgs lib userSettings;})
     ./mako.nix
     (import ./cliphist.nix {inherit config pkgs lib userSettings;})
@@ -24,28 +25,32 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    waybar.enable = true;
+    hyprland-waybar.enable = false;
+    hyprland-hyprpanel.enable = true;
     rofi.enable = true;
-    mako.enable = true;
     cliphist.enable = true;
     hyprlock.enable = true;
     kanshi.enable = false;
+    mako.enable = config.hyprland-waybar.enable;
 
-    home.packages = with pkgs; [
-      swww # Wallpaper daemon
-      brightnessctl # Tool to control brightness
-      grimblast # Screenshot tool TODO: Remove once happy with grim + satty + screeny
-      polkit_gnome # A dbus session bus service used to bring up authentication dialogs
-      xwaylandvideobridge
-      cliphist # Clipboard manager
-      wl-clipboard # Wayland clipboard manager, dependency of cliphist
-      gvfs # Mount, trash, and other functionalities (for Thunar)
-      mako # Notification daemon
-      hypridle # Idle manager
-      libnotify # Notification daemon
-      hyprpicker # Colour picker
-      blueman # Bluetooth manager
-    ];
+    home.packages = with pkgs;
+      [
+        swww # Wallpaper daemon
+        brightnessctl # Tool to control brightness
+        grimblast # Screenshot tool TODO: Remove once happy with grim + satty + screeny
+        polkit_gnome # A dbus session bus service used to bring up authentication dialogs
+        xwaylandvideobridge
+        cliphist # Clipboard manager
+        wl-clipboard # Wayland clipboard manager, dependency of cliphist
+        gvfs # Mount, trash, and other functionalities (for Thunar)
+        hypridle # Idle manager
+        libnotify # Notification daemon
+        hyprpicker # Colour picker
+        blueman # Bluetooth manager
+      ]
+      ++ lib.optionals config.hyprland-waybar.enable [
+        mako # Notification daemon
+      ];
 
     xdg.portal = {
       enable = true;
@@ -63,16 +68,22 @@ in {
       settings = {
         "$mainMod" = "SUPER";
         "$terminal" = "alacritty";
-        exec-once = [
-          "hypridle"
-          "hyprlock"
-          "swww-daemon"
-          "swww img ${userSettings.targetDirectory}/wallpaper.png"
-          "mako"
-          "wl-paste --type text --watch cliphist store"
-          "wl-paste --type image --watch cliphist store"
-          "sleep 10 && ${userSettings.targetDirectory}/reload-ui.sh"
-        ];
+        exec-once =
+          [
+            "hypridle"
+            "hyprlock"
+            "swww-daemon"
+            "swww img ${userSettings.targetDirectory}/wallpaper.png"
+            "wl-paste --type text --watch cliphist store"
+            "wl-paste --type image --watch cliphist store"
+          ]
+          ++ lib.optionals config.hyprland-waybar.enable [
+            "mako" # Conflicts with hyprpanel which comes with a notification daemon
+            "sleep 10 && ${userSettings.targetDirectory}/reload-ui.sh"
+          ]
+          ++ lib.optionals config.hyprland-hyprpanel.enable [
+            "hyprpanel"
+          ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
           "DP-3,preferred,0x0,1,transform,3"
@@ -123,7 +134,7 @@ in {
           allow_tearing = false;
         };
         decoration = {
-          inactive_opacity = 0.85;
+          inactive_opacity = 1.0;
           rounding = 7;
           blur = {
             enabled = true;
@@ -182,7 +193,6 @@ in {
         ];
         layerrule = [
           "blur, notifications"
-          "dimaround, notifications"
           "blur, rofi"
           "dimaround, rofi"
         ];

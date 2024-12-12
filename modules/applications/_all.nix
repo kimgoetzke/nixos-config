@@ -17,5 +17,6 @@
     ./hyprland/hyprland.nix
     ./direnv.nix
     ./btop.nix
+    ./yazi.nix
   ];
 }

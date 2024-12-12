@@ -139,6 +139,7 @@
       wf-recorder # Screen recorder
       ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
       kalker # Calculator
+      hyprpanel # Bar and panel, alternative to Waybar
     ];
 
   # Shell
@@ -155,7 +156,7 @@
       inherit inputs;
       userSettings = userSettings;
     };
-    backupFileExtension = "0001";
+    backupFileExtension = "0002";
     users.${userSettings.user} = {
       imports = [./home.nix];
     };

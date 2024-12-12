@@ -6,10 +6,10 @@
   ...
 }: {
   options = {
-    waybar.enable = lib.mkEnableOption "Enable waybar";
+    hyprland-waybar.enable = lib.mkEnableOption "Enable waybar";
   };
 
-  config = lib.mkIf config.waybar.enable {
+  config = lib.mkIf config.hyprland-waybar.enable {
     stylix.targets.waybar.enable = false;
     programs.waybar = {
       enable = true;
