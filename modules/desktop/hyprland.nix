@@ -18,5 +18,7 @@ in {
     services.tumbler.enable = true; # Thumbnail support for images
     services.gvfs.enable = true; # Mount, trash, and other functionalities
     services.getty.autologinUser = userSettings.user; # Auto-login user
+    services.power-profiles-daemon.enable = true; # Required for hyprpanel battery module
+    services.upower.enable = true; # Required for hyprpanel battery module
   };
 }

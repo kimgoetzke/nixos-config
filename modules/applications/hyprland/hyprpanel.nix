@@ -387,7 +387,9 @@
                 "workspaces",
                 "windowtitle"
               ],
-              "middle": [],
+              "middle": [
+                "media"
+              ],
               "right": [
                 "volume",
                 "network",
@@ -411,7 +413,7 @@
               "right": [
                 "volume",
                 "clock",
-                "notifications"
+                "notifications",
                 "power"
               ]
             },
@@ -427,7 +429,7 @@
               "right": [
                 "volume",
                 "clock",
-                "notifications"
+                "notifications",
                 "power"
               ]
             }
