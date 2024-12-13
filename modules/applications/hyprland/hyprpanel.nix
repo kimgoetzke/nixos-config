@@ -6,10 +6,16 @@
   ...
 }: {
   options = {
-    hyprland-hyprpanel.enable = lib.mkEnableOption "Enable yazi, the terminal-based file manager";
+    hyprland-hyprpanel.enable = lib.mkEnableOption "Enable HyperPanel, a basic bar/panel for Hyprland";
   };
 
   config = lib.mkIf config.hyprland-hyprpanel.enable {
+    # TODO: Move this to another module as Thunar needs it too
+    gtk.iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus";
+    };
+
     home.file.".cache/ags/hyprpanel/options.json" = {
       text = ''
         {
@@ -20,9 +26,9 @@
           "theme.bar.scaling": 100,
           "theme.bar.menus.background": "#2e3440",
           "theme.bar.background": "#2e3440",
-          "theme.bar.buttons.media.icon": "#88c0d0",
+          "theme.bar.buttons.media.icon": "#3b4252",
           "theme.bar.buttons.media.text": "#88c0d0",
-          "theme.bar.buttons.icon": "#88c0d0",
+          "theme.bar.buttons.icon": "#242438",
           "theme.bar.buttons.text": "#88c0d0",
           "theme.bar.buttons.hover": "#434c53",
           "theme.bar.buttons.background": "#3b4252",
@@ -132,7 +138,7 @@
           "theme.bar.menus.menu.battery.card.color": "#3b4252",
           "theme.bar.menus.menu.systray.dropdownmenu.divider": "#3b4252",
           "theme.bar.menus.menu.systray.dropdownmenu.text": "#d8dee9",
-          "theme.bar.menus.menu.systray.dropdownmenu.background": "#11111b",
+          "theme.bar.menus.menu.systray.dropdownmenu.background": "#2e3440",
           "theme.bar.menus.menu.bluetooth.iconbutton.active": "#88c0d0",
           "theme.bar.menus.menu.bluetooth.iconbutton.passive": "#d8dee9",
           "theme.bar.menus.menu.bluetooth.icons.active": "#88c0d0",
@@ -219,34 +225,34 @@
           "theme.bar.menus.dimtext": "#6272a4",
           "theme.bar.menus.cards": "#3b4252",
           "theme.bar.buttons.notifications.total": "#88c0d0",
-          "theme.bar.buttons.notifications.icon": "#88c0d0",
+          "theme.bar.buttons.notifications.icon": "#3b4252",
           "theme.bar.buttons.notifications.background": "#3b4252",
-          "theme.bar.buttons.clock.icon": "#8fbcbb",
+          "theme.bar.buttons.clock.icon": "#3b4252",
           "theme.bar.buttons.clock.text": "#8fbcbb",
           "theme.bar.buttons.clock.background": "#3b4252",
-          "theme.bar.buttons.battery.icon": "#81a1c1",
+          "theme.bar.buttons.battery.icon": "#3b4252",
           "theme.bar.buttons.battery.text": "#81a1c1",
           "theme.bar.buttons.battery.background": "#3b4252",
           "theme.bar.buttons.systray.background": "#3b4252",
-          "theme.bar.buttons.bluetooth.icon": "#88c0d0",
+          "theme.bar.buttons.bluetooth.icon": "#3b4252",
           "theme.bar.buttons.bluetooth.text": "#88c0d0",
           "theme.bar.buttons.bluetooth.background": "#3b4252",
-          "theme.bar.buttons.network.icon": "#88c0d0",
+          "theme.bar.buttons.network.icon": "#3b4252",
           "theme.bar.buttons.network.text": "#88c0d0",
           "theme.bar.buttons.network.background": "#3b4252",
-          "theme.bar.buttons.volume.icon": "#81a1c1",
+          "theme.bar.buttons.volume.icon": "#3b4252",
           "theme.bar.buttons.volume.text": "#81a1c1",
           "theme.bar.buttons.volume.background": "#3b4252",
-          "theme.bar.buttons.windowtitle.icon": "#8fbcbb",
+          "theme.bar.buttons.windowtitle.icon": "#3b4252",
           "theme.bar.buttons.windowtitle.text": "#8fbcbb",
           "theme.bar.buttons.windowtitle.background": "#3b4252",
           "theme.bar.buttons.workspaces.active": "#8fbcbb",
           "theme.bar.buttons.workspaces.occupied": "#81a1c1",
           "theme.bar.buttons.workspaces.available": "#88c0d0",
-          "theme.bar.buttons.workspaces.hover": "#434c53",
+          "theme.bar.buttons.workspaces.hover": "#8fbcbb",
           "theme.bar.buttons.workspaces.background": "#3b4252",
-          "theme.bar.buttons.dashboard.icon": "#81a1c1",
-          "theme.bar.buttons.dashboard.background": "#3b4252",
+          "theme.bar.buttons.dashboard.icon": "#3b4252",
+          "theme.bar.buttons.dashboard.background": "#81a1c1",
           "theme.osd.label": "#88c0d0",
           "theme.osd.icon": "#2e3440",
           "theme.osd.bar_overflow_color": "#8fbcbb",
@@ -269,34 +275,34 @@
           "theme.bar.menus.menu.media.card.color": "#3b4252",
           "theme.bar.menus.check_radio_button.background": "#2e3440",
           "theme.bar.menus.check_radio_button.active": "#88c0d0",
-          "theme.bar.buttons.style": "default",
+          "theme.bar.buttons.style": "split",
           "theme.bar.menus.menu.notifications.pager.button": "#88c0d0",
           "theme.bar.menus.menu.notifications.scrollbar.color": "#88c0d0",
           "theme.bar.menus.menu.notifications.pager.label": "#5e81ac",
           "theme.bar.menus.menu.notifications.pager.background": "#2e3440",
           "theme.bar.buttons.clock.icon_background": "#8fbcbb",
-          "theme.bar.buttons.modules.ram.icon": "#81a1c1",
+          "theme.bar.buttons.modules.ram.icon": "#21252b",
           "theme.bar.buttons.modules.storage.icon_background": "#8fbcbb",
           "theme.bar.menus.popover.border": "#2e3440",
           "theme.bar.buttons.volume.icon_background": "#81a1c1",
           "theme.bar.menus.menu.power.buttons.sleep.icon_background": "#88c0d0",
           "theme.bar.menus.menu.power.buttons.restart.text": "#81a1c1",
           "theme.bar.buttons.modules.updates.background": "#3b4252",
-          "theme.bar.buttons.modules.storage.icon": "#8fbcbb",
+          "theme.bar.buttons.modules.storage.icon": "#21252b",
           "theme.bar.buttons.modules.netstat.background": "#3b4252",
-          "theme.bar.buttons.modules.weather.icon": "#88c0d0",
+          "theme.bar.buttons.modules.weather.icon": "#3b4252",
           "theme.bar.buttons.modules.netstat.text": "#8fbcbb",
           "theme.bar.buttons.modules.storage.background": "#3b4252",
-          "theme.bar.buttons.modules.power.icon": "#8fbcbb",
+          "theme.bar.buttons.modules.power.icon": "#21252b",
           "theme.bar.buttons.modules.storage.text": "#8fbcbb",
           "theme.bar.buttons.modules.cpu.background": "#3b4252",
           "theme.bar.menus.menu.power.border.color": "#434c53",
-          "theme.bar.buttons.network.icon_background": "#caa6f7",
+          "theme.bar.buttons.network.icon_background": "#88c0d0",
           "theme.bar.buttons.modules.power.icon_background": "#8fbcbb",
           "theme.bar.menus.menu.power.buttons.logout.icon": "#2e3440",
           "theme.bar.menus.menu.power.buttons.restart.icon_background": "#81a1c1",
           "theme.bar.menus.menu.power.buttons.restart.icon": "#2e3440",
-          "theme.bar.buttons.modules.cpu.icon": "#8fbcbb",
+          "theme.bar.buttons.modules.cpu.icon": "#21252b",
           "theme.bar.buttons.battery.icon_background": "#81a1c1",
           "theme.bar.buttons.modules.kbLayout.icon_background": "#88c0d0",
           "theme.bar.buttons.modules.weather.text": "#88c0d0",
@@ -306,7 +312,7 @@
           "theme.bar.menus.menu.power.buttons.shutdown.background": "#3b4252",
           "theme.bar.buttons.media.icon_background": "#88c0d0",
           "theme.bar.menus.menu.power.buttons.logout.background": "#3b4252",
-          "theme.bar.buttons.modules.kbLayout.icon": "#88c0d0",
+          "theme.bar.buttons.modules.kbLayout.icon": "#21252b",
           "theme.bar.buttons.modules.ram.icon_background": "#81a1c1",
           "theme.bar.menus.menu.power.buttons.shutdown.icon_background": "#8fbcbb",
           "theme.bar.menus.menu.power.buttons.shutdown.text": "#8fbcbb",
@@ -317,18 +323,18 @@
           "theme.bar.buttons.modules.kbLayout.background": "#3b4252",
           "theme.bar.buttons.modules.power.background": "#3b4252",
           "theme.bar.buttons.modules.weather.background": "#3b4252",
-          "theme.bar.buttons.icon_background": "#3b4252",
+          "theme.bar.buttons.icon_background": "#88c0d0",
           "theme.bar.menus.menu.power.background.color": "#2e3440",
           "theme.bar.buttons.modules.ram.background": "#3b4252",
-          "theme.bar.buttons.modules.netstat.icon": "#8fbcbb",
+          "theme.bar.buttons.modules.netstat.icon": "#21252b",
           "theme.bar.buttons.windowtitle.icon_background": "#8fbcbb",
           "theme.bar.buttons.modules.cpu.icon_background": "#8fbcbb",
           "theme.bar.menus.menu.power.buttons.logout.icon_background": "#8fbcbb",
           "theme.bar.buttons.modules.updates.text": "#88c0d0",
           "theme.bar.menus.menu.power.buttons.sleep.icon": "#2e3440",
-          "theme.bar.buttons.bluetooth.icon_background": "#89dbeb",
+          "theme.bar.buttons.bluetooth.icon_background": "#88c0d0",
           "theme.bar.menus.menu.power.buttons.restart.background": "#3b4252",
-          "theme.bar.buttons.modules.updates.icon": "#88c0d0",
+          "theme.bar.buttons.modules.updates.icon": "#21252b",
           "theme.bar.buttons.modules.cpu.text": "#8fbcbb",
           "theme.bar.buttons.modules.netstat.icon_background": "#8fbcbb",
           "theme.bar.buttons.modules.kbLayout.text": "#88c0d0",
@@ -355,8 +361,8 @@
           "theme.bar.buttons.modules.submap.background": "#3b4252",
           "theme.bar.buttons.modules.submap.text": "#8fbcbb",
           "theme.bar.buttons.modules.submap.border": "#8fbcbb",
-          "theme.bar.buttons.modules.submap.icon": "#8fbcbb",
-          "theme.bar.buttons.modules.submap.icon_background": "#3b4252",
+          "theme.bar.buttons.modules.submap.icon": "#21252b",
+          "theme.bar.buttons.modules.submap.icon_background": "#8fbcbb",
           "theme.bar.menus.menu.network.switch.enabled": "#88c0d0",
           "theme.bar.menus.menu.network.switch.disabled": "#434c53",
           "theme.bar.menus.menu.network.switch.puck": "#434c53",
@@ -364,18 +370,18 @@
           "theme.bar.border.color": "#88c0d0",
           "theme.bar.menus.menu.media.timestamp": "#d8dee9",
           "theme.bar.buttons.borderColor": "#88c0d0",
-          "theme.bar.buttons.modules.hyprsunset.icon": "#81a1c1",
+          "theme.bar.buttons.modules.hyprsunset.icon": "#21252b",
           "theme.bar.buttons.modules.hyprsunset.background": "#3b4252",
           "theme.bar.buttons.modules.hyprsunset.icon_background": "#81a1c1",
           "theme.bar.buttons.modules.hyprsunset.text": "#81a1c1",
           "theme.bar.buttons.modules.hyprsunset.border": "#81a1c1",
-          "theme.bar.buttons.modules.hypridle.icon": "#8fbcbb",
+          "theme.bar.buttons.modules.hypridle.icon": "#21252b",
           "theme.bar.buttons.modules.hypridle.background": "#3b4252",
           "theme.bar.buttons.modules.hypridle.icon_background": "#8fbcbb",
           "theme.bar.buttons.modules.hypridle.text": "#8fbcbb",
           "theme.bar.buttons.modules.hypridle.border": "#8fbcbb",
           "theme.bar.floating": true,
-          "theme.bar.buttons.enableBorders": true,
+          "theme.bar.buttons.enableBorders": false,
           "theme.bar.buttons.borderSize": "0.2em",
           "theme.bar.border.location": "none",
           "bar.workspaces.show_icons": true,
@@ -397,8 +403,7 @@
                 "battery",
                 "systray",
                 "clock",
-                "notifications",
-                "power"
+                "notifications"
               ]
             },
             "1": {
@@ -413,25 +418,15 @@
               "right": [
                 "volume",
                 "clock",
-                "notifications",
-                "power"
+                "notifications"
               ]
             },
             "2": {
               "left": [
-                "dashboard",
-                "workspaces",
                 "windowtitle"
               ],
-              "middle": [
-                "media"
-              ],
-              "right": [
-                "volume",
-                "clock",
-                "notifications",
-                "power"
-              ]
+              "middle": [],
+              "right": []
             }
           },
           "bar.workspaces.workspaces": 10,
@@ -459,8 +454,8 @@
           "menus.clock.weather.enabled": false,
           "menus.clock.weather.unit": "metric",
           "menus.clock.weather.location": "London",
-          "menus.clock.time.military": true,
           "menus.clock.time.hideSeconds": true,
+          "menus.clock.time.military": true,
           "theme.bar.menus.menu.dashboard.scaling": 90,
           "theme.bar.menus.menu.notifications.scaling": 90,
           "menus.dashboard.powermenu.avatar.image": "${userSettings.targetDirectory}/profile.png",
@@ -475,7 +470,7 @@
           "tear": true,
           "menus.power.lowBatteryNotification": true,
           "menus.power.lowBatteryThreshold": 40,
-          "theme.font.name": "IosevkaTerm Nerd Font Propo Semi-Bold"
+          "theme.font.name": "JetBrainsMonoNL Nerd Font Propo Medium"
         }
       '';
     };
