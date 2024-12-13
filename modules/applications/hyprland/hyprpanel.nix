@@ -13,7 +13,7 @@
     # TODO: Move this to another module as Thunar needs it too
     gtk.iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "Papirus";
+      name = "Papirus-Dark";
     };
 
     home.file.".cache/ags/hyprpanel/options.json" = {

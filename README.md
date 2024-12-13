@@ -15,7 +15,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 
 - **NixOS** with **Flakes** and **Home Manager**
 - **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
-- **Waybar** status bar with **Mako** notifications
+- **HyperPanel** status bar (or **Waybar** with **Mako** notifications)
 - **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
 - **Firefox** web browser
@@ -27,7 +27,6 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
 - **Mpv** media player
-- **Kooha** GIF screen recorder & **wf-recorder** MP4 screen recorder
 - **Satty** with **Slurp** and **Grim** for screenshots
 - **Blueman** bluetooth manager
 
