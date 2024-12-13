@@ -54,7 +54,6 @@
   git.enable = true;
   java.enable = false;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
-  hyprland-hyprpanel.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   btop.enable = true;
   direnv.enable = true;
   yazi.enable = true;

@@ -26,4 +26,5 @@
   hyprland.externalMonitor = "DP-1"; # Optional, your preferred main monitor when using Hyprland e.g. an external monitor on a laptop, use port names
   hyprland.hasLeftMonitor = true;
   hyprland.leftMonitor = "DP-2"; # Optional, monitor to the left of the default monitor, use port names
+  hyprland.bar = "hyprpanel"; # Must be waybar or hyprpanel
 }

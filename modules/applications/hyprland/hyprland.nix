@@ -25,18 +25,17 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    hyprland-waybar.enable = false;
-    hyprland-hyprpanel.enable = true;
     rofi.enable = true;
     cliphist.enable = true;
     hyprlock.enable = true;
     kanshi.enable = false;
+    hyprland-waybar.enable = userSettings.hyprland.bar == "waybar";
+    hyprland-hyprpanel.enable = userSettings.hyprland.bar == "hyprpanel";
     mako.enable = config.hyprland-waybar.enable;
 
     home.packages = with pkgs;
       [
         swww # Wallpaper daemon
-        brightnessctl # Tool to control brightness
         grimblast # Screenshot tool TODO: Remove once happy with grim + satty + screeny
         polkit_gnome # A dbus session bus service used to bring up authentication dialogs
         xwaylandvideobridge
@@ -44,11 +43,12 @@ in {
         wl-clipboard # Wayland clipboard manager, dependency of cliphist
         gvfs # Mount, trash, and other functionalities (for Thunar)
         hypridle # Idle manager
-        libnotify # Notification daemon
         hyprpicker # Colour picker
-        blueman # Bluetooth manager
       ]
       ++ lib.optionals config.hyprland-waybar.enable [
+        brightnessctl # Tool to control brightness
+        libnotify # Notification daemon
+        blueman # Bluetooth manager
         mako # Notification daemon
       ];
 

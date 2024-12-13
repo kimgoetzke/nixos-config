@@ -62,8 +62,6 @@
   # General hardware configuration
   nzxt.enable = true;
   hardware = {
-    graphics.enable = true;
-    graphics.enable32Bit = true;
     bluetooth.enable = true;
     opentabletdriver.enable = true;
   };
@@ -142,6 +140,9 @@
       wf-recorder # Screen recorder
       ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
       kalker # Calculator
+    ]
+    ++ lib.optionals (userSettings.hyprland.bar == "hyprpanel") [
+      hyprpanel # Bar and panel, alternative to Waybar
     ];
 
   # Shell

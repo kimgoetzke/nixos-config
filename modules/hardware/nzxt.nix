@@ -19,10 +19,11 @@
       cpuSerialNumber = "00A2-0F10-0000-0000-0000-0000";
     };
 
+    hardware.graphics.enable = true;
+    hardware.graphics.enable32Bit = true;
+
     # Enabled NVIDIA drivers
     # See https://wiki.nixos.org/wiki/Nvidia for more information.
-    hardware.opengl.enable = true;
-
     services.xserver.videoDrivers = ["nvidia"];
     hardware.nvidia = {
       modesetting.enable = true;
