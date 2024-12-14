@@ -22,12 +22,12 @@
 
       # See https://wiki.nixos.org/wiki/Hardware/Razer for some more information.
 
-      # Enabled NVIDIA drivers
-      # See https://wiki.nixos.org/wiki/Nvidia for more information.
       hardware.graphics.enable = true;
       hardware.graphics.enable32Bit = true;
     })
     (lib.mkIf config.razer-blade-gpu.enable {
+      # Enabled NVIDIA drivers
+      # See https://wiki.nixos.org/wiki/Nvidia for more information.
       services.xserver.videoDrivers = ["nvidia"];
       hardware.nvidia = {
         modesetting.enable = true;

@@ -61,10 +61,8 @@
 
   # General hardware configuration
   nzxt.enable = true;
-  hardware = {
-    bluetooth.enable = true;
-    opentabletdriver.enable = true;
-  };
+  hardware.bluetooth.enable = true;
+  hardware.opentabletdriver.enable = true;
 
   # Modes
   gaming.enable = userSettings.modes.isGamingEnabled;

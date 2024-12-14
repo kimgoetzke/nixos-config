@@ -34,7 +34,7 @@
       # of just the bare essentials.
       powerManagement.enable = false;
 
-      # Fine-grained power management -turns off GPU when not in use
+      # Fine-grained power management - turns off GPU when not in use
       powerManagement.finegrained = false;
 
       # Use the NVidia open source kernel module (not to be confused with the
