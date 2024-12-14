@@ -154,6 +154,16 @@ function ulid {
     echo "ULID ($generatedUlid) copied to clipboard."
 }
 
+function nixstore {
+    echo "Action: $FUNCNAME - finds a folder containing a specified string in its name in the nix store."
+    read -r -p "Enter folder name: " folderName
+    if [ -z "$folderName" ]; then
+        echo "No folder name provided."
+    else
+        find /nix/store -type d -name "*$folderName*"
+    fi
+}
+
 function display_menu {
     echo "Hi, $(whoami). Choose an action:"
     echo "1 - Stop & remove all Docker containers"
@@ -169,6 +179,7 @@ function display_menu {
     echo "11 - Get process information"
     echo "12 - Generate UUID"
     echo "13 - Generate ULID"
+    echo "14 - Find folder in nix store"
 
     read -r -p "Select an option [1-12]: " choice
     case $choice in
@@ -185,6 +196,7 @@ function display_menu {
         11) pi ;;
         12) uuid ;;
         13) ulid ;;
+        14) nixstore ;;
         *) echo "Invalid choice." ;;
     esac
 }
