@@ -53,6 +53,7 @@
   alacritty.enable = true;
   git.enable = true;
   java.enable = false;
+  rust.enable = false;
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   btop.enable = true;
   direnv.enable = true;
