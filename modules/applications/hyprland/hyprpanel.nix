@@ -443,6 +443,8 @@
           "menus.dashboard.shortcuts.left.shortcut3.icon": "󰟵",
           "menus.dashboard.shortcuts.left.shortcut3.command": "1password",
           "menus.dashboard.shortcuts.left.shortcut3.tooltip": "1Password",
+          "menus.dashboard.shortcuts.left.shortcut4.command": "rofi -show-icons -show drun",
+          "menus.dashboard.shortcuts.right.shortcut3.command": "bash -c \"${userSettings.targetDirectory}/screeny.sh area\"",
           "menus.dashboard.directories.right.directory3.label": "󱂵  Home",
           "menus.dashboard.directories.right.directory2.label": "󰉏  Pictures",
           "menus.dashboard.directories.right.directory1.label": "󱧶  Documents",
