@@ -49,6 +49,15 @@ screeny() {
     wl-copy "$2.gif"
     echo "Created '$2.gif' (unless an error occurred) and copied file name to clipboard."
     ;;
+    # Conversion from OBS to MOV
+  "convert-obs" | "cobs")
+    if [[ -z "$2" ]]; then
+      echo "Error: No file name provided for conversion."
+      exit 1
+    fi
+    ffmpeg -i "$2" -c:v dnxhd -profile:v dnxhr_hq -c:a pcm_s16le -pix_fmt yuv422p "$2.mov"
+    echo "Created '$2.mov' (unless an error occurred)."
+    ;;
   "help" | "h" | "man")
     echo "Usage: screeny [command] ([file name]) ([width])"
     echo ""
@@ -61,6 +70,7 @@ screeny() {
     echo "  record-area, record-manual, ra, rm        : Record a selected area."
     echo "  convert-gif, cg [file name] [width] [fps] : Convert a video to a GIF with a specified width. File name is"
     echo "                                              the file to convert. Will store GIF in same directory."
+    echo "  convert-obs, cobs [file name]             : Convert an OBS recording to a Davinci Resolve compatible MOV."
     echo "  help, h                                   : Display this help message."
     echo ""
     ;;
