@@ -40,6 +40,10 @@ folder() {
     echo "/home/$NIX_USER/projects/procedural-generation-2"
     cd "/home/$NIX_USER/projects/procedural-generation-2"
     ;;
+  "plep" | "practice-leptos")
+    echo "/home/$NIX_USER/projects/practice-leptos"
+    cd "/home/$NIX_USER/projects/practice-leptos"
+    ;;
   *)
     echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io, progen2/pg2."
     ;;
