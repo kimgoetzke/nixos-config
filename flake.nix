@@ -29,6 +29,7 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils"; # TODO: Remove this and used in configurations once in nixpkgs
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
@@ -39,6 +40,7 @@
     home-manager,
     stylix,
     ucodenix,
+    hyprland-qtutils,
     ...
   } @ inputs: let
     inherit (self) outputs;
