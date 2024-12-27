@@ -16,7 +16,7 @@
       name = "Papirus-Dark";
     };
 
-    home.file.".cache/ags/hyprpanel/options.json" = {
+    home.file.".config/hyprpanel/config.json" = {
       text = ''
         {
           "bar.customModules.updates.pollingInterval": 1440000,
