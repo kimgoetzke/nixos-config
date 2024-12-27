@@ -216,8 +216,8 @@ in {
             "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod, X, exec, alacritty -e kalker"
-            "$mainMod, K, exec, kooha" # GIF screen recorder
+            "$mainMod, K, exec, alacritty -e kalker"
+            "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
             "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str \"window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }\" | cliphist decode | wl-copy"
