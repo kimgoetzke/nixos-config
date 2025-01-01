@@ -19,7 +19,7 @@
         manager = {
           show_hidden = true;
           show_symlink = true;
-          sort_by = "modified";
+          sort_by = "mtime";
           sort_dir_first = true;
           sort_reverse = true;
         };
