@@ -15,14 +15,13 @@ See [https://nixos.org/](https://nixos.org) for more information.
 
 - **NixOS** with **Flakes** and **Home Manager**
 - **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
-- **HyperPanel** status bar (or **Waybar** with **Mako** notifications)
+- **HyperPanel** status bar (or **Waybar** with **Mako** notifications) on Wayland
 - **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
 - **Firefox** web browser
-- **Alacritty** terminal emulator
-- **Zsh** shell
+- **Alacritty** terminal emulator with **Zsh** shell
 - **VS Code** text editor and **JetBrains Toolbox** for IDEs
-- **Thunar** file manager
+- **Thunar** (GUI) and **Yazi** (terminal) file managers
 - **Docker** and **Postman** as additional web development tools
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
@@ -119,6 +118,18 @@ nh os switch ~/projects/nixos-config -H default
 ```
 
 ## Reminders
+
+#### Running regular updates?
+
+A few aliases have been set up, allowing you to manage the process of updating the OS by simply running:
+
+```shell
+nhc && nfu && nhb
+```
+
+- `nhc` - Cleans up user generations using `nh clean all --keep 3`
+- `nfu` - Updates the flake using `nix flake update --flake ${userSettings.baseDirectory}`
+- `nhb` - Switches to the new generation using `nh os boot ${userSettings.baseDirectory} -H default`
 
 #### When the OS doesn't build and errors make even less sense than usual?
 
