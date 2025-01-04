@@ -121,7 +121,8 @@
       # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault https://github.com/SeaDve/Kooha/issues/316
       pulsemixer # PulseAudio mixer and audio controller
       nixd # Nix language server
-      davinci-resolve
+      davinci-resolve # Video editor
+      ueberzugpp # Image viewer for terminal, required by Yazi
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X
