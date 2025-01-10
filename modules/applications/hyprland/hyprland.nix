@@ -36,7 +36,6 @@ in {
     home.packages = with pkgs;
       [
         swww # Wallpaper daemon
-        grimblast # Screenshot tool TODO: Remove once happy with grim + satty + screeny
         polkit_gnome # A dbus session bus service used to bring up authentication dialogs
         xwaylandvideobridge
         cliphist # Clipboard manager
@@ -225,9 +224,6 @@ in {
             "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
 
             # Screenshots
-            "CONTROL SHIFT, P, exec, grimblast save screen" # Full screen
-            "CONTROL SHIFT, bracketleft, exec, grimblast save active" # Active window
-            "CONTROL SHIFT, bracketright, exec, grimblast save area" # Manually select
             "$mainMod SHIFT, P, exec, ${userSettings.targetDirectory}/screeny.sh fullscreen" # Full screen and pipe into annotation tool
             "$mainMod SHIFT, bracketleft, exec, ${userSettings.targetDirectory}/screeny.sh window" # Selected window and pipe into annotation tool
             "$mainMod SHIFT, bracketright, exec, ${userSettings.targetDirectory}/screeny.sh area" # Manually select and pipe into annotation tool
