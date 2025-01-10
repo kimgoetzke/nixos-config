@@ -5,7 +5,7 @@
   ...
 }: {
   options = {
-    yazi.enable = lib.mkEnableOption "Enable yazi, the terminal-based file manager";
+    yazi.enable = lib.mkEnableOption "Enable Yazi, the terminal-based file manager";
   };
 
   config = lib.mkIf config.yazi.enable {
@@ -19,7 +19,7 @@
         manager = {
           show_hidden = true;
           show_symlink = true;
-          sort_by = "mtime";
+          sort_by = "natural";
           sort_dir_first = true;
           sort_reverse = true;
         };
