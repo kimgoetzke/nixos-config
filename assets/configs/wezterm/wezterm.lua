@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- Stylix color scheme
+-- Modified Stylix color scheme
 config = {
     color_scheme = "stylix",
     font = wezterm.font_with_fallback {
@@ -33,7 +33,7 @@ config = {
         inactive_tab_edge = "#3b4252",
         active_tab = {
           bg_color = "#2e3440",
-          fg_color = "#e5e9f0",
+          fg_color = "#ebcb8b",
         },
         inactive_tab = {
           bg_color = "#4c566a",
@@ -63,37 +63,38 @@ config.default_prog = { 'zsh', '--login' }
 config.enable_wayland = false
 config.front_end = 'WebGpu'
 config.cursor_blink_rate = 800
+config.colors.cursor_border = '#d8dee9'
 
 -- Background
-config.window_background_gradient = {
-    -- "Vertical" or "Horizontal" or { Linear = { angle = -45.0 } },
-    -- orientation = 'Vertical',
-    -- orientation = { Linear = { angle = -45.0 } },
-    orientation = {
-        Radial = {
-            cx = 0.75,
-            cy = 0.35,
-            radius = 1.25,
-        },
-      },
-
-    colors = {
-        '#253344',
-        '#242933',
-    },
-
-    -- preset = "Viridis",
-
-    -- "Linear", "Basis" and "CatmullRom" as supported.
-    interpolation = 'Linear',
-
-    -- "Rgb", "LinearRgb", "Hsv" and "Oklab" are supported.
-    blend = 'Rgb',
-
-    -- noise = 64,
-    -- segment_size = 3,
-    -- segment_smoothness = 1.0,
-}
+-- config.window_background_gradient = {
+--     -- "Vertical" or "Horizontal" or { Linear = { angle = -45.0 } },
+--     -- orientation = 'Vertical',
+--     -- orientation = { Linear = { angle = -45.0 } },
+--     orientation = {
+--         Radial = {
+--             cx = 0.75,
+--             cy = 0.35,
+--             radius = 1.25,
+--         },
+--       },
+--
+--     colors = {
+--         '#253344',
+--         '#242933',
+--     },
+--
+--     -- preset = "Viridis",
+--
+--     -- "Linear", "Basis" and "CatmullRom" as supported.
+--     interpolation = 'Linear',
+--
+--     -- "Rgb", "LinearRgb", "Hsv" and "Oklab" are supported.
+--     blend = 'Rgb',
+--
+--     -- noise = 64,
+--     -- segment_size = 3,
+--     -- segment_smoothness = 1.0,
+-- }
 
 -- Tabs
 config.use_fancy_tab_bar = false
