@@ -11,6 +11,7 @@
     ./vscode.nix
     (import ./git.nix {inherit config pkgs lib userSettings;})
     ./alacritty.nix
+    ./wezterm.nix
     ./java.nix
     (import ./rust.nix {inherit inputs config pkgs lib userSettings;})
     ./bash.nix

@@ -437,7 +437,7 @@
           "menus.dashboard.shortcuts.left.shortcut1.icon": "󰈹",
           "menus.dashboard.shortcuts.left.shortcut1.command": "firefox",
           "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Firefox",
-          "menus.dashboard.shortcuts.left.shortcut2.command": "alacritty -e btop",
+          "menus.dashboard.shortcuts.left.shortcut2.command": "${userSettings.emulator} -e btop",
           "menus.dashboard.shortcuts.left.shortcut2.tooltip": "Resource monitor",
           "menus.dashboard.shortcuts.left.shortcut2.icon": "",
           "menus.dashboard.shortcuts.left.shortcut3.icon": "󰟵",

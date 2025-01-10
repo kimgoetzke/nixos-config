@@ -54,18 +54,18 @@
             tooltip-format = "{essid}: {ifname} via {gwaddr} 󰩟\n\nClick to open nmtui.";
             format-linked = "{essid} {ifname} (No IP) 󰩟";
             format-disconnected = "󰤭 ";
-            on-click = "alacritty -e nmtui";
+            on-click = "${userSettings.emulator} -e nmtui";
           };
           "cpu" = {
             interval = 10;
             format = "   {usage:d}%";
             max-length = 10;
-            on-click = "alacritty -e btop";
+            on-click = "${userSettings.emulator} -e btop";
           };
           "memory" = {
             format = "   {percentage}%";
             tooltip-format = "{used:0.1f}GiB used\n\nClick to open btop.";
-            on-click = "alacritty -e btop";
+            on-click = "${userSettings.emulator} -e btop";
           };
           "backlight" = {
             format = "{icon}  {percent}%";
@@ -81,7 +81,7 @@
             format-muted = "󰝟 {format_source}";
             format-source = "󰍬 {volume}%";
             format-source-muted = "󰍭";
-            on-click = "alacritty -e pulsemixer";
+            on-click = "${userSettings.emulator} -e pulsemixer";
             tooltip-format = "{desc}\n\nClick to open pulsemixer, scroll to change volume.";
             "format-icons" = {
               headphone = "󰋋";

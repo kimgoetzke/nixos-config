@@ -13,6 +13,7 @@
   relativeTargetDirectory = "/Documents/NixOS"; # Relative path from home/your_user where some assets are stored e.g. wallpaper
   wallpaperFile = "wallpaper_abstract_nord4x_shadow.png"; # Source file name in assets/images
   profileFile = "randy.png"; # Source file name in assets/images
+  emulator = "wezterm"; # Your preferred terminal emulator; supports alacritty and wezterm
   defaultShell = "zsh";
   shells.isZshEnabled = true;
   shells.isBashEnabled = false;

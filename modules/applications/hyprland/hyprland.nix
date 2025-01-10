@@ -67,7 +67,7 @@ in {
       package = pkgs.hyprland;
       settings = {
         "$mainMod" = "SUPER";
-        "$terminal" = "alacritty";
+        "$terminal" = "${userSettings.emulator}";
         exec-once =
           [
             "hypridle"
@@ -209,6 +209,7 @@ in {
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
             "$mainMod, M, exec, thunar"
+            "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
             "$mainMod, T, exec, $terminal"
             "$mainMod, J, exec, jetbrains-toolbox"
@@ -216,7 +217,7 @@ in {
             "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod, K, exec, alacritty -e kalker"
+            "$mainMod, K, exec, $terminal -e kalker"
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"

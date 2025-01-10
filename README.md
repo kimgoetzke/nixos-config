@@ -19,7 +19,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
 - **Firefox** web browser
-- **Alacritty** terminal emulator with **Zsh** shell
+- **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
 - **VS Code** text editor and **JetBrains Toolbox** for IDEs
 - **Thunar** (GUI) and **Yazi** (terminal) file managers
 - **Docker** and **Postman** as additional web development tools

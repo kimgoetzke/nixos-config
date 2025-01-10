@@ -50,7 +50,8 @@
   vscode.withExtensions = true;
   firefox.enable = true;
   firefox.withProfile = true;
-  alacritty.enable = true;
+  alacritty.enable = userSettings.emulator == "alacritty";
+  wezterm.enable = userSettings.emulator == "wezterm";
   git.enable = true;
   java.enable = false;
   rust.enable = false;
@@ -79,7 +80,6 @@
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
     nixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
     proper = "cd ~/projects && ls -1";
-    anw = "alacritty msg create-window";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
