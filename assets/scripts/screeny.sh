@@ -59,16 +59,16 @@ screeny() {
     echo "Created '$2.gif' (unless an error occurred) and copied file name to clipboard."
     ;;
   "convert-gif-custom" | "cgc")
-      if [[ -z "$2" || -z "$3" || -z "$4" || -z "$5"  ]]; then
-        echo "Error: At least one required parameter is missing. Use with: [file name] [width] [fps] [colours]."
-        exit 1
-      fi
-      ffmpeg -i "$2.mp4" \
-        -vf "fps=$4,scale=$3:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=$5[p];[s1][p]paletteuse=dither=bayer" \
-        -loop 0 "$2.gif"
-      wl-copy "$2.gif"
-      echo "Created '$2.gif' (unless an error occurred) and copied file name to clipboard."
-      ;;
+    if [[ -z "$2" || -z "$3" || -z "$4" || -z "$5"  ]]; then
+      echo "Error: At least one required parameter is missing. Use with: [file name] [width] [fps] [colours]."
+      exit 1
+    fi
+    ffmpeg -i "$2.mp4" \
+      -vf "fps=$4,scale=$3:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=$5[p];[s1][p]paletteuse=dither=bayer" \
+      -loop 0 "$2.gif"
+    wl-copy "$2.gif"
+    echo "Created '$2.gif' (unless an error occurred) and copied file name to clipboard."
+    ;;
   # Conversion from OBS to MOV
   "convert-obs" | "cobs")
     if [[ -z "$2" ]]; then
