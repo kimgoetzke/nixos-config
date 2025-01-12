@@ -59,16 +59,6 @@ in {
         # Keybindings
         # (Thanks to https://stackoverflow.com/questions/5407916/zsh-zle-shift-selection)
 
-        # Cut
-        zle -N widget::cut-selection
-        function widget::cut-selection() {
-            if ((REGION_ACTIVE)) then
-                zle kill-region
-                printf "%s" $CUTBUFFER | xclip -selection clipboard
-            fi
-        }
-        bindkey '^X' widget::cut-selection
-
         # Clear
         r-delregion() {
           if ((REGION_ACTIVE)) then
@@ -136,6 +126,16 @@ in {
         bindkey -M isearch '^?' backward-delete-char # Restore backward-delete-char for Backspace in the
                                                      # incremental search keymap so it keeps working there
 
+        # Exit Yazi with the current directory
+        function y() {
+        	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        	yazi "$@" --cwd-file="$tmp"
+        	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        		builtin cd -- "$cwd"
+        	fi
+        	rm -f -- "$tmp"
+        }
+
         # History
         HISTSIZE=5000
         HISTFILE=~/.zsh_history
@@ -157,6 +157,7 @@ in {
         zstyle ':completion:*' menu no # Disable completion menu
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#acb1ba' # Highlight autosuggestions in yellow
 
         # Aliases from initExtra
         alias ls='ls --color -2'
