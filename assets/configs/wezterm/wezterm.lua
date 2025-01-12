@@ -9,7 +9,7 @@ config = {
         "Noto Color Emoji",
     },
     font_size = 16,
-    window_background_opacity = 0.600000,
+    window_background_opacity = 0.300000,
 
     window_frame = {
         active_titlebar_bg = "#4c566a",
@@ -61,7 +61,6 @@ config = {
 -- General
 config.default_prog = { 'zsh', '--login' }
 config.enable_wayland = false
-config.front_end = 'WebGpu'
 config.cursor_blink_rate = 800
 config.colors.cursor_border = '#d8dee9'
 
@@ -116,22 +115,22 @@ config.keys = {
     {
         key = 'w',
         mods = 'SHIFT|CTRL',
-        action = wezterm.action.CloseCurrentTab { confirm=true },
+        action = wezterm.action.CloseCurrentTab { confirm = true },
     },
     {
         key = 'w',
         mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.CloseCurrentPane { confirm=true },
+        action = wezterm.action.CloseCurrentPane { confirm = true },
     },
     {
         key = 'v',
         mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.SplitVertical{ domain =  'CurrentPaneDomain' },
+        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'h',
         mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.SplitHorizontal{ domain =  'CurrentPaneDomain' },
+        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'a',
