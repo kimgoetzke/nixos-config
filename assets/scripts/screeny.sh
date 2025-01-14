@@ -3,7 +3,7 @@
 # Dependencies: grim, slurp, satty, wl-copy, hyprctl, jq, wf-recorder, ffmpeg.
 
 screeny() {
-  FILE_NAME="$(date '+%Y%m%d-%H:%M:%S')"
+  FILE_NAME="$(date '+%Y%m%d-%H-%M-%S')"
   case "$1" in
   # Screenshots
   "fullscreen" | "fs")
@@ -27,24 +27,24 @@ screeny() {
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"
-    echo "- Use 'screeny cgm $FILE_NAME.mp4 1440 16' for maximum quality, for example."
-    echo "- Use 'screeny cgc $FILE_NAME.mp4 800 10 32' for reduced file size, for example."
+    echo "- Use 'screeny cgm \"$FILE_NAME.mp4\" 1440 16' for maximum quality, for example."
+    echo "- Use 'screeny cgc \"$FILE_NAME.mp4\" 800 10 32' for reduced file size, for example."
     ;;
   "record-window" | "rw")
     wf-recorder -g "$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == "$(hyprctl activewindow -j | jq -r '.workspace.id')\)"" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' | slurp -d -c '#b48eadff')" -f "$HOME/Videos/$FILE_NAME.mp4"
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"
-    echo "- Use 'screeny cgm $FILE_NAME.mp4 800 16' for maximum quality, for example."
-    echo "- Use 'screeny cgc $FILE_NAME.mp4 800 10 32' for reduced file size, for example."
+    echo "- Use 'screeny cgm \"$FILE_NAME.mp4\" 800 16' for maximum quality, for example."
+    echo "- Use 'screeny cgc \"$FILE_NAME.mp4\" 800 10 32' for reduced file size, for example."
     ;;
   "record-area" | "record-manual" | "ra" | "rm")
     wf-recorder -g "$(slurp -d -c '#b48eadff')" -f "$HOME/Videos/$FILE_NAME.mp4"
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"
-    echo "- Use 'screeny cgm $FILE_NAME.mp4 800 16' for maximum quality, for example."
-    echo "- Use 'screeny cgc $FILE_NAME.mp4 800 10 32' for reduced file size."
+    echo "- Use 'screeny cgm \"$FILE_NAME.mp4\" 800 16' for maximum quality, for example."
+    echo "- Use 'screeny cgc \"$FILE_NAME.mp4\" 800 10 32' for reduced file size, for example.."
     ;;
   # Conversion to GIF
   "convert-gif-max" | "cgm")
@@ -63,7 +63,7 @@ screeny() {
       echo "Error: At least one required parameter is missing. Use with: [file name] [width] [fps] [colours]."
       exit 1
     fi
-    ffmpeg -i "$2.mp4" \
+    ffmpeg -i "$2" \
       -vf "fps=$4,scale=$3:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=$5[p];[s1][p]paletteuse=dither=bayer" \
       -loop 0 "$2.gif"
     wl-copy "$2.gif"
