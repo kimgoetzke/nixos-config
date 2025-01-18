@@ -44,8 +44,12 @@ folder() {
     echo "/home/$NIX_USER/projects/practice-leptos"
     cd "/home/$NIX_USER/projects/practice-leptos"
     ;;
+  "pgo")
+    echo "/home/$NIX_USER/projects/practice-go"
+    cd "/home/$NIX_USER/projects/practice-go"
+    ;;
   *)
-    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io, progen2/pg2."
+    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io, progen2/pg2, pgo."
     ;;
   esac
 }
