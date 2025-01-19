@@ -7,8 +7,8 @@ pkgs.mkShell {
   ];
   shellHook = ''
     export DOTNET_NOLOGO=1
-    export DOTNET_ROOT=${dotnet-sdk_8}
-    export PATH=${dotnet-sdk_8}/bin:$PATH
+    export DOTNET_ROOT=${pkgs.dotnet-sdk_8}
+    export PATH=${pkgs.dotnet-sdk_8}/bin:$PATH
     alias ide='nohup jetbrains-toolbox &'
     echo ""
     echo "Welcome to your .NET development environment!" | ${pkgs.lolcat}/bin/lolcat
