@@ -16,13 +16,17 @@ folder() {
     echo "/home/$NIX_USER/"
     cd "/home/$NIX_USER/"
     ;;
-  "nix" | "nixr")
+  "nix" | "nixconf")
     echo "/home/$NIX_USER/projects/nixos-config/"
     cd "/home/$NIX_USER/projects/nixos-config/"
     ;;
-  "nixl")
+  "nixdocs" | "nixbase")
     echo "/home/$NIX_USER/Documents/NixOS/"
     cd "/home/$NIX_USER/Documents/NixOS/"
+    ;;
+  "listem" )
+    echo "/home/$NIX_USER/projects/listem"
+    cd "/home/$NIX_USER/projects/listem"
     ;;
   "rustlings")
     echo "/home/$NIX_USER/projects/rustlings/"
@@ -36,6 +40,14 @@ folder() {
     echo "/home/$NIX_USER/projects/kimgoetzke.github.io"
     cd "/home/$NIX_USER/projects/kimgoetzke.github.io"
     ;;
+  "progen1fe" | "pg1fe")
+    echo "/home/$NIX_USER/projects/procedural-generation-1-front-end"
+    cd "/home/$NIX_USER/projects/procedural-generation-1-front-end"
+    ;;
+  "progen1" | "pg1")
+    echo "/home/$NIX_USER/projects/procedural-generation-1"
+    cd "/home/$NIX_USER/projects/procedural-generation-1"
+    ;;
   "progen2" | "pg2")
     echo "/home/$NIX_USER/projects/procedural-generation-2"
     cd "/home/$NIX_USER/projects/procedural-generation-2"
@@ -44,12 +56,18 @@ folder() {
     echo "/home/$NIX_USER/projects/practice-leptos"
     cd "/home/$NIX_USER/projects/practice-leptos"
     ;;
-  "pgo")
+  "pgoa" | "pgjwt")
     echo "/home/$NIX_USER/projects/practice-go-jwt-auth"
     cd "/home/$NIX_USER/projects/practice-go-jwt-auth"
     ;;
   *)
-    echo "Error: Folder not recognised. Recognised files are: pro/proper, home, nix/nixr, nixl, rusteroids, rustlings, gio/github.io, progen2/pg2, pgo."
+    echo "Error: Folder not recognised. Recognised folders are:"
+    echo "- General:          home/kim, pro/proper, nix/nixconf, nixdocs/nixbase"
+    echo "- Java:             pg1"
+    echo "- Rust:             rustlings, rusteroids, pg2, plep/practice-leptos"
+    echo "- Go:               pgoa/pgjwt"
+    echo "- C#:               listem"
+    echo "- TypeScript/HTML:  gio/github.io, pg1fe"
     ;;
   esac
 }
