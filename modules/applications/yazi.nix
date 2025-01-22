@@ -1,7 +1,7 @@
 {
-  pkgs,
   config,
   lib,
+  userSettings,
   ...
 }: {
   options = {
@@ -12,18 +12,15 @@
     programs.yazi = {
       enable = true;
       enableZshIntegration = true;
+      shellWrapperName = "y";
+    };
 
-      # For more options, see: https://yazi-rs.github.io/docs/configuration/overview
-      settings = {
-        log = {enabled = false;};
-        manager = {
-          show_hidden = true;
-          show_symlink = true;
-          sort_by = "natural";
-          sort_dir_first = true;
-          sort_reverse = true;
-        };
-      };
+    home.sessionVariables = {
+      YAZI_CONFIG_HOME = "${userSettings.targetDirectory}/yazi";
+    };
+
+    home.file."${userSettings.relativeTargetDirectory}/yazi/yazi.toml" = {
+      source = ./../../assets/configs/yazi/yazi.toml;
     };
   };
 }

@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -125,16 +124,6 @@ in {
         bindkey "^I" expand-or-complete              # Tab to expand or complete regular zsh completions
         bindkey -M isearch '^?' backward-delete-char # Restore backward-delete-char for Backspace in the
                                                      # incremental search keymap so it keeps working there
-
-        # Exit Yazi with the current directory
-        function y() {
-        	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-        	yazi "$@" --cwd-file="$tmp"
-        	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        		builtin cd -- "$cwd"
-        	fi
-        	rm -f -- "$tmp"
-        }
 
         # History
         HISTSIZE=5000
