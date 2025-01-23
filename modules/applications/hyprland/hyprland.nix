@@ -207,6 +207,7 @@ in {
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
+            "$mainMod, period, exec, rofi -show-icons -show emoji"
             "$mainMod, M, exec, thunar"
             "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
