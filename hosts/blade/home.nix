@@ -67,7 +67,6 @@
   bash.enable = userSettings.shells.isBashEnabled;
   zsh.enable = userSettings.shells.isZshEnabled;
   home.shellAliases = {
-    ls = "ls --color";
     c = "clear";
     fi = "file";
     nht = "nh os test ${userSettings.baseDirectory} -H default";

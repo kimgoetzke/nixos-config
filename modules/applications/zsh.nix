@@ -14,10 +14,22 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
-    stylix.targets.fzf.enable = true;
+    stylix.targets.fzf.enable = false;
     programs.zoxide = {
       enable = true;
       enableZshIntegration = true;
+    };
+    programs.eza = {
+      enable = true;
+      enableZshIntegration = true;
+      extraOptions = [
+        "--group-directories-first"
+        "--long"
+        "--no-time"
+        "--no-user"
+      ];
+      git = true;
+      icons = "always";
     };
     programs.oh-my-posh = {
       enable = true;
@@ -28,17 +40,14 @@ in {
     };
     programs.zsh = {
       enable = true;
+      dotDir = ".config/zsh";
       initExtra = ''
-        # Set the directory to store Zinit and plugins
+        # Zinit (the zsh plugin manager)
         ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
-
-        # Download Zinit, if required
         if [ ! -d "$ZINIT_HOME" ]; then
            mkdir -p "$(dirname $ZINIT_HOME)"
            git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
         fi
-
-        # Source/load Zinit
         source "''${ZINIT_HOME}/zinit.zsh"
 
         # Add zsh plugins
@@ -127,7 +136,7 @@ in {
 
         # History
         HISTSIZE=5000
-        HISTFILE=~/.zsh_history
+        HISTFILE=~/.config/zsh/.zsh_history
         SAVEHIST=$HISTSIZE
         HISTDUP=erase
         setopt appendhistory
@@ -148,8 +157,32 @@ in {
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#acb1ba' # Highlight autosuggestions in yellow
 
+        # fzf
+        show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+        export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+          --color=fg:#e5e9f0,fg+:#d0d0d0,bg:#2e3440,bg+:#2e3440
+          --color=hl:#81a1c1,hl+:#5fd7ff,info:#eacb8a,marker:#a3be8b
+          --color=prompt:#bf6069,spinner:#b48dac,pointer:#b48dac,header:#a3be8b
+          --color=border:#3b4252,scrollbar:#d8dee9,label:#aeaeae,query:#d9d9d9
+          --preview-window="border-rounded" --prompt="> " --marker=">" --pointer="◆"
+          --separator="─" --scrollbar="│"'
+        export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+        export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+        _fzf_comprun() {
+          local command=$1
+          shift
+
+          case "$command" in
+            cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+            export|unset) fzf --preview "eval 'echo $\{}'"         "$@" ;;
+            ssh)          fzf --preview 'dig {}'                   "$@" ;;
+            *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+          esac
+        }
+
         # Aliases from initExtra
-        alias ls='ls --color -2'
+        alias ls='eza --group-directories-first --git --long --no-time --no-user --icons=always'
         alias c='clear'
 
         # Auto-start Hyprland on first startup
