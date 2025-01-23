@@ -179,9 +179,9 @@ function display_menu {
     echo "11 - Get process information"
     echo "12 - Generate UUID"
     echo "13 - Generate ULID"
-    echo "14 - Find folder in nix store"
+    echo "14 - Find folder in the Nix store"
 
-    read -r -p "Select an option [1-12]: " choice
+    read -r -p "Select an option [1-14]: " choice
     case $choice in
         1) dsrc ;;
         2) dsrcv ;;
