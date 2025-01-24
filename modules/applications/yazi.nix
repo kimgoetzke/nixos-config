@@ -22,9 +22,13 @@
       # ];
       plugins = {
         max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+        full-border = "${inputs.yazi-plugins}/full-border.yazi";
         smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
         wl-clipboard = "${inputs.yazi-plugins-wl-clipboard}";
       };
+      initLua = ''
+        require("full-border"):setup()
+      '';
       keymap = {
         manager.prepend_keymap = [
           {
