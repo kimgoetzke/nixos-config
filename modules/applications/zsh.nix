@@ -152,6 +152,7 @@ in {
         zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Auto-completion is now case-insensitive
         zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}" # Use LS_COLORS for completion coloring
         zstyle ':completion:*' menu no # Disable completion menu
+        zstyle ':autocomplete:*' default-context history-incremental-search-backward
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#acb1ba' # Highlight autosuggestions in yellow
