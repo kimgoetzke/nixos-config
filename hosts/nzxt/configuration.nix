@@ -139,7 +139,6 @@
       wf-recorder # Screen recorder
       ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
       kalker # Calculator
-      inputs.hyprland-qtutils.packages.${pkgs.system}.default # Optional but recommended utilities for Hyprland
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "hyprpanel") [
       hyprpanel # Bar and panel, alternative to Waybar
