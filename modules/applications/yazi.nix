@@ -61,7 +61,7 @@
         file="$1"
         if [ ! -f "$file" ]; then
             echo "File does not exist: $file"
-            notify-send "Error" "File does not exist: $file"
+            hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 File does not exist: $file"
             exit 1
         fi
 
@@ -81,7 +81,7 @@
         selected_app=$(echo "$applications" | rofi -dmenu -i -p "Open with")
         if [ -z "$selected_app" ]; then
             echo "No application selected"
-            notify-send "Cancelled" "No application selected"
+            hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 No application selected"
             exit 1
         fi
 
