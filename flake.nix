@@ -24,6 +24,16 @@
       flake = false;
     };
 
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
+
+    yazi-plugins-wl-clipboard = {
+      url = "github:grappas/wl-clipboard.yazi";
+      flake = false;
+    };
+
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";

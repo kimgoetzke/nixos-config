@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   lib,
-  userSettings,
   ...
 }: {
   options = {
@@ -20,35 +20,75 @@
       #     enable = true;
       #   }
       # ];
+      plugins = {
+        max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+        smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
+        wl-clipboard = "${inputs.yazi-plugins-wl-clipboard}";
+      };
+      keymap = {
+        manager.prepend_keymap = [
+          {
+            on = "T";
+            run = "plugin max-preview";
+            desc = "Maximize or restore the preview pane";
+          }
+          {
+            on = "l";
+            run = "plugin smart-enter";
+            desc = "Enter the child directory, or open the file";
+          }
+          {
+            on = "<C-y>";
+            run = "plugin wl-clipboard";
+            desc = "Copy to wl-clipboard";
+          }
+        ];
+      };
     };
 
     home.sessionVariables = {
-      YAZI_CONFIG_HOME = "${userSettings.targetDirectory}/yazi";
+      YAZI_CONFIG_HOME = "~/.config/yazi";
     };
 
-    home.file."${userSettings.relativeTargetDirectory}/yazi/yazi.toml" = {
+    home.file.".config/yazi/yazi.toml" = {
       source = ./../../assets/configs/yazi/yazi.toml;
     };
 
-    # TODO: Use or remove
-    home.file."${userSettings.relativeTargetDirectory}/yazi/open-with-rofi.sh" = {
+    home.file.".config/yazi/open-with-rofi.sh" = {
       text = ''
-        #!/bin/bash
+        #!/usr/bin/env bash
 
         file="$1"
         if [ ! -f "$file" ]; then
+            echo "File does not exist: $file"
             notify-send "Error" "File does not exist: $file"
             exit 1
         fi
 
-        app=$(rofi -show-icons -show drun)
-        if [ -z "$app" ]; then
+        search_dirs="$HOME/.local/share/applications:$(echo "$XDG_DATA_DIRS")"
+        applications=$(echo "$search_dirs" | tr ':' '\n' | while read -r dir; do
+            find "$dir/applications" -name '*.desktop' 2>/dev/null
+        done | xargs grep -h "^Exec=" | \
+            sed -E 's/^Exec=//' | \
+            sed -E 's/[ ]*[%].*//' | \
+            sed -E 's/[ ]+-.*//' | \
+            awk '!seen[$0]++' | \
+            grep -E '^[^/]' | \
+            grep -Ev '^(xdg-open|Xwayland|rofi|nixos-help|umpv|rofi-theme-selector)$' | \
+            grep -Ev 'http[s]?://|^/nix/store|computer://|trash://|file://' | \
+            sort)
+
+        selected_app=$(echo "$applications" | rofi -dmenu -i -p "Open with")
+        if [ -z "$selected_app" ]; then
+            echo "No application selected"
             notify-send "Cancelled" "No application selected"
             exit 1
         fi
 
-        "$app" "$file"
+        echo "Attempting to open [$file] with [$selected_app]"
+        "$selected_app" "$file"
       '';
+      executable = true;
     };
   };
 }

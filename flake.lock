@@ -913,7 +913,9 @@
         "nixpkgs": "nixpkgs_4",
         "nur": "nur",
         "stylix": "stylix",
-        "ucodenix": "ucodenix"
+        "ucodenix": "ucodenix",
+        "yazi-plugins": "yazi-plugins",
+        "yazi-plugins-wl-clipboard": "yazi-plugins-wl-clipboard"
       }
     },
     "stylix": {
@@ -1140,6 +1142,38 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "yazi-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737560496,
+        "narHash": "sha256-hMJtZvL87tq8SP6N6DfYmV9BguunzFl0CtMDKkIZHCY=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "64186980182fc3041e8c8bc281381e38e61a003a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "type": "github"
+      }
+    },
+    "yazi-plugins-wl-clipboard": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736035356,
+        "narHash": "sha256-jlZgN93HjfK+7H27Ifk7fs0jJaIdnOyY1wKxHz1wX2c=",
+        "owner": "grappas",
+        "repo": "wl-clipboard.yazi",
+        "rev": "c4edc4f6adf088521f11d0acf2b70610c31924f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "grappas",
+        "repo": "wl-clipboard.yazi",
         "type": "github"
       }
     }

@@ -17,7 +17,7 @@ title_format = "Yazi: {cwd}"
 [preview]
 wrap = "no"
 tab_size = 2
-max_width = 600
+max_width = 1000
 max_height = 1400
 cache_dir = ""
 image_delay = 30
@@ -30,11 +30,13 @@ ueberzug_offset = [0, 0, 0, 0]
 [opener]
 edit = [
     { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+    { run = 'code "$@"', desc = "VS Code", for = "unix" },
     { run = 'code %*', orphan = true, desc = "code", for = "windows" },
     { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
 ]
 open = [
     { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
+    { run = '~/.config/yazi/open-with-rofi.sh "$1"', desc = "Select application", for = "linux" },
     { run = 'open "$@"', desc = "Open", for = "macos" },
     { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
     { run = 'termux-open "$1"', desc = "Open", for = "android" },
@@ -59,7 +61,7 @@ play = [
 [open]
 rules = [
     # Folder
-    { name = "*/", use = ["edit", "open", "reveal"] },
+    { name = "*/", use = ["edit", "reveal"] },
     # Text
     { mime = "text/*", use = ["edit", "reveal"] },
     # Image
