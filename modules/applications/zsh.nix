@@ -160,10 +160,10 @@ in {
         # fzf
         show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
         export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-          --color=fg:#e5e9f0,fg+:#d0d0d0,bg:#2e3440,bg+:#2e3440
+          --color=fg:#e5e9f0,fg+:#d0d0d0,bg:-1,bg+:#4c566a
           --color=hl:#81a1c1,hl+:#5fd7ff,info:#eacb8a,marker:#a3be8b
           --color=prompt:#bf6069,spinner:#b48dac,pointer:#b48dac,header:#a3be8b
-          --color=border:#3b4252,scrollbar:#d8dee9,label:#aeaeae,query:#d9d9d9
+          --color=border:#d8dee9,scrollbar:#eceff4,label:#aeaeae,query:#d9d9d9
           --preview-window="border-rounded" --prompt="> " --marker=">" --pointer="◆"
           --separator="─" --scrollbar="│"'
         export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
