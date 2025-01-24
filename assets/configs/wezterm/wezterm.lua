@@ -10,7 +10,6 @@ config = {
     },
     font_size = 16,
     window_background_opacity = 0.300000,
-
     window_frame = {
         active_titlebar_bg = "#4c566a",
         active_titlebar_fg = "#e5e9f0",
@@ -29,14 +28,14 @@ config = {
     },
     colors = {
       tab_bar = {
-        background = "#3b4252",
+        background = "#5e81ac",
         inactive_tab_edge = "#3b4252",
         active_tab = {
-          bg_color = "#2e3440",
-          fg_color = "#ebcb8b",
+          bg_color = "#ebcb8b",
+          fg_color = "#2e3440",
         },
         inactive_tab = {
-          bg_color = "#4c566a",
+          bg_color = "#5e81ac",
           fg_color = "#e5e9f0",
         },
         inactive_tab_hover = {
@@ -53,9 +52,9 @@ config = {
         },
       },
     },
-    command_palette_bg_color = "#3b4252",
+    command_palette_bg_color = "#5e81ac",
     command_palette_fg_color = "#e5e9f0",
-    command_palette_font_size = 10,
+    command_palette_font_size = 14,
 }
 
 -- General
@@ -99,6 +98,13 @@ config.colors.cursor_border = '#d8dee9'
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
+config.show_new_tab_button_in_tab_bar = false
+
+-- Panes
+config.inactive_pane_hsb = {
+  saturation = 0.9,
+  brightness = 0.8,
+}
 
 -- Keys
 config.keys = {
