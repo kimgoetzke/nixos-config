@@ -57,7 +57,6 @@ in {
         zinit light Aloxaf/fzf-tab
 
         # Add snippets
-        zinit snippet OMZP::git
         zinit snippet OMZP::sudo
 
         # Load completions
@@ -136,7 +135,7 @@ in {
 
         # History
         HISTSIZE=5000
-        HISTFILE=~/.config/zsh/.zsh_history
+        HISTFILE=$HOME/.config/zsh/.zsh_history
         SAVEHIST=$HISTSIZE
         HISTDUP=erase
         setopt appendhistory
