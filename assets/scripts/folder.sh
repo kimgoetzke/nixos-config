@@ -60,11 +60,15 @@ folder() {
     echo "/home/$NIX_USER/projects/practice-go-jwt-auth"
     cd "/home/$NIX_USER/projects/practice-go-jwt-auth"
     ;;
+  "ptau")
+    echo "/home/$NIX_USER/projects/practice-tauri-leptos"
+    cd "/home/$NIX_USER/projects/practice-tauri-leptos"
+    ;;
   *)
     echo "Error: Folder not recognised. Recognised folders are:"
     echo "- General:          home/kim, pro/proper, nix/nixconf, nixdocs/nixbase"
     echo "- Java:             pg1"
-    echo "- Rust:             rustlings, rusteroids, pg2, plep/practice-leptos"
+    echo "- Rust:             rustlings, rusteroids, pg2, plep/practice-leptos, ptau"
     echo "- Go:               pgoa/pgjwt"
     echo "- C#:               listem"
     echo "- TypeScript/HTML:  gio/github.io, pg1fe"
