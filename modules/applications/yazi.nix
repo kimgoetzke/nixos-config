@@ -13,13 +13,6 @@
       enable = true;
       enableZshIntegration = true;
       shellWrapperName = "y";
-      # TODO: Add https://github.com/grappas/wl-clipboard.yazi
-      # plugins = [
-      #   {
-      #     name = "yazi";
-      #     enable = true;
-      #   }
-      # ];
       plugins = {
         max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
         full-border = "${inputs.yazi-plugins}/full-border.yazi";
@@ -56,43 +49,6 @@
 
     home.file.".config/yazi/yazi.toml" = {
       source = ./../../assets/configs/yazi/yazi.toml;
-    };
-
-    home.file.".config/yazi/open-with-rofi.sh" = {
-      text = ''
-        #!/usr/bin/env bash
-
-        file="$1"
-        if [ ! -f "$file" ]; then
-            echo "File does not exist: $file"
-            hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 File does not exist: $file"
-            exit 1
-        fi
-
-        search_dirs="$HOME/.local/share/applications:$(echo "$XDG_DATA_DIRS")"
-        applications=$(echo "$search_dirs" | tr ':' '\n' | while read -r dir; do
-            find "$dir/applications" -name '*.desktop' 2>/dev/null
-        done | xargs grep -h "^Exec=" | \
-            sed -E 's/^Exec=//' | \
-            sed -E 's/[ ]*[%].*//' | \
-            sed -E 's/[ ]+-.*//' | \
-            awk '!seen[$0]++' | \
-            grep -E '^[^/]' | \
-            grep -Ev '^(xdg-open|Xwayland|rofi|nixos-help|umpv|rofi-theme-selector)$' | \
-            grep -Ev 'http[s]?://|^/nix/store|computer://|trash://|file://' | \
-            sort)
-
-        selected_app=$(echo "$applications" | rofi -dmenu -i -p "Open with")
-        if [ -z "$selected_app" ]; then
-            echo "No application selected"
-            hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 No application selected"
-            exit 1
-        fi
-
-        echo "Attempting to open [$file] with [$selected_app]"
-        "$selected_app" "$file"
-      '';
-      executable = true;
     };
   };
 }

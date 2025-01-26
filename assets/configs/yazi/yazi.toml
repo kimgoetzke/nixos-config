@@ -36,7 +36,7 @@ edit = [
 ]
 open = [
     { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
-    { run = '~/.config/yazi/open-with-rofi.sh "$1"', desc = "Select application", for = "linux" },
+    { run = 'openwithrofi "$1"', desc = "Select application", for = "linux" },
     { run = 'open "$@"', desc = "Open", for = "macos" },
     { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
     { run = 'termux-open "$1"', desc = "Open", for = "android" },

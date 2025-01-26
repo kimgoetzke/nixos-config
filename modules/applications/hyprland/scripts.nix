@@ -120,7 +120,7 @@
           #CONNECTED_PORT=$(echo "$INPUT_INFO" | grep -oP '(?<=Monitor ).*(?= \()')
       fi
 
-      notify-send "Connected main monitor: $CONNECTED_MONITOR"
+      hyprctl notify 1 10000 "rgb(ebcb8b)" "fontsize:16 Connected main monitor: $CONNECTED_MONITOR"
       #notify-send "Connected port: $CONNECTED_PORT"
     '';
     executable = true;
@@ -132,4 +132,43 @@
     source = ./../../../assets/scripts/screeny.sh;
   };
   home.shellAliases.screeny = "${userSettings.targetDirectory}/screeny.sh";
+
+  # Open with Rofi -----------------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/open-with-rofi.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+
+      file="$1"
+      if [ ! -f "$file" ]; then
+          echo "File does not exist: $file"
+          hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 File [$file] does not exist"
+          exit 1
+      fi
+
+      search_dirs="$HOME/.local/share/applications:$(echo "$XDG_DATA_DIRS")"
+      applications=$(echo "$search_dirs" | tr ':' '\n' | while read -r dir; do
+          find "$dir/applications" -name '*.desktop' 2>/dev/null
+      done | xargs grep -h "^Exec=" | \
+          sed -E 's/^Exec=//' | \
+          sed -E 's/[ ]*[%].*//' | \
+          sed -E 's/[ ]+-.*//' | \
+          awk '!seen[$0]++' | \
+          grep -E '^[^/]' | \
+          grep -Ev '^(xdg-open|Xwayland|rofi|nixos-help|umpv|rofi-theme-selector)$' | \
+          grep -Ev 'http[s]?://|^/nix/store|computer://|trash://|file://' | \
+          sort)
+
+      selected_app=$(echo "$applications" | rofi -dmenu -i -p "Open with")
+      if [ -z "$selected_app" ]; then
+          echo "No application selected"
+          hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 No application selected"
+          exit 1
+      fi
+
+      echo "Attempting to open [$file] with [$selected_app]"
+      "$selected_app" "$file"
+    '';
+    executable = true;
+  };
+  home.shellAliases.openwithrofi = "${userSettings.targetDirectory}/open-with-rofi.sh";
 }
