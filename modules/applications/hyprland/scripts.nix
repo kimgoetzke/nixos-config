@@ -1,7 +1,4 @@
-{
-  userSettings,
-  ...
-}: {
+{userSettings, ...}: {
   # Power menu ---------------------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/power-menu.sh" = {
     text = ''

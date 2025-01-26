@@ -73,6 +73,7 @@ in {
             "swww img ${userSettings.targetDirectory}/wallpaper.png"
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
+            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           ]
           ++ lib.optionals config.hyprland-waybar.enable [
             "mako" # Conflicts with hyprpanel which comes with a notification daemon

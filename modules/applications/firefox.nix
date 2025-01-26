@@ -151,6 +151,10 @@ in {
       };
     };
 
+    home.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+    };
+
     xdg.mimeApps.defaultApplications = {
       "text/html" = ["firefox.desktop"];
       "text/xml" = ["firefox.desktop"];
