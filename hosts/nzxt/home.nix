@@ -43,6 +43,7 @@
 
   imports = [
     (import ./../../modules/applications/_all.nix {inherit config pkgs lib inputs userSettings;})
+    (import ./../../modules/other/_all.nix {inherit config pkgs lib inputs userSettings;})
   ];
 
   # Applications
@@ -62,6 +63,9 @@
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
   programs.obs-studio.enable = true;
+
+  # Settings
+  gtk-settings.enable = true;
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;

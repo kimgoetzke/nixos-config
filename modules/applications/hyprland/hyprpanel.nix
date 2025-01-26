@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   userSettings,
@@ -10,12 +9,6 @@
   };
 
   config = lib.mkIf config.hyprland-hyprpanel.enable {
-    # TODO: Move this to another module as Thunar needs it too
-    gtk.iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
-    };
-
     home.file.".config/hyprpanel/config.json" = {
       text = ''
         {
