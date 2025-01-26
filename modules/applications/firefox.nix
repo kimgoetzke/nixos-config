@@ -36,7 +36,6 @@ in {
         isDefault = true;
         name = "default";
         bookmarks = [];
-        # TODO: Verify that theme setting works
         userChrome = ''
           @import "firefox-nord-theme/userChrome.css";
         '';
@@ -66,8 +65,7 @@ in {
           "browser.download.useDownloadDir" = false;
 
           # Extensions
-          # TODO: ..and if theme setting above doesn't work, try something like this
-          # "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
           # Prevent WebRTC leaking IP address
           "media.peerconnection.ice.default_address_only" = true;
