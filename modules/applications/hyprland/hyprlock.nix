@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   userSettings,
@@ -15,7 +14,6 @@
     services.hypridle.settings = {
       general = {
         ignore_dbus_inhibit = false;
-        ignore_systemd_inhibit = false;
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -139,7 +137,7 @@
         fade_timeout = 3000 # Milliseconds before fade_on_empty is triggered.
         placeholder_text = Enter your password...
         hide_input = false
-        rounding = -1 # -1 means complete rounding (circle/oval)
+        rounding = 15 # -1 means complete rounding (circle/oval)
         check_color = rgb(${config.lib.stylix.colors.base00-rgb-r},${config.lib.stylix.colors.base00-rgb-g},${config.lib.stylix.colors.base00-rgb-b})
         fail_color = rgb(${config.lib.stylix.colors.base08-rgb-r},${config.lib.stylix.colors.base08-rgb-g},${config.lib.stylix.colors.base08-rgb-b})
         fail_text = $FAIL (attempt $ATTEMPTS)

@@ -2,8 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
-  home-manager,
   userSettings,
   ...
 }: let
@@ -14,12 +12,12 @@ in {
   };
 
   imports = [
-    (import ./waybar.nix {inherit config pkgs lib userSettings;})
-    (import ./hyprpanel.nix {inherit config pkgs lib userSettings;})
-    (import ./rofi.nix {inherit config pkgs lib userSettings;})
+    ./waybar.nix
+    ./hyprpanel.nix
+    ./rofi.nix
     ./mako.nix
-    (import ./cliphist.nix {inherit config pkgs lib userSettings;})
-    (import ./hyprlock.nix {inherit config pkgs lib userSettings;})
+    ./cliphist.nix
+    ./hyprlock.nix
     ./scripts.nix
     ./kanshi.nix
   ];
@@ -189,6 +187,7 @@ in {
           "center, title:^(Rusteroids)$"
           "float, title:^(JetBrains Toolbox)$"
           "center, title:^(JetBrains Toolbox)$"
+          "idleinhibit fullscreen, class:.*" # Prevent idle when fullscreen
         ];
         layerrule = [
           "blur, notifications"
