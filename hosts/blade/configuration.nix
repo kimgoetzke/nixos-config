@@ -119,7 +119,6 @@
       _1password-cli
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
-      # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault
       pulsemixer # PulseAudio mixer and audio controller
       nixd # Nix language server
       ueberzugpp # Image viewer for terminal, required by Yazi

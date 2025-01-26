@@ -118,7 +118,6 @@
       _1password-cli
       lshw # Tool to list hardware
       bat # Cat with syntax highlighting
-      # kooha # GIF screen recorder TODO: Research Kooha's segmentation fault https://github.com/SeaDve/Kooha/issues/316
       pulsemixer # PulseAudio mixer and audio controller
       nixd # Nix language server
       davinci-resolve # Video editor
