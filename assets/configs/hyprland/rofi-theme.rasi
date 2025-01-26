@@ -8,6 +8,7 @@ configuration {
     display-ssh:        "󰣀  ";
     display-window:     "󰶭  ";
     display-keys:       "󰌌  ";
+    display-calc:       "󰪚  ";
     hover-select:       true;
     me-select-entry:    "";
     me-accept-entry:    "MousePrimary";
@@ -65,6 +66,7 @@ entry {
 textbox {
     padding:            8px;
     background-color:   @bg1;
+    border-radius:      7px;
 }
 
 listview {

@@ -1,7 +1,4 @@
 {
-  pkgs,
-  config,
-  lib,
   userSettings,
   ...
 }: {
@@ -11,7 +8,7 @@
       #!/bin/sh
       # Thank you, Eric Murphy! See: https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -10; } inputbar { children: [textbox-prompt-colon, entry]; }")
+      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -10; width: 300px; } mainbox { children: [listview]; }")
 
       case "$CHOSEN" in
       	"  Lock") (pidof hyprlock || hyprlock) ;;
@@ -36,7 +33,6 @@
       hyprctl --batch "$HYPRCMDS"
 
       # Let's go!
-      notify-send "󱠡  Ciao, ciao..."
       sleep 1
       shutdown now
     '';

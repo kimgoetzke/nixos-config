@@ -197,12 +197,12 @@ in {
         bind =
           [
             # General
-            "$mainMod SHIFT, F1, exec, ${userSettings.targetDirectory}/main-monitor-detector.sh"
-            "$mainMod SHIFT, F2, exec, wdisplays"
-            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
+            "$mainMod SHIFT, F1, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
+            "$mainMod SHIFT, F2, exec, ${userSettings.targetDirectory}/main-monitor-detector.sh"
+            "$mainMod SHIFT, F3, exec, wdisplays"
             "$mainMod SHIFT, F4, exec, ${userSettings.targetDirectory}/toggle-performance-mode.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
-            "$mainMod SHIFT, K, exec, ${userSettings.targetDirectory}/hyprland-keybindings.sh"
+            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
 
             # Apps
             "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
@@ -216,7 +216,8 @@ in {
             "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
-            "$mainMod, K, exec, $terminal -e kalker"
+            "$mainMod SHIFT, K, exec, $terminal -e kalker"
+            "$mainMod, K, exec, rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history"
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"

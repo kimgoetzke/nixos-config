@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  userSettings,
   ...
 }: {
   options = {
@@ -17,7 +16,7 @@
       theme = lib.mkForce (with config.lib.stylix.colors.withHashtag;
         builtins.toFile "theme.rasi" ''
           * {
-              font:               "DejaVu Sans Regular 15";
+              font:               "JetBrains Mono Regular 15";
               bg0:                ${base00}99;
               bg1:                ${base02}99;
               fg0:                ${base03};
@@ -39,7 +38,6 @@
           ${builtins.readFile ./../../../assets/configs/hyprland/rofi-theme.rasi}'');
       cycle = true;
       plugins = with pkgs; [
-        # TODO: Try again after next upstream release, see bug https://github.com/NixOS/nixpkgs/issues/298539
         rofi-emoji
         rofi-calc
         rofi-power-menu
