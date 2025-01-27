@@ -32,12 +32,13 @@ mainbox {
 
 inputbar {
     spacing:            8px;
-    background-color:   @bg1;
+    background-color:   transparent;
     border:             0px;
     border-radius:      7px;
     border-color:       @fg2;
     margin:             0 0 5px 0;
-    padding:            10px 16px 10px 16px;
+    padding:            10px 16px 100px 16px;
+    background-image:   @bgimage;
     children:           [ prompt, entry ];
 }
 
@@ -45,7 +46,7 @@ inputbar {
 textbox-prompt-colon {
     enabled:                      true;
     expand:                       false;
-    padding:                      0px 5px 0px 0px;
+    padding:                      7px 5px 0px 0px;
     str:                          "";
     background-color:             transparent;
     text-color:                   inherit;
@@ -61,12 +62,18 @@ prompt {
 
 entry {
     text-color:         @regular-color;
+    background-color:   @bg1;
+    border-radius:      7px;
+    cursor:             text;
+    padding:            8px;
+    placeholder:        "Search...";
 }
 
 textbox {
     padding:            8px;
     background-color:   @bg1;
     border-radius:      7px;
+    blink:              true;
 }
 
 listview {
@@ -74,6 +81,7 @@ listview {
     lines:              8;
     columns:            1;
     fixed-height:       false;
+    scrollbar:          true;
 }
 
 element {
@@ -105,16 +113,26 @@ element selected {
 element selected normal, element selected active {
     background-color:   @select-color;
     border-radius:      7px;
+    cursor:             pointer;
 }
 
 element selected urgent {
     background-color:   @urgent-color;
+    cursor:             pointer;
 }
 
 element-icon {
     size:               1.0em;
+    cursor:             pointer;
 }
 
 element-text {
     text-color:         inherit;
+    cursor:             pointer;
+}
+
+scrollbar {
+    handle-width:       4px;
+    handle-color:       @fg1;
+    padding:            0px 0px 0px 7px;
 }

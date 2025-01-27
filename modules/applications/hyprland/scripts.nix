@@ -5,7 +5,7 @@
       #!/bin/sh
       # Thank you, Eric Murphy! See: https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: center; anchor: center; width: 300px; } mainbox { children: [listview]; }")
+      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: center; anchor: center; width: 300px; } mainbox { children: [listview]; } listview { scrollbar: false; }")
 
       case "$CHOSEN" in
       	"  Lock") (pidof hyprlock || hyprlock) ;;

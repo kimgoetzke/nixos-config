@@ -12,6 +12,7 @@
   targetDirectory = "/home/your_user/Documents/NixOS"; # Location of some assets, used by scripts, must be in line with the below
   relativeTargetDirectory = "/Documents/NixOS"; # Relative path from home/your_user where some assets are stored e.g. wallpaper
   wallpaperFile = "wallpaper_abstract_nord4x_shadow.png"; # Source file name in assets/images
+  thumbnailFile = "thumbnail_abstract_nord4_pixel.png"; # Source file name in assets/images, used by Rofi
   profileFile = "randy.png"; # Source file name in assets/images
   emulator = "wezterm"; # Your preferred terminal emulator; supports alacritty and wezterm
   defaultShell = "zsh";

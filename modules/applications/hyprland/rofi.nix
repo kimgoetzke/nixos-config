@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  userSettings,
   ...
 }: {
   options = {
@@ -34,6 +35,7 @@
               margin:             0;
               padding:            0;
               spacing:            0;
+              bgimage:            url('${userSettings.targetDirectory}/thumbnail.png', width);
           }
           ${builtins.readFile ./../../../assets/configs/hyprland/rofi-theme.rasi}'');
       cycle = true;

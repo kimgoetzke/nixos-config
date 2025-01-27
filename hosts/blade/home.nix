@@ -98,6 +98,9 @@
     "${userSettings.relativeTargetDirectory}/wallpaper.png" = {
       source = ./../../assets/images/${userSettings.wallpaperFile};
     };
+    "${userSettings.relativeTargetDirectory}/thumbnail.png" = {
+      source = ./../../assets/images/${userSettings.thumbnailFile};
+    };
     "${userSettings.relativeTargetDirectory}/profile.png" = {
       source = ./../../assets/images/${userSettings.profileFile};
     };
