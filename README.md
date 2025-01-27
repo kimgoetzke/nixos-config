@@ -22,7 +22,6 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
 - **VS Code** text editor and **JetBrains Toolbox** for IDEs
 - **Thunar** (GUI) and **Yazi** (terminal) file managers
-- **Docker** and **Postman** as additional web development tools
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
 - **Mpv** media player
@@ -35,7 +34,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 ![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 3](./assets/demo/screenshot-3.png)
 
-## How to use
+## Usage
 
 #### Preparation
 
