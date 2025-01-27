@@ -203,11 +203,11 @@ in {
             "$mainMod SHIFT, F3, exec, wdisplays"
             "$mainMod SHIFT, F4, exec, ${userSettings.targetDirectory}/toggle-performance-mode.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
-            "$mainMod SHIFT, E, exec, ${userSettings.targetDirectory}/power-menu.sh"
+            "$mainMod SHIFT, E, exec, pkill -x rofi || ${userSettings.targetDirectory}/power-menu.sh"
 
             # Apps
-            "$mainMod, SPACE, exec, killall rofi || rofi -show-icons -show drun"
-            "$mainMod, period, exec, rofi -show-icons -show emoji"
+            "$mainMod, SPACE, exec, pkill -x rofi || rofi -show-icons -show drun"
+            "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
             "$mainMod, M, exec, thunar"
             "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
@@ -218,7 +218,7 @@ in {
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "$mainMod SHIFT, K, exec, $terminal -e kalker"
-            "$mainMod, K, exec, rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history"
+            "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history"
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, rofi -modi clipboard:~/.config/cliphist/cliphist-rofi-img -show clipboard -show-icons"
