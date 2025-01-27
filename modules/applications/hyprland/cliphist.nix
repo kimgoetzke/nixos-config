@@ -25,12 +25,12 @@
 
         if [[ "$1" == "wipe" ]]; then
           cliphist wipe
-          notify-send "   Wiped clipboard history"
+          hyprctl notify 1 2000 "rgb(ebcb8b)" "Wiped clipboard history"
         fi
 
         if [[ "$1" == "remove" ]]; then
           cliphist list | rofi -dmenu -theme-str "window { location: northeast; anchor: northeast; y-offset: 5; x-offset: -60; } inputbar { children: [textbox-prompt-colon, entry]; }" | cliphist delete
-          notify-send "   Removed selected item from clipboard history"
+          hyprctl notify 1 2000 "rgb(ebcb8b)" "Removed selected item from clipboard history"
         fi
       '';
       executable = true;
