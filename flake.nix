@@ -41,6 +41,11 @@
     };
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -49,6 +54,7 @@
     home-manager,
     stylix,
     ucodenix,
+    nixvim,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -66,11 +72,12 @@
     # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       default = nixpkgs.lib.nixosSystem {
-        inherit specialArgs; #
+        inherit specialArgs;
         modules = [
           ./hosts/${userSettings.hostName}/configuration.nix
           stylix.nixosModules.stylix
           ucodenix.nixosModules.ucodenix
+          nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = specialArgs;

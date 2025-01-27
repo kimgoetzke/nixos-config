@@ -140,7 +140,8 @@
       hyprpanel # Bar and panel, alternative to Waybar
     ];
 
-  # Shell
+  # Applications
+  nvim.enable = true;
   programs.zsh.enable = userSettings.shells.isZshEnabled;
 
   # Docker
