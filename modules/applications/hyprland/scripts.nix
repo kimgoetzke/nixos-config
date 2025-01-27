@@ -41,9 +41,16 @@
   home.file."${userSettings.relativeTargetDirectory}/reload-ui.sh" = {
     text = ''
       #!/usr/bin/env bash
-      pkill waybar
       hyprctl reload
-      waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
+      if pgrep waybar > /dev/null; then
+        pkill waybar
+        waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
+      fi
+
+      if pgrep hyprpanel > /dev/null; then
+        pkill hyprpanel
+        hyprpanel &
+      fi
     '';
     executable = true;
   };

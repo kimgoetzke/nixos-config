@@ -65,13 +65,7 @@ folder() {
     cd "/home/$NIX_USER/projects/practice-tauri-leptos"
     ;;
   *)
-    echo "Error: Folder not recognised. Recognised folders are:"
-    echo "- General:          home/kim, pro/proper, nix/nixconf, nixdocs/nixbase"
-    echo "- Java:             pg1"
-    echo "- Rust:             rustlings, rusteroids, pg2, plep/practice-leptos, ptau"
-    echo "- Go:               pgoa/pgjwt"
-    echo "- C#:               listem"
-    echo "- TypeScript/HTML:  gio/github.io, pg1fe"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix/nixconf, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep/practice-leptos, ptau, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio/github.io, pg1fe"
     ;;
   esac
 }
