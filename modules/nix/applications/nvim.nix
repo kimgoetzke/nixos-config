@@ -92,6 +92,7 @@ in {
       plugins.treesitter.enable = true;
       plugins.luasnip.enable = true;
       plugins.web-devicons.enable = true;
+      plugins.oil.enable = true;
 
       plugins.colorizer = {
         enable = true;
