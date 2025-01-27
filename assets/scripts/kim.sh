@@ -164,24 +164,32 @@ function nixstore {
     fi
 }
 
-function display_menu {
-    echo "Hi, $(whoami). Choose an action:"
-    echo "1 - Stop & remove all Docker containers"
-    echo "2 - Stop & remove all Docker containers and remove all unused volumes"
-    echo "3 - Remove unused Docker volumes"
-    echo "4 - Remove unused Docker containers and volumes"
-    echo "5 - Spin up new MySQL Docker container and copy environment variables to clipboard"
-    echo "6 - Get MySQL Docker container port number"
-    echo "7 - Get MySQL Docker container id"
-    echo "8 - Execute command in MySQL container (use container_name::command syntax)"
-    echo "9 - Get port information (default: all listening TCP connections)"
-    echo "10 - Extract the Docker container name based on a (partial) image name"
-    echo "11 - Get process information"
-    echo "12 - Generate UUID"
-    echo "13 - Generate ULID"
-    echo "14 - Find folder in the Nix store"
+function tolist {
+    echo "Action: $FUNCNAME - pipes input through tr, replacing the provided delimited with a line break."
+    read -r -p "Enter the variable name (incl '$') or paste the string to evaluate: " toRead
+    read -r -p "Enter the delimiter (or hit enter to use ':'): " delimiter
+    delimiter=${delimiter:-:}
+    printf "\nOutput: \n"
+    eval "echo $toRead"| tr "$delimiter" '\n'
+}
 
-    read -r -p "Select an option [1-14]: " choice
+function display_menu {
+    echo "1 | dsrc - Stop & remove all Docker containers"
+    echo "2 | dsrcv - Stop & remove all Docker containers and remove all unused volumes"
+    echo "3 | drv - Remove unused Docker volumes"
+    echo "4 | drcv - Remove unused Docker containers and volumes"
+    echo "5 | nmc - Spin up new MySQL Docker container and copy environment variables to clipboard"
+    echo "6 | mp - Get MySQL Docker container port number"
+    echo "7 | mid - Get MySQL Docker container id"
+    echo "8 | mc - Execute command in MySQL container (use container_name::command syntax)"
+    echo "9 | cn - Get port information (default: all listening TCP connections)"
+    echo "10 | gp - Extract the Docker container name based on a (partial) image name"
+    echo "11 | pi - Get process information"
+    echo "12 | uuid - Generate UUID"
+    echo "13 | ulid - Generate ULID"
+    echo "14 | nixstore - Find folder in the Nix store"
+    echo "15 | tolist - Pipes input through tr, replacing the provided delimited with a line break"
+    read -r -p "Select an option [1-15]: " choice
     case $choice in
         1) dsrc ;;
         2) dsrcv ;;
@@ -197,6 +205,7 @@ function display_menu {
         12) uuid ;;
         13) ulid ;;
         14) nixstore ;;
+        15) tolist ;;
         *) echo "Invalid choice." ;;
     esac
 }
