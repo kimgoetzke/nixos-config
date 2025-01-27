@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   inputs,
@@ -8,9 +7,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/hardware/_all.nix
-    ./../../modules/modes/_all.nix
-    (import ./../../modules/desktop/_all.nix {inherit config pkgs lib inputs userSettings;})
+    ./../../modules/nix/_all.nix
   ];
 
   # Boot loader

@@ -19,6 +19,7 @@
     ./hyprland/hyprland.nix
     ./direnv.nix
     ./btop.nix
+    ./gtk.nix
     ./yazi.nix
   ];
 }

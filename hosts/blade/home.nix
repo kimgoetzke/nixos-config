@@ -42,8 +42,7 @@
   };
 
   imports = [
-    (import ./../../modules/applications/_all.nix {inherit config pkgs lib inputs userSettings;})
-    (import ./../../modules/other/_all.nix {inherit config pkgs lib inputs userSettings;})
+    (import ./../../modules/home-manager/_all.nix {inherit config pkgs lib inputs userSettings;})
   ];
 
   # Applications
