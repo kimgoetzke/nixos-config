@@ -218,7 +218,7 @@ in {
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "$mainMod SHIFT, K, exec, $terminal -e kalker"
-            "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history"
+            "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history -theme-str \"entry { placeholder: 'Enter...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }\""
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh wipe"
