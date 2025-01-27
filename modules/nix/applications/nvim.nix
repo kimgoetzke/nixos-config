@@ -15,7 +15,6 @@ in {
       enable = true;
       colorschemes.nord = {
         enable = true;
-        disableBackground = true;
         settings = {
           disable_background = true;
           borders = true;
