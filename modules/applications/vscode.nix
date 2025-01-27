@@ -26,10 +26,14 @@ in {
         github.copilot-chat
         esbenp.prettier-vscode
         eamodio.gitlens
+        tamasfe.even-better-toml
+        mkhl.direnv
 
         # Languages
         bbenoist.nix
         jnoortheen.nix-ide
+        rust-lang.rust-analyzer
+        vadimcn.vscode-lldb # Rust and C++ debugger
 
         # UI
         arcticicestudio.nord-visual-studio-code
@@ -73,6 +77,13 @@ in {
         "window.menuBarVisibility" = "toggle";
         "workbench.editor.editorActionsLocation" = "hidden";
         "workbench.colorTheme" = lib.mkDefault "Nord";
+        "workbench.colorCustomizations" = {
+          "editor.background" = lib.mkForce "#232831";
+          "editorGutter.background" = lib.mkForce "#232831";
+          "editorInlayHint.background" = lib.mkForce "#232831";
+          "editorInlayHint.foreground" = lib.mkForce "#4c566a";
+          "minimap.background" = lib.mkForce "#232831";
+        };
         "editor.fontSize" = lib.mkDefault 18;
         "editor.fontFamily" = lib.mkDefault "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";
 
