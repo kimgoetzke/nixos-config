@@ -208,6 +208,7 @@ in {
             # Apps
             "$mainMod, SPACE, exec, pkill -x rofi || rofi -show-icons -show drun"
             "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
+            "$mainMod, N, exec, $terminal -e nmtui"
             "$mainMod, M, exec, thunar"
             "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
@@ -218,7 +219,7 @@ in {
             "$mainMod, C, exec, code"
             "$mainMod, A, exec, aseprite"
             "$mainMod SHIFT, K, exec, $terminal -e kalker"
-            "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history -theme-str \"entry { placeholder: 'Enter...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }\""
+            "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history -theme-str \"entry { placeholder: 'Enter calculation...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }\""
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
             "$mainMod SHIFT, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh wipe"
