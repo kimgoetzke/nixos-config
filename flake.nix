@@ -46,6 +46,8 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs = {
