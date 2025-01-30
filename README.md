@@ -56,6 +56,11 @@ See [https://nixos.org/](https://nixos.org) for more information.
    nasty `No such file or directory` error.
 7. Build the system.
 
+> [!NOTE]
+> After the first build you can use aliases to manage your user.nix file. See `home.shellAliases` in `home.nix`.
+> - Use `ignorenixuser` to execute the `git add`, and `git update-index` commands above.
+> - Use `undoignorenixuser` to run the `git rm` command above.
+
 #### Build
 
 The below assumes that this repo is cloned to `~/projects/nixos-config`. If that's not the case, replace the path

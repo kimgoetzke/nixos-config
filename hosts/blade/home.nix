@@ -81,7 +81,9 @@
     nfu = "nix flake update --flake ${userSettings.baseDirectory}";
     nsr = "sudo nix-store --verify --check-contents --repair";
     nixs = "nixos-rebuild switch --flake ${userSettings.baseDirectory}#default";
-    nixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix";
+    ignorenixuser = "cd ${userSettings.baseDirectory}/users && git add --intent-to-add user.nix && git update-index --assume-unchanged user.nix && cd -";
+    undoignorenixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && cd -";
+    unignorenixuser = "cd ${userSettings.baseDirectory}/users && git rm --cached user.nix && cd -";
     proper = "cd ~/projects && ls -1";
     ".." = "cd ..";
     "..." = "cd ../..";
