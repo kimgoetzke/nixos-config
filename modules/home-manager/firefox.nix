@@ -7,9 +7,12 @@
 }: let
   cfg = config.firefox;
 in {
+  imports = [inputs.textfox.homeManagerModules.default];
+
   options.firefox = {
     enable = lib.mkEnableOption "Enable Mozilla Firefox";
     withProfile = lib.mkEnableOption "Enable configured Firefox profile";
+    withTextfox = lib.mkEnableOption "Enable the amazing Textfox theme";
   };
 
   config = lib.mkIf cfg.enable {
@@ -36,10 +39,10 @@ in {
         isDefault = true;
         name = "default";
         bookmarks = [];
-        userChrome = ''
+        userChrome = lib.mkIf (cfg.withTextfox == false) ''
           @import "firefox-nord-theme/userChrome.css";
         '';
-        userContent = ''
+        userContent = lib.mkIf (cfg.withTextfox == false) ''
           @import "firefox-nord-theme/theme/nordic-theme.css";
         '';
         settings = {
@@ -145,7 +148,32 @@ in {
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
           tridactyl
+          firefox-color
         ];
+      };
+    };
+
+    textfox = lib.mkIf cfg.withTextfox {
+      enable = true;
+      profile = "default";
+      config = {
+        displayNavButtons = true;
+        displayHorizontalTabs = true;
+        background = {
+          color = "#1f242d"; # Note that this doesn't change the full background, you appear to need firefox-color for that
+        };
+        border = {
+          color = "#4c566a";
+          width = "3px";
+          transition = "1.0s ease";
+          radius = "5px";
+        };
+        newtabLogo = "   __            __  ____          \A   / /____  _  __/ /_/ __/___  _  __\A  / __/ _ \\| |/_/ __/ /_/ __ \\| |/_/\A / /_/  __/>  </ /_/ __/ /_/ />  <  \A \\__/\\___/_/|_|\\__/_/  \\____/_/|_|  ";
+        font = {
+          family = "JetBrainsMono Nerd Font";
+          size = "15px";
+          accent = "#81A1C1";
+        };
       };
     };
 

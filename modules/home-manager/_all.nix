@@ -21,6 +21,5 @@
     ./btop.nix
     ./gtk.nix
     ./yazi.nix
-    ./textfox.nix
   ];
 }
