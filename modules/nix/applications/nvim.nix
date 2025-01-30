@@ -44,10 +44,12 @@ in {
           cssls.enable = true;
           tailwindcss.enable = true;
           html.enable = true;
-          nil_ls.enable = true;
+          nil_ls.enable = true; # Nix
           dockerls.enable = true;
           bashls.enable = true;
           yamlls.enable = true;
+          csharp_ls.enable = true;
+          gopls.enable = true; # Golang
         };
       };
 
