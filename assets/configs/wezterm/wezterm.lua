@@ -1,43 +1,11 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
 -- Set color scheme first
 config.color_scheme = "stylix"
 
-bar.apply_to_config(config, {
-  max_width = 26,
-  padding = {
-    left = 1,
-    right = 1,
-  },
-  modules = {
-    tabs = {
-      active_tab_fg = 1,
-      inactive_tab_fg = 4,
-    },
-    pane = {
-      enabled = false,
-    },
-    username = {
-      enabled = false,
-    },
-    workspace = {
-      enabled = false,
-    },
-    hostname = {
-      enabled = false,
-    },
-    cwd = {
-      enabled = true,
-      color = 7,
-    },
-    clock = {
-      enabled = true,
-      color = 7,
-    },
-  }
-})
+-- tabline.apply_to_config(config)
 
 config.font = wezterm.font_with_fallback {
     "JetBrainsMono Nerd Font",
@@ -66,7 +34,8 @@ config.window_frame = {
 
 config.colors = {
   tab_bar = {
-    background = "#5e81ac",
+--     background = "#5e81ac", -- If tabline is not used
+    background = "#2E3440",
     inactive_tab_edge = "#3b4252",
     active_tab = {
       bg_color = "#ebcb8b",
@@ -192,5 +161,21 @@ config.keys = {
     action = wezterm.action.ActivateCommandPalette,
   },
 }
+
+tabline.setup({
+  options = {
+    theme = "nord",
+  },
+  sections = {
+    tabline_a = { 'mode' },
+    tabline_b = { },
+    tabline_c = { ' ' },
+    tab_active = { 'index', { 'process', padding = { left = 0, right = 1 }, max_length = 20, } },
+    tab_inactive = { 'index', { 'process', padding = { left = 0, right = 1 } } },
+    tabline_x = { },
+    tabline_y = { 'cpu' },
+    tabline_z = { 'domain' },
+   },
+})
 
 return config
