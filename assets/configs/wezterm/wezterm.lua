@@ -1,63 +1,101 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 
--- Modified Stylix color scheme
-config = {
-    color_scheme = "stylix",
-    font = wezterm.font_with_fallback {
-        "JetBrainsMono Nerd Font",
-        "Noto Color Emoji",
+-- Set color scheme first
+config.color_scheme = "stylix"
+
+bar.apply_to_config(config, {
+  max_width = 26,
+  padding = {
+    left = 1,
+    right = 1,
+  },
+  modules = {
+    tabs = {
+      active_tab_fg = 1,
+      inactive_tab_fg = 4,
     },
-    font_size = 16,
-    window_background_opacity = 0.300000,
-    window_frame = {
-        active_titlebar_bg = "#4c566a",
-        active_titlebar_fg = "#e5e9f0",
-        active_titlebar_border_bottom = "#4c566a",
-        border_left_color = "#3b4252",
-        border_right_color = "#3b4252",
-        border_bottom_color = "#3b4252",
-        border_top_color = "#3b4252",
-        button_bg = "#3b4252",
-        button_fg = "#e5e9f0",
-        button_hover_bg = "#e5e9f0",
-        button_hover_fg = "#4c566a",
-        inactive_titlebar_bg = "#3b4252",
-        inactive_titlebar_fg = "#e5e9f0",
-        inactive_titlebar_border_bottom = "#4c566a",
+    pane = {
+      enabled = false,
     },
-    colors = {
-      tab_bar = {
-        background = "#5e81ac",
-        inactive_tab_edge = "#3b4252",
-        active_tab = {
-          bg_color = "#ebcb8b",
-          fg_color = "#2e3440",
-        },
-        inactive_tab = {
-          bg_color = "#5e81ac",
-          fg_color = "#e5e9f0",
-        },
-        inactive_tab_hover = {
-          bg_color = "#e5e9f0",
-          fg_color = "#2e3440",
-        },
-        new_tab = {
-          bg_color = "#2e3440",
-          fg_color = "#e5e9f0",
-        },
-        new_tab_hover = {
-          bg_color = "#e5e9f0",
-          fg_color = "#2e3440",
-        },
-      },
+    username = {
+      enabled = false,
     },
-    command_palette_bg_color = "#5e81ac",
-    command_palette_fg_color = "#e5e9f0",
-    command_palette_font_size = 14,
+    workspace = {
+      enabled = false,
+    },
+    hostname = {
+      enabled = false,
+    },
+    cwd = {
+      enabled = true,
+      color = 7,
+    },
+    clock = {
+      enabled = true,
+      color = 7,
+    },
+  }
+})
+
+config.font = wezterm.font_with_fallback {
+    "JetBrainsMono Nerd Font",
+    "Noto Color Emoji",
 }
 
--- General
+config.font_size = 16
+config.window_background_opacity = 0.3
+
+config.window_frame = {
+  active_titlebar_bg = "#4c566a",
+  active_titlebar_fg = "#e5e9f0",
+  active_titlebar_border_bottom = "#4c566a",
+  border_left_color = "#3b4252",
+  border_right_color = "#3b4252",
+  border_bottom_color = "#3b4252",
+  border_top_color = "#3b4252",
+  button_bg = "#3b4252",
+  button_fg = "#e5e9f0",
+  button_hover_bg = "#e5e9f0",
+  button_hover_fg = "#4c566a",
+  inactive_titlebar_bg = "#3b4252",
+  inactive_titlebar_fg = "#e5e9f0",
+  inactive_titlebar_border_bottom = "#4c566a",
+}
+
+config.colors = {
+  tab_bar = {
+    background = "#5e81ac",
+    inactive_tab_edge = "#3b4252",
+    active_tab = {
+      bg_color = "#ebcb8b",
+      fg_color = "#2e3440",
+    },
+    inactive_tab = {
+      bg_color = "#5e81ac",
+      fg_color = "#e5e9f0",
+    },
+    inactive_tab_hover = {
+      bg_color = "#e5e9f0",
+      fg_color = "#2e3440",
+    },
+    new_tab = {
+      bg_color = "#2e3440",
+      fg_color = "#e5e9f0",
+    },
+    new_tab_hover = {
+      bg_color = "#e5e9f0",
+      fg_color = "#2e3440",
+    },
+  },
+}
+
+config.command_palette_bg_color = "#5e81ac"
+config.command_palette_fg_color = "#e5e9f0"
+config.command_palette_font_size = 14
+
+-- General settings
 config.default_prog = { 'zsh', '--login' }
 config.enable_wayland = false
 config.cursor_blink_rate = 800
@@ -106,53 +144,53 @@ config.inactive_pane_hsb = {
   brightness = 0.8,
 }
 
--- Keys
+-- Keybindings
 config.keys = {
-    {
-      key = '"',
-      mods = 'SHIFT|CTRL',
-      action = wezterm.action.ActivateTab(1),
-    },
-    {
-        key = '£',
-        mods = 'SHIFT|CTRL',
-        action = wezterm.action.ActivateTab(2),
-    },
-    {
-        key = 'w',
-        mods = 'SHIFT|CTRL',
-        action = wezterm.action.CloseCurrentTab { confirm = true },
-    },
-    {
-        key = 'w',
-        mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.CloseCurrentPane { confirm = true },
-    },
-    {
-        key = 'v',
-        mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-    },
-    {
-        key = 'h',
-        mods = 'SHIFT|CTRL|ALT',
-        action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-    },
-    {
-        key = 'a',
-        mods = 'CTRL|SHIFT|ALT',
-        action = wezterm.action.ActivatePaneDirection 'Next',
-      },
-      {
-        key = 's',
-        mods = 'CTRL|SHIFT|ALT',
-        action = wezterm.action.ActivatePaneDirection 'Prev',
-      },
-      {
-        key = 'p',
-        mods = 'CTRL|SHIFT',
-        action = wezterm.action.ActivateCommandPalette,
-      },
+  {
+    key = '"',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.ActivateTab(1),
+  },
+  {
+    key = '£',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.ActivateTab(2),
+  },
+  {
+    key = 'w',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.CloseCurrentTab { confirm = true },
+  },
+  {
+    key = 'w',
+    mods = 'SHIFT|CTRL|ALT',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
+  {
+    key = 'v',
+    mods = 'SHIFT|CTRL|ALT',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'h',
+    mods = 'SHIFT|CTRL|ALT',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'a',
+    mods = 'CTRL|SHIFT|ALT',
+    action = wezterm.action.ActivatePaneDirection 'Next',
+  },
+  {
+    key = 's',
+    mods = 'CTRL|SHIFT|ALT',
+    action = wezterm.action.ActivatePaneDirection 'Prev',
+  },
+  {
+    key = 'p',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.ActivateCommandPalette,
+  },
 }
 
 return config
