@@ -13,6 +13,7 @@ in {
     stylix.targets.nixvim.enable = false;
     programs.nixvim = {
       enable = true;
+      defaultEditor = true;
       colorschemes.nord = {
         enable = true;
         settings = {
@@ -100,5 +101,9 @@ in {
         settings.filetypes = ["css" "scss"];
       };
     };
+
+    # home.sessionVariables = {
+    #   EDITOR = "nvim";
+    # };
   };
 }
