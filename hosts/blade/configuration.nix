@@ -155,7 +155,7 @@
       inherit inputs;
       userSettings = userSettings;
     };
-    backupFileExtension = "0002";
+    backupFileExtension = "0003";
     users.${userSettings.user} = {
       imports = [./home.nix];
     };
