@@ -28,8 +28,14 @@ in {
         relativenumber = true;
         shiftwidth = 2;
         tabstop = 2;
+        clipboard = {
+          providers = {
+            wl-copy.enable = true; # Wayland
+            xsel.enable = true; # For X11
+          };
+          register = "unnamedplus";
+        };
       };
-      clipboard.providers.wl-copy.enable = true;
 
       plugins.lsp = {
         enable = true;
