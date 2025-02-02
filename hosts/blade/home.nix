@@ -60,6 +60,7 @@
   btop.enable = true;
   direnv.enable = true;
   yazi.enable = true;
+  nvim.enable = true;
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
   programs.obs-studio.enable = false;
