@@ -160,6 +160,11 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = wezterm.action.ActivateCommandPalette,
   },
+  {
+    key = 'l',
+    mods = 'CTRL|SHIFT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 tabline.setup({
