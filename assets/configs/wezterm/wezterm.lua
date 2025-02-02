@@ -8,8 +8,8 @@ config.color_scheme = "stylix"
 -- tabline.apply_to_config(config)
 
 config.font = wezterm.font_with_fallback {
-    "JetBrainsMono Nerd Font",
-    "Noto Color Emoji",
+  "JetBrainsMono Nerd Font",
+  "Noto Color Emoji",
 }
 
 config.font_size = 16
@@ -34,7 +34,7 @@ config.window_frame = {
 
 config.colors = {
   tab_bar = {
---     background = "#5e81ac", -- If tabline is not used
+    --     background = "#5e81ac", -- If tabline is not used
     background = "#2E3440",
     inactive_tab_edge = "#3b4252",
     active_tab = {
@@ -173,14 +173,28 @@ tabline.setup({
   },
   sections = {
     tabline_a = { 'mode' },
-    tabline_b = { },
+    tabline_b = {},
     tabline_c = { ' ' },
     tab_active = { 'index', { 'process', padding = { left = 0, right = 1 }, max_length = 20, } },
     tab_inactive = { 'index', { 'process', padding = { left = 0, right = 1 } } },
-    tabline_x = { },
+    tabline_x = {},
     tabline_y = { 'cpu' },
     tabline_z = { 'domain' },
-   },
+  },
 })
+
+-- Remove padding when nvim is running
+wezterm.on("update-right-status", function(window, pane)
+  local process_name = pane:get_foreground_process_name() or ""
+  if process_name:match("nvim") then
+    window:set_config_overrides({
+      window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+    })
+  else
+    window:set_config_overrides({
+      window_padding = { left = 10, right = 10, top = 10, bottom = 10 },
+    })
+  end
+end)
 
 return config
