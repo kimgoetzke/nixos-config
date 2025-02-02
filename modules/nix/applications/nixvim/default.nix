@@ -3,10 +3,17 @@
   lib,
   ...
 }: let
-  cfg = config.nvim;
+  cfg = config.nixvim;
 in {
-  options.nvim = {
-    enable = lib.mkEnableOption "Enable Neovim";
+  imports = [
+    ./bufferline.nix
+    ./nvim-tree.nix
+    ./cmp.nix
+    ./which-key.nix
+  ];
+
+  options.nixvim = {
+    enable = lib.mkEnableOption "Enable Neovim via the Nixvim distribution";
   };
 
   config = lib.mkIf cfg.enable {
@@ -37,6 +44,47 @@ in {
         };
       };
 
+      globals.mapleader = " ";
+
+      keymaps = [
+        {
+          mode = "n";
+          key = "<C-h>";
+          action = "<C-w><C-h>";
+          options = {
+            desc = "Move focus to the left window";
+            remap = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<C-l>";
+          action = "<C-w><C-l>";
+          options = {
+            desc = "Move focus to the right window";
+            remap = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<C-j>";
+          action = "<C-w><C-j>";
+          options = {
+            desc = "Move focus to the lower window";
+            remap = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<C-k>";
+          action = "<C-w><C-k>";
+          options = {
+            desc = "Move focus to the upper window";
+            remap = true;
+          };
+        }
+      ];
+
       plugins.lsp = {
         enable = true;
         servers = {
@@ -56,23 +104,6 @@ in {
           yamlls.enable = true;
           csharp_ls.enable = true;
           gopls.enable = true; # Golang
-        };
-      };
-
-      plugins.cmp = {
-        enable = true;
-        autoEnableSources = true;
-        settings = {
-          sources = [
-            {name = "path";}
-            {name = "nvim_lsp";}
-            {name = "luasnip";}
-            {
-              name = "buffer";
-              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-            }
-            {name = "neorg";}
-          ];
         };
       };
 
@@ -101,7 +132,6 @@ in {
       plugins.treesitter.enable = true;
       plugins.luasnip.enable = true;
       plugins.web-devicons.enable = true;
-      plugins.oil.enable = true;
 
       plugins.colorizer = {
         enable = true;
