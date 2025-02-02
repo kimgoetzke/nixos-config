@@ -16,6 +16,8 @@
     p.gomod
     p.gowork
     p.hcl
+    p.html
+    p.java
     p.javascript
     p.jq
     p.json5
@@ -46,10 +48,16 @@ in {
       lua-language-server
       rust-analyzer-unwrapped
       gh
+      go
+      gopls
+      nix-doc
+      nil
+      jdt-language-server
     ];
 
     programs.neovim = {
       enable = true;
+      defaultEditor = true;
       vimAlias = true;
       viAlias = true;
       plugins = [
