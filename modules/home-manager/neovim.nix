@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -10,6 +9,7 @@
     p.bash
     p.comment
     p.css
+    p.c_sharp
     p.dockerfile
     p.gitattributes
     p.gitignore
@@ -28,8 +28,10 @@
     p.markdown
     p.nix
     p.rust
+    p.ron
     p.toml
     p.typescript
+    p.wgsl_bevy
     p.yaml
   ]);
 
