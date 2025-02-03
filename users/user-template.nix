@@ -15,6 +15,7 @@
   thumbnailFile = "thumbnail_abstract_nord4_pixel.png"; # Source file name in assets/images, used by Rofi
   profileFile = "randy.png"; # Source file name in assets/images
   emulator = "wezterm"; # Your preferred terminal emulator; supports alacritty and wezterm
+  vimDistribution = "nixvim"; # neovim, nixvim, none
   defaultShell = "zsh";
   shells.isZshEnabled = true;
   shells.isBashEnabled = false;

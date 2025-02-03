@@ -183,18 +183,20 @@ tabline.setup({
   },
 })
 
--- Remove padding when nvim is running
-wezterm.on("update-right-status", function(window, pane)
-  local process_name = pane:get_foreground_process_name() or ""
-  if process_name:match("nvim") then
-    window:set_config_overrides({
-      window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
-    })
-  else
-    window:set_config_overrides({
-      window_padding = { left = 10, right = 10, top = 10, bottom = 10 },
-    })
-  end
-end)
+-- Remove padding and transparent background while nvim is running
+--wezterm.on("update-right-status", function(window, pane)
+--  local process_name = pane:get_foreground_process_name() or ""
+--  if process_name:match("nvim") then
+--    window:set_config_overrides({
+--      window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+--      window_background_opacity = 1,
+--    })
+--  else
+--    window:set_config_overrides({
+--      window_padding = { left = 10, right = 10, top = 10, bottom = 10 },
+--      window_background_opacity = 0.3,
+--    })
+--  end
+--end)
 
 return config

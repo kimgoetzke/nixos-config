@@ -141,7 +141,7 @@
     ];
 
   # Applications
-  nixvim.enable = false;
+  nixvim.enable = userSettings.vimDistribution == "nixvim";
   programs.zsh.enable = userSettings.shells.isZshEnabled;
 
   # Docker

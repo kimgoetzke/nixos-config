@@ -153,7 +153,25 @@ return {
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        nil_ls = {},
+        -- TODO: Make Nix language server work, right now the below will claim that Mason cannot find the package
+        -- Manually start with :lua vim.lsp.start_client({name = "nixd", cmd = {"nixd"}})
+        -- nixd = {
+        --   cmd = { "nixd" },
+        --   settings = {
+        --     nixd = {
+        --       nixpkgs = {
+        --         expr = "import <nixpkgs> { }",
+        --       },
+        --       formatting = {
+        --         command = { "alejandra" },
+        --       },
+        --     },
+        --   },
+        -- },
+        -- Manually start with :lua vim.lsp.start_client({name = "nil", cmd = {"nil"}})
+        nil_ls = {
+          cmd = { "nil" },
+        },
 
         lua_ls = {
           -- cmd = { ... },
@@ -183,10 +201,15 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers or {})
+      -- TODO: Make Nix LSPs work
+      local ensure_installed = vim.tbl_filter(function(server)
+        return server ~= "nil_ls" and server ~= "nixd" -- Avoid Mason managing them
+      end, vim.tbl_keys(servers or {}))
+
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {

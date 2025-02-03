@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   lib,
   ...
@@ -42,6 +43,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+#    nix.nixPath = [
+#      "nixpkgs=${inputs.nixpkgs}"
+#    ];
     home.packages = with pkgs; [
       ripgrep
       fd
@@ -53,6 +57,7 @@ in {
       nix-doc
       nil
       jdt-language-server
+      alejandra
     ];
 
     programs.neovim = {
@@ -62,6 +67,9 @@ in {
       viAlias = true;
       plugins = [
         treesitterWithGrammars
+      ];
+      extraPackages = [
+        pkgs.nil
       ];
     };
     stylix.targets.neovim.enable = false;
