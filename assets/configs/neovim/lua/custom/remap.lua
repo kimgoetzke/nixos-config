@@ -24,3 +24,10 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Bufferline tab navigation
+vim.keymap.set('n', '<C-S-l>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Cycle to next buffer' })
+vim.keymap.set('n', '<C-S-h>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Cycle to previous buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete current buffer' })
+vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'Close all other buffers' })
+vim.keymap.set('n', '<leader>bp', '<cmd>BufferLineCloseOthers<cr>', { desc = 'Toggle pinned status' })
