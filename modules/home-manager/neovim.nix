@@ -43,9 +43,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-#    nix.nixPath = [
-#      "nixpkgs=${inputs.nixpkgs}"
-#    ];
+    #    nix.nixPath = [
+    #      "nixpkgs=${inputs.nixpkgs}"
+    #    ];
     home.packages = with pkgs; [
       ripgrep
       fd

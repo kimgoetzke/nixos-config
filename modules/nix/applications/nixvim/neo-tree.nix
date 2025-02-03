@@ -1,16 +1,18 @@
 {
   programs.nixvim = {
-    plugins.nvim-tree = {
+    plugins.neo-tree = {
       enable = true;
+      window = {
+        position = "left";
+      };
     };
-
     keymaps = [
       {
         mode = "n";
         key = "<C-n>";
-        action = "<cmd>NvimTreeToggle<cr>";
+        action = "<cmd>Neotree toggle<cr>";
         options = {
-          desc = "Move focus to the upper window";
+          desc = "NeoTree toggle";
           remap = true;
         };
       }

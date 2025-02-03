@@ -7,7 +7,7 @@
 in {
   imports = [
     ./bufferline.nix
-    ./nvim-tree.nix
+    ./neo-tree.nix
     ./cmp.nix
     ./which-key.nix
   ];
@@ -24,7 +24,7 @@ in {
       colorschemes.nord = {
         enable = true;
         settings = {
-          disable_background = true;
+          disable_background = false;
           borders = true;
         };
       };
