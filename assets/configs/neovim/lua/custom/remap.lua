@@ -31,3 +31,16 @@ vim.keymap.set('n', '<C-S-h>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Cycle t
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete current buffer' })
 vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'Close all other buffers' })
 vim.keymap.set('n', '<leader>bp', '<cmd>BufferLineCloseOthers<cr>', { desc = 'Toggle pinned status' })
+
+-- Run formatter
+-- Run the appropriate formatter for the current file type
+vim.keymap.set('n', '<leader>lf', function()
+  local filetype = vim.bo.filetype
+  if filetype == 'lua' then
+    vim.cmd('lua vim.lsp.buf.formatting()')
+  elseif filetype == 'rust' then
+    vim.cmd('RustFmt')
+  else
+    print('No formatter configured for this file type')
+  end
+end, { desc = 'Format the current buffer based on file type' })
