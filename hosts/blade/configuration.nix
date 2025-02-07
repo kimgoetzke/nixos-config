@@ -58,7 +58,7 @@
 
   # General hardware configuration
   razer-blade.enable = true;
-  razer-blade-gpu.enable = false;
+  razer-blade-gpu.enable = true;
   hardware.bluetooth.enable = true;
   hardware.opentabletdriver.enable = true;
 
