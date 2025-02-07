@@ -1,8 +1,6 @@
 {
-  pkgs,
   config,
   lib,
-  userSettings,
   ...
 }: {
   options = {
@@ -29,6 +27,7 @@
       # Enabled NVIDIA drivers
       # See https://wiki.nixos.org/wiki/Nvidia for more information.
       services.xserver.videoDrivers = ["nvidia"];
+      boot.blacklistedKernelModules = ["nouveau"];
       hardware.nvidia = {
         modesetting.enable = true;
 
