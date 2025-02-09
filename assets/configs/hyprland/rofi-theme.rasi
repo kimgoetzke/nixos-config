@@ -3,7 +3,7 @@
  ***************************************************************************/
 
 configuration {
-    display-drun:       "󰣆  ";
+    display-drun:       "  ";
     display-run:        "󰲋  ";
     display-ssh:        "󰣀  ";
     display-window:     "󰶭  ";
