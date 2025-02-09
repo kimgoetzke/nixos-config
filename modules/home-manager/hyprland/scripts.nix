@@ -5,13 +5,21 @@
       #!/bin/sh
       # Thank you, Eric Murphy! See: https://github.com/ericmurphyxyz/dotfiles/blob/master/.local/bin/powermenu
 
-      CHOSEN=$(printf "  Lock\n  Suspend\n  Reboot\n󰈆  Shutdown" | rofi -dmenu -i -theme-str "window { location: center; anchor: center; width: 300px; } mainbox { children: [listview]; } listview { scrollbar: false; }")
+      CHOSEN=$(printf " \n󰒲 \n \n " | rofi -dmenu -i -theme-str "
+      window { fullscreen: false; location: center; anchor: center; width: 1024px; border: 0px solid; y-offset: 0px; }
+      mainbox { children: [listview]; orientation: vertical; spacing: 0px; }
+      listview { scrollbar: false; layout: vertical; spacing: 50px; columns: 4; lines: 1; cycle: true; dynamic: true; reverse: false; fixed-height: true; fixed-columns: true; horizontal-align: 0.5; vertical-align: 0.5; }
+      element { width: 110px; height: 150px; border-radius: 10px; horizontal-align: 0.5; vertical-align: 0.5; padding: 20px; }
+      element-text { horizontal-align: 0.5; vertical-align: 0.5; }
+      element-icon { horizontal-align: 0.5; vertical-align: 0.5; }
+      * { font:  \"JetBrains Mono Regular 72\"; }
+      ")
 
       case "$CHOSEN" in
-      	"  Lock") (pidof hyprlock || hyprlock) ;;
-      	"  Suspend") systemctl suspend-then-hibernate ;;
-      	"  Reboot") reboot ;;
-      	"󰈆  Shutdown") ${userSettings.targetDirectory}/shutdown-gracefully.sh ;;
+      	" ") (pidof hyprlock || hyprlock) ;;
+      	"󰒲 ") systemctl suspend-then-hibernate ;;
+      	" ") reboot ;;
+      	" ") ${userSettings.targetDirectory}/shutdown-gracefully.sh ;;
       	*) exit 1 ;;
       esac
     '';
