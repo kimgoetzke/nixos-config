@@ -136,12 +136,12 @@ in {
           rounding = 7;
           blur = {
             enabled = true;
-            size = 5;
-            passes = 1;
+            size = 12;
+            passes = 2;
           };
           shadow = {
-            enabled = true;
-            range = 4;
+            enabled = false;
+            range = 8;
             render_power = 3;
           };
         };
