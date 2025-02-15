@@ -38,7 +38,7 @@ in {
         xwaylandvideobridge
         cliphist # Clipboard manager
         wl-clipboard # Wayland clipboard manager, dependency of cliphist
-        gvfs # Mount, trash, and other functionalities (for Thunar)
+        gvfs # Mount, trash, and other functionalities (for Thunar/Nautilus)
         hypridle # Idle manager
         hyprpicker # Colour picker
       ]
@@ -209,7 +209,7 @@ in {
             "$mainMod, SPACE, exec, pkill -x rofi || rofi -show-icons -show drun"
             "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
             "$mainMod, N, exec, $terminal -e nmtui"
-            "$mainMod, M, exec, thunar"
+            "$mainMod, M, exec, nautilus"
             "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
             "$mainMod, T, exec, $terminal"

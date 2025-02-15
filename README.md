@@ -21,7 +21,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Firefox** web browser
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
 - **VS Code** text editor and **JetBrains Toolbox** for IDEs
-- **Thunar** (GUI) and **Yazi** (terminal) file managers
+- **Yazi** (terminal) and **Nautilus** (GUI) file managers
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
 - **Mpv** media player
