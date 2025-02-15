@@ -17,7 +17,6 @@ in {
         package = pkgs.papirus-icon-theme;
         name = "Papirus-Dark";
       };
-      # TODO: Make Nordic theme available and working for Thunar
       # Currently this is only working partially, most of the theme is not applied. I tried disabling the
       # stylix.target.gtk and disabling the icon theme above but that stopped home-manager from starting.
       #stylix.targets.gtk.enable = false;

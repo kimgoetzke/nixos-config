@@ -42,7 +42,7 @@ open = [
     { run = 'termux-open "$1"', desc = "Open", for = "android" },
 ]
 reveal = [
-    { run = 'thunar "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+    { run = 'nautilus "$(dirname "$1")"', desc = "Reveal", for = "linux" },
     { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
     { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
     { run = 'termux-open "$(dirname "$1")"', desc = "Reveal", for = "android" },

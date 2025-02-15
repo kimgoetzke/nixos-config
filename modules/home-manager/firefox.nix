@@ -158,9 +158,9 @@ in {
       profile = "default";
       config = {
         displayNavButtons = true;
-        displayHorizontalTabs = true;
+        tabs.horizontal.enable = true;
         background = {
-          color = "#2e3440"; # Or 1f242d; note that this doesn't change the full background, you appear to need firefox-color for that
+          color = "#2e3440"; # Or 1f242d; note that this doesn't change the full background, you appear to need to go to https://color.firefox.com/ for that
         };
         border = {
           color = "#4c566a";
