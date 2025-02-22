@@ -135,6 +135,7 @@
       wf-recorder # Screen recorder
       ffmpeg # Video and audio converter e.g. mp4 recorded with wf-recorder to gif
       kalker # Calculator
+      nautilus # File manager
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "hyprpanel") [
       hyprpanel # Bar and panel, alternative to Waybar

@@ -20,7 +20,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Hyprlock** and **Hypridle** for screen locking and idle management
 - **Firefox** web browser
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
-- **VS Code** text editor and **JetBrains Toolbox** for IDEs
+- **VS Code** and **Neovim** text editors and **JetBrains Toolbox** for IDEs
 - **Yazi** (terminal) and **Nautilus** (GUI) file managers
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
@@ -33,6 +33,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 ![Screenshots 1](./assets/demo/screenshot-1.png)
 ![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 3](./assets/demo/screenshot-3.png)
+![Screenshots 4](./assets/demo/screenshot-4.png)
 
 ## Usage
 
