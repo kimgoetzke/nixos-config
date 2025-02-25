@@ -14,7 +14,6 @@
       # Development
       pkgs.jetbrains-toolbox
       # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
-      pkgs.postman
       pkgs.xclip # Dependency of zsh.nix
 
       # Art
