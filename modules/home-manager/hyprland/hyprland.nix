@@ -35,7 +35,7 @@ in {
       [
         swww # Wallpaper daemon
         polkit_gnome # A dbus session bus service used to bring up authentication dialogs
-        xwaylandvideobridge
+        kdePackages.xwaylandvideobridge
         cliphist # Clipboard manager
         wl-clipboard # Wayland clipboard manager, dependency of cliphist
         gvfs # Mount, trash, and other functionalities (for Thunar/Nautilus)
