@@ -27,7 +27,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Mpv** media player
 - **Satty** with **Slurp** and **Grim** for screenshots
 - **Blueman** bluetooth manager
-- **posting** TUI HTTP client
+- **Posting** terminal HTTP client
 
 ## Screenshots
 
