@@ -5,16 +5,15 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 -- Set color scheme first
 config.color_scheme = "stylix"
 
--- tabline.apply_to_config(config)
-
+-- Other basics
 config.font = wezterm.font_with_fallback {
   "JetBrainsMono Nerd Font",
   "Noto Color Emoji",
 }
-
 config.font_size = 16
 config.window_background_opacity = 0.3
 
+-- Colours
 config.window_frame = {
   active_titlebar_bg = "#4c566a",
   active_titlebar_fg = "#e5e9f0",
@@ -167,6 +166,7 @@ config.keys = {
   },
 }
 
+-- Tabline bar
 tabline.setup({
   options = {
     theme = "nord",
@@ -182,6 +182,22 @@ tabline.setup({
     tabline_z = { 'domain' },
   },
 })
+
+-- Remove padding and transparent background while Posting is running
+wezterm.on("update-right-status", function(window, pane)
+  local process_name = pane:get_foreground_process_name() or ""
+  if process_name:match("posting") then
+    window:set_config_overrides({
+      window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+      window_background_opacity = 1,
+    })
+  else
+    window:set_config_overrides({
+      window_padding = { left = 10, right = 10, top = 10, bottom = 10 },
+      window_background_opacity = 0.3,
+    })
+  end
+end)
 
 -- Remove padding and transparent background while nvim is running
 --wezterm.on("update-right-status", function(window, pane)
