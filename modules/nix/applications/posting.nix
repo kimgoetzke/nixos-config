@@ -19,6 +19,7 @@ in {
     home-manager.users.${userSettings.user}.home.file.".config/posting/config.yaml" = {
       text = ''
         theme: nord
+        editor: vim
       '';
     };
   };
