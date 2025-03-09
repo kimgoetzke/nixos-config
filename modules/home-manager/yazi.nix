@@ -14,7 +14,7 @@
       enableZshIntegration = true;
       shellWrapperName = "y";
       plugins = {
-        max-preview = "${inputs.yazi-plugins}/max-preview.yazi";
+        toggle-pane = "${inputs.yazi-plugins}/toggle-pane.yazi";
         full-border = "${inputs.yazi-plugins}/full-border.yazi";
         smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
         wl-clipboard = "${inputs.yazi-plugins-wl-clipboard}";
@@ -26,8 +26,13 @@
         manager.prepend_keymap = [
           {
             on = "T";
-            run = "plugin max-preview";
+            run = "plugin toggle-pane max-preview";
             desc = "Maximize or restore the preview pane";
+          }
+          {
+            on = "<C-t>";
+            run = "plugin toggle-pane min-preview";
+            desc = "Show or hide the preview pane";
           }
           {
             on = "l";
