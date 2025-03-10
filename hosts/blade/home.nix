@@ -49,7 +49,7 @@
   vscode.withExtensions = true;
   firefox.enable = true;
   firefox.withProfile = true;
-  firefox.withTextfox = true;
+  firefox.withTextfox = false;
   alacritty.enable = userSettings.emulator == "alacritty";
   wezterm.enable = userSettings.emulator == "wezterm";
   git.enable = true;
