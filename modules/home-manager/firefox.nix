@@ -29,6 +29,7 @@ in {
         DisablePocket = true;
         DisableFormHistory = true;
         DisableMasterPasswordCreation = true;
+        DisableTelemetry = true;
         OfferToSaveLogins = false;
         OfferToSaveLoginsDefault = false;
         PasswordManagerEnabled = false;
@@ -158,7 +159,9 @@ in {
       profile = "default";
       config = {
         displayNavButtons = true;
-        tabs.horizontal.enable = true;
+        tabs.horizontal.enable = false;
+        tabs.vertical.enable = true;
+        tabs.vertical.margin = "0.5rem";
         background = {
           color = "#2e3440"; # Or 1f242d; note that this doesn't change the full background, you appear to need to go to https://color.firefox.com/ for that
         };
@@ -168,7 +171,7 @@ in {
           transition = "1.0s ease";
           radius = "5px";
         };
-        newtabLogo = "   __            __  ____          \A   / /____  _  __/ /_/ __/___  _  __\A  / __/ _ \\| |/_/ __/ /_/ __ \\| |/_/\A / /_/  __/>  </ /_/ __/ /_/ />  <  \A \\__/\\___/_/|_|\\__/_/  \\____/_/|_|  ";
+        newtabLogo = " ███▄    █ ▓█████  █     █░   ▄▄▄█████▓ ▄▄▄       ▄▄▄▄\A ██ ▀█   █ ▓█   ▀ ▓█░ █ ░█░   ▓  ██▒ ▓▒▒████▄    ▓█████▄\A▓██  ▀█ ██▒▒███   ▒█░ █ ░█    ▒ ▓██░ ▒░▒██  ▀█▄  ▒██▒ ▄██\A▓██▒  ▐▌██▒▒▓█  ▄ ░█░ █ ░█    ░ ▓██▓ ░ ░██▄▄▄▄██ ▒██░█▀\A▒██░   ▓██░░▒████▒░░██▒██▓      ▒██▒ ░  ▓█   ▓██▒░▓█  ▀█▓\A░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▓░▒ ▒       ▒ ░░    ▒▒   ▓▒█░░▒▓███▀▒\A░ ░░   ░ ▒░ ░ ░  ░  ▒ ░ ░         ░      ▒   ▒▒ ░▒░▒   ░\A   ░   ░ ░    ░     ░   ░       ░        ░   ▒    ░    ░\A         ░    ░  ░    ░                      ░  ░ ░\A                                                       ░\A \A \A";
         font = {
           family = "JetBrainsMono Nerd Font";
           size = "15px";
