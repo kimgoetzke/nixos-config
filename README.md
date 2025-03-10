@@ -16,8 +16,8 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **NixOS** with **Flakes** and **Home Manager**
 - **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
 - **HyperPanel** status bar (or **Waybar** with **Mako** notifications) on Wayland
-- **Rofi** application launcher
 - **Hyprlock** and **Hypridle** for screen locking and idle management
+- **Rofi** application launcher
 - **Firefox** web browser
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
 - **VS Code** and **Neovim** text editors and **JetBrains Toolbox** for IDEs
@@ -28,6 +28,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Satty** with **Slurp** and **Grim** for screenshots
 - **Blueman** bluetooth manager
 - **Posting** terminal HTTP client
+- **Obsidian** note-taking application
 
 ## Screenshots
 
@@ -35,6 +36,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 ![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 3](./assets/demo/screenshot-3.png)
 ![Screenshots 4](./assets/demo/screenshot-4.png)
+![Screenshots 5](./assets/demo/screenshot-5.png)
 
 ## Usage
 
