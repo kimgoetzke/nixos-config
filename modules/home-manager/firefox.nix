@@ -39,7 +39,10 @@ in {
         id = 0;
         isDefault = true;
         name = "default";
-        bookmarks = [];
+        bookmarks = {
+          force = true;
+          settings = [];
+        };
         userChrome = lib.mkIf (cfg.withTextfox == false) ''
           @import "firefox-nord-theme/userChrome.css";
         '';
@@ -108,42 +111,53 @@ in {
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["np"];
+              metaData.hideOneOffButton = true;
             };
             "NixOS Options" = {
               urls = [{template = "https://search.nixos.org/options?from=0&size=50&sort=relevance&query={searchTerms}";}];
               definedAliases = ["no"];
+              metaData.hideOneOffButton = true;
             };
             "NixOS Wiki" = {
               urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
-              iconUpdateURL = "https://wiki.nixos.org/favicon.png";
+              icon = "https://wiki.nixos.org/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = ["nw"];
+              metaData.hideOneOffButton = true;
             };
-            "YouTube" = {
+            youtube = {
               urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
               definedAliases = ["y"];
+              metaData.hideOneOffButton = true;
             };
             "Amazon" = {
               urls = [{template = "https://www.amazon.co.uk/s?k={searchTerms}";}];
               definedAliases = ["a"];
+              metaData.hideOneOffButton = true;
             };
             "JWT.io" = {
               urls = [{template = "https://jwt.io/?value={searchTerms}";}];
               definedAliases = ["jwt"];
+              metaData.hideOneOffButton = true;
             };
             "dict.cc" = {
               urls = [{template = "https://www.dict.cc/?s={searchTerms}";}];
               definedAliases = ["d"];
+              metaData.hideOneOffButton = true;
             };
             "home-manager options" = {
               urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";}];
               definedAliases = ["hmo"];
+              metaData.hideOneOffButton = true;
             };
-            "Bing".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
-            "Wikipedia (en)".metaData.hidden = true;
-            "Google".metaData.alias = "@g";
-            "DuckDuckGo".metaData.alias = "ddg";
+            bing.metaData.hidden = true;
+            ebay.metaData.hidden = true;
+            ebay.metaData.hideOneOffButton = true;
+            wikipedia.metaData.hidden = true;
+            google.metaData.alias = "@g";
+            google.metaData.hideOneOffButton = true;
+            ddg.metaData.alias = "ddg";
+            ddg.metaData.hideOneOffButton = true;
           };
         };
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
