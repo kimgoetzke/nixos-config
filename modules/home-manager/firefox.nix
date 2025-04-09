@@ -89,6 +89,11 @@ in {
           "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
           "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
           "browser.newtabpage.activity-stream.default.sites" = "";
+
+          # URL bar shortcuts
+          "browser.urlbar.shortcuts.bookmarks" = false;
+          "browser.urlbar.shortcuts.history" = false;
+          "browser.urlbar.shortcuts.tabs" = false;
         };
         search = {
           force = true;
