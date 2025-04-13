@@ -15,10 +15,6 @@ in {
       enableZshIntegration = true;
     };
     stylix.targets.fzf.enable = false;
-    programs.zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
     programs.eza = {
       enable = true;
       enableZshIntegration = true;
