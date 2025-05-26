@@ -119,6 +119,7 @@
       nixd # Nix language server
       # davinci-resolve # Video editor
       ueberzugpp # Image viewer for terminal, required by Yazi
+      tokei # Code statistics tool
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X

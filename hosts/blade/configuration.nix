@@ -119,6 +119,7 @@
       pulsemixer # PulseAudio mixer and audio controller
       nixd # Nix language server
       ueberzugpp # Image viewer for terminal, required by Yazi
+      tokei # Code statistics tool
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X
