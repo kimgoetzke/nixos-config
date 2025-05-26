@@ -19,7 +19,7 @@
       margin = "5";
       sort = "-time";
       format = "<b>%s</b>\\n<span color=\"${config.lib.stylix.colors.withHashtag.base03}\">(%a)</span>\\n%b";
-      extraConfig = ''
+      settings = ''
         background-color=${config.lib.stylix.colors.withHashtag.base00}D9
         outer-margin=30
         [urgency=low]
