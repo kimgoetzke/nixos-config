@@ -33,8 +33,8 @@ See [https://nixos.org/](https://nixos.org) for more information.
 ## Screenshots
 
 ![Screenshots 1](./assets/demo/screenshot-1.png)
-![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 3](./assets/demo/screenshot-3.png)
+![Screenshots 2](./assets/demo/screenshot-2.png)
 ![Screenshots 4](./assets/demo/screenshot-4.png)
 ![Screenshots 5](./assets/demo/screenshot-5.png)
 
@@ -177,3 +177,14 @@ you've never configured Gnome UI changes in NixOS before, follow these steps:
 
 Check `systemctl status home-manager-$USER` and ensure the service started successfully, if not, dig in with
 `journalctl -u home-manager-$USER` and make sure to carefully read the error.
+
+#### Using Hyprland and observed the error: `Failed to start Home Manager environment`?
+
+Run the following command to see the detailed logs:
+
+```shell
+journalctl -xe --unit home-manager-$USER
+```
+
+If the error is related to `home-manager.backupFileExtension`, then search this repo for `backupFileExtension` and
+change the value e.g. by increasing the count. This will fix the issue.
