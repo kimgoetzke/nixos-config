@@ -76,7 +76,7 @@
     nht = "nh os test ${userSettings.baseDirectory} -H default";
     nhb = "nh os boot ${userSettings.baseDirectory} -H default";
     nhs = "nh os switch ${userSettings.baseDirectory} -H default";
-    nhc = "nh clean all --keep 3";
+    nhc = "nh clean all --keep 2";
     nhca = "nh clean all --keep 1";
     nfu = "nix flake update --flake ${userSettings.baseDirectory}";
     nsr = "sudo nix-store --verify --check-contents --repair";

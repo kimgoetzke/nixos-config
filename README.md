@@ -135,7 +135,7 @@ A few aliases have been set up, allowing you to manage the process of updating t
 nhc && nfu && nhb
 ```
 
-- `nhc` - Cleans up user generations using `nh clean all --keep 3`
+- `nhc` - Cleans up user generations using `nh clean all --keep 2`
 - `nfu` - Updates the flake using `nix flake update --flake ${userSettings.baseDirectory}`
 - `nhb` - Switches to the new generation using `nh os boot ${userSettings.baseDirectory} -H default`
 
