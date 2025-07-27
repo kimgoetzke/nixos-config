@@ -16,7 +16,11 @@ folder() {
     echo "/home/$NIX_USER/"
     cd "/home/$NIX_USER/"
     ;;
-  "nix" | "nixconf")
+  "dl" | "downloads")
+    echo "/home/$NIX_USER/Downloads/"
+    cd "/home/$NIX_USER/Downloads/"
+    ;;
+  "nix")
     echo "/home/$NIX_USER/projects/nixos-config/"
     cd "/home/$NIX_USER/projects/nixos-config/"
     ;;
@@ -65,7 +69,7 @@ folder() {
     cd "/home/$NIX_USER/projects/practice-tauri-leptos"
     ;;
   *)
-    echo "Recognised folders are [General:] home/kim, pro/proper, nix/nixconf, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep/practice-leptos, ptau, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio/github.io, pg1fe"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep/practice-leptos, ptau, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio/github.io, pg1fe"
     ;;
   esac
 }
