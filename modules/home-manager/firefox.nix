@@ -16,6 +16,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    stylix.targets.firefox.profileNames = ["default"];
     home.file.".mozilla/firefox/default/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
     programs.firefox = {
       enable = true;

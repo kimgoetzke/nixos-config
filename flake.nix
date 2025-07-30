@@ -40,8 +40,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +81,6 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = specialArgs;
-            nixpkgs.overlays = [inputs.hyprpanel.overlay];
           }
         ];
       };
