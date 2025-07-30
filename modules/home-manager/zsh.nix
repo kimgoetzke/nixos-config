@@ -36,7 +36,7 @@ in {
     };
     programs.zsh = {
       enable = true;
-      dotDir = ".config/zsh"; # TODO: Replace with absolute path / config.home.homeDirectory
+      dotDir = "${config.home.homeDirectory}/.config/zsh";
       initContent = ''
         # Zinit (the zsh plugin manager)
         ZINIT_HOME="''${XDG_DATA_HOME:-''${HOME}/.local/share}/zinit/zinit.git"
