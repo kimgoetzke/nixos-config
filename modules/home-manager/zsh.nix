@@ -120,12 +120,12 @@ in {
           bindkey ''${terminfo[$kcap]-$seq} key-$key
         }
 
-        bindkey '^f' autosuggest-accept
-        bindkey '^[[C' autosuggest-accept            # Right arrow to accept autosuggestion
-        bindkey '^[[OC' autosuggest-accept           # Right arrow to accept autosuggestion
+        bindkey '^f' expand-or-complete              # Ctrl + F to expand or accept zsh completion suggestions
+        bindkey "^I" autosuggest-accept              # Tab to accept autosuggestion
+        bindkey '^[[C' autosuggest-accept            # Right arrow to accept in-line autosuggestion
+        bindkey '^[[OC' autosuggest-accept           # Right arrow to accept in-line autosuggestion
         bindkey '^ ' autosuggest-execute             # Ctrl + Space to accept and then execute autosuggestion
         bindkey '^[[Z' fzf-tab-complete              # Shift-Tab to launch fzf-tab
-        bindkey "^I" expand-or-complete              # Tab to expand or complete regular zsh completions
         bindkey -M isearch '^?' backward-delete-char # Restore backward-delete-char for Backspace in the
                                                      # incremental search keymap so it keeps working there
 
