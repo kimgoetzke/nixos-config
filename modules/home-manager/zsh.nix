@@ -30,7 +30,7 @@ in {
     programs.oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      useTheme = "nordtron"; # Will be ignored if 'settings' is used
+      # useTheme = "nordtron"; # Will be ignored if 'settings' is used
       settings =
         builtins.fromJSON (builtins.readFile (builtins.toFile "kim-nord.omp.json" (builtins.readFile ./../../assets/configs/oh-my-posh/kim-nord.omp.json)));
     };

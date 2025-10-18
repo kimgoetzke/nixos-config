@@ -7,7 +7,7 @@
 }: {
   options = {
     rofi.enable = lib.mkEnableOption "Enable rofi";
-    rofi.package = lib.mkPackageOption pkgs "rofi package" {default = ["rofi-wayland"];};
+    rofi.package = lib.mkPackageOption pkgs "rofi package" {default = ["rofi"];};
   };
 
   config = lib.mkIf config.rofi.enable {

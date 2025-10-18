@@ -160,7 +160,11 @@ in {
           preserve_split = "yes";
         };
         master.new_status = "master";
-        gestures.workspace_swipe = "on";
+        gesture = [
+          "3, horizontal, workspace"
+          "3, down, mod: ALT, close"
+          "3, up, mod: SUPER, scale: 1.5, fullscreen"
+        ];
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
