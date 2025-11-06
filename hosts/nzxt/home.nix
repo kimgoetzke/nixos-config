@@ -66,6 +66,11 @@
 
   # Settings
   gtk-settings.enable = true;
+  gtk.gtk3.bookmarks = [
+    "file:/// Root Directory"
+    "file:///home/${userSettings.user}/projects Projects Directory"
+    "file:///mnt/data Data Drive"
+  ];
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
