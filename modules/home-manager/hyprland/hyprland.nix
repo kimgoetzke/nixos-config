@@ -35,7 +35,6 @@ in {
       [
         swww # Wallpaper daemon
         polkit_gnome # A dbus session bus service used to bring up authentication dialogs
-        kdePackages.xwaylandvideobridge
         cliphist # Clipboard manager
         wl-clipboard # Wayland clipboard manager, dependency of cliphist
         gvfs # Mount, trash, and other functionalities (for Thunar/Nautilus)
@@ -177,11 +176,6 @@ in {
           "pin, title:^(firefox)$, title:^(Picture-in-Picture)$"
           "float, title:^(Save File)$"
           "pin, title:^(Save File)$"
-          "opacity 0.0 override 0.0 override, class:^(xwaylandvideobridge)$"
-          "noanim, class:^(xwaylandvideobridge)$"
-          "noinitialfocus, class:^(xwaylandvideobridge)$"
-          "maxsize 1 1, class:^(xwaylandvideobridge)$"
-          "noblur, class:^(xwaylandvideobridge)$"
           "tile, class:^(Aseprite)$,title:^(Aseprite)$"
           "float, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "center, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
