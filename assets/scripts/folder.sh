@@ -40,23 +40,23 @@ folder() {
     echo "/home/$NIX_USER/projects/rusteroids"
     cd "/home/$NIX_USER/projects/rusteroids"
     ;;
-  "github.io" | "gio")
+  "gio")
     echo "/home/$NIX_USER/projects/kimgoetzke.github.io"
     cd "/home/$NIX_USER/projects/kimgoetzke.github.io"
     ;;
-  "progen1fe" | "pg1fe")
+  "pg1fe")
     echo "/home/$NIX_USER/projects/procedural-generation-1-front-end"
     cd "/home/$NIX_USER/projects/procedural-generation-1-front-end"
     ;;
-  "progen1" | "pg1")
+  "pg1")
     echo "/home/$NIX_USER/projects/procedural-generation-1"
     cd "/home/$NIX_USER/projects/procedural-generation-1"
     ;;
-  "progen2" | "pg2")
+  "pg2")
     echo "/home/$NIX_USER/projects/procedural-generation-2"
     cd "/home/$NIX_USER/projects/procedural-generation-2"
     ;;
-  "plep" | "practice-leptos")
+  "plep")
     echo "/home/$NIX_USER/projects/practice-leptos"
     cd "/home/$NIX_USER/projects/practice-leptos"
     ;;
@@ -68,8 +68,12 @@ folder() {
     echo "/home/$NIX_USER/projects/practice-tauri-leptos"
     cd "/home/$NIX_USER/projects/practice-tauri-leptos"
     ;;
+  "moo")
+    echo "/home/$NIX_USER/projects/mooplas"
+    cd "/home/$NIX_USER/projects/mooplas"
+    ;;
   *)
-    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep/practice-leptos, ptau, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio/github.io, pg1fe"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio, pg1fe"
     ;;
   esac
 }

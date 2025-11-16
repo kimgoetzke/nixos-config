@@ -168,6 +168,9 @@ in {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
         };
+        windowrule = [
+          "tile, initialTitle:Aseprite"
+        ];
         windowrulev2 = [
           "float, title:^(Firefox — Sharing Indicator)$"
           "noborder, title:^(Firefox — Sharing Indicator)$"
@@ -176,16 +179,25 @@ in {
           "pin, title:^(firefox)$, title:^(Picture-in-Picture)$"
           "float, title:^(Save File)$"
           "pin, title:^(Save File)$"
-          "tile, class:^(Aseprite)$,title:^(Aseprite)$"
           "float, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "center, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
           "float, title:^(Welcome to JetBrains Rider)$"
           "float, title:^(Welcome to WebStorm)$"
           "float, title:^(Welcome to IntelliJ.*)$"
+          # Rules that are not working
+          "tile, class:^(Aseprite)$,title:^(Aseprite)$,initialTitle:Aseprite"
+          "float, title:^(JetBrains Toolbox)$"
+          "float, title:^(JetBrains Toolbox)$"
+          "float, title:^(Toolbox)$"
+          "center, title:^(jetbrains-toolbox)$"
+          "center, class:^(jetbrains-toolbox)$"
+          "center, title:^(Toolbox)$"
+          # My apps
+          "float, title:^(mooplas)$"
+          "center, title:^(mooplas)$"
           "float, title:^(Rusteroids)$"
           "center, title:^(Rusteroids)$"
-          "float, title:^(JetBrains Toolbox)$"
-          "center, title:^(JetBrains Toolbox)$"
+          # Other rules
           "idleinhibit fullscreen, class:.*" # Prevent idle when fullscreen
         ];
         layerrule = [
