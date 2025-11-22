@@ -16,8 +16,9 @@
       # pkgs.jetbrains.idea-ultimate # Copilot doesn't connect but don't want to overwrite my synced config
       pkgs.xclip # Dependency of zsh.nix
 
-      # Art
+      # Art & image viewers
       pkgs.aseprite
+      pkgs.swayimg
 
       # Misc
       pkgs.dconf2nix
@@ -71,6 +72,9 @@
     "file:///home/${userSettings.user}/projects Projects Directory"
     "file:///mnt/data Data Drive"
   ];
+  xdg.mimeApps.defaultApplications = {
+    "image/*" = "swayimg.desktop";
+  };
 
   # Shell
   bash.enable = userSettings.shells.isBashEnabled;
