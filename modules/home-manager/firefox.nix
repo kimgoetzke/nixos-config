@@ -17,7 +17,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     stylix.targets.firefox.profileNames = ["default"];
-    home.file.".mozilla/firefox/default/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
+    # Uncomment the below to use the Eliver Lara Nord theme when not using Textfox:
+    # home.file.".mozilla/firefox/default/chrome/firefox-nord-theme".source = inputs.firefox-nord-theme;
     programs.firefox = {
       enable = true;
       policies = {
@@ -44,12 +45,13 @@ in {
           force = true;
           settings = [];
         };
-        userChrome = lib.mkIf (cfg.withTextfox == false) ''
-          @import "firefox-nord-theme/userChrome.css";
-        '';
-        userContent = lib.mkIf (cfg.withTextfox == false) ''
-          @import "firefox-nord-theme/theme/nordic-theme.css";
-        '';
+        # Uncomment the below to use the Eliver Lara Nord theme when not using Textfox:
+        # userChrome = lib.mkIf (cfg.withTextfox == false) ''
+        #   @import "firefox-nord-theme/userChrome.css";
+        # '';
+        # userContent = lib.mkIf (cfg.withTextfox == false) ''
+        #   @import "firefox-nord-theme/theme/nordic-theme.css";
+        # '';
         settings = {
           # Disable about:config warning
           "browser.aboutConfig.showWarning" = false;
@@ -68,9 +70,11 @@ in {
           "distribution.searchplugins.defaultLocale" = "en-GB";
           "general.useragent.locale" = "en-GB";
 
-          # Miscellanous settings
+          # Miscellaneous settings
+          "sidebar.verticalTabs" = true;
           "browser.download.panel.shown" = true;
           "browser.download.useDownloadDir" = false;
+          "devtools.chrome.enabled" = true;
 
           # Extensions
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -168,8 +172,8 @@ in {
         };
         extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           onepassword-password-manager
-          tridactyl
           firefox-color
+          # tridactyl
         ];
       };
     };
