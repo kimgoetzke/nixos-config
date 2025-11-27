@@ -32,11 +32,11 @@ See [https://nixos.org/](https://nixos.org) for more information.
 
 ## Screenshots
 
-![Screenshots 1](./assets/demo/screenshot-1.png)
-![Screenshots 3](./assets/demo/screenshot-3.png)
-![Screenshots 2](./assets/demo/screenshot-2.png)
-![Screenshots 4](./assets/demo/screenshot-4.png)
-![Screenshots 5](./assets/demo/screenshot-5.png)
+![Screenshots 6](./assets/demo/screenshot-6.png)
+![Screenshots 7](./assets/demo/screenshot-7.png)
+![Screenshots 8](./assets/demo/screenshot-8.png)
+![Screenshots 9](./assets/demo/screenshot-9.png)
+![Screenshots 10](./assets/demo/screenshot-10.png)
 
 ## Usage
 
