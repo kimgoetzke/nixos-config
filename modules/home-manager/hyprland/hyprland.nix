@@ -185,13 +185,21 @@ in {
           "float, title:^(Welcome to WebStorm)$"
           "float, title:^(Welcome to IntelliJ.*)$"
           # Rules that are not working
-          "tile, class:^(Aseprite)$,title:^(Aseprite)$,initialTitle:Aseprite"
+          "tile, class:^(Aseprite)$, title:^(Aseprite)$, initialTitle:Aseprite"
           "float, title:^(JetBrains Toolbox)$"
           "float, title:^(JetBrains Toolbox)$"
           "float, title:^(Toolbox)$"
           "center, title:^(jetbrains-toolbox)$"
           "center, class:^(jetbrains-toolbox)$"
           "center, title:^(Toolbox)$"
+          # The below is a fix for the flickering in JetBrains applications, see:
+          # https://github.com/hyprwm/Hyprland/issues/9355
+          # https://github.com/hyprwm/Hyprland/discussions/9866
+          "noinitialfocus, class:jetbrains-toolbox, floating:1"
+          "noinitialfocus, class:(jetbrains-studio), title:^win(.*)"
+          "noinitialfocus, class:(jetbrains-idea), title:^win(.*)"
+          "noinitialfocus, class:(jetbrains-rustrover), title:^win(.*)"
+          "noinitialfocus, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
           # My apps
           "float, title:^(mooplas)$"
           "center, title:^(mooplas)$"
