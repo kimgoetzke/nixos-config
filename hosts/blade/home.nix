@@ -77,9 +77,9 @@
   home.shellAliases = {
     c = "clear";
     fi = "file";
-    nht = "nh os test ${userSettings.baseDirectory} -H default";
-    nhb = "nh os boot ${userSettings.baseDirectory} -H default";
-    nhs = "nh os switch ${userSettings.baseDirectory} -H default";
+    nht = "nh os test ${userSettings.baseDirectory} -H default --diff=always";
+    nhb = "nh os boot ${userSettings.baseDirectory} -H default --diff=always";
+    nhs = "nh os switch ${userSettings.baseDirectory} -H default --diff=always";
     nhc = "nh clean all --keep 2";
     nhca = "nh clean all --keep 1";
     nfu = "nix flake update --flake ${userSettings.baseDirectory}";
