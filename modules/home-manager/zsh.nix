@@ -186,7 +186,7 @@ in {
         if [ ! -f "$IS_FIRST_LAUNCH" ]; then
             touch "$IS_FIRST_LAUNCH"
             echo "Launching Hyprland..."
-            dbus-run-session Hyprland
+            start-hyprland
         fi
 
         # Allow folder navigation with 'fo' using the 'folder' script

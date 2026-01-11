@@ -18,6 +18,7 @@ in {
     ./mako.nix
     ./cliphist.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
     ./scripts.nix
     ./kanshi.nix
   ];
@@ -29,6 +30,7 @@ in {
     kanshi.enable = false;
     hyprland-waybar.enable = userSettings.hyprland.bar == "waybar";
     hyprland-hyprpanel.enable = userSettings.hyprland.bar == "hyprpanel";
+    hyprland-hyprpaper.enable = false;
     mako.enable = config.hyprland-waybar.enable;
 
     home.packages = with pkgs;
@@ -169,49 +171,48 @@ in {
           disable_splash_rendering = true;
         };
         windowrule = [
-          "tile, initialTitle:Aseprite"
-        ];
-        windowrulev2 = [
-          "float, title:^(Firefox — Sharing Indicator)$"
-          "noborder, title:^(Firefox — Sharing Indicator)$"
-          "rounding 0, title:^(Firefox — Sharing Indicator)$"
-          "float, title:^(firefox)$, title:^(Picture-in-Picture)$"
-          "pin, title:^(firefox)$, title:^(Picture-in-Picture)$"
-          "float, title:^(Save File)$"
-          "pin, title:^(Save File)$"
-          "float, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
-          "center, class:^(.*blueman-manager.*)$,title:^(.*blueman-manager.*)$"
-          "float, title:^(Welcome to JetBrains Rider)$"
-          "float, title:^(Welcome to WebStorm)$"
-          "float, title:^(Welcome to IntelliJ.*)$"
+          "tile on, match:initial_class Aseprite"
+          "float on, match:title ^(Firefox — Sharing Indicator)$"
+          "border_size 0, match:title ^(Firefox — Sharing Indicator)$"
+          "rounding 0, match:title ^(Firefox — Sharing Indicator)$"
+          "float on, match:title ^(Picture-in-Picture)$"
+          "pin on, match:title ^(Picture-in-Picture)$"
+          "float on, match:title ^(Save File)$"
+          "pin on, match:title ^(Save File)$"
+          "float on, match:title ^(.*blueman-manager.*)$"
+          "float on, match:class ^(.*blueman-manager.*)$"
+          "center on, match:title ^(.*blueman-manager.*)$"
+          "center on, match:class ^(.*blueman-manager.*)$"
+          "float on, match:title ^(Welcome to JetBrains Rider)$"
+          "float on, match:title ^(Welcome to WebStorm)$"
+          "float on, match:title ^(Welcome to IntelliJ.*)$"
+          "float on, match:title ^(Welcome to RustRover)$"
           # Rules that are not working
-          "tile, class:^(Aseprite)$, title:^(Aseprite)$, initialTitle:Aseprite"
-          "float, title:^(JetBrains Toolbox)$"
-          "float, title:^(JetBrains Toolbox)$"
-          "float, title:^(Toolbox)$"
-          "center, title:^(jetbrains-toolbox)$"
-          "center, class:^(jetbrains-toolbox)$"
-          "center, title:^(Toolbox)$"
+          "float on, match:class jetbrains-toolbox"
+          "float on, match:initial_title Toolbox"
+          "center on, match:class jetbrains-toolbox"
+          "center on, match:initial_title Toolbox"
+          "move (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5)), match:class jetbrains-toolbox"
           # The below is a fix for the flickering in JetBrains applications, see:
           # https://github.com/hyprwm/Hyprland/issues/9355
           # https://github.com/hyprwm/Hyprland/discussions/9866
-          "noinitialfocus, class:jetbrains-toolbox, floating:1"
-          "noinitialfocus, class:(jetbrains-studio), title:^win(.*)"
-          "noinitialfocus, class:(jetbrains-idea), title:^win(.*)"
-          "noinitialfocus, class:(jetbrains-rustrover), title:^win(.*)"
-          "noinitialfocus, class:(jetbrains-)(.*), title:^$, initialTitle:^$, floating:1"
+          "no_initial_focus on, match:class jetbrains-toolbox, match:initial_title win(.*)"
+          "no_initial_focus on, match:class jetbrains-idea, match:initial_title win(.*)"
+          "no_initial_focus on, match:class jetbrains-rustrover, match:initial_title win(.*)"
+          "no_initial_focus on, match:class ^(jetbrains-)(.*) match:initial_title ^$"
+          "no_focus on, match:class ^(jetbrains-)(.*) match:title ^$"
           # My apps
-          "float, title:^(mooplas)$"
-          "center, title:^(mooplas)$"
-          "float, title:^(Rusteroids)$"
-          "center, title:^(Rusteroids)$"
+          "float on, match:title ^(mooplas)$"
+          "center on, match:title ^(mooplas)$"
+          "float on, match:title ^(Rusteroids)$"
+          "center on, match:title ^(Rusteroids)$"
           # Other rules
-          "idleinhibit fullscreen, class:.*" # Prevent idle when fullscreen
+          "idle_inhibit fullscreen, match:class .*" # Prevent idle when fullscreen
+          "idle_inhibit focus, match:class .*" # Prevent idle when a window is focused
         ];
         layerrule = [
-          "blur, notifications"
-          "blur, rofi"
-          "dimaround, rofi"
+          "blur on, match:namespace rofi"
+          "dim_around on, match:namespace rofi"
         ];
         bind =
           [
