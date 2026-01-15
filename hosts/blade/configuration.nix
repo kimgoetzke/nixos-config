@@ -169,7 +169,7 @@
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "all --keep 4";
+    clean.extraArgs = "--keep 4";
   };
 
   # Fonts
