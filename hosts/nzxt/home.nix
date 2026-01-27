@@ -70,7 +70,10 @@
   gtk.gtk3.bookmarks = [
     "file:/// Root Directory"
     "file:///home/${userSettings.user}/projects Projects Directory"
-    "file:///mnt/data Data Drive"
+    "file:///mnt/data NXZT Data Drive"
+    "smb://SNAS/Data NAS Data"
+    "smb://SNAS/Shared NAS Shared"
+    "smb://SNAS/Temp NAS Temp"
   ];
   xdg.mimeApps.defaultApplications = {
     "image/*" = "swayimg.desktop";

@@ -68,7 +68,10 @@
   gtk-settings.enable = true;
   gtk.gtk3.bookmarks = [
     "file:/// Root Directory"
-    "file://${userSettings.user}/projects Projects Directory"
+    "file:///home/${userSettings.user}/projects Projects Directory"
+    "smb://SNAS/Data NAS Data"
+    "smb://SNAS/Shared NAS Shared"
+    "smb://SNAS/Temp NAS Temp"
   ];
 
   # Shell
