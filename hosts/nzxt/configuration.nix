@@ -84,7 +84,6 @@
 
   # Environment variables
   environment.sessionVariables = {
-    # FLAKE = "${userSettings.baseDirectory}"; # TODO: Remove this line after confirming the below works
     NH_FLAKE = "${userSettings.baseDirectory}";
     NIXOS_OZONE_WL = "1"; # Enable Ozone-Wayland for VS Code to run on Wayland
     WLR_NO_HARDWARE_CURSORS = "1"; # Fixes incomplete and inaccurate cursors on Hyprland
