@@ -139,7 +139,11 @@
       nautilus # File manager
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "hyprpanel") [
-      hyprpanel # Bar and panel, alternative to Waybar
+      hyprpanel # Bar and panel, alternative to Waybar and Quickshell
+    ]
+    ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
+      quickshell # Bar and panel, alternative to Waybar and Hyprpanel
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
   # Applications

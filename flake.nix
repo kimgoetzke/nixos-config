@@ -40,6 +40,12 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    # A ready-to-use Quickshell configuration
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";

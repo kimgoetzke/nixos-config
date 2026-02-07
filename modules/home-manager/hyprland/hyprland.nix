@@ -14,34 +14,40 @@ in {
   imports = [
     ./waybar.nix
     ./hyprpanel.nix
+    ./quickshell.nix
     ./rofi.nix
     ./mako.nix
     ./cliphist.nix
     ./hyprlock.nix
+    ./hypridle.nix
     ./hyprpaper.nix
     ./scripts.nix
     ./kanshi.nix
   ];
 
   config = lib.mkIf cfg.enable {
-    rofi.enable = true;
+    rofi.enable = true; # TODO: Consider if I can make Quickshell work without Rofi
     cliphist.enable = true;
-    hyprlock.enable = true;
+    hypridle.enable = true;
+    hyprlock.enable = userSettings.hyprland.bar != "quickshell";
     kanshi.enable = false;
     hyprland-waybar.enable = userSettings.hyprland.bar == "waybar";
     hyprland-hyprpanel.enable = userSettings.hyprland.bar == "hyprpanel";
+    hyprland-quickshell.enable = userSettings.hyprland.bar == "quickshell";
     hyprland-hyprpaper.enable = false;
     mako.enable = config.hyprland-waybar.enable;
 
     home.packages = with pkgs;
       [
-        swww # Wallpaper daemon
         polkit_gnome # A dbus session bus service used to bring up authentication dialogs
         cliphist # Clipboard manager
         wl-clipboard # Wayland clipboard manager, dependency of cliphist
         gvfs # Mount, trash, and other functionalities (for Thunar/Nautilus)
         hypridle # Idle manager
         hyprpicker # Colour picker
+      ]
+      ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
+        swww # Wallpaper daemon
       ]
       ++ lib.optionals config.hyprland-waybar.enable [
         brightnessctl # Tool to control brightness
@@ -69,12 +75,14 @@ in {
         exec-once =
           [
             "hypridle"
-            "hyprlock"
-            "swww-daemon"
-            "swww img ${userSettings.targetDirectory}/wallpaper.png"
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          ]
+          ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
+            "hyprlock"
+            "swww-daemon"
+            "swww img ${userSettings.targetDirectory}/wallpaper.png"
           ]
           ++ lib.optionals config.hyprland-waybar.enable [
             "mako" # Conflicts with hyprpanel which comes with a notification daemon
@@ -82,6 +90,9 @@ in {
           ]
           ++ lib.optionals config.hyprland-hyprpanel.enable [
             "hyprpanel"
+          ]
+          ++ lib.optionals config.hyprland-quickshell.enable [
+            "noctalia-shell"
           ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -202,8 +213,8 @@ in {
           "no_initial_focus on, match:class ^(jetbrains-)(.*) match:initial_title ^$"
           "no_focus on, match:class ^(jetbrains-)(.*) match:title ^$"
           # My apps
-          "float on, match:title ^(mooplas)$"
-          "center on, match:title ^(mooplas)$"
+          "float on, match:title ^(mooplas)(.*)$"
+          "center on, match:title ^(mooplas)(.*)$"
           "float on, match:title ^(Rusteroids)$"
           "center on, match:title ^(Rusteroids)$"
           # Other rules
@@ -213,6 +224,9 @@ in {
         layerrule = [
           "blur on, match:namespace rofi"
           "dim_around on, match:namespace rofi"
+          "blur on, match:namespace = noctalia-background-.*$"
+          "blur_popups on, match:namespace = noctalia-background-.*$"
+          "ignore_alpha on, match:namespace = noctalia-background-.*$"
         ];
         bind =
           [
@@ -222,11 +236,8 @@ in {
             "$mainMod SHIFT, F3, exec, wdisplays"
             "$mainMod SHIFT, F4, exec, ${userSettings.targetDirectory}/toggle-performance-mode.sh"
             "$mainMod SHIFT, F5, exec, ${userSettings.targetDirectory}/reload-ui.sh"
-            "$mainMod SHIFT, E, exec, pkill -x rofi || ${userSettings.targetDirectory}/power-menu.sh"
 
             # Apps
-            "$mainMod, SPACE, exec, pkill -x rofi || rofi -show-icons -show drun"
-            "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
             "$mainMod, N, exec, $terminal -e nmtui"
             "$mainMod, M, exec, nautilus"
             "$mainMod, Y, exec, $terminal -e yazi"
@@ -241,8 +252,6 @@ in {
             "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history -theme-str \"entry { placeholder: 'Enter calculation...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }\""
             "$mainMod, X, exec, kooha" # GIF screen recorder
             "$mainMod, S, exec, hyprctl clients | awk '/class:/ {print $2}' | grep -q 'steam' && hyprctl dispatch closewindow steam || steam"
-            "$mainMod SHIFT, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh wipe"
-            "$mainMod, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh open"
             "$mainMod SHIFT, C, exec, hyprpicker -f hex -a"
 
             # Screenshots
@@ -263,10 +272,6 @@ in {
             ",XF86MonBrightnessUp,exec,brightnessctl s +5%"
             ",XF86MonBrightnessDown,exec,brightnessctl s 5%-"
 
-            # Lock screen
-            ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
-            "$mainMod, L, exec, hyprlock"
-
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "
             "$mainMod, W, togglesplit,"
@@ -283,7 +288,6 @@ in {
             "$mainMod SHIFT, left, movewindow, l"
             "$mainMod SHIFT, right, movewindow, r"
             "$mainMod CONTROL, S, togglespecialworkspace, magic"
-            "$mainMod SHIFT, S, movetoworkspace, special:magic"
             "$mainMod, mouse_down, workspace, e+1"
             "$mainMod, mouse_up, workspace, e-1"
             "$mainMod ALT, right, resizeactive, 50 0"
@@ -292,6 +296,38 @@ in {
             "$mainMod ALT, down, resizeactive, 0 50"
             "$mainMod, code:49, workspace, 10" # $mainMod + ` = got to workspace 10
             "$mainMod SHIFT, code:49, movetoworkspacesilent, 10" # $mainMod + SHIFT + ` = move active silently to workspace 10
+          ]
+          ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
+            # Launchers & menus
+            "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
+            "$mainMod, period, exec, noctalia-shell ipc call launcher emoji"
+            "$mainMod SHIFT, S, exec, noctalia-shell ipc call settings toggle"
+            "$mainMod, V, exec, noctalia-shell ipc call launcher clipboard"
+
+            # Volume and brightness
+            ",XF86AudioRaiseVolume, exec, noctalia-shell ipc call volume increase"
+            ",XF86AudioLowerVolume, exec, noctalia-shell ipc call volume decrease"
+            ",XF86AudioMute, exec, noctalia-shell ipc call volume muteOutput"
+            ",XF86MonBrightnessUp, exec, noctalia-shell ipc call brightness increase"
+            ",XF86MonBrightnessDown, exec, noctalia-shell ipc call brightness decrease"
+
+            # Lock & power
+            "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
+            "$mainMod SHIFT, E, exec, noctalia-shell ipc call sessionMenu toggle"
+          ]
+          ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
+            # Launchers & menus
+            "$mainMod, SPACE, exec, pkill -x rofi || rofi -show-icons -show drun"
+            "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
+
+            # Lock & power
+            "$mainMod SHIFT, E, exec, pkill -x rofi || ${userSettings.targetDirectory}/power-menu.sh"
+            "$mainMod, L, exec, hyprlock"
+            ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
+
+            # Clipboard
+            "$mainMod SHIFT, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh wipe"
+            "$mainMod, V, exec, ${userSettings.targetDirectory}/cliphist-helper.sh open"
           ]
           ++ (
             # Select and move workspaces 1 to 10
