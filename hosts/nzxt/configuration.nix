@@ -142,6 +142,7 @@
       hyprpanel # Bar and panel, alternative to Waybar and Quickshell
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
+      gpu-screen-recorder # GPU-accelerated screen recorder, required by Noctalia screen recording plugin
       quickshell # Bar and panel, alternative to Waybar and Hyprpanel
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];

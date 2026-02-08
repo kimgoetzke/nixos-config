@@ -1,5 +1,5 @@
 {
-  "settingsVersion": 48,
+  "settingsVersion": 49,
   "bar": {
     "barType": "simple",
     "position": "top",
@@ -116,14 +116,23 @@
           "hideUnoccupied": false,
           "iconScale": 0.5,
           "id": "Workspace",
-          "labelMode": "none",
+          "labelMode": "index",
           "occupiedColor": "none",
           "pillSize": 0.75,
           "reverseScroll": false,
           "showApplications": false,
           "showBadge": true,
-          "showLabelsOnlyWhenOccupied": true,
+          "showLabelsOnlyWhenOccupied": false,
           "unfocusedIconsOpacity": 1
+        },
+        {
+          "defaultSettings": {
+            "activeColor": "primary",
+            "hideInactive": false,
+            "inactiveColor": "none",
+            "removeMargins": false
+          },
+          "id": "plugin:privacy-indicator"
         }
       ],
       "right": [
@@ -154,6 +163,25 @@
           "useCustomFont": false
         },
         {
+          "defaultSettings": {
+            "audioCodec": "opus",
+            "audioSource": "default_output",
+            "colorRange": "limited",
+            "copyToClipboard": false,
+            "directory": "",
+            "filenamePattern": "yyyy-MM-dd_HHmm_ss_recording",
+            "frameRate": "30",
+            "hideInactive": false,
+            "iconColor": "none",
+            "quality": "very_high",
+            "resolution": "original",
+            "showCursor": true,
+            "videoCodec": "h264",
+            "videoSource": "portal"
+          },
+          "id": "plugin:screen-recorder"
+        },
+        {
           "colorizeDistroLogo": false,
           "colorizeSystemIcon": "none",
           "customIconPath": "",
@@ -181,13 +209,13 @@
               "hideUnoccupied": false,
               "iconScale": 0.5,
               "id": "Workspace",
-              "labelMode": "none",
+              "labelMode": "index",
               "occupiedColor": "none",
               "pillSize": 0.75,
               "reverseScroll": false,
               "showApplications": false,
               "showBadge": true,
-              "showLabelsOnlyWhenOccupied": true,
+              "showLabelsOnlyWhenOccupied": false,
               "unfocusedIconsOpacity": 1
             }
           ],
@@ -605,6 +633,9 @@
     "performanceModeDisabled": "",
     "startup": "",
     "session": ""
+  },
+  "plugins": {
+    "autoUpdate": false
   },
   "desktopWidgets": {
     "enabled": false,
