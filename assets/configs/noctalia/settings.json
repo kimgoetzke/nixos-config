@@ -41,9 +41,9 @@
           "showLoadAverage": false,
           "showMemoryAsPercent": false,
           "showMemoryUsage": true,
-          "showNetworkStats": false,
+          "showNetworkStats": true,
           "showSwapUsage": false,
-          "textColor": "none",
+          "textColor": "secondary",
           "useMonospaceFont": true
         },
         {
