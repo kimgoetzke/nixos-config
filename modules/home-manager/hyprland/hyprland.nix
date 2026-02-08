@@ -190,6 +190,7 @@ in {
           "pin on, match:title ^(Picture-in-Picture)$"
           "float on, match:title ^(Save File)$"
           "pin on, match:title ^(Save File)$"
+          "float on, match:title ^(Select what to share.*)$"
           "float on, match:title ^(.*blueman-manager.*)$"
           "float on, match:class ^(.*blueman-manager.*)$"
           "center on, match:title ^(.*blueman-manager.*)$"
