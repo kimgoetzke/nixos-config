@@ -13,14 +13,17 @@
     services.hypridle.settings = {
       general = {
         ignore_dbus_inhibit = false;
-        lock_cmd = "pidof hyprlock || hyprlock";
+        lock_cmd =
+          if userSettings.hyprland.bar == "quickshell"
+          then "noctalia-shell ipc call lockScreen lock"
+          else "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        after_sleep_cmd = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";
       };
       listener = [
         {
           timeout = 180;
-          on-timeout = "brightnessctl -s set 10";
+          on-timeout = "brightnessctl -s set 10%";
           on-resume = "brightnessctl -r";
         }
         {
@@ -29,14 +32,9 @@
         }
         {
           timeout = 330;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms off {}";
+          on-resume = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";
         }
-        # Temoorary disable suspend on timeout because external monitors won't wake up on-resume
-        #{
-        #  timeout = 1800; # 30min
-        #  on-timeout = "systemctl suspend";
-        #}
       ];
     };
   };

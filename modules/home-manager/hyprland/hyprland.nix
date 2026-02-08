@@ -45,12 +45,12 @@ in {
         gvfs # Mount, trash, and other functionalities (for Thunar/Nautilus)
         hypridle # Idle manager
         hyprpicker # Colour picker
+        brightnessctl # Tool to control brightness
       ]
       ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
         swww # Wallpaper daemon
       ]
       ++ lib.optionals config.hyprland-waybar.enable [
-        brightnessctl # Tool to control brightness
         libnotify # Notification daemon
         blueman # Bluetooth manager
         mako # Notification daemon
