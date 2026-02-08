@@ -30,7 +30,7 @@
   };
 
   fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/FE1469031468C06F";
+    device = "/dev/disk/by-uuid/E636121D3611EEF5";
     fsType = "ntfs-3g";
     options = ["rw" "uid=1000" "gid=100" "umask=0022" "remove_hiberfile" "nofail"];
   };
