@@ -47,7 +47,7 @@
           "useMonospaceFont": true
         },
         {
-          "displayMode": "onhover",
+          "displayMode": "alwaysShow",
           "iconColor": "none",
           "id": "Bluetooth",
           "textColor": "none"
