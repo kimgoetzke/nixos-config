@@ -26,7 +26,6 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Cliphist** clipboard manager
 - **Mpv** media player
 - **Satty** with **Slurp** and **Grim** for screenshots
-- **Blueman** bluetooth manager
 - **Posting** terminal HTTP client
 - **Obsidian** note-taking application
 - **Kalker** calculator
