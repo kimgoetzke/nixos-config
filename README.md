@@ -1,6 +1,6 @@
 # My NixOS configuration
 
-My minimalist NixOS configuration files, managed with Flakes and Home Manager. I do _not_ recommend using this as a base
+My minimalist NixOS configuration files, managed with Flakes and Home Manager. I do not recommend using this as a base
 for your own configuration as it has been exclusively configured for my own needs, but if you're a noob like me, you may
 take inspiration from it.
 
@@ -15,9 +15,9 @@ See [https://nixos.org/](https://nixos.org) for more information.
 
 - **NixOS** with **Flakes** and **Home Manager**
 - **Wayland** with **Hyprland** (or **X11** with **Gnome**) as desktop environment
-- **HyperPanel** status bar (or **Waybar** with **Mako** notifications) on Wayland
-- **Hyprlock** and **Hypridle** for screen locking and idle management
-- **Rofi** application launcher
+- **Noctalia**'s status bar (or **HyperPanel** or **Waybar** with **Mako** notifications) on Wayland
+- **Noctalia**'s built-in screen locking (or **Hyprlock** with Waybar/Hyprpanel) and **Hypridle** for idle management
+- **Noctalia**'s built-in application launcher (or **Rofi** with Waybar/Hyprpanel)
 - **Firefox** web browser
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
 - **VS Code** and **Neovim** text editors and **JetBrains Toolbox** for IDEs
@@ -29,14 +29,15 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Blueman** bluetooth manager
 - **Posting** terminal HTTP client
 - **Obsidian** note-taking application
+- **Kalker** calculator
 
 ## Screenshots
 
-![Screenshots 6](./assets/demo/screenshot-6.png)
-![Screenshots 7](./assets/demo/screenshot-7.png)
-![Screenshots 8](./assets/demo/screenshot-8.png)
-![Screenshots 9](./assets/demo/screenshot-9.png)
-![Screenshots 10](./assets/demo/screenshot-10.png)
+![Screenshots 1](./assets/demo/screenshot-1.png)
+![Screenshots 2](./assets/demo/screenshot-2.png)
+![Screenshots 3](./assets/demo/screenshot-3.png)
+![Screenshots 4](./assets/demo/screenshot-4.png)
+![Screenshots 5](./assets/demo/screenshot-5.png)
 
 ## Usage
 
