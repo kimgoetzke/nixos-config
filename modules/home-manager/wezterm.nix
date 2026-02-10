@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  userSettings,
   ...
 }: let
   cfg = config.wezterm;
@@ -15,14 +14,7 @@ in {
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
-    };
-
-    home.sessionVariables = {
-      WEZTERM_CONFIG_FILE = "${userSettings.targetDirectory}/wezterm.lua";
-    };
-
-    home.file."${userSettings.relativeTargetDirectory}/wezterm.lua" = {
-      source = ./../../assets/configs/wezterm/wezterm.lua;
+      extraConfig = builtins.readFile ./../../assets/configs/wezterm/wezterm.lua;
     };
   };
 }
