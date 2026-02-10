@@ -2,10 +2,10 @@
   pkgs,
   config,
   lib,
-  userSettings,
   ...
 }: let
   cfg = config.tuigreet;
+  command = "start-hyprland";
 in {
   options.tuigreet = {
     enable = lib.mkEnableOption "Enable tuigreet, a terminal-based greeter for greetd";
@@ -16,9 +16,13 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd start-hyrpland";
-          user = "${userSettings.user}";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --theme 'button=cyan;time=cyan' --cmd ${command}";
+          user = "greeter";
         };
+        # initial_session = {
+        #   command = "${command}";
+        #   user = "${userSettings.user}";
+        # };
       };
     };
   };
