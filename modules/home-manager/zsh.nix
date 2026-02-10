@@ -181,14 +181,6 @@ in {
         alias ls='eza --group-directories-first --git --long --no-time --no-user --icons=always'
         alias c='clear'
 
-        # Auto-start Hyprland on first startup
-        IS_FIRST_LAUNCH="/run/user/$(id -u)/zshrc_current_session"
-        if [ ! -f "$IS_FIRST_LAUNCH" ]; then
-            touch "$IS_FIRST_LAUNCH"
-            echo "Launching Hyprland..."
-            start-hyprland
-        fi
-
         # Allow folder navigation with 'fo' using the 'folder' script
         fo() {
           cd "$(folder "$1")"

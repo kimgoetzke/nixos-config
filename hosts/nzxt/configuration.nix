@@ -44,8 +44,9 @@
       "nixpkgs=${inputs.nixpkgs}"
     ];
   };
+  nixpkgs.config.allowUnfree = true;
 
-  # Enable printing with auto-discovery (see https://wiki.nixos.org/wiki/Printing)
+  # Printing with auto-discovery (see https://wiki.nixos.org/wiki/Printing)
   services.printing = {
     enable = true;
     drivers = [pkgs.hplip]; # For HP printers only (magically works)
@@ -56,6 +57,9 @@
     openFirewall = true;
   };
 
+  # Other services
+  tuigreet.enable = true;
+
   # General hardware configuration
   nzxt.enable = true;
   hardware.bluetooth.enable = true;
@@ -64,7 +68,7 @@
   # Modes
   gaming.enable = userSettings.modes.isGamingEnabled;
 
-  # Enable sound with pipewire
+  # Audio
   security.rtkit.enable = true;
   services.pulseaudio.enable = false;
   services.pipewire = {
@@ -94,9 +98,6 @@
     enable = true;
     # libraries = with pkgs; [ ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Desktop environment
   de-gnome.enable = userSettings.desktopEnvironments.isGnomeEnabled;
@@ -144,17 +145,20 @@
     ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
       gpu-screen-recorder # GPU-accelerated screen recorder, required by Noctalia screen recording plugin
       quickshell # Bar and panel, alternative to Waybar and Hyprpanel
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia shell (based on Quickshell)
     ];
 
   # Applications
   nixvim.enable = userSettings.vimDistribution == "nixvim";
   posting.enable = true;
   programs.zsh.enable = userSettings.shells.isZshEnabled;
+  virtualisation.docker.enable = userSettings.isDockerEnabled;
 
-  # Docker
-  virtualisation.docker = {
-    enable = userSettings.isDockerEnabled;
+  # Yet Another Nix Helper
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep 4";
   };
 
   # Home manager
@@ -167,13 +171,6 @@
     users.${userSettings.user} = {
       imports = [./home.nix];
     };
-  };
-
-  # Yet Another Nix Helper
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep 4";
   };
 
   # Fonts
