@@ -74,7 +74,7 @@ in {
         "$terminal" = "${userSettings.emulator}";
         exec-once =
           [
-            "hypridle"
+            "hypridle" # Change to `systemctl --user enable --now hypridle.service` when using uwsm
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

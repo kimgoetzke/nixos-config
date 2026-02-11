@@ -12,6 +12,9 @@
     services.hypridle.enable = true;
     services.hypridle.settings = {
       general = {
+        inhibit_sleep = 0;
+        ignore_wayland_inhibit = true;
+        ignore_systemd_inhibit = true;
         ignore_dbus_inhibit = false;
         lock_cmd =
           if userSettings.hyprland.bar == "quickshell"
@@ -32,6 +35,12 @@
         }
         {
           timeout = 330;
+          on-timeout = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms off {}";
+          on-resume = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";
+        }
+        {
+          ignore_inhibit = true;
+          timeout = 7200; # 2h
           on-timeout = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms off {}";
           on-resume = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";
         }
