@@ -5,7 +5,8 @@
   ...
 }: let
   cfg = config.tuigreet;
-  command = "start-hyprland";
+  # Merge stderr and stdout, append to log file and discard output to avoid showing it in the greeter
+  command = "'sh -c \"exec start-hyprland 2>&1 | tee -a /tmp/hyprland-$USER.log >/dev/null\"'";
 in {
   options.tuigreet = {
     enable = lib.mkEnableOption "Enable tuigreet, a terminal-based greeter for greetd";
