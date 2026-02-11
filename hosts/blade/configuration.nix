@@ -58,6 +58,7 @@
   };
 
   # Other services
+  plymouth.enable = false;
   tuigreet.enable = true;
 
   # General hardware configuration
