@@ -5,7 +5,8 @@
     "position": "top",
     "monitors": [
       "DP-2",
-      "DP-3"
+      "DP-3",
+      "eDP-1"
     ],
     "density": "spacious",
     "showOutline": false,
