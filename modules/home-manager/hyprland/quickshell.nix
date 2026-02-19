@@ -22,9 +22,9 @@
       source = ./../../../assets/configs/noctalia/colors.json;
     };
 
-    home.file.".config/noctalia/plugins" = lib.mkForce {
-      source = ./../../../assets/configs/noctalia/plugins;
-      recursive = true;
-    };
+    # home.file.".config/noctalia/plugins" = lib.mkForce {
+    #   source = ./../../../assets/configs/noctalia/plugins;
+    #   recursive = true;
+    # };
   };
 }
