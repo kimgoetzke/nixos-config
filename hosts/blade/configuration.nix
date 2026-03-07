@@ -122,6 +122,7 @@
       nixd # Nix language server
       ueberzugpp # Image viewer for terminal, required by Yazi
       tokei # Code statistics tool
+      github-copilot-cli # Agentic AI CLI, will also install Node.js
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X
