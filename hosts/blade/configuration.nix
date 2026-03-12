@@ -112,7 +112,7 @@
       zip
       curl
       jq
-      neofetch
+      fastfetch
       obsidian
       _1password-gui
       _1password-cli
