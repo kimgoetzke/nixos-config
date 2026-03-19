@@ -185,7 +185,6 @@ in {
         displayNavButtons = true;
         tabs.horizontal.enable = false;
         tabs.vertical.enable = true;
-        tabs.vertical.margin = "0.5rem";
         background = {
           color = "#2e3440"; # Or 1f242d; note that this doesn't change the full background, you appear to need to go to https://color.firefox.com/ for that
         };
