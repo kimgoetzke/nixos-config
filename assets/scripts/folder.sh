@@ -72,6 +72,10 @@ folder() {
     echo "/home/$NIX_USER/projects/mooplas"
     cd "/home/$NIX_USER/projects/mooplas"
     ;;
+  "awai")
+    echo "/home/$NIX_USER/projects/awesome-ai"
+    cd "/home/$NIX_USER/projects/awesome-ai"
+    ;;
   *)
     echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio, pg1fe"
     ;;
