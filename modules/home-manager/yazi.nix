@@ -65,7 +65,7 @@
     };
 
     # Install glow for working with markdown
-    home.packages = [ pkgs.glow ];
+    home.packages = [pkgs.glow];
 
     home.file.".config/yazi/yazi.toml" = {
       source = ./../../assets/configs/yazi/yazi.toml;
