@@ -23,6 +23,15 @@ in {
           "/home/${userSettings.user}/projects"
         ];
       };
+      extraConfig = {
+        credential.helper = "!/run/current-system/sw/bin/gh auth git-credential";
+      };
+    };
+    programs.gh = {
+      enable = true;
+      settings = {
+        git_protocol = "https";
+      };
     };
   };
 }
