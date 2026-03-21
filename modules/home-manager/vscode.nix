@@ -23,7 +23,6 @@ in {
         extensions = lib.mkIf cfg.withExtensions (with pkgs.vscode-extensions; [
           # Miscellaneous
           k--kato.intellij-idea-keybindings
-          github.copilot
           github.copilot-chat
           esbenp.prettier-vscode
           eamodio.gitlens
