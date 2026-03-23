@@ -214,8 +214,8 @@ in {
           "no_initial_focus on, match:class ^(jetbrains-)(.*) match:initial_title ^$"
           "no_focus on, match:class ^(jetbrains-)(.*) match:title ^$"
           # My apps
-          "float on, match:title ^(mooplas)(.*)$"
-          "center on, match:title ^(mooplas)(.*)$"
+          "float on, match:title ^Mooplas$"
+          "center on, match:title ^Mooplas$"
           "float on, match:title ^(Rusteroids)$"
           "center on, match:title ^(Rusteroids)$"
           # Other rules
