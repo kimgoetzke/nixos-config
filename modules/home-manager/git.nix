@@ -23,9 +23,12 @@ in {
           "/home/${userSettings.user}/projects"
         ];
       };
-      extraConfig = {
+      settings = {
         credential.helper = "!/run/current-system/sw/bin/gh auth git-credential";
       };
+
+      # Required if `home.stateVersion` is less than "26.05":
+      signing.format = "openpgp";
     };
     programs.gh = {
       enable = true;

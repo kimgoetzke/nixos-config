@@ -205,6 +205,7 @@ in {
           "center on, match:class jetbrains-toolbox"
           "center on, match:initial_title Toolbox"
           "move (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5)), match:class jetbrains-toolbox"
+          "float on, match:class ^jetbrains-.*$, match:title ^Commit:.*$"
           # The below is a fix for the flickering in JetBrains applications, see:
           # https://github.com/hyprwm/Hyprland/issues/9355
           # https://github.com/hyprwm/Hyprland/discussions/9866
