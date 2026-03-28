@@ -8,10 +8,10 @@ file() {
 
   case "$1" in
   "this" | "fi")
-    code "/home/$NIX_USER/projects/nixos-config/assets/scripts/file.sh"
+    zeditor "/home/$NIX_USER/projects/nixos-config/assets/scripts/file.sh"
     ;;
   "ssh")
-    code "/home/$NIX_USER/.ssh/config"
+    zeditor "/home/$NIX_USER/.ssh/config"
     ;;
   *)
     echo "Error: File not recognised. Recognised files are: this/fi, ssh."
