@@ -122,7 +122,6 @@
       # davinci-resolve # Video editor
       ueberzugpp # Image viewer for terminal, required by Yazi
       tokei # Code statistics tool
-      github-copilot-cli # Agentic AI CLI, will also install Node.js
     ]
     ++ lib.optionals userSettings.desktopEnvironments.isGnomeEnabled [
       xorg.xev # Input event listener for X
@@ -155,6 +154,7 @@
   posting.enable = true;
   programs.zsh.enable = userSettings.shells.isZshEnabled;
   virtualisation.docker.enable = userSettings.isDockerEnabled;
+  ai.enable = true;
 
   # Yet Another Nix Helper
   programs.nh = {
