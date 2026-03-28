@@ -155,6 +155,7 @@
   programs.zsh.enable = userSettings.shells.isZshEnabled;
   virtualisation.docker.enable = userSettings.isDockerEnabled;
   ai.enable = true;
+  zed.enable = true;
 
   # Yet Another Nix Helper
   programs.nh = {

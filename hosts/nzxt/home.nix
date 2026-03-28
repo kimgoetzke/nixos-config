@@ -64,6 +64,8 @@
   programs.home-manager.enable = true;
   programs.mpv.enable = true;
   programs.obs-studio.enable = true;
+  zed.enable = true;
+  zed.withDefaultConfig = true;
 
   # Settings
   gtk-settings.enable = true;

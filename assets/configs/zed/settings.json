@@ -1,0 +1,100 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "languages": {
+    "Java": {
+      "tab_size": 2,
+    },
+  },
+  "buffer_font_family": ".ZedMono",
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false,
+  },
+  "icon_theme": "JetBrains Icons Dark",
+  "base_keymap": "JetBrains",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Islands Dark",
+  },
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "lombok_support": true,
+        "import": {
+          "gradle": {
+            "enabled": true,
+          },
+          "maven": {
+            "enabled": true,
+          },
+          "exclusions": [
+            "**/node_modules/**",
+            "**/.metadata/**",
+            "**/archetype-resources/**",
+            "**/META-INF/maven/**",
+            "/**/test/**",
+          ],
+        },
+      },
+      "initialization_options": {
+        "settings": {
+          "lombok_support": true,
+          "import": {
+            "gradle": {
+              "enabled": true,
+            },
+            "maven": {
+              "enabled": true,
+            },
+            "exclusions": [
+              "**/node_modules/**",
+              "**/.metadata/**",
+              "**/archetype-resources/**",
+              "**/META-INF/maven/**",
+              "/**/test/**",
+            ],
+          },
+        },
+      },
+    },
+  },
+  "terminal": {
+    "env": {
+      "JETBRAINS_TERMINAL": "1",
+      "IDE_TERMINAL": "1",
+    },
+  },
+  "experimental.theme_overrides": {
+    "syntax": {
+      "emphasis.strong": {
+        "color": "#ebcb8b",
+        "font_weight": 500,
+      },
+      "emphasis": {
+        "color": "#ebcb8b",
+        "font_style": "italic",
+      },
+      "punctuation.list_marker": {
+        "color": "#b48ead",
+      },
+    },
+  },
+}
+
+
+

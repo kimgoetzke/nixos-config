@@ -22,5 +22,6 @@
     ./gtk.nix
     ./yazi.nix
     ./neovim.nix
+    ./zed.nix
   ];
 }

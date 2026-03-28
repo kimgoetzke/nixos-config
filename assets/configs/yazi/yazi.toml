@@ -28,9 +28,9 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-    { run = "${EDITOR:-vi} %s", desc = "$EDITOR", for = "unix", block = true },
-    { run = "code %s", desc = "code", for = "windows", orphan = true },
-    { run = "code -w %s", desc = "code (block)", for = "windows", block = true },
+    { run = "${EDITOR:-zeditor} %s", desc = "$EDITOR", for = "unix", block = true },
+    { run = "zeditor %s", desc = "zed", for = "windows", orphan = true },
+    { run = "zeditor -w %s", desc = "zed (block)", for = "windows", block = true },
     { run = 'glow -p %s1', desc = "glow markdown (block)", block = true },
 ]
 play = [

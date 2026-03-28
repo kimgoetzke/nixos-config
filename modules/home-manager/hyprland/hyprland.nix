@@ -249,6 +249,7 @@ in {
             "$mainMod, O, exec, obsidian"
             "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
+            "$mainMod, Z, exec, zeditor"
             "$mainMod, A, exec, aseprite"
             "$mainMod SHIFT, K, exec, $terminal -e kalker"
             "$mainMod, K, exec, pkill -x rofi || rofi -show calc -modi calc -no-show-match -no-sort -no-persist-history -theme-str \"entry { placeholder: 'Enter calculation...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }\""

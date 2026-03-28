@@ -1,0 +1,86 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-right": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-d": "editor::DeleteLine"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-alt-s": "zed::OpenSettings"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-g": "git::Blame"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-c": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": true
+        }
+      ]
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-r": "editor::Rename"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-\\ ctrl-f": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-\\ ctrl-s": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-\\ ctrl-[": "workspace::ActivateNextPane",
+      "ctrl-\\ ctrl-]": "workspace::ActivatePreviousPane",
+      "ctrl-\\ ctrl-=": "zed::ToggleFullScreen"
+    }
+  }
+]
