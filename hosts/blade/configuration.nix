@@ -190,7 +190,7 @@
   stylix = {
     enable = true;
     image = ./../../assets/images/${userSettings.wallpaperFile};
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = ./../../assets/configs/stylix/jetbrains-islands-dark.yaml;
     fonts.sizes.terminal = 16;
     opacity.terminal =
       if userSettings.desktopEnvironments.isHyprlandEnabled

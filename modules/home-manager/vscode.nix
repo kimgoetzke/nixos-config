@@ -77,7 +77,7 @@ in {
           "window.menuBarVisibility" = "toggle";
           "workbench.editor.editorActionsLocation" = "hidden";
           "workbench.colorTheme" = lib.mkDefault "Nord";
-          "workbench.colorCustomizations" = {
+          "workbench.colorCustomizations" = { # When using Nord theme replace background colours with with: #232831
             "editor.background" = lib.mkForce "#232831";
             "editorGutter.background" = lib.mkForce "#232831";
             "editorInlayHint.background" = lib.mkForce "#232831";

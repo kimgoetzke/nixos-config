@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "console_title_template": "{{.Shell}} in {{.PWD}}",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "#E0BB65",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "plain",
+          "template": "\n[{{ .CurrentDate | date .Format }}]",
+          "type": "time"
+        },
+        {
+          "foreground": "#C77DBB",
+          "style": "plain",
+          "template": " \uf0e7 ",
+          "type": "root"
+        },
+        {
+          "foreground": "#56A8F5",
+          "properties": {
+            "style": "agnoster"
+          },
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#E0BB65",
+          "properties": {
+            "branch_gone_icon": "\u274e",
+            "branch_identical_icon": "\uf14a"
+          },
+          "style": "plain",
+          "template": " {{ .HEAD }} ",
+          "type": "git"
+        },
+        {
+          "foreground": "#F75464",
+          "style": "plain",
+          "template": "x{{ .Meaning }} ",
+          "type": "exit"
+        },
+        {
+          "foreground": "#CF8E6D",
+          "style": "plain",
+          "template": "\u276f ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt",
+      "transient_prompt": {
+        "background": "transparent",
+        "foreground": "#DFE1E5",
+        "template": "{{ .Shell }}> "
+      }
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "shell",
+          "style": "plain",
+          "foreground": "#CF8E6D",
+          "properties": {
+            "mapped_shell_names": {
+              "pwsh": "Pwsh",
+              "powershell": "Pwsh",
+              "cmd": "Cmd",
+              "bash": "Bash",
+              "zsh": "Zsh"
+            }
+          },
+          "template": " \ue795 {{ .Name }}"
+        }
+      ],
+      "type": "rprompt",
+      "transient_prompt": {
+        "background": "transparent",
+        "foreground": "#DFE1E5",
+        "template": "{{ .Shell }}> "
+      }
+    }
+  ],
+  "version": 3
+}
