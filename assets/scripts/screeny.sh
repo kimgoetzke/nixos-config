@@ -7,23 +7,23 @@ screeny() {
   case "$1" in
   # Screenshots
   "fullscreen" | "fs")
-    grim -g "$(slurp -o -r -c '#b48ead00')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
+    grim -g "$(slurp -o -r -c '#C77DBB00')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
     wl-copy "$HOME/Pictures/$FILE_NAME.png"
     echo "Created '$FILE_NAME.png' (unless an error occurred) and copied file name to clipboard."
     ;;
   "window" | "w")
-    grim -g "$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == "$(hyprctl activewindow -j | jq -r '.workspace.id')\)"" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' | slurp -d -c '#b48eadff')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
+    grim -g "$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == "$(hyprctl activewindow -j | jq -r '.workspace.id')\)"" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' | slurp -d -c '#C77DBBff')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
     wl-copy "$HOME/Pictures/$FILE_NAME.png"
     echo "Created '$FILE_NAME.png' (unless an error occurred) and copied file name to clipboard."
     ;;
   "area" | "manual" | "a" | "m")
-    grim -g "$(slurp -d -c '#b48eadff')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
+    grim -g "$(slurp -d -c '#C77DBBff')" - | satty --filename - --init-tool crop --output-filename "$HOME/Pictures/$FILE_NAME.png" --early-exit
     wl-copy "$FILE_NAME.png"
     echo "Created '$FILE_NAME.png' (unless an error occurred) and copied file name to clipboard."
     ;;
   # Video
   "record-fullscreen" | "rfs")
-    wf-recorder -g "$(slurp -d -c '#b48eadff')" -f "$HOME/Videos/$FILE_NAME.mp4"
+    wf-recorder -g "$(slurp -d -c '#C77DBBff')" -f "$HOME/Videos/$FILE_NAME.mp4"
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"
@@ -31,7 +31,7 @@ screeny() {
     echo "- Use 'screeny cgc \"$FILE_NAME.mp4\" 800 10 32' for reduced file size, for example."
     ;;
   "record-window" | "rw")
-    wf-recorder -g "$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == "$(hyprctl activewindow -j | jq -r '.workspace.id')\)"" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' | slurp -d -c '#b48eadff')" -f "$HOME/Videos/$FILE_NAME.mp4"
+    wf-recorder -g "$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == "$(hyprctl activewindow -j | jq -r '.workspace.id')\)"" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' | slurp -d -c '#C77DBBff')" -f "$HOME/Videos/$FILE_NAME.mp4"
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"
@@ -39,7 +39,7 @@ screeny() {
     echo "- Use 'screeny cgc \"$FILE_NAME.mp4\" 800 10 32' for reduced file size, for example."
     ;;
   "record-area" | "record-manual" | "ra" | "rm")
-    wf-recorder -g "$(slurp -d -c '#b48eadff')" -f "$HOME/Videos/$FILE_NAME.mp4"
+    wf-recorder -g "$(slurp -d -c '#C77DBBff')" -f "$HOME/Videos/$FILE_NAME.mp4"
     wl-copy "$FILE_NAME.mp4"
     echo "Created '$HOME/Videos/$FILE_NAME.mp4' (unless an error occurred) and copied file name to clipboard."
     echo "Wanna convert to GIF?"

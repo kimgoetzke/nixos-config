@@ -15,59 +15,59 @@ config.window_background_opacity = 0.3
 
 -- Colours
 config.window_frame = {
-  active_titlebar_bg = "#4c566a",
-  active_titlebar_fg = "#e5e9f0",
-  active_titlebar_border_bottom = "#4c566a",
-  border_left_color = "#3b4252",
-  border_right_color = "#3b4252",
-  border_bottom_color = "#3b4252",
-  border_top_color = "#3b4252",
-  button_bg = "#3b4252",
-  button_fg = "#e5e9f0",
-  button_hover_bg = "#e5e9f0",
-  button_hover_fg = "#4c566a",
-  inactive_titlebar_bg = "#3b4252",
-  inactive_titlebar_fg = "#e5e9f0",
-  inactive_titlebar_border_bottom = "#4c566a",
+  active_titlebar_bg = "#7A7E85",
+  active_titlebar_fg = "#DFE1E5",
+  active_titlebar_border_bottom = "#7A7E85",
+  border_left_color = "#2B2D30",
+  border_right_color = "#2B2D30",
+  border_bottom_color = "#2B2D30",
+  border_top_color = "#2B2D30",
+  button_bg = "#2B2D30",
+  button_fg = "#DFE1E5",
+  button_hover_bg = "#DFE1E5",
+  button_hover_fg = "#7A7E85",
+  inactive_titlebar_bg = "#2B2D30",
+  inactive_titlebar_fg = "#DFE1E5",
+  inactive_titlebar_border_bottom = "#7A7E85",
 }
 
 config.colors = {
   tab_bar = {
-    --     background = "#5e81ac", -- If tabline is not used
-    background = "#2E3440",
-    inactive_tab_edge = "#3b4252",
+    --     background = "#56A8F5", -- If tabline is not used
+    background = "#191A1C",
+    inactive_tab_edge = "#2B2D30",
     active_tab = {
-      bg_color = "#ebcb8b",
-      fg_color = "#2e3440",
+      bg_color = "#E0BB65",
+      fg_color = "#191A1C",
     },
     inactive_tab = {
-      bg_color = "#5e81ac",
-      fg_color = "#e5e9f0",
+      bg_color = "#56A8F5",
+      fg_color = "#DFE1E5",
     },
     inactive_tab_hover = {
-      bg_color = "#e5e9f0",
-      fg_color = "#2e3440",
+      bg_color = "#DFE1E5",
+      fg_color = "#191A1C",
     },
     new_tab = {
-      bg_color = "#2e3440",
-      fg_color = "#e5e9f0",
+      bg_color = "#191A1C",
+      fg_color = "#DFE1E5",
     },
     new_tab_hover = {
-      bg_color = "#e5e9f0",
-      fg_color = "#2e3440",
+      bg_color = "#DFE1E5",
+      fg_color = "#191A1C",
     },
   },
 }
 
-config.command_palette_bg_color = "#5e81ac"
-config.command_palette_fg_color = "#e5e9f0"
+config.command_palette_bg_color = "#56A8F5"
+config.command_palette_fg_color = "#DFE1E5"
 config.command_palette_font_size = 14
 
 -- General settings
 config.default_prog = { 'zsh', '--login' }
 config.enable_wayland = false
 config.cursor_blink_rate = 800
-config.colors.cursor_border = '#d8dee9'
+config.colors.cursor_border = '#CED0D6'
 
 -- Background
 -- config.window_background_gradient = {

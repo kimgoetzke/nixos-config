@@ -186,10 +186,10 @@ in {
         tabs.horizontal.enable = false;
         tabs.vertical.enable = true;
         background = {
-          color = "#2e3440"; # Or 1f242d; note that this doesn't change the full background, you appear to need to go to https://color.firefox.com/ for that
+          color = "#191A1C"; # Or 1f242d; note that this doesn't change the full background, you appear to need to go to https://color.firefox.com/ for that
         };
         border = {
-          color = "#4c566a";
+          color = "#7A7E85";
           width = "3px";
           transition = "1.0s ease";
           radius = "5px";
@@ -198,7 +198,7 @@ in {
         font = {
           family = "JetBrainsMono Nerd Font";
           size = "15px";
-          accent = "#81A1C1";
+          accent = "#56A8F5";
         };
       };
     };

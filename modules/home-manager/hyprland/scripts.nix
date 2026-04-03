@@ -132,7 +132,7 @@
           #CONNECTED_PORT=$(echo "$INPUT_INFO" | grep -oP '(?<=Monitor ).*(?= \()')
       fi
 
-      hyprctl notify 1 10000 "rgb(ebcb8b)" "fontsize:16 Connected main monitor: $CONNECTED_MONITOR"
+      hyprctl notify 1 10000 "rgb(E0BB65)" "fontsize:16 Connected main monitor: $CONNECTED_MONITOR"
       #notify-send "Connected port: $CONNECTED_PORT"
     '';
     executable = true;
@@ -153,7 +153,7 @@
       file="$1"
       if [ ! -f "$file" ]; then
           echo "File does not exist: $file"
-          hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 File [$file] does not exist"
+          hyprctl notify 3 10000 "rgb(E0BB65)" "fontsize:16 File [$file] does not exist"
           exit 1
       fi
 
@@ -173,7 +173,7 @@
       selected_app=$(echo "$applications" | rofi -dmenu -i -p "Open with")
       if [ -z "$selected_app" ]; then
           echo "No application selected"
-          hyprctl notify 3 10000 "rgb(ebcb8b)" "fontsize:16 No application selected"
+          hyprctl notify 3 10000 "rgb(E0BB65)" "fontsize:16 No application selected"
           exit 1
       fi
 

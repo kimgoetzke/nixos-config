@@ -78,11 +78,11 @@ in {
           "workbench.editor.editorActionsLocation" = "hidden";
           "workbench.colorTheme" = lib.mkDefault "Nord";
           "workbench.colorCustomizations" = { # When using Nord theme replace background colours with with: #232831
-            "editor.background" = lib.mkForce "#232831";
-            "editorGutter.background" = lib.mkForce "#232831";
-            "editorInlayHint.background" = lib.mkForce "#232831";
-            "editorInlayHint.foreground" = lib.mkForce "#4c566a";
-            "minimap.background" = lib.mkForce "#232831";
+            "editor.background" = lib.mkForce "#191A1C";
+            "editorGutter.background" = lib.mkForce "#191A1C";
+            "editorInlayHint.background" = lib.mkForce "#191A1C";
+            "editorInlayHint.foreground" = lib.mkForce "#7A7E85";
+            "minimap.background" = lib.mkForce "#191A1C";
           };
           "editor.fontSize" = lib.mkDefault 18;
           "editor.fontFamily" = lib.mkDefault "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono', 'monospace', monospace";

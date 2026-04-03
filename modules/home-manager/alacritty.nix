@@ -58,28 +58,28 @@ in {
         ];
         colors = lib.mkDefault {
           primary = {
-            background = "#2E3440";
-            foreground = "#D8DEE9";
+            background = "#191A1C";
+            foreground = "#CED0D6";
           };
           normal = {
-            black = "#3B4252";
-            red = "#BF616A";
-            green = "#A3BE8C";
-            yellow = "#EBCB8B";
-            blue = "#81A1C1";
-            magenta = "#B48EAD";
-            cyan = "#88C0D0";
-            white = "#E5E9F0";
+            black = "#2B2D30";
+            red = "#F75464";
+            green = "#6AAB73";
+            yellow = "#E0BB65";
+            blue = "#56A8F5";
+            magenta = "#C77DBB";
+            cyan = "#2AACB8";
+            white = "#DFE1E5";
           };
           bright = {
-            black = "#4C566A";
-            red = "#BF616A";
-            green = "#A3BE8C";
-            yellow = "#EBCB8B";
-            blue = "#81A1C1";
-            magenta = "#B48EAD";
-            cyan = "#8FBCBB";
-            white = "#ECEFF4";
+            black = "#7A7E85";
+            red = "#F75464";
+            green = "#6AAB73";
+            yellow = "#E0BB65";
+            blue = "#56A8F5";
+            magenta = "#C77DBB";
+            cyan = "#2AACB8";
+            white = "#DFE1E5";
           };
         };
       };
