@@ -17,17 +17,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    stylix.targets.nixvim.enable = false;
+    stylix.targets.nixvim.enable = true;
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
-      colorschemes.nord = {
-        enable = true;
-        settings = {
-          disable_background = false;
-          borders = true;
-        };
-      };
       viAlias = true;
       vimAlias = true;
       opts = {

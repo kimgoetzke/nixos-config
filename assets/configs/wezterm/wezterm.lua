@@ -13,6 +13,42 @@ config.font = wezterm.font_with_fallback {
 config.font_size = 16
 config.window_background_opacity = 0.3
 
+local islands_dark_tabline_theme = {
+  foreground = "#DFE1E5",
+  background = "#191A1C",
+  cursor = {
+    fg = "#191A1C",
+    bg = "#2B2D30",
+    border = "#CED0D6",
+  },
+  ansi = {
+    "#191A1C",
+    "#F75464",
+    "#6AAB73",
+    "#E0BB65",
+    "#56A8F5",
+    "#C77DBB",
+    "#2AACB8",
+    "#CED0D6",
+  },
+  brights = {
+    "#2B2D30",
+    "#F75464",
+    "#6AAB73",
+    "#E0BB65",
+    "#56A8F5",
+    "#C77DBB",
+    "#2AACB8",
+    "#DFE1E5",
+  },
+  tab_bar = {
+    inactive_tab = {
+      bg_color = "#191A1C",
+      fg_color = "#CED0D6",
+    },
+  },
+}
+
 -- Colours
 config.window_frame = {
   active_titlebar_bg = "#7A7E85",
@@ -169,7 +205,29 @@ config.keys = {
 -- Tabline bar
 tabline.setup({
   options = {
-    theme = "nord",
+    theme = islands_dark_tabline_theme,
+    theme_overrides = {
+      normal_mode = {
+        a = { fg = "#191A1C", bg = "#56A8F5" },
+        b = { fg = "#56A8F5", bg = "#2B2D30" },
+        c = { fg = "#DFE1E5", bg = "#191A1C" },
+      },
+      copy_mode = {
+        a = { fg = "#191A1C", bg = "#E0BB65" },
+        b = { fg = "#E0BB65", bg = "#2B2D30" },
+        c = { fg = "#DFE1E5", bg = "#191A1C" },
+      },
+      search_mode = {
+        a = { fg = "#191A1C", bg = "#6AAB73" },
+        b = { fg = "#6AAB73", bg = "#2B2D30" },
+        c = { fg = "#DFE1E5", bg = "#191A1C" },
+      },
+      tab = {
+        active = { fg = "#E0BB65", bg = "#2B2D30" },
+        inactive = { fg = "#CED0D6", bg = "#191A1C" },
+        inactive_hover = { fg = "#C77DBB", bg = "#2B2D30" },
+      },
+    },
   },
   sections = {
     tabline_a = { 'mode' },
