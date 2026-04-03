@@ -3,7 +3,6 @@ return {
   version = '*',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    'gbprod/nord.nvim',
   },
   config = function()
     require('bufferline').setup {
@@ -17,7 +16,6 @@ return {
             text_align = 'left',
           },
         },
-        highlights = require("nord.plugins.bufferline").akinsho(),
       },
     }
   end,

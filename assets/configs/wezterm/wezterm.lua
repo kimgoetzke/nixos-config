@@ -241,10 +241,11 @@ tabline.setup({
   },
 })
 
--- Remove padding and transparent background while Posting is running
+-- Remove padding and transparent background while Posting or Neovim are running
 wezterm.on("update-right-status", function(window, pane)
   local process_name = pane:get_foreground_process_name() or ""
-  if process_name:match("python") then
+  local should_remove_padding = process_name:match("python") or process_name:match("nvim")
+  if should_remove_padding then
     window:set_config_overrides({
       window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
       window_background_opacity = 1,

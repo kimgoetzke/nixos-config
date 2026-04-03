@@ -8,7 +8,6 @@ return {
       { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      'gbprod/nord.nvim',
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim',       opts = {} },
