@@ -113,7 +113,6 @@
       curl
       jq
       fastfetch
-      obsidian
       _1password-gui
       _1password-cli
       lshw # Tool to list hardware

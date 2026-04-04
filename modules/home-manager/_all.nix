@@ -22,6 +22,7 @@
     ./gtk.nix
     ./yazi.nix
     ./neovim.nix
+    ./obsidian.nix
     ./zed.nix
   ];
 }

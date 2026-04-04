@@ -58,6 +58,7 @@
   hyprland.enable = userSettings.desktopEnvironments.isHyprlandEnabled;
   btop.enable = true;
   direnv.enable = true;
+  obsidian.enable = true;
   yazi.enable = true;
   nvim.enable = userSettings.vimDistribution == "neovim";
   programs.home-manager.enable = true;
