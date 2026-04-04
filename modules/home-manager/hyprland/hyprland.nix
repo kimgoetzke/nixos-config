@@ -96,7 +96,7 @@ in {
           ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
-          "DP-3,2560x1600,-1120x0,1" # If portrait mode: "DP-3,preferred,-2400x0,1"
+          "DP-3,2560x1600,-1120x500,1" # If portrait mode: "DP-3,preferred,-2400x0,1"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,preferred,1440x500,1"
           "desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,preferred,3700x-840,1"
           "eDP-1,1920x1080,4000x600,1"
