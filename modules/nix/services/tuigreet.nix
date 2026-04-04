@@ -26,5 +26,17 @@ in {
         # };
       };
     };
+
+    # The below reduced spam on the screen:
+    # (Source: https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/)
+    systemd.services.greetd.serviceConfig = {
+      Type = "idle";
+      StandardInput = "tty";
+      StandardOutput = "tty";
+      StandardError = "journal";
+      TTYReset = true;
+      TTYVHangup = true;
+      TTYVTDisallocate = true;
+    };
   };
 }
