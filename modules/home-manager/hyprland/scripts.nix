@@ -64,6 +64,28 @@
   };
   home.shellAliases.reloadui = "${userSettings.targetDirectory}/reload-ui.sh";
 
+  # Rofi calculator ----------------------------------------------------------------------------------------------------
+  home.file."${userSettings.relativeTargetDirectory}/rofi-calculator.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+
+      if pgrep -x rofi > /dev/null; then
+          pkill -x rofi
+          exit 0
+      fi
+
+      rofi -show calc \
+          -modi calc \
+          -no-show-match \
+          -no-sort \
+          -no-persist-history \
+          -calc-command "printf '%s' '{result}' | wl-copy" \
+          -theme-str "entry { placeholder: 'Enter calculation...'; } textbox { padding: 40px 0px; background-color: transparent; text-color: @accent-color; } listview { scrollbar: false; } inputbar { padding: 16px; }"
+    '';
+    executable = true;
+  };
+  home.shellAliases.roficalculator = "${userSettings.targetDirectory}/rofi-calculator.sh";
+
   # Toggle performance mmode -------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh" = {
     text = ''
