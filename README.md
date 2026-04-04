@@ -20,7 +20,7 @@ See [https://nixos.org/](https://nixos.org) for more information.
 - **Noctalia**'s built-in application launcher (or **Rofi** with Waybar/Hyprpanel)
 - **Firefox** web browser
 - **WezTerm** (or **Alacritty**) terminal emulator with **Zsh** shell
-- **VS Code** and **Neovim** text editors and **JetBrains Toolbox** for IDEs
+- **Zed** and **Neovim** text editors and **JetBrains Toolbox** for IDEs
 - **Yazi** (terminal) and **Nautilus** (GUI) file managers
 - **Btop** system monitoring
 - **Cliphist** clipboard manager
