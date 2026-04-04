@@ -26,7 +26,7 @@ in {
   ];
 
   config = lib.mkIf cfg.enable {
-    rofi.enable = true; # TODO: Consider if I can make Quickshell work without Rofi
+    rofi.enable = true;
     cliphist.enable = true;
     hypridle.enable = true;
     hyprlock.enable = userSettings.hyprland.bar != "quickshell";
