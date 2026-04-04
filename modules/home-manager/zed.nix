@@ -14,6 +14,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      zed-editor
+    ];
+
     home.activation.zedBootstrapConfig = lib.mkIf cfg.withDefaultConfig (lib.hm.dag.entryAfter ["writeBoundary"] ''
       zedConfigDir="${config.xdg.configHome}/zed"
       zedSettingsFile="$zedConfigDir/settings.json"
