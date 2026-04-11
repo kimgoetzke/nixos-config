@@ -89,6 +89,8 @@ in {
       defaultEditor = true;
       vimAlias = true;
       viAlias = true;
+      withRuby = false;
+      withPython3 = true;
       plugins = [
         treesitterWithGrammars
       ];
