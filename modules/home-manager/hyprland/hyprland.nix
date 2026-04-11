@@ -241,13 +241,13 @@ in {
 
             # Apps
             "$mainMod, N, exec, $terminal -e nmtui"
+            "$mainMod, E, exec, nautilus"
             "$mainMod, M, exec, nautilus"
             "$mainMod, Y, exec, $terminal -e yazi"
             "$mainMod, F, exec, firefox"
             "$mainMod, T, exec, $terminal"
             "$mainMod, J, exec, jetbrains-toolbox"
             "$mainMod, O, exec, obsidian"
-            "$mainMod, B, exec, obs"
             "$mainMod, C, exec, code"
             "$mainMod, Z, exec, zeditor"
             "$mainMod, A, exec, aseprite"
@@ -316,7 +316,7 @@ in {
 
             # Lock & power
             "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
-            "$mainMod SHIFT, E, exec, noctalia-shell ipc call sessionMenu toggle"
+            "$mainMod CONTROL SHIFT, Q, exec, noctalia-shell ipc call sessionMenu toggle"
           ]
           ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
             # Launchers & menus
@@ -324,7 +324,7 @@ in {
             "$mainMod, period, exec, pkill -x rofi || rofi -show-icons -show emoji"
 
             # Lock & power
-            "$mainMod SHIFT, E, exec, pkill -x rofi || ${userSettings.targetDirectory}/power-menu.sh"
+            "$mainMod CONTROL SHIFT, Q, exec, pkill -x rofi || ${userSettings.targetDirectory}/power-menu.sh"
             "$mainMod, L, exec, hyprlock"
             ",switch:on:Lid Switch, exec, pidof hyprlock || hyprlock"
 
