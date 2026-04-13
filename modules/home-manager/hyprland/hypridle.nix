@@ -3,7 +3,8 @@
   lib,
   userSettings,
   ...
-}: {
+}:
+{
   options = {
     hypridle.enable = lib.mkEnableOption "Enable hypridle, Hyprland's idle management daemon";
   };
@@ -13,13 +14,14 @@
     services.hypridle.settings = {
       general = {
         inhibit_sleep = 0;
-        ignore_wayland_inhibit = true;
-        ignore_systemd_inhibit = true;
+        ignore_wayland_inhibit = false;
+        ignore_systemd_inhibit = false;
         ignore_dbus_inhibit = false;
         lock_cmd =
-          if userSettings.hyprland.bar == "quickshell"
-          then "noctalia-shell ipc call lockScreen lock"
-          else "pidof hyprlock || hyprlock";
+          if userSettings.hyprland.bar == "quickshell" then
+            "noctalia-shell ipc call lockScreen lock"
+          else
+            "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";
       };
