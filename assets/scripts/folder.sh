@@ -76,8 +76,12 @@ folder() {
     echo "/home/$NIX_USER/projects/awesome-ai"
     cd "/home/$NIX_USER/projects/awesome-ai"
     ;;
+  "scre")
+    echo "/home/$NIX_USER/projects/screeny"
+    cd "/home/$NIX_USER/projects/screeny"
+    ;;
   *)
-    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio, pg1fe"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo, scre, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio, pg1fe"
     ;;
   esac
 }
