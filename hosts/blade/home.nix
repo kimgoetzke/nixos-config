@@ -45,8 +45,8 @@
   ];
 
   # Applications
-  vscode.enable = true;
-  vscode.withExtensions = true;
+  vscode.enable = false;
+  vscode.withExtensions = false;
   firefox.enable = true;
   firefox.withProfile = true;
   firefox.withTextfox = false;
