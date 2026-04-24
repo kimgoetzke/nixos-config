@@ -127,7 +127,7 @@ in
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "10,monitor:eDP-1"
+          "10,monitor:eDP-1,layout:scrolling"
         ];
         input = {
           kb_layout = "gb";
@@ -175,6 +175,13 @@ in
           preserve_split = "yes";
         };
         master.new_status = "master";
+        scrolling = {
+          column_width = 0.5;
+          fullscreen_on_one_column = true;
+          follow_focus = true;
+          direction = "right";
+          explicit_column_widths = "0.333, 0.5, 0.667, 1.0";
+        };
         gesture = [
           "3, horizontal, workspace"
           "3, down, mod: ALT, close"
@@ -300,6 +307,14 @@ in
           "$mainMod ALT, down, resizeactive, 0 50"
           "$mainMod, code:49, workspace, 10" # $mainMod + ` = got to workspace 10
           "$mainMod SHIFT, code:49, movetoworkspacesilent, 10" # $mainMod + SHIFT + ` = move active silently to workspace 10
+
+          # Scrolling (layoutmsg binds are no-ops on non-scrolling workspaces)
+          "$mainMod CTRL, right, layoutmsg, colresize +conf" # Make column wider
+          "$mainMod CTRL, left, layoutmsg, colresize -conf" # Make column narrower
+          "$mainMod CTRL, F, layoutmsg, fit active" # Fit focused column to screen
+          "$mainMod CTRL, P, layoutmsg, promote" # Pop window into its own column
+          "$mainMod CTRL, up, layoutmsg, movewindowto u" # Move window up within column
+          "$mainMod CTRL, down, layoutmsg, movewindowto d" # Move window down within column
         ]
         ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
           # Launchers & menus
