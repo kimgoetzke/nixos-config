@@ -37,6 +37,7 @@ in {
         PasswordManagerEnabled = false;
         DefaultDownloadDirectory = "\${home}/Downloads";
       };
+      configPath = ".mozilla/firefox";
       profiles.default = lib.mkIf cfg.withProfile {
         id = 0;
         isDefault = true;
@@ -124,7 +125,9 @@ in {
               metaData.hideOneOffButton = true;
             };
             "NixOS Options" = {
-              urls = [{template = "https://search.nixos.org/options?from=0&size=50&sort=relevance&query={searchTerms}";}];
+              urls = [
+                {template = "https://search.nixos.org/options?from=0&size=50&sort=relevance&query={searchTerms}";}
+              ];
               definedAliases = ["no"];
               metaData.hideOneOffButton = true;
             };
@@ -156,7 +159,9 @@ in {
               metaData.hideOneOffButton = true;
             };
             "home-manager options" = {
-              urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";}];
+              urls = [
+                {template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";}
+              ];
               definedAliases = ["hmo"];
               metaData.hideOneOffButton = true;
             };

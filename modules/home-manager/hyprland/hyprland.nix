@@ -110,7 +110,7 @@ in
               userSettings.hyprland.leftMonitor
             else
               userSettings.hyprland.externalMonitor
-          },default:true,layout:scrolling,layoutopt:direction:down"
+          },default:true,layout:scrolling"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,default:true"
           "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
@@ -127,7 +127,7 @@ in
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "10,monitor:eDP-1,layout:scrolling"
+          "10,monitor:eDP-1,layout:scrolling" # ,layoutopt:direction:down
         ];
         input = {
           kb_layout = "gb";
