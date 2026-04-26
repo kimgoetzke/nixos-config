@@ -111,7 +111,7 @@ in
             else
               userSettings.hyprland.externalMonitor
           },default:true,layout:scrolling"
-          "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true"
+          "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579,default:true,layout:scrolling,layoutopt:direction:left"
           "2,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104,default:true"
           "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "3,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
@@ -127,7 +127,7 @@ in
           "8,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. G32QC 20170B001579"
           "9,monitor:desc:GIGA-BYTE TECHNOLOGY CO. LTD. M32QC 22030B001104"
-          "10,monitor:eDP-1,layout:scrolling" # ,layoutopt:direction:down
+          "10,monitor:eDP-1,layout:scrolling"
         ];
         input = {
           kb_layout = "gb";
@@ -358,7 +358,7 @@ in
                   let
                     c = (x + 1) / 10;
                   in
-                  builtins.toString (x + 1 - (c * 10));
+                  toString (x + 1 - (c * 10));
               in
               [
                 "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
