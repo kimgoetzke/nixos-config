@@ -7,15 +7,18 @@
 }:
 let
   cfg = config.gtkgreet;
-  wallpaperImage = "${userSettings.targetDirectory}/wallpaper.png";
+  wallpaperImage = ./../../../assets/images/${userSettings.wallpaperFile};
   sessionCommand = pkgs.writeShellScript "hyprland-session" ''
     exec ${pkgs.hyprland}/bin/start-hyprland 2>&1 | tee -a /tmp/hyprland-"$USER".log >/dev/null
   '';
   greeterSessionCommand = pkgs.writeShellScript "greetd-hyprland-session" ''
     exec ${pkgs.hyprland}/bin/Hyprland --config ${hyprlandConfig} >/dev/null 2>&1
   '';
+  # Only Gtk stylesheets compliant CSS is permitted.
+  # Check below against: https://docs.gtk.org/gtk3/css-properties.html
   gtkgreetCss = pkgs.writeText "gtkgreet.css" ''
-    window {
+    window,
+    window.background {
       background-color: #191A1C;
       background-image: url("${wallpaperImage}");
       background-position: center;
@@ -60,7 +63,8 @@ let
     button,
     button.suggested-action,
     button.combo,
-    combobox button {
+    combobox button,
+    combobox box.linked > button {
       background-color: #2B2D30;
       color: #DFE1E5;
       border: 1px solid #393B40;
@@ -71,16 +75,8 @@ let
       font-weight: 700;
     }
 
-    /*
-     * Temporarily disabled for GTK3 compliance testing.
-     * These more exotic combobox layout selectors may be valid in some GTK
-     * node trees, but they are the most likely source of stylesheet rejection
-     * or selector mismatch in gtkgreet.
-     */
-    /*
     combobox,
-    combobox box.linked,
-    combobox box.linked:not(.vertical) {
+    combobox box.linked {
       background-color: transparent;
       background-image: none;
       border: none;
@@ -90,35 +86,34 @@ let
       margin: 0;
     }
 
-    combobox box.linked:not(.vertical) > button,
-    combobox box.linked:not(.vertical) > entry {
+    combobox box.linked > button,
+    combobox box.linked > entry {
       margin: 0;
     }
 
-    combobox box.linked:not(.vertical) > button:first-child,
-    combobox box.linked:not(.vertical) > entry:first-child {
+    combobox box.linked > button:first-child,
+    combobox box.linked > entry:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
 
-    combobox box.linked:not(.vertical) > button:last-child,
-    combobox box.linked:not(.vertical) > entry:last-child {
+    combobox box.linked > button:last-child,
+    combobox box.linked > entry:last-child {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
 
-    combobox box.linked:not(.vertical) > button + button,
-    combobox box.linked:not(.vertical) > entry + button,
-    combobox box.linked:not(.vertical) > button + entry {
+    combobox box.linked > button + button,
+    combobox box.linked > entry + button,
+    combobox box.linked > button + entry {
       margin-left: 0;
       border-left-width: 0;
     }
 
-    combobox box.linked:not(.vertical) > button:last-child {
+    combobox box.linked > button:last-child {
       min-width: 44px;
       padding: 0 12px;
     }
-    */
 
     combobox arrow {
       color: #DFE1E5;
@@ -127,7 +122,8 @@ let
     button:hover,
     button.suggested-action:hover,
     button.combo:hover,
-    combobox button:hover {
+    combobox button:hover,
+    combobox box.linked > button:hover {
       background-color: #31343A;
       border-color: #4B4E55;
     }
@@ -135,7 +131,8 @@ let
     button:focus,
     button.suggested-action:focus,
     button.combo:focus,
-    combobox button:focus {
+    combobox button:focus,
+    combobox box.linked > button:focus {
       border-color: #56A8F5;
       box-shadow: 0 0 0 3px rgba(86,168,245,0.18);
     }
