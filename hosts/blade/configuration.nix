@@ -39,7 +39,10 @@
   # Nix configuration
   nix = {
     settings.auto-optimise-store = true;
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
     ];
@@ -59,7 +62,8 @@
 
   # Other services
   plymouth.enable = false;
-  tuigreet.enable = true;
+  tuigreet.enable = false;
+  gtkgreet.enable = true;
 
   # General hardware configuration
   razer-blade.enable = true;
@@ -84,7 +88,12 @@
   users.users.${userSettings.user} = {
     isNormalUser = true;
     description = userSettings.userName;
-    extraGroups = ["networkmanager" "wheel" "docker" "gamemode"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "gamemode"
+    ];
     shell = pkgs.${userSettings.defaultShell};
   };
 

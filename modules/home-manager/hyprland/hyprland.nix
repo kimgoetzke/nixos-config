@@ -176,7 +176,7 @@ in
         };
         master.new_status = "master";
         scrolling = {
-          column_width = 0.5;
+          column_width = 0.667;
           fullscreen_on_one_column = true;
           follow_focus = true;
           direction = "right";
