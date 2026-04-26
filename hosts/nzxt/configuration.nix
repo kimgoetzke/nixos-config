@@ -62,8 +62,8 @@
 
   # Other services
   plymouth.enable = false;
-  tuigreet.enable = false;
-  gtkgreet.enable = true;
+  tuigreet.enable = true;
+  gtkgreet.enable = false;
 
   # General hardware configuration
   nzxt.enable = true;

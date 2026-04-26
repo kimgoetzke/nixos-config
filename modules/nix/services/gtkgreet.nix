@@ -4,8 +4,7 @@
   lib,
   userSettings,
   ...
-}:
-let
+}: let
   cfg = config.gtkgreet;
   wallpaperImage = ./../../../assets/images/${userSettings.wallpaperFile};
   sessionCommand = pkgs.writeShellScript "hyprland-session" ''
@@ -17,7 +16,6 @@ let
   # Only Gtk stylesheets compliant CSS is permitted.
   # Check below against: https://docs.gtk.org/gtk3/css-properties.html
   gtkgreetCss = pkgs.writeText "gtkgreet.css" ''
-    window,
     window.background {
       background-color: #191A1C;
       background-image: url("${wallpaperImage}");
@@ -112,7 +110,7 @@ let
 
     combobox box.linked > button:last-child {
       min-width: 44px;
-      padding: 0 12px;
+      padding: 0 12px 0 6px;
     }
 
     combobox arrow {
@@ -227,8 +225,7 @@ let
 
     exec-once = ${greeterCommand}
   '';
-in
-{
+in {
   options.gtkgreet = {
     enable = lib.mkEnableOption "Enable gtkgreet, a graphical greeter for greetd hosted in Hyprland";
   };
@@ -237,6 +234,10 @@ in
     services.greetd = {
       enable = true;
       settings = {
+        # initial_session = {
+        #   command = "${sessionCommand}";
+        #   user = userSettings.user;
+        # };
         default_session = {
           command = "${greeterSessionCommand}";
           user = "greeter";
