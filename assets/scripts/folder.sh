@@ -60,7 +60,7 @@ folder() {
     echo "/home/$NIX_USER/projects/practice-leptos"
     cd "/home/$NIX_USER/projects/practice-leptos"
     ;;
-  "pgoa" | "pgjwt")
+  "pgoa")
     echo "/home/$NIX_USER/projects/practice-go-jwt-auth"
     cd "/home/$NIX_USER/projects/practice-go-jwt-auth"
     ;;
@@ -80,8 +80,12 @@ folder() {
     echo "/home/$NIX_USER/projects/screeny"
     cd "/home/$NIX_USER/projects/screeny"
     ;;
+  "coda")
+    echo "/home/$NIX_USER/projects/coding-agent-configs"
+    cd "/home/$NIX_USER/projects/coding-agent-configs"
+    ;;
   *)
-    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo, scre, [Go:] pgoa/pgjwt, [C#:] listem, [TypeScript/HTML:] gio, pg1fe"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, coda [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo, [Go:] pgoa, [C#:] listem, [TypeScript/HTML:] gio, pg1fe, scre"
     ;;
   esac
 }
