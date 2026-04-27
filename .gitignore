@@ -2,3 +2,6 @@
 .vscode/
 assets/configs/gnome/dconf-raw.nix
 assets/configs/gnome/dconf.settings
+.ai/research/*
+.ai/planning/*
+.ai/review/*

@@ -80,7 +80,7 @@ folder() {
     echo "/home/$NIX_USER/projects/screeny"
     cd "/home/$NIX_USER/projects/screeny"
     ;;
-  "coda")
+  "coco")
     echo "/home/$NIX_USER/projects/coding-agent-configs"
     cd "/home/$NIX_USER/projects/coding-agent-configs"
     ;;
