@@ -14,6 +14,7 @@ in {
     environment.systemPackages = with pkgs; [
       github-copilot-cli # Will also install Node.js
       claude-code
+      pi-coding-agent
     ];
   };
 }
