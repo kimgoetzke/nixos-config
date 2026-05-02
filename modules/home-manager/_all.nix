@@ -24,5 +24,6 @@
     ./neovim.nix
     ./obsidian.nix
     ./zed.nix
+    ./mpv.nix
   ];
 }

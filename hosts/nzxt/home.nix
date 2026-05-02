@@ -42,7 +42,15 @@
   };
 
   imports = [
-    (import ./../../modules/home-manager/_all.nix {inherit config pkgs lib inputs userSettings;})
+    (import ./../../modules/home-manager/_all.nix {
+      inherit
+        config
+        pkgs
+        lib
+        inputs
+        userSettings
+        ;
+    })
   ];
 
   # Applications
@@ -63,7 +71,7 @@
   yazi.enable = true;
   nvim.enable = userSettings.vimDistribution == "neovim";
   programs.home-manager.enable = true;
-  programs.mpv.enable = true;
+  mpv.enable = true;
   programs.obs-studio.enable = true;
   zed.enable = true;
   zed.withDefaultConfig = true;
@@ -108,6 +116,8 @@
     "idea" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh . &";
     "rider" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/rider/bin/rider.sh . &";
     "webstorm" = "nohup /home/${userSettings.user}/.local/share/JetBrains/Toolbox/apps/webstorm/bin/webstorm.sh . &";
+    gp = "git pull";
+    gcd = "git checkout main";
   };
 
   # Move all relevant assets to home directory for use anywhere
