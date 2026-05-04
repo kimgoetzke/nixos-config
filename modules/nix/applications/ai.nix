@@ -16,5 +16,9 @@ in {
       claude-code
       pi-coding-agent
     ];
+
+    environment.sessionVariables = {
+      PI_SKIP_VERSION_CHECK = "1";
+    };
   };
 }
