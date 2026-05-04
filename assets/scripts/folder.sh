@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 # shellcheck disable=SC2164
 
@@ -85,7 +86,7 @@ folder() {
     cd "/home/$NIX_USER/projects/coding-agent-configs"
     ;;
   *)
-    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, coda [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo, [Go:] pgoa, [C#:] listem, [TypeScript/HTML:] gio, pg1fe, scre"
+    echo "Recognised folders are [General:] home/kim, pro/proper, nix, downloads/dl, nixdocs/nixbase, awai, coco [Java:] pg1, [Rust:] rustlings, rusteroids, pg2, plep, ptau, moo, [Go:] pgoa, [C#:] listem, [TypeScript/HTML:] gio, pg1fe, scre"
     ;;
   esac
 }

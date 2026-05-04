@@ -175,6 +175,7 @@ in {
         scrolling = {
           column_width = 0.667;
           fullscreen_on_one_column = true;
+          focus_fit_method = 0;
           follow_focus = true;
           direction = "right";
           explicit_column_widths = "0.333, 0.5, 0.667, 1.0";
