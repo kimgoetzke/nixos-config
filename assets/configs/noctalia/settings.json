@@ -3,11 +3,7 @@
   "bar": {
     "barType": "simple",
     "position": "top",
-    "monitors": [
-      "DP-2",
-      "DP-3",
-      "eDP-1"
-    ],
+    "monitors": ["DP-2", "DP-3", "eDP-1"],
     "density": "spacious",
     "showOutline": false,
     "showCapsule": false,
@@ -23,7 +19,7 @@
     "marginHorizontal": 4,
     "frameThickness": 8,
     "frameRadius": 12,
-    "outerCorners": true,
+    "outerCorners": false,
     "hideOnOverview": false,
     "displayMode": "always_visible",
     "autoHideDelay": 500,
@@ -89,6 +85,7 @@
           "maxWidth": 285,
           "scrollingMode": "hover",
           "showIcon": true,
+          "showText": true,
           "textColor": "none",
           "useFixedWidth": false
         }
@@ -162,6 +159,7 @@
         {
           "colorizeDistroLogo": false,
           "colorizeSystemIcon": "none",
+          "colorizeSystemText": "none",
           "customIconPath": "",
           "enableColorization": false,
           "icon": "noctalia",
@@ -243,7 +241,7 @@
     "iRadiusRatio": 1,
     "boxRadiusRatio": 1,
     "screenRadiusRatio": 1,
-    "animationSpeed": 0.70,
+    "animationSpeed": 0.7,
     "animationDisabled": false,
     "compactLockScreen": true,
     "lockScreenAnimations": false,
@@ -271,30 +269,16 @@
     "lockScreenBlur": 0,
     "lockScreenTint": 0,
     "keybinds": {
-      "keyUp": [
-        "Up"
-      ],
-      "keyDown": [
-        "Down"
-      ],
-      "keyLeft": [
-        "Left"
-      ],
-      "keyRight": [
-        "Right"
-      ],
-      "keyEnter": [
-        "Return",
-        "Enter"
-      ],
-      "keyEscape": [
-        "Esc"
-      ],
-      "keyRemove": [
-        "Del"
-      ]
+      "keyUp": ["Up"],
+      "keyDown": ["Down"],
+      "keyLeft": ["Left"],
+      "keyRight": ["Right"],
+      "keyEnter": ["Return", "Enter"],
+      "keyEscape": ["Esc"],
+      "keyRemove": ["Del"]
     },
-    "reverseScroll": false
+    "reverseScroll": false,
+    "smoothScrollEnabled": true
   },
   "ui": {
     "fontDefault": "DejaVu Sans",
@@ -314,6 +298,7 @@
     "name": "London",
     "weatherEnabled": true,
     "weatherShowEffects": true,
+    "weatherTaliaMascotAlways": false,
     "useFahrenheit": false,
     "use12hourFormat": false,
     "showWeekNumberInCalendar": false,
@@ -322,7 +307,8 @@
     "analogClockInCalendar": false,
     "firstDayOfWeek": -1,
     "hideWeatherTimezone": false,
-    "hideWeatherCityName": false
+    "hideWeatherCityName": false,
+    "autoLocate": false
   },
   "calendar": {
     "cards": [
@@ -349,6 +335,7 @@
     "showHiddenFiles": false,
     "viewMode": "single",
     "setWallpaperOnAllMonitors": true,
+    "linkLightAndDarkWallpapers": true,
     "fillMode": "crop",
     "fillColor": "#000000",
     "useSolidColor": false,
@@ -357,9 +344,7 @@
     "wallpaperChangeMode": "random",
     "randomIntervalSec": 300,
     "transitionDuration": 1500,
-    "transitionType": [
-      "stripes"
-    ],
+    "transitionType": ["stripes"],
     "skipStartupTransition": false,
     "transitionEdgeSmoothness": 0.05,
     "panelPosition": "follow_bar",
@@ -527,7 +512,6 @@
     "indicatorOpacity": 0.6
   },
   "network": {
-    "airplaneModeEnabled": false,
     "bluetoothRssiPollingEnabled": false,
     "bluetoothRssiPollIntervalMs": 10000,
     "networkPanelView": "wifi",
@@ -627,11 +611,7 @@
     "autoHideMs": 2000,
     "overlayLayer": true,
     "backgroundOpacity": 1,
-    "enabledTypes": [
-      0,
-      1,
-      2
-    ],
+    "enabledTypes": [0, 1, 2],
     "monitors": []
   },
   "audio": {
@@ -659,7 +639,8 @@
     "manualSunrise": "06:30",
     "manualSunset": "18:30",
     "generationMethod": "tonal-spot",
-    "monitorForColors": ""
+    "monitorForColors": "",
+    "syncGsettings": true
   },
   "templates": {
     "activeTemplates": [],
