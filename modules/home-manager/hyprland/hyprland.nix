@@ -69,6 +69,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
+      configType = "hyprlang";
       settings = {
         "$mainMod" = "SUPER";
         "$terminal" = "${userSettings.emulator}";
