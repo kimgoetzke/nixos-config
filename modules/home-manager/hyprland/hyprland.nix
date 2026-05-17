@@ -169,7 +169,6 @@ in {
           ];
         };
         dwindle = {
-          pseudotile = "yes";
           preserve_split = "yes";
         };
         master.new_status = "master";
@@ -236,7 +235,7 @@ in {
           "dim_around on, match:namespace rofi"
           "blur on, match:namespace = noctalia-background-.*$"
           "blur_popups on, match:namespace = noctalia-background-.*$"
-          "ignore_alpha on, match:namespace = noctalia-background-.*$"
+          "ignore_alpha 0.5, match:namespace = noctalia-background-.*$"
         ];
         bind =
           [
@@ -285,7 +284,7 @@ in {
 
             # Windows & workspaces
             "$mainMod, Q, togglefloating, "
-            "$mainMod, W, togglesplit,"
+            "$mainMod, W, layoutmsg, togglesplit"
             "$mainMod, F11, fullscreen, 0"
             "$mainMod CONTROL SHIFT, P, pin"
             "$mainMod SHIFT, Q, killactive, "
