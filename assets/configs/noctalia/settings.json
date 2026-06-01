@@ -3,7 +3,7 @@
   "bar": {
     "barType": "simple",
     "position": "top",
-    "monitors": ["DP-2", "DP-3", "eDP-1"],
+    "monitors": ["DP-2", "DP-3", "eDP-1", "DP-1"],
     "density": "spacious",
     "showOutline": false,
     "showCapsule": false,
