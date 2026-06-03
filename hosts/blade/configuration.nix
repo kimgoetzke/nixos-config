@@ -204,6 +204,7 @@
       then 0.6
       else 1.0;
     targets.gnome.enable = userSettings.desktopEnvironments.isGnomeEnabled;
+    targets.kmscon.enable = false;
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";

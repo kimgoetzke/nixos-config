@@ -19,7 +19,7 @@ in {
       };
 
       # Required if `home.stateVersion` is less than "26.05":
-      gtk4.theme = config.gtk.theme;
+      gtk4.theme = lib.mkDefault config.gtk.theme;
     };
   };
 }
