@@ -29,11 +29,11 @@ order = [ "main" ]
     font_family = ""
     font_weight = "regular"
     layer = "top"
-    margin_edge = 15
-    margin_ends = 17
+    margin_edge = 0
+    margin_ends = 0
     padding = 20
     position = "top"
-    radius = 12
+    radius = 0
     reserve_space = true
     scale = 1.1500000096857548
     shadow = false
@@ -257,6 +257,9 @@ ui_scale = 1.1000000089406967
     transparency_mode = "solid"
     wallpaper_placement = "attached"
 
+    [shell.screen_corners]
+    enabled = true
+
     [shell.screenshot]
     copy_to_clipboard = false
     directory = "~/Pictures"
@@ -440,7 +443,7 @@ glyph = "shutdown"
 drawer = true
 drawer_columns = 3
 hidden = []
-pinned = []
+pinned = [ "toolbox" ]
 
 [widget.volume]
 device = "output"
