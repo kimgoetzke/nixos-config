@@ -14,7 +14,7 @@ in {
   imports = [
     ./waybar.nix
     ./hyprpanel.nix
-    ./quickshell.nix
+    ./noctalia.nix
     ./rofi.nix
     ./mako.nix
     ./cliphist.nix
@@ -33,7 +33,7 @@ in {
     kanshi.enable = false;
     hyprland-waybar.enable = userSettings.hyprland.bar == "waybar";
     hyprland-hyprpanel.enable = userSettings.hyprland.bar == "hyprpanel";
-    hyprland-quickshell.enable = userSettings.hyprland.bar == "quickshell";
+    hyprland-noctalia.enable = userSettings.hyprland.bar == "quickshell";
     hyprland-hyprpaper.enable = false;
     mako.enable = config.hyprland-waybar.enable;
 
@@ -92,8 +92,8 @@ in {
           ++ lib.optionals config.hyprland-hyprpanel.enable [
             "hyprpanel"
           ]
-          ++ lib.optionals config.hyprland-quickshell.enable [
-            "noctalia-shell"
+          ++ lib.optionals config.hyprland-noctalia.enable [
+            "noctalia"
           ];
         monitor = [
           "DP-2,preferred,0x0,1,transform,3"
@@ -233,9 +233,9 @@ in {
         layerrule = [
           "blur on, match:namespace rofi"
           "dim_around on, match:namespace rofi"
-          "blur on, match:namespace = noctalia-background-.*$"
-          "blur_popups on, match:namespace = noctalia-background-.*$"
-          "ignore_alpha 0.5, match:namespace = noctalia-background-.*$"
+          "blur on, match:namespace = ^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
+          "blur_popups on, match:namespace = ^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
+          "ignore_alpha 0.5, match:namespace = ^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
         ];
         bind =
           [
@@ -317,21 +317,21 @@ in {
           ]
           ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
             # Launchers & menus
-            "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
-            "$mainMod, period, exec, noctalia-shell ipc call launcher emoji"
-            "$mainMod SHIFT, S, exec, noctalia-shell ipc call settings toggle"
-            "$mainMod, V, exec, noctalia-shell ipc call launcher clipboard"
+            "$mainMod, SPACE, exec, noctalia msg panel-toggle launcher"
+            "$mainMod, period, exec, noctalia msg panel-toggle launcher /emo"
+            "$mainMod SHIFT, S, exec, noctalia msg settings-toggle"
+            "$mainMod, V, exec, noctalia msg panel-toggle clipboard"
 
             # Volume and brightness
-            ",XF86AudioRaiseVolume, exec, noctalia-shell ipc call volume increase"
-            ",XF86AudioLowerVolume, exec, noctalia-shell ipc call volume decrease"
-            ",XF86AudioMute, exec, noctalia-shell ipc call volume muteOutput"
-            ",XF86MonBrightnessUp, exec, noctalia-shell ipc call brightness increase"
-            ",XF86MonBrightnessDown, exec, noctalia-shell ipc call brightness decrease"
+            ",XF86AudioRaiseVolume, exec, noctalia msg volume-up"
+            ",XF86AudioLowerVolume, exec, noctalia msg volume-down"
+            ",XF86AudioMute, exec, noctalia msg volume-mute"
+            ",XF86MonBrightnessUp, exec, noctalia msg brightness-up"
+            ",XF86MonBrightnessDown, exec, noctalia msg brightness-down"
 
             # Lock & power
-            "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
-            "$mainMod CONTROL SHIFT, Q, exec, noctalia-shell ipc call sessionMenu toggle"
+            "$mainMod, L, exec, noctalia msg session lock"
+            "$mainMod CONTROL SHIFT, Q, exec, noctalia msg panel-toggle session"
           ]
           ++ lib.optionals (userSettings.hyprland.bar != "quickshell") [
             # Launchers & menus

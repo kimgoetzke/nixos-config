@@ -18,7 +18,7 @@
         ignore_dbus_inhibit = false;
         lock_cmd =
           if userSettings.hyprland.bar == "quickshell"
-          then "noctalia-shell ipc call lockScreen lock"
+          then "noctalia msg session lock"
           else "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl monitors -j | jq -r '.[].name' | xargs -I{} hyprctl dispatch dpms on {}";

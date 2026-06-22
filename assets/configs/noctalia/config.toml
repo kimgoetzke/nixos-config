@@ -1,0 +1,413 @@
+# Noctalia v5 config migrated from assets/configs/noctalia/settings.json.
+# v5 reads every *.toml in ~/.config/noctalia/ alphabetically.
+# GUI/runtime overrides live in ~/.local/state/noctalia/settings.toml and win over this file.
+
+[shell]
+ui_scale = 1.0
+corner_radius_scale = 1.0
+font_family = "DejaVu Sans"
+time_format = "{:%H:%M}"
+date_format = "%A, %x"
+offline_mode = false
+telemetry_enabled = false
+setup_wizard_enabled = false
+polkit_agent = false
+avatar_path = "/home/kgoe/Documents/NixOS/profile.png"
+clipboard_enabled = true
+clipboard_history_max_entries = 100
+clipboard_auto_paste = "off"
+show_location = true
+middle_click_opens_widget_settings = true
+settings_show_advanced = false
+
+[shell.animation]
+enabled = true
+speed = 0.7
+
+[shell.shadow]
+direction = "center"
+alpha = 0.55
+
+[shell.panel]
+transparency_mode = "solid"
+borders = false
+shadow = false
+launcher_placement = "centered"
+clipboard_placement = "centered"
+control_center_placement = "attached"
+wallpaper_placement = "attached"
+session_placement = "centered"
+open_near_click_control_center = true
+open_near_click_launcher = false
+open_near_click_clipboard = false
+open_near_click_wallpaper = true
+open_near_click_session = false
+launcher_categories = true
+launcher_show_icons = true
+launcher_compact = false
+launcher_session_search = true
+launcher_sort_by_usage = true
+
+[shell.mpris]
+blacklist = []
+
+[shell.screenshot]
+save_to_file = true
+directory = "~/Pictures"
+filename_pattern = "screenshot_%Y%m%d_%H%M%S"
+copy_to_clipboard = false
+freeze_screen = false
+pipe_to_command = false
+pipe_command = ""
+
+[wallpaper]
+enabled = true
+fill_mode = "crop"
+fill_color = "#000000"
+transition = ["stripes"]
+transition_duration = 1500
+edge_smoothness = 0.05
+transition_on_startup = true
+directory = "/home/kgoe/Pictures/Wallpapers"
+directory_light = ""
+directory_dark = ""
+
+[wallpaper.default]
+path = ""
+
+[wallpaper.automation]
+enabled = false
+order = "random"
+recursive = true
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "kim"
+builtin = "Ayu"
+wallpaper_scheme = "m3-tonal-spot"
+
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false
+builtin_ids = []
+community_ids = []
+
+[backdrop]
+enabled = false
+blur_intensity = 0.4
+tint_intensity = 0.6
+
+[notification]
+enable_daemon = true
+show_app_name = true
+show_actions = true
+layer = "overlay"
+scale = 1.0
+background_opacity = 0.85
+offset_x = 20
+offset_y = 8
+
+[osd]
+position = "top_right"
+position_vertical = "top_center"
+orientation = "horizontal"
+scale = 1.0
+background_opacity = 1.0
+offset_x = 20
+offset_y = 8
+monitors = []
+
+[osd.kinds]
+volume = true
+volume_output = true
+volume_input = true
+brightness = true
+wifi = true
+bluetooth = true
+power_profile = true
+caffeine = true
+nightlight = true
+dnd = true
+lock_keys = true
+keyboard_layout = true
+privacy = true
+
+[lockscreen]
+enabled = true
+fingerprint = false
+allow_empty_password = false
+blurred_desktop = false
+blur_intensity = 0.0
+tint_intensity = 0.0
+wallpaper = ""
+monitors = []
+
+[system.monitor]
+enabled = true
+cpu_poll_seconds = 2.0
+gpu_poll_seconds = 5.0
+memory_poll_seconds = 2.0
+network_poll_seconds = 3.0
+disk_poll_seconds = 10.0
+
+[weather]
+enabled = true
+refresh_minutes = 30
+unit = "celsius"
+effects = true
+
+[audio]
+enable_overdrive = false
+enable_sounds = false
+sound_volume = 0.5
+volume_change_sound = ""
+notification_sound = ""
+
+[brightness]
+enable_ddcutil = false
+minimum_brightness = 0.0
+
+[nightlight]
+enabled = false
+force = false
+temperature_day = 6500
+temperature_night = 4000
+
+[location]
+auto_locate = false
+address = "London"
+sunset = "18:30"
+sunrise = "06:30"
+
+[idle.behavior.lock]
+timeout = 660
+command = "noctalia:session lock"
+enabled = false
+
+[idle.behavior.screen-off]
+timeout = 600
+command = "noctalia:dpms-off"
+resume_command = "noctalia:dpms-on"
+enabled = false
+
+[keybinds]
+validate = ["return", "kp_enter"]
+cancel = ["escape"]
+left = ["left"]
+right = ["right"]
+up = ["up"]
+down = ["down"]
+
+[bar]
+order = ["main"]
+
+# Disable GUI-created/default bars from ~/.local/state/noctalia/settings.toml.
+[bar.default]
+enabled = false
+
+[bar.main]
+enabled = true
+position = "top"
+layer = "top"
+thickness = 34
+background_opacity = 1.0
+border_width = 0.0
+radius = 12
+margin_ends = 4
+margin_edge = 4
+padding = 2
+widget_spacing = 6
+scale = 1.0
+font_weight = "regular"
+font_family = ""
+shadow = false
+auto_hide = false
+reserve_space = true
+capsule = false
+start = ["cpu", "cpu-temp", "ram", "net-rx", "net-tx", "bluetooth", "battery", "volume", "brightness", "active_window"]
+center = ["workspaces"]
+end = ["audio-vis", "media", "tray", "notifications", "clock", "control-center"]
+
+[bar.main.dead_zone]
+command = "noctalia msg panel-toggle launcher"
+right_command = ""
+middle_command = ""
+scroll_up_command = ""
+scroll_down_command = ""
+
+[bar.main.monitor.DP-3]
+match = "DP-3"
+start = ["active_window"]
+center = ["workspaces"]
+end = ["clock"]
+
+[dock]
+enabled = false
+position = "bottom"
+icon_size = 48
+main_axis_padding = 16
+cross_axis_padding = 8
+item_spacing = 6
+background_opacity = 1.0
+radius = 16
+shadow = false
+show_running = true
+auto_hide = true
+reserve_space = false
+launcher_position = "none"
+pinned = []
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "wallpaper"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[shell.session.actions]]
+action = "lock"
+enabled = true
+shortcut = "1"
+
+[[shell.session.actions]]
+action = "reboot"
+enabled = true
+shortcut = "4"
+variant = "destructive"
+
+[[shell.session.actions]]
+action = "shutdown"
+enabled = true
+shortcut = "6"
+variant = "destructive"
+
+[widget.cpu]
+type = "sysmon"
+stat = "cpu_usage"
+display = "text"
+show_label = true
+
+[widget.cpu-temp]
+type = "sysmon"
+stat = "cpu_temp"
+display = "text"
+show_label = true
+
+[widget.ram]
+type = "sysmon"
+stat = "ram_used"
+display = "text"
+show_label = true
+
+[widget.net-rx]
+type = "sysmon"
+stat = "net_rx"
+display = "text"
+show_label = true
+
+[widget.net-tx]
+type = "sysmon"
+stat = "net_tx"
+display = "text"
+show_label = true
+
+[widget.bluetooth]
+show_label = false
+
+[widget.battery]
+type = "battery"
+device = "auto"
+display_mode = "graphic"
+show_label = false
+
+[widget.volume]
+device = "output"
+scroll_step = 5
+show_label = false
+mute_color = "error"
+
+[widget.brightness]
+scroll_step = 5
+show_label = false
+
+[widget.active_window]
+min_length = 80
+max_length = 285
+icon_size = 14
+title_scroll = "on_hover"
+display = "icon_and_text"
+show_empty_label = false
+
+[widget.workspaces]
+display = "id"
+minimal = false
+max_label_chars = 1
+labels_only_when_occupied = false
+hide_when_empty = false
+pill_scale = 0.75
+active_pill_size = 2.2
+inactive_pill_size = 1.0
+focused_color = "tertiary"
+occupied_color = "secondary"
+empty_color = "surface_variant"
+
+[widget.audio-vis]
+type = "audio_visualizer"
+width = 56
+bands = 16
+mirrored = true
+centered = true
+show_when_idle = false
+color_1 = "primary"
+color_2 = "secondary"
+
+[widget.media]
+album_art_only = false
+min_length = 80
+max_length = 285
+art_size = 16
+title_scroll = "on_hover"
+hide_when_no_media = false
+
+[widget.tray]
+hidden = []
+pinned = []
+drawer = true
+drawer_columns = 3
+
+[widget.notifications]
+hide_when_no_unread = false
+
+[widget.clock]
+format = "{:%H:%M %a, %b %d}"
+vertical_format = "{:%H\n%M - %d\n%m}"
+tooltip_format = "{:%H:%M %a, %b %d}"
+
+[widget.control-center]
+glyph = "noctalia"
+custom_image = ""
+custom_image_colorize = false
+
+[widget.clipboard]
+glyph = "clipboard-list"
+
+[widget.launcher]
+glyph = "menu-2"
+
+[widget.session]
+glyph = "shutdown"
+
+[widget.wallpaper]
+glyph = "photo"

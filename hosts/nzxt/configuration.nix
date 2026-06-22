@@ -149,12 +149,11 @@
       nautilus # File manager
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "hyprpanel") [
-      hyprpanel # Bar and panel, alternative to Waybar and Quickshell
+      hyprpanel # Bar and panel, alternative to Waybar and Noctalia
     ]
     ++ lib.optionals (userSettings.hyprland.bar == "quickshell") [
-      gpu-screen-recorder # GPU-accelerated screen recorder, required by Noctalia screen recording plugin
-      quickshell # Bar and panel, alternative to Waybar and Hyprpanel
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia shell (based on Quickshell)
+      gpu-screen-recorder # GPU-accelerated screen recorder, used by Noctalia's screen recorder integration
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia shell
     ];
 
   # Applications
