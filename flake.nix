@@ -40,9 +40,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    # A ready-to-use Quickshell configuration
+    # Native Noctalia v5 desktop shell
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,45 +54,42 @@
     textfox.url = "github:adriankarlen/textfox";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      stylix,
-      ucodenix,
-      nixvim,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      inherit (nixpkgs) lib;
-      systems = [ "x86_64-linux" ];
-      userSettings = import ./users/user.nix { inherit inputs lib; };
-      specialArgs = { inherit inputs outputs userSettings; };
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      nixpkgs.config.allowUnfree = true;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    stylix,
+    ucodenix,
+    nixvim,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    inherit (nixpkgs) lib;
+    systems = ["x86_64-linux"];
+    userSettings = import ./users/user.nix {inherit inputs lib;};
+    specialArgs = {inherit inputs outputs userSettings;};
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    nixpkgs.config.allowUnfree = true;
 
-      # Use formatter with 'nix fmt'
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # Use formatter with 'nix fmt'
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-      # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = [
-            ./hosts/${userSettings.hostName}/configuration.nix
-            stylix.nixosModules.stylix
-            ucodenix.nixosModules.ucodenix
-            nixvim.nixosModules.nixvim
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = specialArgs;
-            }
-          ];
-        };
+    # Use NixOS configuration with 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      default = nixpkgs.lib.nixosSystem {
+        inherit specialArgs;
+        modules = [
+          ./hosts/${userSettings.hostName}/configuration.nix
+          stylix.nixosModules.stylix
+          ucodenix.nixosModules.ucodenix
+          nixvim.nixosModules.nixvim
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+        ];
       };
     };
+  };
 }
