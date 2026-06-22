@@ -18,6 +18,7 @@
       settings = ./../../../assets/configs/noctalia/config.toml;
     };
 
-    xdg.configFile."noctalia/palettes/kim.json".source = ./../../../assets/configs/noctalia/kim.json;
+    xdg.configFile."noctalia/palettes/jetbrains-dark-islands.json".source =
+      ./../../../assets/configs/noctalia/jetbrains-dark-islands.json;
   };
 }

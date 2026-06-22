@@ -20,7 +20,7 @@ order = [ "main" ]
 
     [bar.main]
     auto_hide = false
-    background_opacity = 1.0
+    background_opacity = 0.85
     border_width = 0.0
     capsule = false
     center = [ "workspaces" ]
@@ -188,7 +188,7 @@ show_actions = true
 show_app_name = true
 
 [osd]
-background_opacity = 1.0
+background_opacity = 0.85
 monitors = []
 offset_x = 20
 offset_y = 8
@@ -254,7 +254,7 @@ ui_scale = 1.1000000089406967
     open_near_click_wallpaper = true
     session_placement = "centered"
     shadow = false
-    transparency_mode = "solid"
+    transparency_mode = "glass"
     wallpaper_placement = "attached"
 
     [shell.screen_corners]
@@ -300,7 +300,7 @@ network_poll_seconds = 3.0
 
 [theme]
 builtin = "Ayu"
-custom_palette = "kim"
+custom_palette = "jetbrains-dark-islands"
 mode = "dark"
 source = "custom"
 wallpaper_scheme = "m3-tonal-spot"
