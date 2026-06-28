@@ -12,8 +12,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      github-copilot-cli # Will also install Node.js
-      claude-code
+      # github-copilot-cli # Will also install Node.js
+      # claude-code
       pi-coding-agent
       chromium # Optional improvement for https://github.com/kimgoetzke/coding-agent-configs/tree/main/.pi/agent/extensions/web-tools
     ];
