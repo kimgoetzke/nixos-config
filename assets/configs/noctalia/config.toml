@@ -24,7 +24,7 @@ order = [ "main" ]
     background_opacity = 0.90000000000000002
     border_width = 0.0
     capsule = false
-    center = [ "workspaces" ]
+    center = [ "workspaces", "privacy" ]
     enabled = true
     end = [ "tray", "audio-vis", "notifications", "clock", "recorder", "control-center" ]
     font_family = ""
@@ -93,16 +93,21 @@ reserve_space = false
 shadow = false
 show_running = true
 
-[idle.behavior.lock]
-command = "noctalia:session lock"
-enabled = false
-timeout = 660
+[idle]
+behavior_order = [ "lock", "screen-off" ]
 
-[idle.behavior.screen-off]
-command = "noctalia:dpms-off"
-enabled = false
-resume_command = "noctalia:dpms-on"
-timeout = 600
+    [idle.behavior.lock]
+    action = "lock"
+    command = "noctalia:session lock"
+    enabled = true
+    timeout = 660
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    command = "noctalia:dpms-off"
+    enabled = true
+    resume_command = "noctalia:dpms-on"
+    timeout = 600
 
 [keybinds]
 cancel = [ "escape" ]
@@ -366,7 +371,7 @@ color_2 = "secondary"
 mirrored = true
 show_when_idle = false
 type = "audio_visualizer"
-width = 56
+width = 70.0
 
 [widget.battery]
 device = "auto"
@@ -433,6 +438,12 @@ type = "sysmon"
 
 [widget.notifications]
 hide_when_no_unread = false
+
+[widget.privacy]
+active_color = "error"
+capsule = true
+capsule_padding = 15.0
+hide_inactive = true
 
 [widget.ram]
 display = "text"

@@ -173,7 +173,7 @@ in {
         };
         master.new_status = "master";
         scrolling = {
-          column_width = 0.667;
+          column_width = 1.0;
           fullscreen_on_one_column = true;
           focus_fit_method = 0;
           follow_focus = true;
