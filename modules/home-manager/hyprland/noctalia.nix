@@ -15,7 +15,7 @@
   config = lib.mkIf config.hyprland-noctalia.enable {
     programs.noctalia = {
       enable = true;
-      settings = ./../../../assets/configs/noctalia/config.toml;
+      settings = lib.mkDefault (builtins.fromTOML (builtins.readFile ./../../../assets/configs/noctalia/config.toml));
     };
 
     xdg.configFile."noctalia/palettes/jetbrains-dark-islands.json".source =

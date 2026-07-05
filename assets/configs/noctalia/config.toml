@@ -1,97 +1,26 @@
-[audio]
-enable_overdrive = false
-enable_sounds = false
-notification_sound = ""
-sound_volume = 0.5
-volume_change_sound = ""
-
-[backdrop]
-blur_intensity = 0.40000000000000002
+[bar.default]
+background_opacity = 0.90000000000000002
 enabled = false
-tint_intensity = 0.59999999999999998
+scale = 1.1000000089406967
+thickness = 35
 
-[bar]
-order = [ "main" ]
+[bar.main]
+background_opacity = 0.90000000000000002
+center = [ "workspaces", "privacy" ]
+end = [ "media", "tray", "notifications", "clipboard", "volume", "brightness", "battery", "control-center", "session" ]
+margin_edge = 0
+margin_ends = 0
+padding = 20
+radius = 0
+scale = 1.1500000096857548
+start = [ "sysmon", "cpu", "network_rx", "network_tx", "ram", "bluetooth", "network", "active_window" ]
+thickness = 40
+widget_spacing = 14
 
-    [bar.default]
-    background_opacity = 0.90000000000000002
-    enabled = false
-    scale = 1.1000000089406967
-    thickness = 35
-
-    [bar.main]
-    auto_hide = false
-    background_opacity = 0.90000000000000002
-    border_width = 0.0
-    capsule = false
-    center = [ "workspaces", "privacy" ]
-    enabled = true
-    end = [ "tray", "audio-vis", "notifications", "clock", "recorder", "control-center" ]
-    font_family = ""
-    font_weight = "regular"
-    layer = "top"
-    margin_edge = 0
-    margin_ends = 0
-    padding = 20
-    position = "top"
-    radius = 0
-    reserve_space = true
-    scale = 1.1500000096857548
-    shadow = false
-    start = [ "cpu", "cpu-temp", "ram", "net-rx", "net-tx", "bluetooth", "battery", "volume", "brightness", "active_window" ]
-    thickness = 40
-    widget_spacing = 14
-
-        [bar.main.dead_zone]
-        command = "noctalia msg panel-toggle launcher"
-        middle_command = ""
-        right_command = ""
-        scroll_down_command = ""
-        scroll_up_command = ""
-
-        [bar.main.monitor.DP-3]
-        center = [ "workspaces" ]
-        end = [ "clock" ]
-        match = "DP-3"
-        start = [ "active_window" ]
-
-[brightness]
-enable_ddcutil = false
-minimum_brightness = 0.0
-
-[[control_center.shortcuts]]
-type = "wifi"
-
-[[control_center.shortcuts]]
-type = "bluetooth"
-
-[[control_center.shortcuts]]
-type = "wallpaper"
-
-[[control_center.shortcuts]]
-type = "notification"
-
-[[control_center.shortcuts]]
-type = "power_profile"
-
-[[control_center.shortcuts]]
-type = "caffeine"
+    [bar.main.monitor.DP-3]
 
 [dock]
-auto_hide = true
 background_opacity = 1.0
-cross_axis_padding = 8
-enabled = false
-icon_size = 48
-item_spacing = 6
-launcher_position = "none"
-main_axis_padding = 16
-pinned = []
-position = "bottom"
-radius = 16
-reserve_space = false
-shadow = false
-show_running = true
 
 [idle]
 behavior_order = [ "lock", "screen-off" ]
@@ -108,30 +37,6 @@ behavior_order = [ "lock", "screen-off" ]
     enabled = true
     resume_command = "noctalia:dpms-on"
     timeout = 600
-
-[keybinds]
-cancel = [ "escape" ]
-down = [ "down" ]
-left = [ "left" ]
-right = [ "right" ]
-up = [ "up" ]
-validate = [ "return", "kp_enter" ]
-
-[location]
-address = "London"
-auto_locate = false
-sunrise = "06:30"
-sunset = "18:30"
-
-[lockscreen]
-allow_empty_password = false
-blur_intensity = 0.0
-blurred_desktop = false
-enabled = true
-fingerprint = false
-monitors = []
-tint_intensity = 0.0
-wallpaper = ""
 
 [lockscreen_widgets]
 enabled = false
@@ -194,312 +99,115 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@DP-3", "loc
         input_radius = 6.0
         show_login_button = true
 
-[nightlight]
-enabled = false
-force = false
-temperature_day = 6500
-temperature_night = 4000
-
 [notification]
-background_opacity = 0.84999999999999998
-enable_daemon = true
-layer = "overlay"
-offset_x = 20
-offset_y = 8
-scale = 1.0
-show_actions = true
-show_app_name = true
+background_opacity = 1.0
 
 [osd]
 background_opacity = 0.90000000000000002
-monitors = []
-offset_x = 20
-offset_y = 8
-orientation = "horizontal"
-position = "top_right"
-position_vertical = "top_center"
-scale = 1.0
-
-    [osd.kinds]
-    bluetooth = true
-    brightness = true
-    caffeine = true
-    dnd = true
-    keyboard_layout = true
-    lock_keys = true
-    nightlight = true
-    power_profile = true
-    privacy = true
-    volume = true
-    volume_input = true
-    volume_output = true
-    wifi = true
 
 [plugins]
 enabled = [ "noctalia/screen_recorder" ]
 
 [shell]
 avatar_path = "/home/kgoe/Documents/NixOS/profile.png"
-clipboard_auto_paste = "off"
-clipboard_enabled = true
-clipboard_history_max_entries = 100
-corner_radius_scale = 1.0
-date_format = "%A, %x"
 font_family = "DejaVu Sans"
-middle_click_opens_widget_settings = true
-offline_mode = false
-polkit_agent = false
 settings_show_advanced = true
-setup_wizard_enabled = false
-show_location = true
-telemetry_enabled = false
-time_format = "{:%H:%M}"
 ui_scale = 1.1000000089406967
 
-    [shell.animation]
-    enabled = true
-    speed = 0.69999999999999996
-
-    [shell.mpris]
-    blacklist = []
-
     [shell.panel]
-    borders = false
-    clipboard_placement = "centered"
-    control_center_placement = "attached"
-    launcher_categories = true
-    launcher_compact = false
-    launcher_placement = "centered"
-    launcher_session_search = true
-    launcher_show_icons = true
-    launcher_sort_by_usage = true
-    open_near_click_clipboard = false
-    open_near_click_control_center = true
-    open_near_click_launcher = false
-    open_near_click_session = false
-    open_near_click_wallpaper = true
-    session_placement = "centered"
-    shadow = false
-    transparency_mode = "soft"
-    wallpaper_placement = "attached"
+    transparency_mode = "glass"
 
     [shell.screen_corners]
     enabled = true
 
-    [shell.screenshot]
-    copy_to_clipboard = false
-    directory = "~/Pictures"
-    filename_pattern = "screenshot_%Y%m%d_%H%M%S"
-    freeze_screen = false
-    pipe_command = ""
-    pipe_to_command = false
-    save_to_file = true
-
-    [[shell.session.actions]]
-    action = "lock"
-    enabled = true
-    shortcut = "1"
-
-    [[shell.session.actions]]
-    action = "reboot"
-    enabled = true
-    shortcut = "4"
-    variant = "destructive"
-
-    [[shell.session.actions]]
-    action = "shutdown"
-    enabled = true
-    shortcut = "6"
-    variant = "destructive"
-
-    [shell.shadow]
-    alpha = 0.55000000000000004
-    direction = "center"
-
-[system.monitor]
-cpu_poll_seconds = 2.0
-disk_poll_seconds = 10.0
-enabled = true
-gpu_poll_seconds = 5.0
-memory_poll_seconds = 2.0
-network_poll_seconds = 3.0
-
 [theme]
 builtin = "Ayu"
 custom_palette = "jetbrains-dark-islands"
-mode = "dark"
+mode = "light"
 source = "custom"
-wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
-    builtin_ids = []
     community_ids = [ "pi-agent", "rofi", "yazi" ]
-    enable_builtin_templates = false
-    enable_community_templates = false
 
-[wallpaper]
-directory = "/home/kgoe/Pictures/Wallpapers"
-directory_dark = ""
-directory_light = ""
-edge_smoothness = 0.050000000000000003
-enabled = true
-fill_color = "#000000"
-fill_mode = "crop"
-transition = [ "stripes" ]
-transition_duration = 1500
-transition_on_startup = true
+[wallpaper.default]
+path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
 
-    [wallpaper.automation]
-    enabled = false
-    order = "random"
-    recursive = true
+[wallpaper.last]
+path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
 
-    [wallpaper.default]
-    path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
+[wallpaper.monitors.DP-1]
+path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
 
-    [wallpaper.last]
-    path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
+[wallpaper.monitors.DP-3]
+path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
 
-    [wallpaper.monitors.DP-1]
-    path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
-
-    [wallpaper.monitors.DP-3]
-    path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
-
-[weather]
-effects = true
-enabled = true
-refresh_minutes = 30
-unit = "celsius"
-
-[widget.active_window]
-display = "icon_and_text"
-icon_size = 14
-max_length = 285
-min_length = 80
-show_empty_label = false
-title_scroll = "on_hover"
+[wallpaper.monitors.eDP-1]
+path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
 
 [widget.audio-vis]
-bands = 16
-centered = true
-color_1 = "primary"
-color_2 = "secondary"
-mirrored = true
-show_when_idle = false
-type = "audio_visualizer"
 width = 70.0
 
 [widget.battery]
-device = "auto"
-display_mode = "graphic"
-show_label = false
-type = "battery"
+enabled = true
 
 [widget.bluetooth]
-show_label = false
-
-[widget.brightness]
-scroll_step = 5
-show_label = false
+enabled = true
 
 [widget.clipboard]
-glyph = "clipboard-list"
-
-[widget.clock]
-format = "{:%H:%M %a, %b %d}"
-tooltip_format = "{:%H:%M %a, %b %d}"
-vertical_format = """{:%H
-%M - %d
-%m}"""
+enabled = true
 
 [widget.control-center]
-custom_image = ""
-custom_image_colorize = false
-glyph = "noctalia"
+enabled = true
 
 [widget.cpu]
-display = "text"
-show_label = true
-stat = "cpu_usage"
-type = "sysmon"
-
-[widget.cpu-temp]
-display = "text"
-show_label = true
-stat = "cpu_temp"
-type = "sysmon"
-
-[widget.launcher]
-glyph = "menu-2"
+enabled = true
 
 [widget.media]
-album_art_only = false
-art_size = 16
-hide_when_no_media = false
-max_length = 285
-min_length = 80
-title_scroll = "on_hover"
+enabled = true
 
-[widget.net-rx]
-display = "text"
-show_label = true
-stat = "net_rx"
-type = "sysmon"
+[widget.network]
+enabled = true
 
-[widget.net-tx]
-display = "text"
-show_label = true
-stat = "net_tx"
-type = "sysmon"
+[widget.network_rx]
+enabled = true
+
+[widget.network_tx]
+enabled = true
 
 [widget.notifications]
-hide_when_no_unread = false
+enabled = true
 
 [widget.privacy]
 active_color = "error"
 capsule = true
 capsule_padding = 15.0
+enabled = true
 hide_inactive = true
 
 [widget.ram]
-display = "text"
-show_label = true
-stat = "ram_used"
-type = "sysmon"
+enabled = true
 
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
 
 [widget.session]
-glyph = "shutdown"
+enabled = true
+
+[widget.sysmon]
+enabled = true
 
 [widget.tray]
-drawer = true
-drawer_columns = 3
-hidden = []
+enabled = true
 pinned = [ "toolbox" ]
 
 [widget.volume]
-device = "output"
-mute_color = "error"
-scroll_step = 5
-show_label = false
-
-[widget.wallpaper]
-glyph = "photo"
+enabled = true
 
 [widget.workspaces]
 active_pill_size = 2.6000000000000001
 capsule_radius = 8
 display = "name"
-empty_color = "surface_variant"
 focused_color = "tertiary"
-hide_when_empty = false
 inactive_pill_size = 1.3
-labels_only_when_occupied = false
-max_label_chars = 1
-minimal = false
-occupied_color = "secondary"
 pill_scale = 1.0
 scale = 1.2
