@@ -170,7 +170,7 @@ enabled = true
 enabled = true
 
 [widget.clock]
-format = "{:%H:%M %D}"
+format = "{:%H:%M %e %b}"
 
 [widget.control-center]
 enabled = true
