@@ -127,7 +127,9 @@ mode = "light"
 source = "custom"
 
     [theme.templates]
-    community_ids = [ "pi-agent", "rofi", "yazi" ]
+    community_ids = [ "rofi" ]
+    enable_builtin_templates = false
+    enable_community_templates = false
 
 [wallpaper.default]
 path = "/home/kgoe/Pictures/Wallpapers/wallpaper_abstract_pixel_purplebluegreen_320_180.png"
