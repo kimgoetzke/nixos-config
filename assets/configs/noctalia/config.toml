@@ -112,6 +112,7 @@ widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@DP-3", "loc
 
 [notification]
 background_opacity = 1.0
+border = false
 
 [osd]
 background_opacity = 0.90000000000000002
@@ -121,11 +122,18 @@ enabled = [ "noctalia/screen_recorder" ]
 
 [shell]
 avatar_path = "/home/kgoe/Documents/NixOS/profile.png"
+button_borders = false
+card_borders = false
 font_family = "DejaVu Sans"
-settings_show_advanced = true
+input_borders = false
+popup_borders = false
 ui_scale = 1.1000000089406967
 
+    [shell.launcher]
+    compact = true
+
     [shell.panel]
+    launcher_placement = "attached"
     transparency_mode = "glass"
 
     [shell.screen_corners]
@@ -223,8 +231,8 @@ enabled = true
 [widget.workspaces]
 active_pill_size = 2.6000000000000001
 capsule_radius = 8
-display = "name"
 focused_color = "tertiary"
 inactive_pill_size = 1.3
+label_source = "name"
 pill_scale = 1.0
 scale = 1.2
