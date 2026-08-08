@@ -6,6 +6,7 @@
   ...
 }: let
   cfg = config.gtkgreet;
+  toLua = lib.generators.toLua {};
   wallpaperImage = ./../../../assets/images/${userSettings.wallpaperFile};
   sessionCommand = pkgs.writeShellScript "hyprland-session" ''
     exec ${pkgs.hyprland}/bin/start-hyprland 2>&1 | tee -a /tmp/hyprland-"$USER".log >/dev/null
@@ -190,40 +191,43 @@
     }
     */
   '';
+
   greeterCommand = pkgs.writeShellScript "gtkgreet-hyprland" ''
     ${pkgs.gtkgreet}/bin/gtkgreet -l -s ${gtkgreetCss} -c ${sessionCommand}
     ${pkgs.hyprland}/bin/hyprctl dispatch exit
   '';
-  hyprlandConfig = pkgs.writeText "greetd-hyprland.conf" ''
-    env = XDG_SESSION_TYPE,wayland
-    env = XDG_CURRENT_DESKTOP,Hyprland
-    env = XDG_SESSION_DESKTOP,Hyprland
-    env = WLR_NO_HARDWARE_CURSORS,1
 
-    monitor = ,preferred,auto,1
+  hyprlandConfig = pkgs.writeText "greetd-hyprland.lua" ''
+    hl.env("XDG_SESSION_TYPE", "wayland")
+    hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+    hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+    hl.env("WLR_NO_HARDWARE_CURSORS", "1")
 
-    input {
-      kb_layout = gb
-    }
+    hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
-    general {
-      border_size = 0
-      gaps_in = 0
-      gaps_out = 0
-    }
+    hl.config({
+      input = {
+        kb_layout = "gb",
+      },
+      general = {
+        border_size = 0,
+        gaps_in = 0,
+        gaps_out = 0,
+      },
+      misc = {
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
+        force_default_wallpaper = 0,
+        disable_watchdog_warning = true,
+      },
+      debug = {
+        disable_logs = true,
+      },
+    })
 
-    misc {
-      disable_hyprland_logo = true
-      disable_splash_rendering = true
-      force_default_wallpaper = 0
-      disable_watchdog_warning = true
-    }
-
-    debug {
-      disable_logs = true
-    }
-
-    exec-once = ${greeterCommand}
+    hl.on("hyprland.start", function()
+      hl.exec_cmd(${toLua "${greeterCommand}"})
+    end)
   '';
 in {
   options.gtkgreet = {
