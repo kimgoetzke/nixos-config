@@ -164,6 +164,7 @@
       DISPLAY_ROWS=()
       DISPATCHERS=()
       ARGS=()
+      ACTIONS=()
 
       while IFS= read -r encoded; do
         bind_json=$(printf '%s' "$encoded" | base64 --decode)
@@ -171,6 +172,7 @@
         key=$(${pkgs.jq}/bin/jq -r 'if ((.key // "") != "") then .key elif ((.keycode // 0) != 0) then "code:\(.keycode)" else "" end' <<< "$bind_json")
         arg=$(${pkgs.jq}/bin/jq -r '.arg // ""' <<< "$bind_json")
         modmask=$(${pkgs.jq}/bin/jq -r '.modmask // 0' <<< "$bind_json")
+        description=$(${pkgs.jq}/bin/jq -r 'if ((.has_description == true or .has_description == "true") and ((.description // "") != "")) then .description else "" end' <<< "$bind_json")
 
         [[ -z "$dispatcher" || -z "$key" ]] && continue
 
@@ -181,9 +183,16 @@
           chord="$key"
         fi
 
-        DISPLAY_ROWS+=("$chord: $dispatcher $arg")
+        if [[ -n "$description" ]]; then
+          action="$description"
+        else
+          action="$dispatcher $arg"
+        fi
+
+        DISPLAY_ROWS+=("$chord: $action")
         DISPATCHERS+=("$dispatcher")
         ARGS+=("$arg")
+        ACTIONS+=("$action")
       done < <(printf '%s\n' "$BINDINGS_JSON" | ${pkgs.jq}/bin/jq -r '.[] | @base64')
 
       if [[ "''${#DISPLAY_ROWS[@]}" -eq 0 ]]; then
@@ -196,8 +205,11 @@
 
       DISPATCHER="''${DISPATCHERS[$CHOICE_INDEX]}"
       ARGUMENT="''${ARGS[$CHOICE_INDEX]}"
+      ACTION="''${ACTIONS[$CHOICE_INDEX]}"
 
-      if [[ "$DISPATCHER" == "exec" ]]; then
+      if [[ "$ACTION" == exec\ * ]]; then
+        hyprctl dispatch exec "''${ACTION#exec }"
+      elif [[ "$DISPATCHER" == "exec" ]]; then
         hyprctl dispatch exec "$ARGUMENT"
       fi
     '';

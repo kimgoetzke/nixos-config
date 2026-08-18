@@ -9,9 +9,11 @@
   toLua = lib.generators.toLua {};
   mainMod = "SUPER";
   terminal = userSettings.emulator;
-  bind = keys: dispatcher: "hl.bind(${toLua keys}, ${dispatcher})";
-  bindWithOptions = keys: dispatcher: options: "hl.bind(${toLua keys}, ${dispatcher}, ${toLua options})";
-  execBind = keys: command: bind keys "hl.dsp.exec_cmd(${toLua command})";
+  bindWithDescription = keys: description: dispatcher: "hl.bind(${toLua keys}, ${dispatcher}, { description = ${toLua description} })";
+  bind = keys: dispatcher: bindWithDescription keys dispatcher dispatcher;
+  bindWithOptionsDescription = keys: description: dispatcher: options: "hl.bind(${toLua keys}, ${dispatcher}, ${toLua (options // {description = description;})})";
+  bindWithOptions = keys: dispatcher: bindWithOptionsDescription keys dispatcher dispatcher;
+  execBind = keys: command: bindWithDescription keys "exec ${command}" "hl.dsp.exec_cmd(${toLua command})";
   directionName = direction:
     {
       d = "down";
@@ -22,11 +24,11 @@
     .${
       direction
     };
-  focusBind = keys: direction: bind keys "hl.dsp.focus({ direction = ${toLua (directionName direction)} })";
-  moveBind = keys: direction: bind keys "hl.dsp.window.move({ direction = ${toLua (directionName direction)} })";
-  resizeBind = keys: x: y: bind keys "hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })";
-  workspaceBind = keys: workspace: bind keys "hl.dsp.focus({ workspace = ${toLua (toString workspace)} })";
-  moveToWorkspaceBind = keys: workspace: bind keys "hl.dsp.window.move({ workspace = ${toLua (toString workspace)}, follow = false })";
+  focusBind = keys: direction: bindWithDescription keys "focus ${directionName direction}" "hl.dsp.focus({ direction = ${toLua (directionName direction)} })";
+  moveBind = keys: direction: bindWithDescription keys "move window ${directionName direction}" "hl.dsp.window.move({ direction = ${toLua (directionName direction)} })";
+  resizeBind = keys: x: y: bindWithDescription keys "resize window ${toString x} ${toString y}" "hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })";
+  workspaceBind = keys: workspace: bindWithDescription keys "workspace ${toString workspace}" "hl.dsp.focus({ workspace = ${toLua (toString workspace)} })";
+  moveToWorkspaceBind = keys: workspace: bindWithDescription keys "move window to workspace ${toString workspace}" "hl.dsp.window.move({ workspace = ${toLua (toString workspace)}, follow = false })";
 
   execOnceCommands =
     [
@@ -98,12 +100,12 @@
     (execBind "XF86MonBrightnessDown" "brightnessctl s 5%-")
 
     # Windows & workspaces
-    (bind "${mainMod} + Q" "hl.dsp.window.float({ action = \"toggle\" })")
-    (bind "${mainMod} + W" "hl.dsp.layout(\"togglesplit\")")
-    (bind "${mainMod} + F11" "hl.dsp.window.fullscreen({ mode = \"fullscreen\" })")
-    (bind "${mainMod} + CONTROL + SHIFT + P" "hl.dsp.window.pin()")
-    (bind "${mainMod} + SHIFT + Q" "hl.dsp.window.close()")
-    (bind "ALT + F4" "hl.dsp.window.close()")
+    (bindWithDescription "${mainMod} + Q" "toggle floating" "hl.dsp.window.float({ action = \"toggle\" })")
+    (bindWithDescription "${mainMod} + W" "toggle split" "hl.dsp.layout(\"togglesplit\")")
+    (bindWithDescription "${mainMod} + F11" "fullscreen" "hl.dsp.window.fullscreen({ mode = \"fullscreen\" })")
+    (bindWithDescription "${mainMod} + CONTROL + SHIFT + P" "pin window" "hl.dsp.window.pin()")
+    (bindWithDescription "${mainMod} + SHIFT + Q" "close active window" "hl.dsp.window.close()")
+    (bindWithDescription "ALT + F4" "close active window" "hl.dsp.window.close()")
     (focusBind "${mainMod} + down" "d")
     (focusBind "${mainMod} + up" "u")
     (focusBind "${mainMod} + left" "l")
@@ -112,9 +114,9 @@
     (moveBind "${mainMod} + SHIFT + up" "u")
     (moveBind "${mainMod} + SHIFT + left" "l")
     (moveBind "${mainMod} + SHIFT + right" "r")
-    (bind "${mainMod} + CONTROL + S" "hl.dsp.workspace.toggle_special(\"magic\")")
-    (bind "${mainMod} + mouse_down" "hl.dsp.focus({ workspace = \"e+1\" })")
-    (bind "${mainMod} + mouse_up" "hl.dsp.focus({ workspace = \"e-1\" })")
+    (bindWithDescription "${mainMod} + CONTROL + S" "toggle special workspace magic" "hl.dsp.workspace.toggle_special(\"magic\")")
+    (bindWithDescription "${mainMod} + mouse_down" "next workspace" "hl.dsp.focus({ workspace = \"e+1\" })")
+    (bindWithDescription "${mainMod} + mouse_up" "previous workspace" "hl.dsp.focus({ workspace = \"e-1\" })")
     (resizeBind "${mainMod} + ALT + right" 50 0)
     (resizeBind "${mainMod} + ALT + left" (-50) 0)
     (resizeBind "${mainMod} + ALT + up" 0 (-50))
@@ -123,12 +125,12 @@
     (moveToWorkspaceBind "${mainMod} + SHIFT + code:49" 10) # $mainMod + SHIFT + ` = move active silently to workspace 10
 
     # Scrolling (layoutmsg binds are no-ops on non-scrolling workspaces)
-    (bind "${mainMod} + CTRL + right" "hl.dsp.layout(\"colresize +conf\")") # Make column wider
-    (bind "${mainMod} + CTRL + left" "hl.dsp.layout(\"colresize -conf\")") # Make column narrower
-    (bind "${mainMod} + CTRL + F" "hl.dsp.layout(\"fit active\")") # Fit focused column to screen
-    (bind "${mainMod} + CTRL + P" "hl.dsp.layout(\"promote\")") # Pop window into its own column
-    (bind "${mainMod} + CTRL + up" "hl.dsp.layout(\"movewindowto u\")") # Move window up within column
-    (bind "${mainMod} + CTRL + down" "hl.dsp.layout(\"movewindowto d\")") # Move window down within column
+    (bindWithDescription "${mainMod} + CTRL + right" "make column wider" "hl.dsp.layout(\"colresize +conf\")")
+    (bindWithDescription "${mainMod} + CTRL + left" "make column narrower" "hl.dsp.layout(\"colresize -conf\")")
+    (bindWithDescription "${mainMod} + CTRL + F" "fit focused column to screen" "hl.dsp.layout(\"fit active\")")
+    (bindWithDescription "${mainMod} + CTRL + P" "pop window into its own column" "hl.dsp.layout(\"promote\")")
+    (bindWithDescription "${mainMod} + CTRL + up" "move window up within column" "hl.dsp.layout(\"movewindowto u\")")
+    (bindWithDescription "${mainMod} + CTRL + down" "move window down within column" "hl.dsp.layout(\"movewindowto d\")")
   ];
 
   quickshellBinds = lib.optionals (userSettings.hyprland.bar == "quickshell") [
@@ -179,8 +181,8 @@
   );
 
   mouseBinds = [
-    (bindWithOptions "${mainMod} + mouse:272" "hl.dsp.window.drag()" {mouse = true;})
-    (bindWithOptions "${mainMod} + mouse:273" "hl.dsp.window.resize()" {mouse = true;})
+    (bindWithOptionsDescription "${mainMod} + mouse:272" "move window with mouse" "hl.dsp.window.drag()" {mouse = true;})
+    (bindWithOptionsDescription "${mainMod} + mouse:273" "resize window with mouse" "hl.dsp.window.resize()" {mouse = true;})
   ];
 
   luaBinds = lib.concatStringsSep "\n" (baseBinds ++ quickshellBinds ++ nonQuickshellBinds ++ workspaceBinds ++ mouseBinds);
