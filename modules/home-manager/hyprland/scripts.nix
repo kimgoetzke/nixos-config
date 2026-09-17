@@ -90,25 +90,41 @@
   };
   home.shellAliases.roficalculator = "${userSettings.targetDirectory}/rofi-calculator.sh";
 
-  # Toggle performance mmode -------------------------------------------------------------------------------------------
+  # Toggle performance mode --------------------------------------------------------------------------------------------
   home.file."${userSettings.relativeTargetDirectory}/toggle-performance-mode.sh" = {
     text = ''
       #!/usr/bin/env bash
-      HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-      if [ "$HYPRGAMEMODE" = 1 ] ; then
-          pkill waybar
-          hyprctl --batch "\
-              keyword animations:enabled 0;\
-              keyword decoration:shadow:enabled 0;\
-              keyword decoration:blur:enabled 0;\
-              keyword general:gaps_in 0;\
-              keyword general:gaps_out 0;\
-              keyword general:border_size 1;\
-              keyword decoration:rounding 0"
-          exit
+      set -euo pipefail
+
+      animations_enabled=$(hyprctl -j getoption animations:enabled | ${pkgs.jq}/bin/jq -r '.bool')
+
+      if [[ "$animations_enabled" == "true" ]]; then
+        # Hyprland's Lua config parser only supports runtime changes through eval.
+        hyprctl eval 'hl.config({
+          animations = { enabled = false },
+          decoration = {
+            shadow = { enabled = false },
+            blur = { enabled = false },
+            rounding = 0,
+          },
+          general = {
+            gaps_in = 0,
+            gaps_out = 0,
+            border_size = 0,
+          },
+        })'
+
+        if command -v noctalia >/dev/null 2>&1; then
+          noctalia msg bar-hide || true
+        fi
+        exit 0
       fi
+
+      # Reloading restores the configured visual settings.
       hyprctl reload
-      waybar -c /home/${userSettings.user}/.config/waybar/config & -s /home/${userSettings.user}/.config/waybar/style.css
+      if command -v noctalia >/dev/null 2>&1; then
+        noctalia msg bar-show || true
+      fi
     '';
     executable = true;
   };
