@@ -6,6 +6,9 @@
   userSettings,
   ...
 }: {
+  # TODO: Home Manager removed wayprompt, try removing it soon
+  stylix.targets.wayprompt.enable = false;
+
   imports = [
     ./firefox.nix
     ./vscode.nix
