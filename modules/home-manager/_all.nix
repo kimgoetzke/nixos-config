@@ -28,5 +28,6 @@
     ./obsidian.nix
     ./zed.nix
     ./mpv.nix
+    ./blender.nix
   ];
 }

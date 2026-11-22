@@ -72,6 +72,8 @@
   nvim.enable = userSettings.vimDistribution == "neovim";
   programs.home-manager.enable = true;
   mpv.enable = true;
+  blender.enable = true;
+  blender.withMcp = true;
   programs.obs-studio.enable = true;
   zed.enable = true;
   zed.withDefaultConfig = true;
