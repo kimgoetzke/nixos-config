@@ -38,15 +38,15 @@
               bgimage:            url('${userSettings.targetDirectory}/thumbnail.png', width);
           }
           ${builtins.readFile ./../../../assets/configs/hyprland/rofi-theme.rasi}'');
-      cycle = true;
       plugins = with pkgs; [
         rofi-emoji
         rofi-calc
         rofi-power-menu
       ];
-      extraConfig = {
+      settings = {
         kb-row-up = "Up";
         kb-row-down = "Down";
+        cycle = true;
       };
     };
   };
